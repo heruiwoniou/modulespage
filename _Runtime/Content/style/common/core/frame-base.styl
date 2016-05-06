@@ -1,0 +1,42 @@
+html
+body
+	height: 100%
+frame-base($headerHeight,$footerHeight)
+	.body
+		padding-top:$headerHeight
+		min-height: 100%
+		height: auto !important
+		box-sizing: border-box
+		margin-top:0 - $headerHeight
+		margin-bottom:0 - $footerHeight
+		&:after
+			content:""
+			display: block
+			width: 100%
+			height: $footerHeight
+	.footer
+		height:$footerHeight
+
+container-base($screenWidthMax,$screenWidthMin)
+	.container
+		max-width:$screenWidthMax
+		min-width:$screenWidthMin
+		margin:0px auto
+		.container
+			max-width:auto
+			min-width: auto;
+
+button-base($height,$minWidth)
+	.button
+		box-sizing: content-box
+		min-width:$minWidth
+		height:$height
+		line-height: $height
+		&.larger
+			height:floor($height * 1.1)
+			line-height: floor($height * 1.1)
+			min-width:floor($minWidth * 1.1)
+		&.smaller
+			height:floor($height * 0.9)
+			line-height: floor($height * 0.9)
+			min-width:floor($minWidth * 0.9)

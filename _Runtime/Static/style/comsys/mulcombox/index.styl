@@ -1,0 +1,114 @@
+.comsys-MulCombox-layout
+    background: $disabled-color
+    border: 1px solid $border-color
+    box-sizing: border-box
+    width: 100%
+    position: relative
+    .comsys-MulCombox-input
+        position: relative
+        margin-right:30px
+        overflow: hidden
+        height: 100%
+        line-height: $line-height - 4 !important
+        input
+            height:100%
+            line-height: $line-height - 4 !important
+            border:0px
+            background: transparent
+        .comsys-MulCombox-drag
+            cursor: ew-resize
+            position: absolute
+            white-space: nowrap
+            &:after
+                content:""
+                clear: both
+            span
+                height:$line-height - 2 - 4
+                line-height: $line-height - 2 - 4
+                padding: 3px 5px
+                border: 1px solid #ccc
+                margin-left: 5px
+                vertical-align: middle
+                border-radius: 3px
+                box-sizing: border-box
+                background: #fff
+                font-size:12px
+                b
+                    cursor: pointer
+                    text-align: center
+                    &:before
+                        @extend .iconSetting
+                        content: "\4d"
+                        position: relative
+                        top: 1px
+                        left: 2px
+                    &:hover
+                        color: red
+            span.label-option-remove
+                height:20px
+                padding:0 5px
+                line-height:19px
+    .comsys-MulCombox-button
+        position: absolute
+        right: 0
+        top: 0
+        height: 100%
+        width: 30px
+        cursor: pointer
+        text-align: center
+        font-size:$font-ico-size
+        &:before
+            @extend .iconSetting
+            content: $mcombox-icon
+
+.comsys-MulCombox-drop
+    font-size: 12px
+    position:absolute
+    display: block
+    background: white
+    z-index: 2
+    top: 0px
+    left: 0px
+    display: none
+    overflow: hidden
+    overflow-y: auto
+    border: 1px solid $border-color
+    z-index:999999
+    box-sizing:border-box
+    box-shadow: 0px 0px 5px 0px #cccccc
+    div.comsys-MulCombox-option
+        cursor: default
+        box-sizing:border-box
+        @extend .textHidden
+        border-bottom:1px solid #fff
+        position: relative
+        padding-left:30px
+        font-size: 14px
+        &:hover
+            background: #e3e3fd
+        &.hover
+            background: #5050ef
+            color:#fff
+        div.before
+            content:""
+            background: url(images/checkbox.png) no-repeat center
+            position: absolute
+            left: 0px
+            top:0px
+            height:  $line-height
+            vertical-align: middle
+            line-height: $line-height
+            width: 30px
+            font-size: 1.8em
+            text-align: center
+            color:#ccc
+    div.selected
+        box-sizing: border-box
+        border-bottom:1px solid #fff
+        div.before
+            content:""
+            background: url(images/checkbox-checked.png) no-repeat center
+            height:  $line-height
+            vertical-align: middle
+            line-height: $line-height
+            color:limegreen

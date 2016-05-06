@@ -32,8 +32,7 @@ define(
 
                         var $parent=$wrap.parent();
                         if($parent.get(0).nodeName=="LABEL") {
-                            $parent.css({position: "relative", paddingLeft: "20px"}).attr("for", id);
-                            $wrap.css({position: "absolute", left: "0px"})
+                            $parent.addClass("comsys-checkbox-label").attr("for", id);
                         }
 
                         $(document).on("click.CheckBoxClickHandler"+id,"#" + id,function(){

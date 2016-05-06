@@ -23,6 +23,8 @@ global-reset()
   table, caption, tbody, tfoot, thead, tr, th, td
     reset-box-model()
     reset-font()
+  html
+    overflow-y scroll
   body
     reset-body()
   ol, ul
@@ -44,6 +46,19 @@ global-reset()
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+  html
+    -webkit-text-size-adjust:none
+  a
+    text-decoration: none
+  a:focus
+    outline:none
+  li
+    list-style: none
+
+  * html,
+  * html body
+    background-image:url(about:blank)
+    background-attachment:fixed
 
 nested-reset()
   div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,

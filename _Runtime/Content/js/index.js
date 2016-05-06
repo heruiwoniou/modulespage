@@ -1,7 +1,9 @@
 define(function(){
 	return{
 		init:function(){
-			alert(1);
+			WebApi.confirm("test").then(function(){
+				console.log(arguments);
+			})
 		}
 	}
 })

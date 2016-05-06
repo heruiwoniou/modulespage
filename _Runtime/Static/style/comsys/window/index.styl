@@ -1,0 +1,131 @@
+
+//弹出窗体基本样式
+.comsys-box-base
+    z-index:951
+    background:#fff
+    box-sizing:content-box
+    .comsys-box-head
+    .comsys-box-title
+    .comsys-box-close
+    .comsys-box-content
+        box-sizing:border-box
+
+.comsys-box-window
+    iframe
+        float: left
+    border: $window-border solid $themeColor
+    box-shadow: 0px 0px 2px 0px #ccc
+    .comsys-box-head
+        background: $themeColor
+        height: $window-titleHeight
+        width: 100%
+        line-height: $window-titleHeight
+        position: relative;
+        cursor: default;
+        color: $themeFontColor;
+        .comsys-box-title
+            text-align: center;
+            font-size:16px;
+            margin-right: $window-titleHeight;
+            @extend .textHidden
+            color: #fff
+        .comsys-box-close
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            height: $window-titleHeight;
+            width: $window-titleHeight - 15;
+            font-size: 2.2em;
+            text-align: center;
+            &:before
+                font-family: "ElegantIcons";
+                line-height: $window-titleHeight - 0.5;
+                color:darken($themeColor,15%);
+                content: $close;
+    .comsys-box-content
+        background: #fff;
+        width: 100%;
+        padding: 2px;
+        overflow: auto;
+
+.comsys-box-dialog
+    .comsys-box-head
+        .comsys-box-title
+            text-align: left;
+            text-indent: 20px;
+    .comsys-box-buttons
+        background: $themeColor
+        padding-top: $window-border;
+        box-sizing: content-box;
+        text-align: right;
+        .comsys-box-button
+            margin-left:1px;
+            height: $window-titleHeight;
+            max-width: 100px;
+            background:lighten($themeColor,5%);
+            display: inline-block;
+            min-width: 100px;
+            line-height:$window-titleHeight;
+            vertical-align: top;
+            text-align: center;
+            color:#fff;
+            cursor: pointer;
+            &:hover
+                background:lighten($themeColor,15%);
+                color:#fff;
+
+    .comsys-box-content
+        overflow: hidden;
+        line-height: 20px;
+        font-size:16px;
+        padding:19px 10px 20px 60px;;
+        position: relative;
+        text-align: left;
+        &:before
+            font-size:30px;
+            padding:0 10px;
+            position: absolute;
+            top: 8px;
+            left: 5px;
+            @extend .iconSetting
+        &.info:before
+            color:$themeColor;
+            content:"p";
+        &.error:before
+            color:#e73e4d;
+            content:"r";
+        &.question:before
+            color:#65c97a;
+            content:"t";
+
+.comsys-box-resize-window
+    .comsys-box-head
+        .comsys-box-title
+            margin-right: $window-titleHeight * 2;
+        .comsys-box-full
+            position: absolute;
+            right: $window-titleHeight;
+            top: 0px;
+            height: $window-titleHeight;
+            width: $window-titleHeight - 15;
+            font-size: 1.5em;
+            text-align: center;
+            &:before
+                font-family: "ElegantIcons";
+                line-height: $window-titleHeight - 0.5;
+                content: "V";
+                color:$themeColor - 15%;
+        .comsys-box-normal
+            display: none;
+            position: absolute;
+            right: $window-titleHeight;
+            top: 0px;
+            height: $window-titleHeight;
+            width: $window-titleHeight - 15;
+            font-size: 1.5em;
+            text-align: center;
+            &:before
+                font-family: "ElegantIcons";
+                line-height: $window-titleHeight - 0.5;
+                content: "W";
+                color:$themeColor - 15%;
