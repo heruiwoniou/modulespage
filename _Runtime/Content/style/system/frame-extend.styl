@@ -1,0 +1,67 @@
+$navHeight=84px;
+$hoverColor=#1bb869;
+.header
+	padding-top $navHeight
+	.nav
+		background #fff
+		.container
+			position relative
+		position fixed
+		top 0
+		width 100%
+		height $navHeight
+		.logo
+			width 229px
+			height $navHeight
+			position absolute
+			left 0px;top 0px
+			background url(images/logo.png)
+		.menu
+			margin-left 229px
+			margin-right 200px
+			height $navHeight
+			ul
+				text-align right
+				font-size 0px
+				li
+					height $navHeight
+					display inline-block
+					a
+						font-size 16px
+						color $fontBaseColor
+						font-weight bold
+						text-align center
+						min-width 110px
+						line-height $navHeight
+						display inline-block
+						height $navHeight
+					&.select
+					&:hover
+						a
+							text-decoration none
+					&:hover
+						a
+							color $fontBaseColor
+						background $hoverColor + 85%
+					&.select
+						background $hoverColor
+						a
+							color #fff
+		.person
+			height $navHeight
+			position absolute
+			top 0px;right 0px
+			width 200px
+			text-align right;
+			.login
+				display inline-block;
+				height $navHeight
+				line-height $navHeight
+	.banner
+		height 608px
+		background url(images/banner.jpg) no-repeat
+.footer
+	background #282828
+	text-align center
+	line-height 76px
+	color #c1bcb3;
