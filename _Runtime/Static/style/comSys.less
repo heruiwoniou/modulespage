@@ -1,0 +1,434 @@
+﻿input[type=text],input[type=password],input[type=checkbox],input[type=radio],select{
+    //display: none !important;
+}
+
+
+/*common*/
+.comsys-base{ height:@line-height !important; line-height:@line-height !important;font-family: 宋体;
+    input[type=text],input[type=password],input[type=number] { padding:3px 4px; width:100%; height: 100%;}
+    input[type=text],input[type=password],input[type=checkbox],input[type=radio],input[type=number],select{display: inherit !important;}
+}
+.comsys-base,.comsys-base *{box-sizing:border-box;}
+
+/*ProtoUpload*/
+input[type=file] {
+    .opacity(0);
+}
+.comsys-ProtoUpload {overflow: hidden;background: rgb(244, 244, 244);border: 1px solid @border-color;width: 100%;position: relative;}
+.comsys-ProtoUpload{
+    input[type=file] {height: 100%;position: absolute;left: 0px;top: 0px;width: 100%;.opacity(0);}
+    div {margin-right: 30px;height: 100%; text-indent:5px;.textHidden}
+    span {position: absolute;right: 0px;text-align: center; width:30px;line-height: 100%; height: 100%;top: 0px;font-size:@icofont-size; .textHidden;
+        &:before{ font-family: "ElegantIcons";line-height: 1.5;content:""}
+    }
+    //&:hover,&:focus,&:active{
+    //    border: 1px solid rgb(169, 169, 169);
+    //}
+}
+
+/*checkbox*/
+.comsys-checkbox{
+    width: 18px;
+    height: 18px;
+    background: url(images/checkbox.png) no-repeat center;
+    display: inline-block;
+    input[type=checkbox]{ .opacity(0); display: inline-block !important;}
+}
+.checkbox-checked{background: url(images/checkbox-checked.png) no-repeat center;}
+
+/*radiobox*/
+
+.comsys-radiobox{
+    width: 18px;
+    height: 18px;
+    background: url(images/radio.png) no-repeat center;
+    display: inline-block;
+    input[type=radio]{ .opacity(0); display: inline-block !important;;}
+}
+.radiobox-checked{background: url(images/radio-checked.png) no-repeat center;}
+
+/*TextBox*/
+.comsys-TextBox { position:relative; width:100%; line-height:100%;  text-indent:5px; border:1px solid @border-color;
+    input{position:absolute;left:0px;top:0px; background: transparent;  border:0px solid transparent; outline:none;background:#fff;}
+}
+
+/*TipTextBox*/
+.comsys-TipTextBox { position:relative; width:100%; line-height:100%;  text-indent:5px; border:1px solid @border-color;
+    span.comsys-tip-span {color:#ccc; font-size:12px !important;font-size:@icofont-size;.textHidden;
+        &:before{font-family: "ElegantIcons";line-height: 1.5;content:@tip-icon}
+    }
+    input{position:absolute;left:0px;top:0px; background: transparent;  border:0px solid transparent; outline:none;
+        &:focus{background:transparent;}
+    }
+}
+
+/*ButtonTextBox-layout*/
+.comsys-ButtonTextBox-layout{width: 100%;position: relative; border:1px solid @border-color; box-sizing:border-box;
+    .comsys-TextBox,.comsys-TipTextBox {border:0px;}
+}
+.comsys-ButtonTextBox-input{ margin-right: 30px;height: 100%;position: relative;
+    input{ border: 0px;background: transparent;position: absolute;left: 0px;top: 0px;outline:none;}
+}
+.comsys-ButtonTextBox-button{ position: absolute;right: 0;top: 0;height: 100%;width: 30px;cursor: pointer;text-align: center;font-size:@icofont-size;
+    &:before{font-family: "ElegantIcons";line-height: 1.5;content: @combox-icon;}
+}
+
+/*SingleCombox*/
+.comsys-SingleCombox-layout{width: 100%;position: relative; border:1px solid @border-color; box-sizing:border-box;
+    .comsys-TextBox,.comsys-TipTextBox {border:0px; }
+}
+.comsys-SingleCombox-input{ margin-right: 30px;height: 100%;position: relative;
+    .comsys-TextBox,.comsys-TipTextBox{height: @line-height - 2 !important;}
+    input{ border: 0px;background: transparent;position: absolute;left: 0px;top: 0px;outline:none; height: 100%;}
+}
+.comsys-SingleCombox-button{ position: absolute;right: 0;top: 0;height: 100%;width: 30px;cursor: pointer;text-align: center;font-size:@icofont-size;
+    &:before{ font-family: "ElegantIcons";line-height: 1.5;content: @combox-icon;}
+}
+.comsys-SingleCombox-drop {font-size: 12px;position:absolute;display: block;background: white;z-index: 2;top: 0px;left: 0px;display: none;overflow: hidden;
+    overflow-y: auto;border: 1px solid @border-color; z-index:999999;box-sizing:border-box;
+    -webkit-box-shadow: 0px 0px 5px 0px #cccccc;
+    -moz-box-shadow: 0px 0px 5px 0px #cccccc;
+    box-shadow: 0px 0px 5px 0px #cccccc;
+    div.comsys-SingleCombox-option{cursor: default;box-sizing:border-box; padding-left:5px;.textHidden;
+        &:hover{background: #e3e3fd;}
+    }
+    div.selected{ background: #5050ef;color: white;}
+}
+
+//弹出窗体基本样式
+.comsys-box-base{ z-index:951; background:#fff;box-sizing:content-box;
+    .comsys-box-head,.comsys-box-title,.comsys-box-close,.comsys-box-content{box-sizing:border-box}
+}
+
+
+.comsys-box-window {
+    iframe{float: left;}
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: @window-border solid @themeColor;
+    -webkit-box-shadow: 0px 0px 2px 0px #ccc;
+    -moz-box-shadow: 0px 0px 2px 0px #ccc;
+    box-shadow: 0px 0px 2px 0px #ccc;
+    .comsys-box-head {
+        background: @themeColor;
+        height: @window-titleHeight;
+
+        -webkit-border-top-left-radius: 5px;
+        -moz-border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-top-right-radius: 5px;
+        border-top-right-radius: 5px;
+
+        width: 100%;
+        line-height: @window-titleHeight;
+        position: relative;
+        cursor: default;
+        color: @themeFontColor;
+        .comsys-box-title {
+            text-align: center;
+            font-size:16px;
+            margin-right: @window-titleHeight;
+            .textHidden;
+            color: #fff;
+        }
+        .comsys-box-close {
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            height: @window-titleHeight;
+            width: @window-titleHeight - 15;
+            font-size: 2.2em;
+            text-align: center;
+            &:before {
+                font-family: "ElegantIcons";
+                line-height: @window-titleHeight - 0.5;
+                color:darken(@themeColor,15%);
+                content: @close;
+            }
+        }
+    }
+    .comsys-box-content {
+        background: #fff;
+        width: 100%;
+        padding: 2px;
+        overflow: auto;
+    }
+}
+
+.comsys-box-dialog{
+    .comsys-box-head {
+        .comsys-box-title {
+            text-align: left;
+            text-indent: 20px;
+        }
+    }
+    .comsys-box-buttons{
+        background: @themeColor;
+        padding-top: @window-border;
+        box-sizing: content-box;
+        text-align: right;
+        .comsys-box-button{
+            margin-left:1px;
+            height: @window-titleHeight;
+            max-width: 100px;
+            background:lighten(@themeColor,5%);
+            display: inline-block;
+            min-width: 100px;
+            line-height:@window-titleHeight;
+            vertical-align: top;
+            text-align: center;
+            color:#fff;
+            cursor: pointer;
+            &:hover{
+                background:lighten(@themeColor,15%);
+                color:#fff;
+            }
+        }
+    }
+
+    .comsys-box-content {
+        overflow: hidden;
+        line-height: 20px;
+        font-size:16px;
+        padding:19px 10px 20px 60px;;
+        position: relative;
+        text-align: left;
+        &:before{
+            font-size:30px;
+            padding:0 10px;
+            position: absolute;
+            top: 8px;
+            left: 5px;
+            .iconSetting;
+        }
+        &.info:before{
+            color:@themeColor;
+            content:"p";
+        }
+        &.error:before{
+            color:#e73e4d;
+            content:"r";
+        }
+        &.question:before{
+            color:#65c97a;
+            content:"t";
+        }
+    }
+}
+
+.comsys-box-resize-window {
+    .comsys-box-head {
+        .comsys-box-title {
+            margin-right: @window-titleHeight * 2;
+        }
+        .comsys-box-full {
+            position: absolute;
+            right: @window-titleHeight;
+            top: 0px;
+            height: @window-titleHeight;
+            width: @window-titleHeight - 15;
+            font-size: 1.5em;
+            text-align: center;
+            &:before {
+                font-family: "ElegantIcons";
+                line-height: @window-titleHeight - 0.5;
+                content: "V";
+                color:darken(@themeColor,15%);
+            }
+        }
+        .comsys-box-normal {
+            display: none;
+            position: absolute;
+            right: @window-titleHeight;
+            top: 0px;
+            height: @window-titleHeight;
+            width: @window-titleHeight - 15;
+            font-size: 1.5em;
+            text-align: center;
+            &:before {
+                font-family: "ElegantIcons";
+                line-height: @window-titleHeight - 0.5;
+                content: "W";
+                color:darken(@themeColor,15%);
+            }
+        }
+    }
+}
+
+
+/*MulCombox*/
+.comsys-MulCombox-layout {
+    background: @disabled-color;
+    border: 1px solid @border-color;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    .comsys-MulCombox-input {
+        position: relative;
+        margin-right:30px;
+        overflow: hidden;
+        height: 100%;
+        line-height: @line-height - 4 !important;
+        input{  height:100%; line-height: @line-height - 4 !important;  border:0px; background: transparent;}
+        .comsys-MulCombox-drag {
+            cursor: ew-resize;
+            position: absolute;
+            white-space: nowrap;
+            //background: red;
+            &:after{
+                content:"";
+                clear: both;
+            }
+            span {
+                height:@line-height - 2 - 4;
+                line-height: @line-height - 2 - 4;
+                padding: 3px 5px;
+                border: 1px solid #ccc;
+                margin-left: 5px;
+                vertical-align: middle;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                background: #fff;
+                font-size:12px;
+                b {
+                    cursor: pointer;
+                    text-align: center;
+                    &:before {
+                        .iconSetting;
+                        content: "\4d";
+                        position: relative;
+                        top: 1px;
+                        left: 2px;
+                    }
+                    &:hover {
+                        color: red;
+                    }
+                }
+            }
+            span.label-option-remove{
+                height:20px;
+                padding:0 5px;
+                line-height:19px;
+            }
+        }
+    }
+    .comsys-MulCombox-button{position: absolute;right: 0;top: 0;height: 100%;width: 30px;cursor: pointer;text-align: center;font-size:@icofont-size;
+        &:before{ .iconSetting;content: @mcombox-icon;}}
+}
+
+.comsys-MulCombox-drop {font-size: 12px;position:absolute;display: block;background: white;
+    z-index: 2;top: 0px;left: 0px;display: none;overflow: hidden;
+    overflow-y: auto;border: 1px solid @border-color; z-index:999999;box-sizing:border-box;
+    -webkit-box-shadow: 0px 0px 5px 0px #cccccc;
+    -moz-box-shadow: 0px 0px 5px 0px #cccccc;
+    box-shadow: 0px 0px 5px 0px #cccccc;
+    div.comsys-MulCombox-option{cursor: default;box-sizing:border-box;.textHidden;
+        border-bottom:1px solid #fff;
+        position: relative;
+        padding-left:30px;
+        font-size: 14px;
+        &:hover{background: #e3e3fd;}
+        &.hover{background: #5050ef; color:#fff;}
+        div.before{
+            content:"";
+            background: url(images/checkbox.png) no-repeat center;
+            position: absolute;
+            left: 0px;top:0px;
+            height:  @line-height;
+            vertical-align: middle;
+            line-height: @line-height;
+            width: 30px;
+            font-size: 1.8em;
+            text-align: center;
+            color:#ccc;
+        }
+    }
+    div.selected{ box-sizing: border-box; border-bottom:1px solid #fff;
+        div.before{
+            content:"";
+            background: url(images/checkbox-checked.png) no-repeat center;
+            height:  @line-height;
+            vertical-align: middle;
+            line-height: @line-height;
+            color:limegreen;
+        }
+    }
+}
+
+
+
+/*ul-menu*/
+
+.ul-menu{
+    li{
+        cursor: default;
+        font-size:17px;
+        list-style: none;line-height: 21px;
+        &:before{
+            content:"";
+            height:21px;
+            position: relative;
+            width:5px;
+            display: inline-block;
+            left:-10px;
+            top:4.5px;
+            background: blue;
+        }
+        &>i:before{
+            color:blue;
+            .iconSetting;
+        }
+    }
+    ul{display: none;}
+    ul li{
+        font-size:0.9em;
+        padding-left: 20px;
+        &:before{
+            content:none;
+        }
+        &.select{
+            a{
+                background: blue;color:white;
+            }
+        }
+
+    }
+    a{
+        font-size:0.8em;
+        padding:2px 10px;
+        text-decoration: none;
+        &:hover{
+            background: blue;color:white;
+        }
+    }
+    .open i:before{
+        content:"K ";
+    }
+    .close i:before{
+        content:"L ";
+    }
+}
+
+
+/*validate*/
+.comsys-hidden-container{
+    width:0px; height:100%; position: absolute;right: 0; top:0;
+    select{display: none !important;}
+    label{display: none;}
+    input[type=checkbox]{display: none !important;}
+}
+
+
+/*drop menu*/
+.comsys-menu{ font-size:12px !important;}
+.ui-menu-icons .ui-menu-item{
+    padding-left:.4em !important;
+}
+.ui-menu { width: 150px; }

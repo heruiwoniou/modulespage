@@ -1,0 +1,21 @@
+@import "./common/core/reset.styl";
+
+@import "../../Static/style/font.styl";
+@import "../../Static/style/comsys.styl";
+
+global-reset();
+nested-reset();
+reset-font();
+reset-box-model();
+reset-body();
+reset-table();
+reset-table-cell();
+reset-html5();
+
+/**
+ * grid
+ */
+$columns      =12;
+$percent      =true;
+$percent-step =2;
+@import "./common/grid/grid.styl";

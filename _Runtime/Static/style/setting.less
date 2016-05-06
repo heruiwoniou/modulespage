@@ -1,0 +1,44 @@
+@border-color:#ccc;
+@disabled-color:#f4f4f4;
+
+@font-color:#1d91b7;
+
+@font-color-one:#3a8db5;
+@font-color-two:#63cfdb;
+@font-color-three:#d0f2ec;
+@font-color-four:#f88921;
+@font-color-five:#f6af5d;
+@font-color-six:#e7e8e0;
+
+@important-font-color:#ed4914;
+
+@line-height:35px;
+@icofont-size:18px;
+
+@tip-icon:"r ";
+@combox-icon:";";
+@mcombox-icon:"?";
+
+
+@themeColor:@font-color;
+@themeFontColor:#fff;
+
+@window-border:0px;
+@window-titleHeight:35px;
+@close:"M";
+@closeHover:"Q";
+
+
+.iconSetting{
+  font-family: "ElegantIcons";line-height: 1.5;
+}
+
+.opacity(@alpha){
+  opacity: @alpha;
+  @filterAlpha:@alpha * 100;
+  filter:~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{filterAlpha})"
+}
+
+.textHidden{
+  overflow: hidden;text-overflow: ellipsis;white-space: nowrap
+}

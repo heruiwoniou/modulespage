@@ -1,0 +1,26 @@
+$padding=0.5%
+.row
+  [class*=col-]
+  [class*=per-]
+    float left
+    position relative
+    margin 0 $padding
+    box-sizing content-box
+    min-height 1px
+    .row
+      margin 0 (- $padding)
+  &:after
+    display: block; visibility: hidden;content:"";width: 0px;height:0px;line-height: 0px;font-size:0px;clear:both;zoom:1;
+  for b in 1..$columns
+  	.col-{b}
+  		width (floor(10000/$columns*b)/100)% - 2*$padding
+  for c in 1..($columns - 1)
+  	.offset-{c}
+  		margin-left:(floor(10000/$columns*c)/100)%
+  if $percent
+      for d in 1..(100/$percent-step)
+          $p=d*$percent-step
+          .per-{$p}
+              width ($p)%
+          .per-o-{$p}
+              margin-left: ($p)%;
