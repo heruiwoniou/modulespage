@@ -7,7 +7,7 @@
 
 define(
     [
-        "jquery",
+        'jquery',
         'Class',
         'common/client/Bumper',
         'comsys/base/Window'
@@ -38,6 +38,10 @@ define(
 
                     this.$BoxBaseNormal.off(".BoxBaseNormalHandler").on("click.BoxBaseNormalHandler",
                         function(){return me.BoxBaseNormalHandler.apply(me,arguments);})
+
+                    this.$BoxBaseTitle.off(".BoxBaseTitleDoubleClick").on("dblclick.BoxBaseTitleDoubleClick",
+                        function(){return me.BoxBaseTitleDoubleClick.apply(me,arguments);})
+
                     return this;
                 },
                 BindResize:function(){
@@ -55,6 +59,15 @@ define(
                     this.BoxBaseFullHandler(null,true);
                 },
                 CachePosition:null,
+                BoxBaseTitleDoubleClick:function(e){
+                    var me=this;
+                    if(me.windowState==me.WindowStatus.Normal)
+                    {
+                        me.$BoxBaseFull.trigger('click.BoxBaseFullHandler');
+                    }else {
+                        me.$BoxBaseNormal.trigger('click.BoxBaseNormalHandler');
+                    }
+                },
                 BoxBaseFullHandler:function(e,state/*no animate*/){
                     var me=this;
                     if(!state) {
@@ -67,7 +80,10 @@ define(
                         }
                     }
 
-                    var ch = document.documentElement.offsetHeight * 0.99 - this.setting.titleHeight;
+                    var $win = $(window);
+                    var gh = $win.height();
+
+                    var ch = gh * 0.99 - this.setting.titleHeight;
 
                     if(state)
                     {
@@ -129,9 +145,12 @@ define(
                 },
                 show:function(setting){
                     var me=this;
+                    var $win = $(window);
+                    var gh = $win.height();
+                    if(gh>setting.height) setting.full=true;
                     this.callParent.call(this, setting);
                     me.fullsetting=setting;
-                    if(setting.full) {
+                    if(setting.full||setting.alwaysfull) {
                         this.BoxBaseFullHandler(null,true);
                         this.BindResize();
                     }else{

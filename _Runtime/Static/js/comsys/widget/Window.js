@@ -60,6 +60,7 @@ define(
                             ajax: typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false,
                             width: setting.width || 900,
                             height: setting.height || 500,
+                            content: setting.content || '',
                             callback:setting.callback
                         };
                         (_win=(this._window||(this._window=new w().initialize()))).show(setting);
@@ -71,6 +72,7 @@ define(
                             ajax: typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false,
                             width: setting.width || 800,
                             height: setting.height || 600,
+                            content: setting.content || '',
                             callback:setting.callback,
                             full:(typeof setting.full=="boolean"?setting.full:false)
                         };

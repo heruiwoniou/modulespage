@@ -8,7 +8,7 @@ var WebApi = {};
 define([
     'common/setting',
     'comsys/layout/MaskLayer',
-    'widget/DialogBox',
+    'widget/Window',
     'widget/TextBox',
     'widget/TipTextBox',
     'widget/CheckBox',
@@ -34,6 +34,20 @@ define([
         },
         error:function(message){
             return DialogBox.show({content:message,buttons:DialogBox.button.OK,icon:DialogBox.icon.error})
+        },
+
+        //弹出窗口
+        modal:function(setting){
+            return DialogBox.show($.extend({type:'window'},setting)).then(function(state){
+                WebApi.initControl();
+                return state
+            })
+        },
+        window:function(setting){
+            return DialogBox.show($.extend({type:'resizewindow'},setting)).then(function(state){
+                WebApi.initControl();
+                return state
+            })
         },
 
         //页面调用初始化功能

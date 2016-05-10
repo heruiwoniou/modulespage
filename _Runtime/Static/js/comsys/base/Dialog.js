@@ -7,7 +7,7 @@
 
 define(
     [
-        "jquery",
+        'jquery',
         'Class',
         'TPLEngine',
         'comsys/base/Window'
@@ -28,7 +28,7 @@ define(
                     this.$BoxBaseEl.append(this.$BoxBaseButtons)
 
 
-                    this.$BoxBaseButtons.on("click.buttonsClikHanler","div", function(){ return me.OnButtonsClikHanler.apply(me,Array.prototype.splice.call(arguments,0).concat($(this)));})
+                    this.$BoxBaseButtons.on("click.buttonsClikHanler","div", function(){ return me.OnButtonsClikHanler.apply(me,Array.prototype.slice.call(arguments,0).concat($(this)));})
                     return this;
                 },
                 DialogTPL:{

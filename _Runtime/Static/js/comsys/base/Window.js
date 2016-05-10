@@ -32,7 +32,7 @@ define(
 
                     this.windowLoadType = null;
                     this.deferred = new $.Deferred();
-                    this.setting.titleHeight = 35;
+                    this.setting.titleHeight = 45;
                     this.setting.borderWidth = 0;
                     this.setting.callback = function () {
                     };
@@ -109,11 +109,14 @@ define(
                     var gh = $win.height();
                     var gw = $win.width();
 
+                    setting.width=(gw>setting.width?setting.width:gw*0.99);
+                    setting.height=(gh>setting.height?setting.height:gh*0.99);
+
                     var top = (gh - setting.height) / 2 - ((gh - setting.height) / 2) * 2 / 5;
                     this.$BoxBaseEl.css({
                         position: "fixed",
                         width: setting.width,
-                        //height: setting.height,
+                        height: "auto",
                         left: (gw - setting.width) / 2,
                         top: top < 0 ? 0 : top
                     }).hide();
@@ -168,7 +171,7 @@ define(
                 resize: function (height) {
                     height = height || this.$BoxBaseEl.height();
                     var ch = height - this.setting.titleHeight;
-                    this.$BoxBaseContent.css({minHeight: ch});
+                    this.$BoxBaseContent.css({height:'auto',minHeight: ch+'px'});
                     this.$BoxBaseFrame.css({height: ch});
                 }
 
