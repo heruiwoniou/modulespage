@@ -23,7 +23,7 @@ container-base($screenWidthMax,$screenWidthMin)
 		min-width:$screenWidthMin
 		margin:0px auto
 		.container
-			max-width:auto
+			max-width: inherit
 			min-width: auto;
 
 button-base($height,$minWidth)
@@ -35,10 +35,12 @@ button-base($height,$minWidth)
 		height:$height
 		line-height: $height
 		&.larger
-			height:floor($height * 1.1)
-			line-height: floor($height * 1.1)
-			min-width:floor($minWidth * 1.1)
+			height:floor($height * 1.3)
+			line-height: floor($height * 1.3)
+			min-width:floor($minWidth * 1.3)
 		&.smaller
-			height:floor($height * 0.9)
-			line-height: floor($height * 0.9)
-			min-width:floor($minWidth * 0.9)
+			height:floor($height * 0.7)
+			line-height: floor($height * 0.7)
+			min-width:floor($minWidth * 0.7)
+		&:hover
+			text-decoration none

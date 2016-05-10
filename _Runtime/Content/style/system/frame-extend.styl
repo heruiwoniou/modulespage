@@ -1,12 +1,18 @@
 $navHeight=84px;
 $hoverColor=#1bb869;
+
+/*general*/
+html
+	*
+		color $fontBaseColor
 .header
 	padding-top $navHeight
 	.nav
-		background #fff
 		.container
 			position relative
 		position fixed
+		z-index 1
+		background #fff
 		top 0
 		width 100%
 		height $navHeight
@@ -58,10 +64,15 @@ $hoverColor=#1bb869;
 				height $navHeight
 				line-height $navHeight
 	.banner
-		height 608px
-		background url(images/banner.jpg) no-repeat
+		position relative
 .footer
 	background #282828
 	text-align center
 	line-height 76px
 	color #c1bcb3;
+
+/*particulars*/
+
+/*index*/
+@import './pager/index.styl'
+

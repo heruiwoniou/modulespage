@@ -1,4 +1,4 @@
-$padding=0.5%
+$padding=1%
 .row
   [class*=col-]
   [class*=per-]
@@ -21,6 +21,6 @@ $padding=0.5%
       for d in 1..(100/$percent-step)
           $p=d*$percent-step
           .per-{$p}
-              width ($p)%
+              width ($p)% - 2*$padding
           .per-o-{$p}
               margin-left: ($p)%;
