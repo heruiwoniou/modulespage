@@ -147,7 +147,8 @@ define(
                     var me=this;
                     var $win = $(window);
                     var gh = $win.height();
-                    if(gh>setting.height) setting.full=true;
+                    var gw = $win.width();
+                    if(gh<setting.height||gw<setting.width) setting.full=true;
                     this.callParent.call(this, setting);
                     me.fullsetting=setting;
                     if(setting.full||setting.alwaysfull) {
@@ -162,6 +163,13 @@ define(
                 close:function(){
                     this.callParent.apply(this,arguments);
                     this.UnBindResize();
+                },
+                destory:function(){
+                    this.$BoxBaseFull.off(".BoxBaseFullHandler");
+                    this.$BoxBaseNormal.off(".BoxBaseNormalHandler");
+                    this.$BoxBaseTitle.off(".BoxBaseTitleDoubleClick");
+                    this.UnBindResize();
+                    this.callParent();
                 }
             }, Window);
 
