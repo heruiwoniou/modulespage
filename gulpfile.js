@@ -25,13 +25,6 @@ var createList=[
             'libs/jquery-extend/jquery.scroll-column',
             'libs/jquery-extend/jquery.stellar'
         ]
-    },
-    {
-        moduleName:"module/a",
-        exclude:[
-            'libs/jquery-extend/jquery.scroll-column',
-            'libs/jquery-extend/jquery.stellar'
-        ]
     }
 ]
 

@@ -19,12 +19,7 @@ define( [
                 //WebApi.modal({title:"12323",src:"index.html"})
                 //WebApi.modal({title:"12323",content:$("#test")})
                 //WebApi.window({title:"12323",ajax:true,src:"index.html"})
-                WebApi.window({
-                    title:"12323",
-                    width:9000,
-                    height:1000,
-                    src:"index.html"
-                })
+                WebApi.window({title:"12323",src:"index.html"})
                 //WebApi.window({title:"12323",content:$("#test")})
                 .then(function(state){
                     console.log(state);

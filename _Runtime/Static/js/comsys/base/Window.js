@@ -36,7 +36,6 @@ define(
                     this.setting.borderWidth = 0;
                     this.setting.callback = function () {
                     };
-                    this.status=false;
                     this.setting.dragoption = {
                         cancel: ".comsys-box-content,iframe",
                         containment: "window",
@@ -86,7 +85,6 @@ define(
                     "ajax": "ajax"
                 },
                 show: function (setting) {
-                    this.status=true;
                     this.deferred = new $.Deferred();
                     this.deferred.promise(this);
                     var me = this;
@@ -168,7 +166,6 @@ define(
                         this.then(function(){command.apply(null,arguments);});
                         cmd="close";
                     }
-                    this.status=false;
                     this.deferred.resolve(cmd||"close");
                 },
                 resize: function (height) {
@@ -176,11 +173,6 @@ define(
                     var ch = height - this.setting.titleHeight;
                     this.$BoxBaseContent.css({height:'auto',minHeight: ch+'px'});
                     this.$BoxBaseFrame.css({height: ch});
-                },
-                destory:function(){
-                    this.drapObject.destroy();
-                    this.$BoxBaseClose.off(".BoxBaseCloseHandler");
-                    this.$BoxBaseEl.remove();
                 }
 
             }, Base);

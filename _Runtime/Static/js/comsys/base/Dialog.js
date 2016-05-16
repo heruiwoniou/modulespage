@@ -64,10 +64,6 @@ define(
                     var ch = height - this.setting.titleHeight;
                     this.$BoxBaseContent.css({ minHeight: ch });
                     this.$BoxBaseFrame.css({ height: ch });
-                },
-                destory:function(){
-                    this.$BoxBaseButtons.off("click.buttonsClikHanler");
-                    this.callParent();
                 }
             }, Window);
 
