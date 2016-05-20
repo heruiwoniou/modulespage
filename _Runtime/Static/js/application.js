@@ -6,20 +6,30 @@
  */
 var WebApi = {};
 define([
+    'jquery',
     'common/setting',
     'comsys/layout/MaskLayer',
     'widget/Window',
+    '../../Content/js/util/common',
+    'common/client/XImage',
+    'common/client/Sync',
+    'vue',
     'widget/TextBox',
     'widget/TipTextBox',
+    'widget/ButtonTextBox',
     'widget/CheckBox',
     'widget/RadioBox',
     'widget/SingleCombox',
-], function(CommonSetting,MaskLayer,Window) {
+], function($,CommonSetting,MaskLayer,Win,common,XImage,Sync) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
-    WebApi={
+    var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
+    $.extend(WebApi,{
         //图层控制
-        showlayer:function(){
-            layer.show();
+        progress:function(setting){
+            layer.upload(setting);
+        },
+        showlayer:function(text,setting){
+            layer.show(text,setting);
         },
         hidelayer:function(){
             layer.hide();
@@ -27,21 +37,32 @@ define([
 
         //弹出框
         confirm:function(message){
-            return Window.show({content:message,buttons:Window.button.OKANDCANCEL,icon:Window.icon.question})
+            return Win.show({content:message,buttons:Window.button.OKANDCANCEL,icon:Window.icon.question})
         },
         alert:function(message){
-            return Window.show({content:message,buttons:Window.button.OK,icon:Window.icon.info})
+            return Win.show({content:message,buttons:Window.button.OK,icon:Window.icon.info})
         },
         error:function(message){
-            return Window.show({content:message,buttons:Window.button.OK,icon:Window.icon.error})
+            return Win.show({content:message,buttons:Window.button.OK,icon:Window.icon.error})
         },
 
         //弹出窗口
-        modal:function(name,setting){
-            return Window.show(name,$.extend({type:'window'},setting));
+        /**
+         * [modal 窗口]
+         * @param  {[type]} name    [窗体标识(可选)]
+         * @param  {[type]} setting [设置]
+         */
+        modal:function(){
+            return Win.show.apply(Win,concatArg(arguments,['window']));
         },
-        window:function(name,setting){
-            return Window.show(name,$.extend({type:'resizewindow'},setting));
+        /**
+         * [modal 窗口]
+         * @param  {[type]} name    [窗体标识(可选)]
+         * @param  {[type]} setting [设置]
+         */
+        window:function(){
+            var arr=concatArg(arguments,['resizewindow']);
+            return Win.show.apply(Win,arr);
         },
 
         //关闭弹出窗口
@@ -60,16 +81,33 @@ define([
             $parent.find("input[type='text']").TextBoxInit();
             $parent.find(":radio").RadioBoxInit();
             $parent.find(":checkbox").CheckBoxInit();
+        },
+        ImageViewerInit:function(){
+            Sync.ClearAsync("ImageLoad");
+            $("div.imageViewer[bind-width][bind-height][bind-src]").each(function(i){
+                var $this=$(this);
+                Sync.SetAsync(function(){
+                    var  width=$this.attr("bind-width"),height=$this.attr("bind-height"),src=$this.attr("bind-src"),after=function(){$(this.re).fadeIn()},before=function(){$(this.re).hide()};
+                    $this.css({lineHeight:height+"px"}).removeAttr("bind-width").removeAttr("bind-height").removeAttr("bind-src")
+                            .prepend(new XImage(src,width,height,after,after,before,before));
+                },"ImageLoad",i*50)
+            })
         }
-    };
+    });
+
     return {
         interface: function(action) {
-            if (!action) return;
-            $.extend(WebApi, action);
-            WebApi.init();
-            WebApi.initControl();
+            common.init();
+            if (action)
+            {
+                $.extend(WebApi, action);
+                WebApi.init();
+            }
         },
         initialize: function() {
+            var browser=CommonSetting.Browser();
+            document.getElementsByTagName('HTML').item(0).className=browser;
+            WebApi.ImageViewerInit();
             this.load();
         },
         load: function() {
@@ -80,7 +118,7 @@ define([
                 if ((main = scripts[i].getAttribute("main"))) break;
             if (main)
                 require(["../../Content/js/" + main], this.interface);
-            else WebApi.initControl();
+            else common.init();
         }
     };
 });

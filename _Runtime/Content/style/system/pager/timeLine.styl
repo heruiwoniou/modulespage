@@ -1,0 +1,94 @@
+body.timeLine
+	background $BackColor;
+	frame-base(84px,106px);
+	.body:after
+		height 107px;
+	.nav-router
+		background $BackColor
+	.section
+		.left-side
+			float left
+			word-break break-all
+			width 207px
+			.left-side-background
+				z-index -1
+				position fixed
+				background white
+				width 207px
+				top 0px
+				bottom 0px
+			.imageViewer
+				width 207px
+				height 146px
+			.person-info
+				padding 10px 0
+				table
+					width 100%
+					td
+						height 20px;
+						text-align left;
+						color white
+					tr td:first-child
+						text-align right
+		.right-side
+			word-break break-all
+			padding-left 217px
+	.footer
+		box-sizing border-box
+		border-top $BackColor 30px solid;
+
+	.left-side
+		ul
+			padding-bottom 2px
+			background $BackColor
+			li
+				background white
+				margin-top 2px
+				line-height 60px
+				position relative
+				a
+					display block
+					width 100%
+					text-align left
+					text-indent 40px
+					i
+						margin-right 20px
+						width 18px
+						height 18px
+						display inline-block
+						vertical-align middle
+						&.sj
+							background url('images/sj.png') center
+						&.wj
+							background url('images/wj.png') center
+						&.pj
+							background url('images/pj.png') center
+						&.xx
+							background url('images/xx.png') center
+				&:hover,&.select
+					b
+						position absolute
+						top 10px
+						display block
+						width 5px
+						height 40px
+						background $Color2
+				&:hover
+					&.select
+						b
+							background $Color2
+					b
+						background $Color2 + 180deg + 80%
+	.right-side
+		.banner
+			width 100%
+			height 146px;
+			/* @meta {"spritesheet": {"include": false}} */
+			background url('images/banner-timeline.jpg') no-repeat center;
+		.title-bar
+			.button-panel
+				floatRight();
+		.list-container
+			background white
+			margin-top 5px
+			padding 10px 10px 50px 10px

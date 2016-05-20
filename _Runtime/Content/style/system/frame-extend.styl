@@ -5,9 +5,18 @@ $hoverColor=#1bb869;
 html
 	*
 		color $fontBaseColor
+	&.scroll-hide
+		overflow-y hidden
+		padding-right 18px;
+		.header
+			.nav
+				padding-right 18px;
+[v-cloak]
+	display none;
 .header
 	padding-top $navHeight
 	.nav
+		border-bottom 1px solid $BackColor
 		.container
 			position relative
 		position fixed
@@ -23,10 +32,10 @@ html
 			left 0px;top 0px
 			background url(images/logo.png)
 		.menu
-			margin-left 229px
-			margin-right 200px
+			text-align right
 			height $navHeight
 			ul.ul-menu
+				display inline-block
 				text-align right
 				font-size 0px
 				&>li
@@ -48,33 +57,58 @@ html
 						a
 							text-decoration none
 					&:hover
-						a
+						&>a
 							color $fontBaseColor
 						background $hoverColor + 85%
+						&.disabled
+							a
+								color $fontSmallColor
+							background white
 					&.select
 						background $hoverColor
-						a
+						&>a
 							color #fff
+					&.disabled
+						a
+							cursor default
+							color $fontSmallColor
 		.person
 			height $navHeight
-			position absolute
-			top 0px;right 0px
-			width 200px
+			float right
+			min-width 100px
 			text-align right;
 			.login
 				display inline-block;
 				height $navHeight
 				line-height $navHeight
+				font-size 0
+				span
+					display inline-block;
+					width 1px
+					background $fontSmallColor
+					height 20px;
+					vertical-align middle
+				a
+					font-size 12px
+					display inline-block
+					vertical-align middle
+					margin 0 10px
 	.banner
 		position relative
 .footer
 	background #282828
 	text-align center
-	line-height 76px
 	color #c1bcb3;
 
 /*particulars*/
 
 /*index*/
 @import './pager/index.styl'
+/*publicSurver*/
+@import './pager/publicSurver.styl'
+/*timeLine*/
+@import './pager/timeLine.styl'
+
+/*manage*/
+@import './pager/manage/index.styl'
 

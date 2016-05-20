@@ -1,0 +1,171 @@
+body.state-viewer
+	padding 20px 20px 20px 20px
+	background $BackColor
+	.container
+		margin-bottom 20px
+		max-width inherit
+	.container:last-child
+		margin-bottom 0px
+	.part1
+		.panel-body
+			padding 0
+		height 128px
+		.state
+			font-size 20px
+			line-height 128px
+			text-align center
+			height 128px
+			width 128px
+			floatLeft()
+			background $Color4
+			color white
+			&.before
+				background $Color7
+			&.doing
+				background $Color3
+			&.pause
+				background $Color6
+			&.finish
+				background $Color11
+		.right
+			padding-left 128px
+			.content
+				&>*
+					line-height 1
+				padding-left 50px
+				line-height 128px
+				&.info-panel
+					span
+						display inline-block
+						height 60px
+						width 1px
+						margin 0 10px
+						background $BackColor
+						vertical-align middle
+					.info
+						min-width 150px
+						padding-left 20px
+						height 60px
+						vertical-align middle
+						line-height 1
+						display inline-block
+						h2
+							position relative
+							font-size 20px
+							line-height 1
+							&:before
+								content ''
+								height 9px
+								width 9px
+								display block
+								position absolute
+								left -20px
+								top 5px
+						p
+							text-align left
+							margin-top 20px
+						for index in 1..9
+							&:nth-child({index}n)
+								h2
+									color $Color+index
+									&:before
+										background $Color+index
+				&.share-panel
+					table
+						display inline-block
+						vertical-align middle
+						th
+						td
+							line-height 50px
+							input
+								display none
+							.search
+								background $Color9
+								&:before
+									content '复制'
+							.share
+								font-size 0
+								display inline-block
+								vertical-align middle
+								padding-left 5px
+								.share-qqim
+								.share-weixin
+								.share-sinaminiblog
+								.share-qzone
+									margin 0 2px
+									font-size 0
+									vertical-align middle
+									display inline-block
+									height 32px
+									width 32px
+									&:hover
+										opacity .7
+								.share-qqim
+									background url('images/qqim.gif') no-repeat
+								.share-weixin
+									background url('images/weixin.gif') no-repeat
+								.share-sinaminiblog
+									background url('images/sinaminiblog.gif') no-repeat
+								.share-qzone
+									background url('images/qzone.gif') no-repeat
+	.part2
+		ul.list-item
+			&:after
+				clear()
+			li
+				position relative
+				height 70px
+				line-height 70px
+				width 19%
+				margin 10px .5%
+				padding 1px 0px 0px 80px
+				floatLeft()
+				h1
+				p
+					line-height 1
+					textHidden()
+				p
+					color $fontSmallColor
+					a
+						font-size 14px
+						padding 0 10px
+						color $Color6
+					a.delete
+					a.edit
+						color $fontSmallColor
+						padding 0 5px
+						&:before
+							content ''
+							width 12px
+							height 13px
+							display inline-block
+							margin-right 10px
+					a.delete
+						&:before
+							background url('images/delete.png') no-repeat
+					a.edit
+						&:before
+							background url('images/edit.png') no-repeat
+				h1
+					font-size 18px
+					line-height 40px
+				i
+					top 9px
+					left 14px
+					position absolute
+					border-radius 100%
+					height 52px
+					width 52px
+					display block
+					background red
+					&:before
+						content ''
+						height 52px
+						width 52px
+						display block
+						background url('images/big-book-icon.png') no-repeat
+				for i in 1..9
+					&:nth-child({i}n)
+						h1
+							i
+								background $Color + i

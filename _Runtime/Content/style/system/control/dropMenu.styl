@@ -1,0 +1,38 @@
+ul.drop-menu
+	li
+		ul.sub-menu
+			transition: opacity .2s;
+			li
+				box-shadow 0 0 2px 0 #ccc
+				text-align left;
+				min-width 200px;
+				height 50px !important
+				line-height 50px !important
+				background white;
+				a
+					display block
+					height 50px !important
+					line-height 50px !important
+				&>ul.sub-menu
+					z-index 1
+					opacity 0;
+					left:-9999px;
+			li:hover
+					&>ul.sub-menu
+						opacity 1
+						top 0px
+						left 100%
+		position relative
+		&>ul.sub-menu
+			opacity 1
+			position: absolute;
+			float: left;
+			left:-9999px;
+	li:hover
+		&>ul.sub-menu
+			z-index 1
+			opacity 1
+			left 0
+		&.disabled
+			&>ul.sub-menu
+				left:-9999px;

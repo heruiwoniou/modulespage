@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{padding: 0;margin:0;}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.linear-gradient{
+			overflow: hidden;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			background-image: url("");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 50% 50%;
+		}
+		.linear-gradient canvas
+		{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="linear-gradient">
+		<canvas id="linearGradient" width="1920" height="965"></canvas>
+	</div>
+</body>
+<script type="text/javascript">
+	var render=function(){
+		var canvas = document.getElementById('linearGradient');
+		if ( ! canvas || ! canvas.getContext ) { return false; }
+		draw(canvas.getContext('2d')).fill();
+	};
+	var draw=function(ctx){
+		var grad = ctx.createLinearGradient(0,0, 1920, 965);
+		grad.addColorStop(0, 'rgba(87, 143, 173,.5)');
+		grad.addColorStop(1, '#fff');
+		ctx.fillStyle = grad;
+		/* 绘制矩形 */
+		ctx.rect(0,0, 1920,965);
+		return ctx;
+	}
+	window.onload=render
+</script>
+</html>

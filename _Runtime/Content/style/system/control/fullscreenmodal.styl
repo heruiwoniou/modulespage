@@ -1,0 +1,126 @@
+.full-screen-modal
+	position fixed
+	background white
+	z-index 100
+	height 100%
+	width 100%
+	top -200%
+	left 0
+	opacity 0
+	transition opacity .2s ease
+	line-height 1
+	padding-top .5%
+	.gradient-canvas
+		position absolute
+		top 0
+		left 0
+		height 100%
+		width 100%
+		canvas
+			height 100%
+			width 100%
+	.modal-frame
+		position relative
+		vertical-align middle
+		top -10%
+		z-index 1
+		margin-left .5%
+		height 99%
+		width 99%
+		background white
+		transition top .2s ease
+		box-shadow 0 0 10px 2px black + 90%
+	&.show
+		opacity 1
+		top 0
+		.modal-frame
+			top 0
+	.modal-menu
+		float left
+		background $BColor3
+		width 78px
+		height 100%
+		.back
+		a
+			position relative
+			box-sizing content-box
+			display inline-block
+			text-align center
+			line-height 78px
+			height 78px
+			width 78px
+			text-align center
+			i
+				position absolute
+				width 29px
+				height 29px
+				display block
+				left 50%
+				margin-left -15px
+				top 10px
+		a
+			b
+				width 100%
+				text-align center
+				display inline-block
+				position absolute
+				font-weight normal
+				left 0px
+				top 50px
+				color white
+				line-height 1
+			&:hover
+			&.select
+				background $BColor3 - 10%
+				&:before
+					content ''
+					width 5px
+					height 50px
+					background $Color3 - 20%
+					display block
+					position absolute
+					left 0px
+					top 14px
+			&.select
+				background $BColor3 - 20%
+				&:before
+					background $Color3
+		div.back
+			height 78px
+			width 78px
+			background $Color3
+			cursor pointer
+			i
+				width 34px
+				height 27px
+				top 50%
+				margin-top -13px
+				background url('images/modal-back-arrow.png') no-repeat
+			&:hover
+				background $Color3 + 20%
+		a.view
+			i
+				background url('images/modal-view.png') no-repeat;
+		a.analyze
+			i
+				top 13px
+				background url('images/modal-analyze.png') no-repeat;
+	.modal-right-frame
+		height 100%
+		width 100%
+		padding-left 78px
+		.modal-body
+			position relative
+			height 100%
+			.modal-head
+				height 78px
+				line-height 78px
+				text-indent 30px
+				background white
+				font-size 20px
+			.modal-content
+				position absolute
+				top 78px
+				left 0
+				right 1px
+				bottom 1px

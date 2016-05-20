@@ -1,0 +1,91 @@
+/**
+ * buttons
+ */
+
+.button
+	border-radius 5px
+	&.no-radius
+		border-radius 0px
+	color white
+	vertical-align middle
+	border 2px solid transparent;
+	font-weight normal
+	&.b
+		background $Color1;
+		&:hover
+			border-color $Color1 + 20% !important
+	&.c
+		background $Color2;
+		&:hover
+			border-color $Color2 + 20% !important
+	&.g
+		background $Color3;
+		&:hover
+			border-color $Color3 + 20% !important
+	&.y
+		background $Color5;
+		&:hover
+			border-color $Color5 + 20% !important
+	&.o
+		background $Color6;
+		&:hover
+			border-color $Color6 + 20% !important
+	&.r
+		background $Color7;
+		&:hover
+			border-color $Color7 + 20% !important
+	&.p
+		background $Color9
+		&:hover
+			border-color $Color9 + 20% !important
+	&.gray
+		background $Color10 - 10%
+		&:hover
+			border-color $Color10 !important
+	&.w
+		background white - 10%
+		&:hover
+			color white !important
+			border-color white !important
+	&.empty
+		&.b
+		&.c
+		&.g
+		&.y
+		&.o
+		&.r
+		&.p
+		&.gray
+		&.w
+			background transparent
+		&.b
+			color $Color1
+			border-color $Color1
+		&.c
+			color $Color2
+			border-color $Color2
+		&.g
+			color $Color3
+			border-color $Color3
+		&.y
+			color $Color5
+			border-color $Color5
+		&.o
+			color $Color6
+			border-color $Color6
+		&.r
+			color $Color7
+			border-color $Color7
+		&.p
+			color $Color9
+			border-color $Color9
+		&.w
+			color $Color10  - 10%
+			border-color $Color10  - 10%
+		&.w
+			color white - 10%
+			border-color white - 10%
+.button-panel
+	display inline-block;
+	>*
+		font-size 0

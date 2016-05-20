@@ -1,0 +1,270 @@
+body.manage-index
+	background $BackColor;
+	frame-base(84px,50px);
+	.header .nav
+		background $BColor2
+		border-color $BColor2
+		.logo
+			background url(images/logo-white.png)
+		.person .login
+			a
+				color white
+		.menu
+			ul.ul-menu
+				li
+					a
+						color white
+					&:hover
+						&>a
+							color white
+						&>.sub-menu li a
+							color $BColor2 + 20%
+						background $BColor2 + 20%
+						&.disabled
+							a
+								color $fontSmallColor
+							background $BColor2
+					&.select
+						background $hoverColor
+						&>a
+							color #fff
+					&.disabled
+						a
+							color $fontSmallColor
+					.sub-menu li:hover a
+						color white
+	.footer
+		border-top 4px solid $Color3
+		background $BColor2
+
+	.section-1
+		height 95px;
+		line-height 95px;
+		input
+			display none
+		.list-show
+			&:before
+				content '\62'
+		.table-show
+			&:before
+				content '\e08d'
+		.list-show
+		.table-show
+			padding 0 5px
+			text-decoration none
+			vertical-align middle
+			&:before
+				iconfont()
+				color $BackColor - 50%
+			&.select:before,&:hover:before
+				color $Color3
+		.col-7
+			text-align left
+		.col-1:last-child
+			text-align right
+	.section-2
+		&.table-grid-background
+			background $BackColor
+			box-shadow none
+			padding 0
+		padding 10px 10px 20px 10px
+		box-shadow 0 0 3px 0 #ccc;
+		background white
+		.table-grid
+			.row
+				margin-top 10px
+			.rows
+				perspective: 2000px;
+				&.setting
+					.column
+						transform scaleZ(10) rotateX(0deg)  translateZ(15px)
+						.command
+							top 0px
+			.column
+				height 150px;
+				box-shadow 0 0 5px 0 #ccc;
+				transition all .2s ease
+				background white
+				overflow hidden
+				&:hover
+					box-shadow 0 2px 3px 0px #ccc
+					transform scale3d(1,1.1,1) rotateX(20deg) translateZ(10px)
+				span.thumbtack
+					transform rotate(45deg)
+					content ''
+					display block
+					position absolute
+					z-index 1
+					right -40px
+					top -40px
+					width 80px
+					height 80px
+					background red
+					cursor pointer
+					&:after
+						transform rotate(-45deg)
+						position absolute
+						z-index 2
+						bottom 13px
+						left 32px
+						display block
+						width 18px
+						height 4px
+						background url(images/ellipsis.png) no-repeat
+						content ''
+						cursor pointer
+		.column
+			position relative
+			h1
+				cursor pointer
+				position relative
+				font-size 18px
+				line-height 1.4
+				padding-left 10px;
+				padding 20px 50px 0 20px
+				margin-bottom 13px
+				height 50px
+				box-sizing content-box
+				overflow hidden
+				&:before
+					position absolute
+					left 0px
+					content ''
+					display block
+					height 50px
+					width 7px
+			p
+				color $fontSmallColor
+				padding-left 20px
+			.column-bottom
+				position absolute
+				bottom 0px
+				width 100%
+				height 40px;
+				background $BackColor + 50%
+				line-height 40px;
+				padding 0 20px
+				overflow hidden
+				span.left
+					floatLeft()
+				span.right
+					color $fontSmallColor
+					floatRight()
+			&.new
+				span.thumbtack
+					display none
+				/* @meta {"spritesheet": {"include": false}} */
+				background url(images/new-background.jpg) no-repeat center
+				line-height 150px;
+				text-align center
+				a
+					text-decoration none
+					display inline-block
+					width 100%
+					font-size 20px
+					color white
+					&:before
+						iconfont()
+						content 'L'
+						vertical-align baseline
+			&.doing
+				h1
+					color $Color3
+					&:before
+						background $Color3
+				span.left
+					color $Color3
+				span.thumbtack
+					background $Color3 + 50%
+			&.pause
+				h1
+					color $Color6
+					&:before
+						background $Color6
+				span.left
+					color $Color6
+				span.thumbtack
+					background $Color6 + 50%
+			&.before
+				h1
+					color $Color7
+					&:before
+						background $Color7
+				span.left
+					color $Color7
+				span.thumbtack
+					background $Color7 + 50%
+			&.finish
+				h1
+					color $Color11
+					&:before
+						background $Color11
+				span.left
+					color $Color11
+				span.thumbtack
+					background $Color11 + 50%
+			.command
+				position absolute
+				transition top .5s ease
+				top 150px
+				width 100%
+				height 100%
+				text-align center
+				line-height 150px
+				&:before
+					content ''
+					position absolute
+					height 100%
+					width 100%
+					display block
+					background black
+					opacity 0.8
+				a
+					vertical-align middle
+					position relative
+					z-index 3
+					height 40px
+					display inline-block
+					text-align center
+					width 40px
+					text-decoration none
+					border-radius 100%
+					transition margin-top .2s ease
+					&:hover
+						margin-top -5px;
+					b
+						position absolute
+						left 0
+						top 50%
+						color white
+						line-height 1
+						width 100%
+					i
+						position absolute
+						left 50%
+						top 10%
+						margin-left -6px
+						content ''
+						width 12px
+						height 13px
+						display block
+					&.share
+						i
+							background url('images/share.png') no-repeat;
+					&.copy
+						i
+							background url('images/copy.png') no-repeat;
+					&.delete
+						i
+							background url('images/del.png') no-repeat;
+					&.edit
+						i
+							background url('images/edit-pen.png') no-repeat;
+.IE9
+	.section-2
+		.table-grid
+			.column
+				&:hover
+					margin-top -2px
+
+@import './stateViewer.styl';

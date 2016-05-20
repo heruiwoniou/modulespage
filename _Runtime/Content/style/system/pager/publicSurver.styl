@@ -1,0 +1,99 @@
+body.publicSurver
+	background $BackColor;
+	frame-base(190px + 84px,76px);
+	.banner
+		.container
+			position relative
+		height 190px
+		/* @meta {"spritesheet": {"include": false}} */
+		background url(images/banner-publicSurver.jpg) no-repeat center 0px
+	.section-1
+		min-width 400px
+		max-width 400px
+		margin-top -190px;
+		height 190px;
+		input
+			display none;
+		&>.comsys-base
+			box-sizing content-box
+			border 4px solid #ccc+30%;
+			top 75px;
+			.comsys-ButtonTextBox-input
+				margin-right 100px;
+			.comsys-ButtonTextBox-button
+				height 100%
+				top 0;bottom 0;
+	.section-2
+		.lrpanel
+			background white
+			margin-top 5px;
+			position relative
+			.left
+				position absolute
+				top 0
+				left 0
+				text-align center
+				width 100px;
+				height 50px
+				line-height 50px;
+				color white;
+			.right
+				margin-left 100px
+				height 50px
+				line-height 50px;
+				position relative
+				ul
+					overflow hidden;
+					height 50px
+					width 100%
+					font-size 0px
+					li
+						height 52px;
+						vertical-align middle
+						padding-left 20px
+						display inline-block
+						font-size 0px
+						a
+						th
+						td
+							font-size 16px
+						a
+							padding 5px 10px
+							text-decoration none;
+							&:hover
+								color white
+								background $Color3
+					li.select
+						a
+							color white
+							background $Color3
+				&.drop:hover
+					ul
+						position absolute
+						z-index 1
+						height auto;
+						background white
+						box-shadow 0 0 3px 0 #ccc
+				table
+					table-layout: fixed;
+					border-collapse collapse;
+					width 350px
+					input
+						display none;
+					th
+						text-align center
+						font-weight bold
+	.section-3
+		&>.TBControl
+			margin-top 5px
+		ul.list-style-one
+			li
+				h1
+					position relative
+					b
+						position absolute
+						left -15px
+						display block
+						width 5px
+						height 20px
+						background $Color3

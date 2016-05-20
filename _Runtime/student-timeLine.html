@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>index</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+
+<body class="timeLine">
+    <div class="header">
+        <div class="nav">
+            <div class="container">
+                <div class="logo"></div>
+                <div class="menu">
+                    <ul class="ul-menu drop-menu">
+                        <li><a href="index.html">首页</a></li>
+                        <li>
+                            <a href="javascript:;">发现</a>
+                            <ul class="sub-menu">
+                                <li><a href="discover-publicSurvey.html">公开调查</a></li>
+                                <li><a href="javascript:;">匿名评教</a></li>
+                            </ul>
+                        </li>
+                        <li  class="select"><a href="javascript:;">我的</a></li>
+                        <li><a href="javascript:;">帮助</a></li>
+                    </ul>
+                    <div class="person">
+                        <div class="login">
+                            <a href="manage-index.html" class="button g empty smaller">管理后台</a>
+                            <span></span>
+                            <a href="javascript:;">Administration</a>
+                            <span></span>
+                            <a href="javascript:;">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+    <div class="container">
+        <p class="nav-router"><i></i>当前位置：<a href="javascript:;">我的</a><span></span><a href="javascript:;">我的时间线</a></p>
+    </div>
+    <div class="container section">
+
+        <div class="left-side">
+            <div class="imageViewer" bind-width="207" bind-height="146" bind-src="Upload/images/teacher-head.jpg"></div>
+            <div class="person-info bcolor2">
+                <table>
+                    <tr><td>身份：</td><td>老师</td></tr>
+                    <tr><td>所属学校：</td><td>成华小学</td></tr>
+                </table>
+            </div>
+            <ul>
+                    <li class="select"><b></b><a href="student-timeLine.html"><i class="sj"></i>我的时间线</a></li>
+                    <li><b></b><a href="student-evaluationTeaching.html"><i class="wj"></i>我的问卷</a></li>
+                    <li><b></b><a href="javascript:;"><i class="pj"></i>我的评教</a></li>
+                    <li><b></b><a href="javascript:;"><i class="xx"></i>我的消息</a></li>
+            </ul>
+            <div class="left-side-background"></div>
+        </div>
+        <div class="right-side">
+            <div class="right-content">
+                <div class="banner"></div>
+                <div class="title-bar">
+                    我的时间线
+                    <div class="button-panel">
+                        <a href="javascript:;" class="button g no-radius">所有(115)</a>
+                        <a href="javascript:;" class="button gray no-radius">待处理(15)</a>
+                    </div>
+                </div>
+                <div class="list-container">
+                    <ul class="list-style-two" id="article" v-cloak>
+                        <li v-for="el in articles" :class="$index<articles.length-4?'doing':'done'">
+                            <h1>
+                                <b><i></i></b>{{el.title + $index.toString()}}
+                                <span>{{ $index < articles.length - 4 ? '进行中' : '已过期'}}</span>
+                            </h1>
+                            <div>
+                                <button :class="{button:true,g:$index < articles.length - 4,gray:$index >= articles.length - 4,smaller:true}">参加</button>
+                                <p>{{el.content}}</p>
+                            </div>
+                            <p>{{el.info}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        版权所有：成都康赛信息技术有限公司
+    </div>
+</body>
+
+</html>
+<script data-main="Static/js/config" main="student/timeLine" src="Static/js/libs/requirejs/require.js"></<script>企业员工满意度调查</script>

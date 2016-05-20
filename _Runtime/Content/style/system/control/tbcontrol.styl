@@ -1,0 +1,67 @@
+/*
+ * tabPanel
+ */
+.TBControl
+	width:100%
+	.tab-head
+		ul
+			margin:0; position: relative;
+			font-size 0px;
+			&:after
+				clear()
+			li
+				margin-left 1px;
+				font-size 0px;
+				box-sizing content-box
+				display inline-block
+				height:40px;
+				line-height: 40px;
+				background $BackColor + 40%
+				overflow hidden;
+				a
+					position relative
+					display block
+					padding:0 20px;
+					color $fontBaseColor
+					font-size 16px;
+					text-decoration: none;
+					b
+						transition top .15s ease
+						font-weight normal;
+						position absolute
+						display block
+						width 100%
+						background $Color3
+						left 0px
+						top 40px
+						text-align center;
+						overflow hidden
+						i
+							transition top .15s ease
+							color white
+							font-style normal;
+							position relative
+							top -40px;
+				&:hover
+					b
+						top 0
+						i
+							top 0
+			li:first-child
+				margin-left 0
+			li.select
+				background: #ffffff;
+				font-weight: bold;
+				border-top:4px solid $Color3;
+				a
+					color $Color3
+					cursor: default;
+					&:hover
+						b
+							top 40px
+							i
+								top -40px
+	.tab-body
+		background #fff;
+		padding:15px 15px;
+		box-sizing: border-box

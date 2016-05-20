@@ -98,6 +98,7 @@ define(
                     setting.width = setting.width || 800;
                     setting.height = setting.height || 600;
                     setting.callback = setting.callback || function () {};
+                    setting.maxHeight = setting.maxHeight ||null;
 
                     this.then(function () {
                         setting.callback.apply(me, arguments);
@@ -123,7 +124,7 @@ define(
                         top: top < 0 ? 0 : top
                     }).hide();
 
-                    this.resize(setting.height);
+                    this.resize(setting.height,setting.maxHeight);
                     this.$BoxBaseTitle.html(setting.title);
 
                     this.$BoxBaseContent.empty();
@@ -141,7 +142,6 @@ define(
                                     url: setting.src,
                                     success: function (html) {
                                         me.$BoxBaseContent.append(html).show();
-                                        ;
                                     }
                                 });
                                 this.windowLoadType = this.WindowLoadType.ajax;
@@ -156,7 +156,10 @@ define(
                     }
 
                     this.$BoxBaseEl.fadeIn();
-                    layer.mask();
+                    layer.mask(function(e){
+                        me.$BoxBaseContent.animate({scrollTop:me.$BoxBaseContent.scrollTop()-e.wheelDelta})
+                        return false;
+                    });
                     return this;
                 },
                 close: function (command) {
@@ -171,10 +174,12 @@ define(
                     this.status=false;
                     this.deferred.resolve(cmd||"close");
                 },
-                resize: function (height) {
+                resize: function (height,maxHeight) {
                     height = height || this.$BoxBaseEl.height();
                     var ch = height - this.setting.titleHeight;
                     this.$BoxBaseContent.css({height:'auto',minHeight: ch+'px'});
+                    if(maxHeight&&maxHeight>=height)
+                        this.$BoxBaseContent.css({maxHeight: (maxHeight-this.setting.titleHeight)+'px'});
                     this.$BoxBaseFrame.css({height: ch});
                 },
                 destory:function(){

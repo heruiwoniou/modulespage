@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>index</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+
+<body class="publicSurver">
+    <div class="header">
+        <div class="nav">
+            <div class="container">
+                <div class="logo"></div>
+                <div class="menu">
+                    <ul class="ul-menu drop-menu">
+                        <li><a href="index.html">首页</a></li>
+                        <li class="select">
+                            <a href="javascript:;">发现</a>
+                            <ul class="sub-menu">
+                                <li class="select"><a href="javascript:;">公开调查</a></li>
+                                <li><a href="javascript:;">匿名评教</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="student-timeLine.html">我的</a></li>
+                        <li><a href="javascript:;">帮助</a></li>
+                    </ul>
+                    <div class="person">
+                        <div class="login">
+                            <a href="javascript:;" class="button g empty" id="login">登录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner" data-stellar-vertical-offset="84" data-stellar-background-ratio="0.5"></div>
+    </div>
+    <div class="body">
+        <div class="container section-1">
+            <input id="search" type="text" tip-title="输入你想要的问卷" onclick="WebApi.search()">
+        </div>
+        <div class="container section-2">
+            <div class="lrpanel">
+                <div class="left bcolor3">分类</div>
+                <div class="right drop">
+                    <ul>
+                        <li class="select"><a href="javascript:;" class="color3">全部</a></li>
+                        <li><a href="javascript:;">人力资源</a></li>
+                        <li><a href="javascript:;">学术教育</a></li>
+                        <li><a href="javascript:;">满意度调查</a></li>
+                        <li><a href="javascript:;">分类一</a></li>
+                        <br/>
+                        <li><a href="javascript:;">人力资源</a></li>
+                        <li><a href="javascript:;">学术教育</a></li>
+                        <li><a href="javascript:;">满意度调查</a></li>
+                        <li><a href="javascript:;">分类一</a></li>
+                        <br/>
+                        <li><a href="javascript:;">人力资源</a></li>
+                        <li><a href="javascript:;">学术教育</a></li>
+                        <li><a href="javascript:;">满意度调查</a></li>
+                        <li><a href="javascript:;">分类一</a></li>
+                        <li><a href="javascript:;">人力资源</a></li>
+                        <li><a href="javascript:;">学术教育</a></li>
+                        <li><a href="javascript:;">满意度调查</a></li>
+                        <li><a href="javascript:;">分类一</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lrpanel">
+                <div class="left bcolor6">时间</div>
+                <div class="right">
+                    <ul>
+                        <li><a href="javascript:;" class="color6">全部</a></li>
+                        <li>
+                            <table>
+                                <colgroup>
+                                    <col style="width:40px">
+                                    <col>
+                                    <col style="width:40px">
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <th>从</th>
+                                    <td>
+                                        <input type="text">
+                                    </td>
+                                    <th>到</th>
+                                    <td>
+                                        <input type="text">
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container section-3">
+            <div class="TBControl" data-callback="tbcontrollHandler" id="TBControl" v-cloak>
+                <div class="tab-head">
+                    <ul>
+                        <li v-for="el in items" data-target="tab{{$index}}" :class="$index==0?'select':''">
+                            <a href="javascript:;">{{el.tab}}<b><i>{{el.tab}}</i></b></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-body">
+                    <div v-for="el in items" data-id="tab{{$index}}">
+                        <ul class="list-style-one">
+                            <li v-for="item in el.items">
+                                <h1><b></b>{{item.title}}<span>{{item.date}}</span></h1>
+                                <p class="info">{{item.info}}</p>
+                                <p class="content">{{item.describe}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        版权所有：成都康赛信息技术有限公司
+    </div>
+</body>
+<script data-main="Static/js/config" main="discover/publicSurvey" src="Static/js/libs/requirejs/require.js"></script>
+</html>

@@ -18,7 +18,8 @@ require.config({
         "Guid": "common/core/Guid",
         "TPLEngine": "common/engine/tplEngine",
         "widget":"comsys/widget",
-        "client":"common/client"
+        "client":"common/client",
+        "vue":"libs/vue/dist/vue"
     }
 });
 

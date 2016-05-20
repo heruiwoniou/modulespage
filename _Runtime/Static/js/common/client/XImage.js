@@ -6,25 +6,29 @@
  */
 
 define(function(){
-    function XImage(src, w, h, loaded, errored) {
+    function XImage(src, w, h, loaded, errored,onbeforeloaded,onbeforeerrored) {
         var me = this;
         me.w = w || 0;
         me.h = h || 0;
         me.onloaded = loaded || function () { },
             me.onerrored = errored || function () { },
+            me.onbeforeloaded = onbeforeloaded||function(){},
+            me.onbeforeerrored = onbeforeerrored||function(){},
             me.t = new Image();
         this.re = new Image();
         this.re.csid = (Math.random() * 1e10).toFixed(0);
         this.re.src = this.loadingImageCode;
         me.t.onload = function () {
+            me.onbeforeloaded()
             me.onload();
             me.onloaded();
         }
         this.t.onerror = function () {
+            me.onbeforeerrored()
             me.onerror();
             me.onerrored();
         }
-        this.t.src = src;
+        me.t.src = src;
         return this.re;
     };
     XImage.prototype = {

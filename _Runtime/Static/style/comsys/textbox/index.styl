@@ -20,14 +20,15 @@
     text-indent:5px
     border:1px solid $border-color
     span.comsys-tip-span
-        color:#ccc
-        font-size:12px !important
-        font-size:$font-ico-size
+        position absolute
+        top 50%
+        left 0px
+        margin-top -8px
+        font-size 16px
+        line-height 16px;
+        color:#ccc+50%
+        vertical-align middle
         @extend .textHidden
-        &:before
-            font-family: "ElegantIcons"
-            line-height: 1.5
-            content:$tip-icon
     input
         position:absolute
         left:0px

@@ -2,12 +2,19 @@ define( [
         'libs/jquery-extend/jquery.scroll-column',
         'libs/jquery-extend/jquery.stellar'
     ], function () {
-    return {
+
+    var Pager=
+    {
+        CloseNameParent:function(){
+            WebApi.close({name:"model2",command:"from child"});
+        },
+        CloseAllParent:function(){
+            WebApi.close({command:"from child"});
+        },
         init: function () {
             $('.scroll-column').ScrollColumnInit();
             $.stellar({
-                horizontalScrolling: false,
-                verticalOffset: 40
+                horizontalScrolling: false
             });
 
             $(".login").click(function(){
@@ -19,14 +26,8 @@ define( [
                 //WebApi.modal({title:"12323",src:"index.html"})
                 //WebApi.modal({title:"12323",content:$("#test")})
                 //WebApi.window({title:"12323",ajax:true,src:"index.html"})
-                WebApi.window({
-                    title:"12323",
-                    width:9000,
-                    height:1000,
-                    src:"index.html"
-                })
-                //WebApi.window({title:"12323",content:$("#test")})
-                .then(function(state){
+                //WebApi.window({title:"12323",content:$("#test")});
+                WebApi.window("model1",{title:"12323",width:800,height:600,full:false,src:"index.html"}).then(function(state){
                     console.log(state);
                 });
 
@@ -34,9 +35,6 @@ define( [
                 //消息框弹出
                 //
                 //
-                //WebApi.confirm("测试消息").then(function(state){
-                //    console.log(state);
-                //});
                 // WebApi.error("测试消息").then(function(state){
                 //     console.log(state);
                 // });
@@ -48,4 +46,5 @@ define( [
             })
         }
     };
+    return Pager;
 })

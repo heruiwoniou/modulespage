@@ -1,0 +1,43 @@
+.PanelControl
+	background white
+	box-shadow 0 0 3px 0 #ccc
+	.panel-body
+		padding 10px
+	.panel-head
+		position relative
+		height 45px
+		line-height 45px
+		font-weight bold
+		text-indent 20px
+		&:before
+			position absolute
+			content ''
+			display block
+			width 6px
+			height 30px
+			left 0
+			top 7px
+		&.b
+			&:before
+				background $Color1
+		&.c
+			&:before
+				background $Color2
+		&.g
+			&:before
+				background $Color3
+		&.y
+			&:before
+				background $Color5
+		&.o
+			&:before
+				background $Color6
+		&.r
+			&:before
+				background $Color7
+		&.p
+			&:before
+				background $Color9
+		&.gray
+			&:before
+				background $Color10 - 10%

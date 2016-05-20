@@ -104,17 +104,37 @@ define(
                     _w.push({ name: name, window: new this['_' + type]().initialize() });
                 return _w[_w.length - 1].window;
             },
+            /**
+             * [show description]
+             * @param  {[type]} name    [description]
+             * @param  {[type]} setting [description]
+             * @param  {[type]} type    [description]
+             *
+             * @param  {[type]} setting [description]
+             * @param  {[type]} type    [description]
+             *
+             * @param  {[type]} setting [description]
+             */
             show: function() {
-                var setting, name;
-                if (arguments.length == 2) {
+                var setting, name='',type;
+                if (arguments.length == 3) {
                     name = arguments[0];
                     setting = arguments[1];
-                } else if (arguments.length == 1)
+                    type=arguments[2];
+                } else if (arguments.length == 2)
+                {
                     setting = arguments[0];
+                    type=arguments[1];
+                }
+                else if (arguments.length == 1)
+                {
+                    setting = arguments[0];
+                    type = Win.type.dialog;
+                }
                 else return;
                 var _win;
                 setting = setting || {};
-                setting.type = setting.type || Win.type.dialog;
+                setting.type = type;
                 setting.buttons = setting.buttons || Win.button.OK;
                 switch (setting.type) {
                     case this.type.dialog:
@@ -138,6 +158,7 @@ define(
                         setting.height = setting.height || 600;
                         setting.content = setting.content || '';
                         setting.callback = setting.callback;
+                        setting.maxHeight = setting.maxHeight||null;
                         break;
                 }
                 _win = this.create(setting.type, name);

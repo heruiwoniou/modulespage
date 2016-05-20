@@ -1,0 +1,141 @@
+/*
+ *list-grid
+ */
+table.list-grid
+	width 100%
+	th,td
+		line-height 45px;
+		text-align center
+		&.left
+			text-align left
+		&.right
+			text-align right
+	td
+		color #878787
+	th
+		font-weight bold
+		background #ececec
+	tr:nth-child(2n+1)
+		background #f5f5f5
+	td
+		a.delete
+		a.edit
+		a.view
+			display inline-block
+			vertical-align middle
+			margin 0 5px
+			height 13px
+			width 12px
+		a.delete
+			background url(images/delete.png) no-repeat;
+		a.edit
+			background url(images/edit.png) no-repeat;
+		a.view
+			background url(images/view.png) no-repeat;
+
+/**
+ *
+ */
+.table-grid
+	.row
+		margin-top 10px
+	.column
+		height 150px;
+		box-shadow 0 0 3px 0 #ccc;
+		background white
+
+/*
+ *list-style-one
+ */
+ul.list-style-one
+	li
+		margin-top 40px
+		&:first-child
+			margin-top 0px
+		border-bottom 1px solid #f5f5f5
+		&:last-child
+			border-color transparent
+		h1
+			font-size 1.2em;
+			font-weight bold
+			span
+				font-size 16px;
+				font-weight normal;
+				float right
+				color $fontSmallColor
+		p
+			margin 30px 0
+		p.info
+			color $fontSmallColor
+		p.content
+			line-height 1.8
+			margin-bottom 40px
+	for b in 1..9
+		li:nth-child({b}n)
+			h1
+				b
+					background $Color+b !important
+/*
+ *list-style-two
+ */
+ul.list-style-two
+	li
+		border-top 1px solid $fontSmallColor + 80%;
+		padding-left 50px
+		margin-top 1px;
+		h1
+			position relative
+			line-height 60px
+			font-size 1.2em;
+			font-weight bold
+			b
+				left -50px;
+				top 12px
+				vertical-align middle
+				position absolute
+				width 39px
+				height 39px
+				display inline-block;
+				background $Color3 url('images/radius.png') no-repeat
+				i
+					width 39px
+					height 39px
+					display block
+					background url("images/book-icon.png") no-repeat
+			span
+				font-weight bold
+				font-size 16px
+				margin-left 20px;
+		div
+			p
+				color $fontMiddleColor
+				margin-top 0px
+				line-height 1.5
+			button
+				margin-left 40px
+				floatRight()
+				position relative
+				top 10px
+		p
+			margin 20px 0
+			color $fontSmallColor
+		&.doing
+			h1
+				span
+					color $Color6
+		&.done
+			h1
+				color $fontSmallColor
+				b
+					background-color $Color10
+				span
+					color $fontSmallColor
+			p
+				color $fontSmallColor + 40%
+	& li:first-child
+		border-width 0px
+	for b in 1..9
+		& li.doing:nth-child({b}n)
+			h1
+				b
+					background-color $Color+b

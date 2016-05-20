@@ -18,10 +18,10 @@ define(["jquery"],
                 this.$Container.append(this.$InnerContainer);
                 $(document.body).append(this.$Container);
             },
-            getOption: function (str, style) {
+            getOption: function (html, style) {
                 this.init();
                 style = style || {};
-                var $span = $(document.createElement("SPAN")).css(style).append(document.createTextNode(str));
+                var $span = $(document.createElement("SPAN")).css(style).html(html);
                 this.$InnerContainer.append($span);
                 var result = {
                     width: $span.width() + 2,
@@ -30,10 +30,10 @@ define(["jquery"],
                 $span.remove();
                 return result;
             },
-            getWidth: function (str, style) {
+            getWidth: function (html, style) {
                 this.init();
                 style = style || {};
-                var $span = $(document.createElement("SPAN")).css(style).append(document.createTextNode(str));
+                var $span = $(document.createElement("SPAN")).css(style).html(html);
                 this.$InnerContainer.append($span);
                 var result = $span.width();
                 $span.remove();

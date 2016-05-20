@@ -1,20 +1,20 @@
 .comsys-checkbox
 .comsys-radiobox
-    position absolute
-    top 0px
-    left 0px
+    position relative
+    top -2px
     width: 18px
     height: 18px
     background: url(images/checkbox.png) no-repeat center
     display: inline-block
+    vertical-align middle
     input[type=checkbox]
         opacity 0
-        display: inline-block !important
+        display: block !important
 .comsys-radiobox
     background: url(images/radio.png) no-repeat center
     input[type=radio]
         opacity 0
-        display inline-block !important
+        display block !important
 
 .checkbox-checked
     background: url(images/checkbox-checked.png) no-repeat center
@@ -24,4 +24,3 @@
 .comsys-checkbox-label
 .comsys-radiobox-label
     position relative
-    padding-left 20px
