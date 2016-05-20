@@ -162,19 +162,17 @@ gulp.task('develop', ['clean'], function() {
     /*build library*/
 
     if (isDevelop) {
-        gulp.src('_Runtime/Static/js/libs/require-css/css.min.js')
-            .pipe(gulp.dest('Runtime/Static/js/libs/require-css/'));
-
         gulp.src('_Runtime/Static/js/libs/requirejs/require.js')
+            .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/requirejs/'));
 
         gulp.src('_Runtime/Static/js/libs/jquery-extend/*.js')
+            .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/jquery-extend/'));
 
         gulp.src('_Runtime/Static/js/libs/echarts/**/*.js')
+            .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/echarts/'));
-        gulp.src('_Runtime/Static/js/libs/zrender/**/*.js')
-            .pipe(gulp.dest('Runtime/Static/js/libs/zrender/'));
     } else {
         gulp.src('_Runtime/Static/js/libs/require-css/css.min.js')
             .pipe(uglify())
