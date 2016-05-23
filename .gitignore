@@ -216,3 +216,5 @@ ModelManifest.xml
 
 _Runtime/Static/js/libs
 Runtime
+*.zip
+*.7z

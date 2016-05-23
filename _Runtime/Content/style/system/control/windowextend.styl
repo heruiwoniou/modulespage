@@ -1,0 +1,56 @@
+.comsys-box-window
+	.comsys-box-head
+		.comsys-box-title
+			text-align: left;
+			color $fontBaseColor
+			font-size 18px
+			text-indent 15px
+			&:before
+				position absolute
+				content ''
+				display block
+				width 5px
+				left 0px
+				top 5px;
+				height $window-titleHeight - 10
+		.comsys-box-close
+			overflow hidden
+			right: 5px;
+			top: 5px;
+			height: $window-titleHeight - 5;
+			width: $window-titleHeight - 5
+			&:before
+				position absolute
+				top 5px
+				right 5px
+				z-index 1
+				font-size 16px
+				line-height 1
+				color:white
+			&:after
+				position absolute
+				top - ($window-titleHeight - 5);
+				left 10px
+				content ''
+				display block
+				height ($window-titleHeight - 5) * 1.7;
+				width ($window-titleHeight - 5) * 1.7
+				background #ccc
+				transform rotate(45deg)
+			&:hover
+				&:after
+					background #ccc - 20%
+.comsys-box-window
+.comsys-box-dialog
+	for index in 1..9
+		&.boxColor{index}
+			.comsys-box-head
+				.comsys-box-title
+					&:before
+						background $Color + index
+			.comsys-box-buttons
+				background: ($Color + index) - 30%
+				.comsys-box-button
+					background:($Color + index)
+					&:hover
+						background:($Color + index) - 15%

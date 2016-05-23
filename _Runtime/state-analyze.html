@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+
+<body class="state-analyze">
+    <div class="container">
+        <div class="button-panel" v-cloak>
+            <a href="javascript:;" @click="setIndex(0)" :class="['button',current==0?'g':'gray','no-radius']">基本情况</a>
+            <a href="javascript:;" @click="setIndex(1)" :class="['button',current==1?'g':'gray','no-radius']">综合情况</a>
+            <a href="javascript:;" @click="setIndex(2)" :class="['button',current==2?'g':'gray','no-radius']">答案详情</a>
+        </div>
+    </div>
+    <div class="container section-1" v-cloak>
+        <div class="PanelControl" v-show="current==0" v-el:panel-control-1>
+            <div class="panel-head p">基本情况</div>
+            <div class="panel-body">
+                <div class="FrameLeftRightControl">
+                    <div class="FrameLeft" style="width:275px">
+                        <div class="SmallPanelControl question-panel">
+                            <div class="SmallPanel-head">
+                                <div class="small-button-panel">
+                                    <a href="javascript:;" class="export">全部导出</a>
+                                    <a href="javascript:;" class="share">分享</a>
+                                </div>
+                            </div>
+                            <div class="SmallPnel-body">
+                                <a href="javascript:;"><h1>全部</h1></a>
+                                <ul>
+                                    <li v-for="(index,item) in questions">
+                                        <a href="javascriptp:;">
+                                            <span>Q{{index + 1}}:</span> {{item.question}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="FrameBar" style="left:275px"></div>
+                    <div class="FrameRight" style="padding-left:285px">
+                        <div class="FrameRightContent" v-el:frame-right-content>
+                            <div class="SmallPanelControl">
+                                <div class="SmallPanel-head">
+                                    全部
+                                    <div class="small-button-panel">
+                                        <a href="javascript:;" class="sort">排序</a>
+                                        <a href="javascript:;" class="export">导出</a>
+                                    </div>
+                                </div>
+                                <div class="SmallPnel-body">
+                                    <div id="chart0" style="width: 100%;height:400px;"></div>
+                                </div>
+                            </div>
+                            <div class="SmallPanelControl" v-for="(index,item) in questions">
+                                <div class="SmallPanel-head">
+                                    <span class="color7">Q{{index + 1}}:</span> {{item.question}}
+                                    <div class="small-button-panel">
+                                        <a href="javascript:;" class="export">导出</a>
+                                    </div>
+                                </div>
+                                <div class="SmallPnel-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div id="chart{{index + 1}}" style="width: 100%;height:400px;"></div>
+                                        </div>
+                                        <div class="col-6" style="min-height:400px">
+                                            <table class="list-grid">
+                                                <tr>
+                                                    <th>答案选项</th>
+                                                    <th>答题情况</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项1</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项2</td>
+                                                    <td>2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项3</td>
+                                                    <td>3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项1</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项2</td>
+                                                    <td>2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项3</td>
+                                                    <td>3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项1</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项2</td>
+                                                    <td>2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>选项3</td>
+                                                    <td>3</td>
+                                                </tr>
+                                                <tr class="total">
+                                                    <td>合计</td>
+                                                    <td>6</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="PanelControl" v-show="current==1" v-el:panel-control-2>
+            <div class="panel-head r">综合情况</div>
+            <div class="panel-body">
+            	<div class="table-grid">
+            		 <div class="row" v-for="index in Math.ceil ( ( analyzes.length + 1 ) / 4 )">
+            		 	<div class="col-3 rows" v-for="col in 4" v-if="(index * 4 + col - 1) < analyzes.length">
+                            <div :class="['column',getColor()]" v-if="(index * 4 + col - 1) !== -1">
+                                <span class="thumbtack" @click="togglecommand($event)"></span>
+                                <h1>
+                                    {{analyzes[ index * 4 + col -1 ].title}}
+                                </h1>
+                                <p></p>
+                                <div class="column-bottom">
+                                    <span class="right">{{analyzes[ index * 4 + col -1 ].date | date}}</span>
+                                </div>
+                                <div class="command">
+                                    <a href="javascript:;" class="share"><i></i><b>分享</b></a>
+                                    <a href="javascript:;" class="delete"><i></i><b>删除</b></a>
+                                    <a href="javascript:;" class="export"><i></i><b>导出</b></a>
+                                </div>
+                            </div>
+                            <div class="column new" v-else>
+                                <a href="javascript:;">新的报告</a>
+                            </div>
+                        </div>
+            		 </div>
+            	</div>
+            </div>
+        </div>
+        <div class="PanelControl" v-show="current==2" v-el:panel-control-3>
+            <div class="panel-head o">答案详情</div>
+            <div class="panel-body">
+                <table class="list-grid">
+                    <tr>
+                        <th>序号</th>
+                        <th>答题人</th>
+                        <th>所属单位</th>
+                        <th>答题时间</th>
+                        <th>耗时</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr v-for="index in [0,1,2,3,4]">
+                        <td>{{index + 1}}</td>
+                        <td>张思思</td>
+                        <td>电子科技大学附属第二实验小学</td>
+                        <td>2016-03-12 11:12:40</td>
+                        <td>5分钟</td>
+                        <td>
+                            <a href="javascript:;" class="viewinfo"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/analyze" src="Static/js/libs/requirejs/require.js"></script>
+
+</html>

@@ -1,75 +1,36 @@
-body.manage-index
-	background $BackColor;
-	frame-base(84px,50px);
-	.header .nav
-		background $BColor2
-		border-color $BColor2
-		.logo
-			background url(images/logo-white.png)
-		.person .login
-			a
-				color white
-		.menu
-			ul.ul-menu
-				li
-					a
-						color white
-					&:hover
-						&>a
-							color white
-						&>.sub-menu li a
-							color $BColor2 + 20%
-						background $BColor2 + 20%
-						&.disabled
-							a
-								color $fontSmallColor
-							background $BColor2
-					&.select
-						background $hoverColor
-						&>a
-							color #fff
-					&.disabled
-						a
-							color $fontSmallColor
-					.sub-menu li:hover a
-						color white
-	.footer
-		border-top 4px solid $Color3
-		background $BColor2
-
+body.state-analyze
+	padding 20px 20px 20px 20px
+	background $BackColor
+	.container
+		margin-bottom 20px
+		max-width inherit
+	.container:last-child
+		margin-bottom 0px
 	.section-1
-		height 95px;
-		line-height 95px;
-		input
-			display none
-		.list-show
-			&:before
-				content '\62'
-		.table-show
-			&:before
-				content '\e08d'
-		.list-show
-		.table-show
-			padding 0 5px
-			text-decoration none
-			vertical-align middle
-			&:before
-				iconfont()
-				color $BackColor - 50%
-			&.select:before,&:hover:before
-				color $Color3
-		.col-7
-			text-align left
-		.col-1:last-child
-			text-align right
-	.section-2
-		&.table-grid-background
-			background $BackColor
-			box-shadow none
-			padding 0
-		padding 10px 10px 20px 10px
-		box-shadow 0 0 3px 0 #ccc;
-		background white
+		.question-panel
+			h1
+				line-height 35px
+				text-indent 10px
+			ul
+				padding 0 10px
+				li
+					line-height 25px
+					textHidden()
+					span
+						color $Color7
+		.FrameRight
+			.SmallPanelControl
+				border-top 10px solid white
+				padding-bottom 10px
+				&:first-child
+					border-top-width 0px
+		.list-grid
+			th
+				background #e1f0f7
+			tr.total
+				background $BackColor
+		.table-grid
+			max-width 1269px
 		.table-grid
 			.row
 				margin-top 10px
@@ -87,7 +48,7 @@ body.manage-index
 				background white
 				overflow hidden
 				&:hover
-					box-shadow 0 2px 3px 0px #ccc
+					box-shadow 0 2px 10px 0px #ccc
 					transform scale3d(1,1.1,1) rotateX(20deg) translateZ(10px)
 				span.thumbtack
 					transform rotate(45deg)
@@ -154,7 +115,7 @@ body.manage-index
 				span.thumbtack
 					display none
 				/* @meta {"spritesheet": {"include": false}} */
-				background url(images/new-background.jpg) no-repeat center
+				background url(images/new-background2.jpg) no-repeat center
 				line-height 150px;
 				text-align center
 				a
@@ -167,7 +128,7 @@ body.manage-index
 						iconfont()
 						content 'L'
 						vertical-align baseline
-			&.doing
+			&.c1
 				h1
 					color $Color3
 					&:before
@@ -176,7 +137,7 @@ body.manage-index
 					color $Color3
 				span.thumbtack
 					background $Color3 + 50%
-			&.pause
+			&.c2
 				h1
 					color $Color6
 					&:before
@@ -185,7 +146,7 @@ body.manage-index
 					color $Color6
 				span.thumbtack
 					background $Color6 + 50%
-			&.before
+			&.c3
 				h1
 					color $Color7
 					&:before
@@ -194,15 +155,6 @@ body.manage-index
 					color $Color7
 				span.thumbtack
 					background $Color7 + 50%
-			&.finish
-				h1
-					color $Color11
-					&:before
-						background $Color11
-				span.left
-					color $Color11
-				span.thumbtack
-					background $Color11 + 50%
 			.command
 				position absolute
 				transition top .5s ease
@@ -260,13 +212,6 @@ body.manage-index
 					&.edit
 						i
 							background url('images/edit-pen.png') no-repeat;
-.IE9
-	.section-2
-		.table-grid
-			.column
-				&:hover
-					margin-top -2px
-
-@import './stateViewer.styl';
-@import './stateAnalyze.styl';
-@import './publish.styl'
+					&.export
+						i
+							background url('images/export-big.png') no-repeat;

@@ -31,9 +31,9 @@ define(['vue','./../widget/FullScreenModal','./../util/filter/nameSplit'], funct
                 },
                 methods: {
                     view:function(status){
-                        modal.viewsrc="state-viewer-finish.html";
+                        modal.viewsrc="state-viewer.html";
                         if(status=="已结束")
-                            modal.analyzesrc="progress.html";
+                            modal.analyzesrc="state-analyze.html";
                         modal.show=true;
                     },
                     togglecommand:function($event){

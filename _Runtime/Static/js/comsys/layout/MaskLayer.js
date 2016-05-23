@@ -74,7 +74,7 @@ define(
                         me.c.css({ width: "100%", height: "100%", display: "none", position: "absolute", left: 0, top: 0, zIndex: 950 });
                     else
                         me.c.css({ width: "100%", height: "100%", display: "none", position: "fixed", left: 0, top: 0, zIndex: 950 });
-                    me.t.css({ width: "100%", height: "100%", filter: "alpha(opacity=20)", opacity: 0.2, position: "absolute", background: me.options.color, left: 0, top: 0 });
+                    me.t.css({ width: "100%", height: "100%", filter: "alpha(opacity=50)", opacity: 0.5, position: "absolute", background: me.options.color, left: 0, top: 0 });
                     me.w.css({ position: "absolute", left: "50%", top: "40%", marginTop: me.options.height + 5 }).css(me.font);
                     me.m.css({ position: "absolute", left: "50%", top: "40%", marginLeft: -me.options.width / 2 - 2 }).attr({ src: me.options.loading, width: me.options.width, height: me.options.height });
                     me.f.css({ width: "100%", height: "100%", overflow: "hidden", position: "absolute", zIndex: "-2", filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)", opacity: 0, left: 0, top: 0 }).attr({ frameborder: 0, scrolling: "no" });

@@ -13,7 +13,7 @@ define(
         "common/client/Bumper"
     ],
     function(w, d, rw, Bumper) {
-        var bumper=Bumper.create();
+        var bumper = Bumper.create();
         var Win = {
             type: {
                 dialog: "dialog",
@@ -36,6 +36,23 @@ define(
             dialog: [],
             window: [],
             resizewindow: [],
+            resetindex: function() {
+                var me = this,current = this.setting.zindex,max = current,i,c
+                for (i = 0; i < Win.window.length; i++) {
+                    c = Win.window[i].window;
+                    if(max < c.setting.zindex) max = c.setting.zindex;
+                }
+                for (i = 0; i < Win.dialog.length; i++) {
+                    c = Win.dialog[i].window;
+                    if(max < c.setting.zindex) max = c.setting.zindex;
+                }
+                for (i = 0; i < Win.resizewindow.length; i++) {
+                    c = Win.resizewindow[i].window;
+                    if(max < c.setting.zindex) max = c.setting.zindex;
+                }
+
+                this.setindex(max + 1);
+            },
             clear: function(type, name) {
                 if (type === undefined) {
                     this.clearItem(this.type.window, name);
@@ -71,27 +88,26 @@ define(
              * @return {[type]}         [如果没有关闭到窗体返回false]
              */
             close: function(type, name, command) {
-                var hasClose=false;
+                var hasClose = false;
                 if (type === undefined) {
-                    hasClose=this.closeItem(this.type.window, name, command);
-                    hasClose=this.closeItem(this.type.resizewindow, name, command);
+                    hasClose = this.closeItem(this.type.window, name, command);
+                    hasClose = this.closeItem(this.type.resizewindow, name, command);
                 } else {
-                    hasClose=this.closeItem(type, name, command);
+                    hasClose = this.closeItem(type, name, command);
                 }
                 return hasClose;
             },
             closeItem: function(type, name, command) {
-                var hasItem=false;
+                var hasItem = false;
                 var _w = this[type];
                 $.each(_w, function() {
                     if (name === undefined) {
                         this.window.close(command);
-                        hasItem=true;
+                        hasItem = true;
                     } else {
-                        if (this.name === name)
-                        {
+                        if (this.name === name) {
                             this.window.close(command);
-                            hasItem=true;
+                            hasItem = true;
                         }
                     }
                 });
@@ -116,22 +132,21 @@ define(
              * @param  {[type]} setting [description]
              */
             show: function() {
-                var setting, name='',type;
+                var setting, name = '',
+                    type, $win = $(window),
+                    maxheight = $win.height() - 20,
+                    maxwidth = $win.width() - 40;
                 if (arguments.length == 3) {
                     name = arguments[0];
                     setting = arguments[1];
-                    type=arguments[2];
-                } else if (arguments.length == 2)
-                {
+                    type = arguments[2];
+                } else if (arguments.length == 2) {
                     setting = arguments[0];
-                    type=arguments[1];
-                }
-                else if (arguments.length == 1)
-                {
+                    type = arguments[1];
+                } else if (arguments.length == 1) {
                     setting = arguments[0];
                     type = Win.type.dialog;
-                }
-                else return;
+                } else return;
                 var _win;
                 setting = setting || {};
                 setting.type = type;
@@ -154,14 +169,16 @@ define(
                         setting.title = setting.title || "";
                         setting.src = setting.src || "";
                         setting.ajax = typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false;
-                        setting.width = setting.width || 800;
-                        setting.height = setting.height || 600;
+                        setting.width = setting.width || maxwidth;
+                        setting.height = setting.height || maxheight;
                         setting.content = setting.content || '';
                         setting.callback = setting.callback;
-                        setting.maxHeight = setting.maxHeight||null;
+                        setting.maxHeight = setting.maxHeight || null;
                         break;
                 }
                 _win = this.create(setting.type, name);
+                setting.zindex = this.window.length + this.resizewindow.length + this.dialog.length;
+                setting.headmousedown=this.resetindex;
                 _win.show(setting);
                 _win.then(
                     function(_type_) {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: auto
+    }
+    </style>
+</head>
+
+<body class="publish" v-cloak>
+    <div class="no-m-container part-one" v-show="ispartone" transition="part-scroll">
+        <div class="filed-div head"><b>设置为匿名参加活动</b></div>
+        <div class="filed-div">
+            <input type="checkbox" @click="setisanonymous" id="isanonymous" />关闭
+        </div>
+        <div class="filed-div" v-if="isanonymous">
+            包括完全公开,除去
+        </div>
+        <div class="filed-div disabled" v-else>
+            包括完全公开,除去
+        </div>
+        <div class="filed-div" v-if="isanonymous">
+            <div class="inline-container">
+                <a href="javascript:;" @click="gonext" class="button p no-radius">设置参与人</a>
+            </div>
+        </div>
+        <div class="filed-div disabled" v-else>
+            <div class="inline-container">
+                <a href="javascript:;" class="button p no-radius">设置参与人</a>
+            </div>
+        </div>
+        <div class="filed-div  head">
+            <b>从何时开始：</b><span class="color3">2016年5月1日</span><b>到何时结束：</b><span class="color3">2016年6月1日</span>
+        </div>
+        <div class="filed-div  head">
+            <b>每台设备只能答卷一次</b>
+        </div>
+        <div class="filed-div">
+            <input type="checkbox" id="isonce" />关闭
+        </div>
+        <div class="filed-div head">
+            <b>收集到指定的答卷份数时停止活动</b>
+        </div>
+        <div class="filed-div">
+            <div class="inline-container" style="width:100px">
+                <input type="text">
+            </div>&nbsp;份
+        </div>
+        <div class="filed-div" style="text-align: right; margin-top :20px">
+            <div class="button-panel">
+                <a href="javascript:;" class="button no-radius b">保存</a>
+            </div>
+        </div>
+    </div>
+    <div class="no-m-container part-two" v-else transition="part-scroll">
+        <b><i @click="gonext"></i>设置参与人</b>
+        <div class="filed-div">
+            包括 完全公开
+        </div>
+        <div class="FrameLeftRightControl" style="height:330px">
+            <div class="FrameLeft" style="width:200px">
+                <div class="no-m-container"></div>
+            </div>
+            <div class="FrameBar" style="left:200px"></div>
+            <div class="FrameRight" style="padding-left:210px">
+
+                <div class="no-m-container" style="overflow:auto">
+                    <div class="button-panel" style="width:100%;padding-bottom:10px">
+                        <a href="javascript:;" class="button g no-radius">全部允许</a>
+                        <a href="javascript:;" class="button r no-radius">全部排除</a>
+                        <div class="inline-container search-container" style="width:310px;float:right">
+                            <input type="text" id="search">
+                        </div>
+                    </div>
+                    <table class="list-grid">
+                        <colgroup>
+                            <col>
+                            <col style="width:140px">
+                        </colgroup>
+                        <tr>
+                            <th>名称</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr v-for="index in 10">
+                            <td>xxx县教育局</td>
+                            <td>
+                                <a href="javascript:;" class="sure">允许</a>
+                                <a href="javascript:;" class="cancel">排除</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="filed-div" style="text-align: right; margin-top :13px">
+            <div class="button-panel">
+                <a href="javascript:;" class="button no-radius b">保存设置</a>
+                <label><input type="checkbox">并添加到组</label>
+            </div>
+        </div>
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/publish" src="Static/js/libs/requirejs/require.js"></script>
+
+</html>

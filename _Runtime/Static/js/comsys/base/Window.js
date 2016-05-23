@@ -30,12 +30,17 @@ define(
                     this.$BoxBaseContent = this.$BoxBaseEl.find(".comsys-box-content");
                     this.$BoxBaseFrame = this.$BoxBaseEl.find("iframe");
 
-                    this.windowLoadType = null;
-                    this.deferred = new $.Deferred();
-                    this.setting.titleHeight = 45;
+                    this.setting.titleHeight = 50;
                     this.setting.borderWidth = 0;
+                    this.setting.zindex=0;
                     this.setting.callback = function () {
                     };
+                    this.setting.headmousedown=function(){
+                    }
+
+                    this.windowLoadType = null;
+                    this.deferred = new $.Deferred();
+                    this.color=""
                     this.status=false;
                     this.setting.dragoption = {
                         cancel: ".comsys-box-content,iframe",
@@ -52,7 +57,7 @@ define(
                     };
                 },
                 TPL: {
-                    main: "<div id='<%=this.classids%>' class='comsys-box-base'>" +
+                    main: "<div id='<%=this.classids%>' class='comsys-box-base <%=this.getColor()%>'>" +
                     "<div class='comsys-box-head'>" +
                     "<div class='comsys-box-title'>标题处</div>" +
                     "<div class='comsys-box-close'></div>" +
@@ -70,9 +75,16 @@ define(
                     this.$BoxBaseHead.get(0).onselectstart = function () {
                         return false;
                     };
+                    this.$BoxBaseHead.off('.BoxHeadMouseDownHandler').on('mousedown.BoxHeadMouseDownHandler',function(){
+                        me.setting.headmousedown.apply(me,arguments);
+                    })
                     this.addMoveBehavior();
                     this.deferred.promise(this);
                     return this;
+                },
+                getColor:function(){
+                    this.color='boxColor'+ Math.ceil(Math.random()*9);
+                    return this.color;
                 },
                 addMoveBehavior: function () {
                     this.drapObject = draggable(this.setting.dragoption, this.$BoxBaseEl);
@@ -99,6 +111,15 @@ define(
                     setting.height = setting.height || 600;
                     setting.callback = setting.callback || function () {};
                     setting.maxHeight = setting.maxHeight ||null;
+                    setting.headmousedown = setting.headmousedown || me.setting.headmousedown;
+                    setting.zindex=setting.zindex||me.setting.zindex
+
+                    //重新设置zindex
+                    me.setting.headmousedown=setting.headmousedown;
+                    me.setting.zindex=setting.zindex;
+
+                    this.$BoxBaseEl.removeClass(this.color);
+                    this.$BoxBaseEl.addClass(this.getColor());
 
                     this.then(function () {
                         setting.callback.apply(me, arguments);
@@ -117,6 +138,7 @@ define(
 
                     var top = (gh - setting.height) / 2 - ((gh - setting.height) / 2) * 2 / 5;
                     this.$BoxBaseEl.css({
+                        zIndex:950 + setting.zindex,
                         position: "fixed",
                         width: setting.width,
                         height: "auto",
@@ -163,6 +185,7 @@ define(
                     return this;
                 },
                 close: function (command) {
+                    if(!this.status) return ;
                     this.$BoxBaseEl.hide();
                     var cmd=command;
                     this.$BoxBaseFrame.attr("src", "about:blank");
@@ -173,6 +196,13 @@ define(
                     }
                     this.status=false;
                     this.deferred.resolve(cmd||"close");
+                },
+                setindex:function(zindex){
+                    var me=this;
+                    this.setting.zindex=zindex
+                     this.$BoxBaseEl.css({
+                        zIndex:950 + me.setting.zindex
+                    });
                 },
                 resize: function (height,maxHeight) {
                     height = height || this.$BoxBaseEl.height();

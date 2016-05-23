@@ -18,6 +18,7 @@ define([
         initialize: function () {
             this.callParent();
             var id=this.$BaseEl.attr("id");
+            this.$LabelText=null;
             if(id&&this.$BaseEl.parent().find("label[for="+id+"]").length!=0) {
                 this.$LabelContainer = this.$BaseEl.parent().find("label[for=" + id + "]");
                 return this.moveLabel();
@@ -42,10 +43,10 @@ define([
                     do {
                     } while ((o = nodes[i++]) && o != this.$BaseEl[0]);
                     this.$BaseEl.after(this.$LabelContainer).appendTo(this.$LabelContainer);
-                    var node=Setting.LabelSetting.getNode(nodes[i]);
-                    if (Setting.LabelSetting.check(node)) {
-                        this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get(node)));
-                        this.$LabelContainer.append(node);
+                    this.$LabelText=Setting.LabelSetting.getNode(nodes[i]);
+                    if (Setting.LabelSetting.check(this.$LabelText)) {
+                        this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get(this.$LabelText)));
+                        this.$LabelContainer.append(this.$LabelText);
                     }
                 }
                 else {

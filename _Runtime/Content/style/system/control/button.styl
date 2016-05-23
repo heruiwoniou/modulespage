@@ -8,7 +8,7 @@
 		border-radius 0px
 	color white
 	vertical-align middle
-	border 2px solid transparent;
+	border 1px solid transparent;
 	font-weight normal
 	&.b
 		background $Color1;
@@ -89,3 +89,26 @@
 	display inline-block;
 	>*
 		font-size 0
+
+.small-button-panel
+	padding 0 10px
+	float right
+	.sort
+	.share
+	.export
+		&:before
+			content ''
+			height 11px
+			width 11px
+			display inline-block
+			margin-right 5px
+		font-size 14px
+	.sort
+		&:before
+			background url('images/sort.png') no-repeat;
+	.share
+		&:before
+			background url('images/share-green.png') no-repeat;
+	.export
+		&:before
+			background url('images/export.png') no-repeat;

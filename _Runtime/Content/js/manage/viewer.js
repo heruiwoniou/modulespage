@@ -33,6 +33,12 @@ define(['libs/echarts/echarts'], function(echarts) {
             $(window).resize(function(){
                 myChart.resize()
             })
+        },
+
+
+        //其他方法
+        publish:function(){
+            WebApi.modal('publishwindow',{title:"发布活动",src:"publish.html",height:500,width:810});
         }
     }
 })

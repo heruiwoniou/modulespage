@@ -21,17 +21,36 @@ table.list-grid
 		a.delete
 		a.edit
 		a.view
-			display inline-block
-			vertical-align middle
-			margin 0 5px
-			height 13px
-			width 12px
+		a.viewinfo
+		a.sure
+		a.cancel
+			&:before
+				content ''
+				position: relative;
+				top: -2px;
+				display inline-block
+				vertical-align middle
+				margin 0 5px
+				height 13px
+				width 12px
 		a.delete
-			background url(images/delete.png) no-repeat;
+			&:before
+				background url(images/delete.png) no-repeat;
 		a.edit
-			background url(images/edit.png) no-repeat;
+			&:before
+				background url(images/edit.png) no-repeat;
 		a.view
-			background url(images/view.png) no-repeat;
+			&:before
+				background url(images/view.png) no-repeat;
+		a.viewinfo
+			&:before
+				background url(images/view-info.png) no-repeat;
+		a.sure
+			&:before
+				background url(images/sure.png) no-repeat;
+		a.cancel
+			&:before
+				background url(images/cancel.png) no-repeat;
 
 /**
  *

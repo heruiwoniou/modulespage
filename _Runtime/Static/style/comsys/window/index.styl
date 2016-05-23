@@ -27,7 +27,7 @@
             text-align: center;
             font-size:16px;
             margin-right: $window-titleHeight;
-            @extend .textHidden
+            textHidden()
             color: #fff
         .comsys-box-close
             position: absolute;
@@ -40,7 +40,7 @@
             &:before
                 font-family: "ElegantIcons";
                 line-height: $window-titleHeight - 0.5;
-                color:darken($themeColor,15%);
+                color:$themeColor - 15%
                 content: $close;
     .comsys-box-content
         background: #fff;
@@ -62,7 +62,7 @@
             margin-left:1px;
             height: $window-titleHeight;
             max-width: 100px;
-            background:lighten($themeColor,5%);
+            background:$themeColor + 5%;
             display: inline-block;
             min-width: 100px;
             line-height:$window-titleHeight;
@@ -71,7 +71,7 @@
             color:#fff;
             cursor: pointer;
             &:hover
-                background:lighten($themeColor,15%);
+                background:$themeColor + 15%;
                 color:#fff;
 
     .comsys-box-content

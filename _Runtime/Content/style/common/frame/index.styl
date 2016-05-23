@@ -26,6 +26,8 @@ container-base($screenWidthMax,$screenWidthMin)
 		.container
 			max-width: inherit
 			min-width: auto;
+	.no-m-container
+		padding 10px;
 
 button-base($height,$minWidth)
 	.button
@@ -37,17 +39,17 @@ button-base($height,$minWidth)
 		line-height: $height
 		outline none
 		cursor pointer
-		font-size 16px !important
+		font-size 14px !important
 		&.larger
 			height:floor($height * 1.3)
 			line-height: floor($height * 1.3)
 			min-width:floor($minWidth * 1.3)
-			font-size 16px + 2px !important
+			font-size 14px + 2px !important
 		&.smaller
 			height:floor($height * 0.7)
 			line-height: floor($height * 0.7)
 			min-width:floor($minWidth * 0.7)
-			font-size 16px - 2px !important
+			font-size 14px - 2px !important
 		&:hover
 			text-decoration none
 	.IE8

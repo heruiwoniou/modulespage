@@ -27,18 +27,16 @@ define( [
                 //WebApi.modal({title:"12323",content:$("#test")})
                 //WebApi.window({title:"12323",ajax:true,src:"index.html"})
                 //WebApi.window({title:"12323",content:$("#test")});
-                WebApi.window("model1",{title:"12323",width:800,height:600,full:false,src:"index.html"}).then(function(state){
+                WebApi.window({title:"登陆页面",src:"progress.html",height:600,width:800}).then(function(state){
                     console.log(state);
                 });
-
-
                 //消息框弹出
                 //
                 //
                 // WebApi.error("测试消息").then(function(state){
                 //     console.log(state);
                 // });
-                // WebApi.alert("测试消息").then(function(state){
+                // WebApi.confirm("测试消息").then(function(state){
                 //     console.log(state);
                 // });
 

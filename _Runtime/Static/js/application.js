@@ -36,14 +36,29 @@ define([
         },
 
         //弹出框
+        _confirm:function(message){
+            return Win.show({content:message,buttons:Win.button.OKANDCANCEL,icon:Win.icon.question})
+        },
+        _alert:function(message){
+            return Win.show({content:message,buttons:Win.button.OK,icon:Win.icon.info})
+        },
+        _error:function(message){
+            return Win.show({content:message,buttons:Win.button.OK,icon:Win.icon.error})
+        },
         confirm:function(message){
-            return Win.show({content:message,buttons:Window.button.OKANDCANCEL,icon:Window.icon.question})
+            var parent=window.parent
+            while(parent!=window.parent) parent=parent.parent
+            return parent.WebApi._confirm.apply(parent,arguments);
         },
         alert:function(message){
-            return Win.show({content:message,buttons:Window.button.OK,icon:Window.icon.info})
+            var parent=window.parent
+            while(parent!=window.parent) parent=parent.parent
+            return parent.WebApi._alert.apply(parent,arguments);
         },
         error:function(message){
-            return Win.show({content:message,buttons:Window.button.OK,icon:Window.icon.error})
+            var parent=window.parent
+            while(parent!=window.parent) parent=parent.parent
+            return parent.WebApi._error.apply(parent,arguments);
         },
 
         //弹出窗口
@@ -52,25 +67,37 @@ define([
          * @param  {[type]} name    [窗体标识(可选)]
          * @param  {[type]} setting [设置]
          */
-        modal:function(){
+        _modal:function(){
             return Win.show.apply(Win,concatArg(arguments,['window']));
         },
+        modal:function(){
+            var parent=window.parent
+            while(parent!=window.parent) parent=parent.parent
+            return parent.WebApi._modal.apply(parent,arguments);
+        },
+        /**
+         * 该窗口暂时不用窗口放大缩小功能
+         */
         /**
          * [modal 窗口]
          * @param  {[type]} name    [窗体标识(可选)]
          * @param  {[type]} setting [设置]
          */
+        _window:function(){
+            return Win.show.apply(Win,concatArg(arguments,['window']));
+        },
         window:function(){
-            var arr=concatArg(arguments,['resizewindow']);
-            return Win.show.apply(Win,arr);
+            var parent=window.parent
+            while(parent!=window.parent) parent=parent.parent
+            return parent.WebApi._window.apply(parent,arguments);
         },
 
         //关闭弹出窗口
         close:function(setting){
             setting=setting||{};
             //如果没在当前页面找到相关的内容尝试查找上级
-            if(!Window.close(undefined,setting.name,setting.command)&&!setting.formChild&&window.parent&&window.parent.WebApi)
-                window.parent.WebApi.close({name:setting.name,command:setting.command,formChild:true});
+            if(!Win.close(undefined,setting.name,setting.command)&&window.parent&&window.parent.WebApi&&window.parent!=window)
+                window.parent.WebApi.close({name:setting.name,command:setting.command});
         },
 
         //页面调用初始化功能

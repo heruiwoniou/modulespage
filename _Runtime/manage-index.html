@@ -55,7 +55,7 @@
             </div>
             <div :class="['section-2',tableView?'table-grid-background':'']">
                 <div class="table-grid" v-if="tableView" v-cloak>
-                    <div class="row" v-for="index in Math.ceil ( list.length + 1 / 4 )">
+                    <div class="row" v-for="index in Math.ceil ( ( list.length + 1 ) / 4 )">
                         <div class="col-3 rows" v-for="col in [0,1,2,3]" v-if="(index * 4 + col - 1) < list.length">
                             <div :class="['column',status(index * 4 + col - 1)]" v-if="(index * 4 + col - 1) !== -1">
                                 <span class="thumbtack" @click="togglecommand($event)"></span>
