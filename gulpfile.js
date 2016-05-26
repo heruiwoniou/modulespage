@@ -38,8 +38,15 @@ var isDevelop = true,
     spriter = require('gulp-css-spriter'),
     rollup=require('gulp-rollup'),
     babel=require('rollup-plugin-babel'),
-    rename=require('gulp-rename');
+    rename=require('gulp-rename'),
+    vueify = require('gulp-vueify');
 
+
+gulp.task('vueify', function () {
+  return gulp.src('_Runtime/Content/js/components/**/*.vue')
+    .pipe(vueify())
+    .pipe(gulp.dest('Runtime/Content/js/components/'));
+});
 
 gulp.task('build-css', function() {
     if (isDevelop) {
@@ -122,6 +129,10 @@ gulp.task('build-script', function() {
             .pipe(gulp.dest('Runtime/Content/js/widget/'));
     });
 
+     gulp.src('_Runtime/Content/js/components/**/*.vue')
+        .pipe(vueify())
+        .pipe(gulp.dest('Runtime/Content/js/components/'));
+
     // for(var i=0;i<createList.length;i++)
     // {
     //     var module=createList[i];
@@ -162,17 +173,41 @@ gulp.task('develop', ['clean'], function() {
     /*build library*/
 
     if (isDevelop) {
+        //requirejs
         gulp.src('_Runtime/Static/js/libs/requirejs/require.js')
             .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/requirejs/'));
-
+        //require-css
+        gulp.src('_Runtime/Static/js/libs/require-css/css.min.js')
+            .pipe(uglify())
+            .pipe(gulp.dest('Runtime/Static/js/libs/require-css/'));
+        //jquery-extend
         gulp.src('_Runtime/Static/js/libs/jquery-extend/*.js')
             .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/jquery-extend/'));
-
+        //echarts
         gulp.src('_Runtime/Static/js/libs/echarts/**/*.js')
             .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/echarts/'));
+        //ztree
+        gulp.src('_Runtime/Static/js/libs/ztree/jquery.ztree.js')
+            .pipe(uglify())
+            .pipe(gulp.dest('Runtime/Static/js/libs/ztree/'));
+        gulp.src('_Runtime/Static/js/libs/ztree/style/*.css')
+            .pipe(cleancss())
+            .pipe(gulp.dest('Runtime/Static/js/libs/ztree/style/'));
+        gulp.src('_Runtime/Static/js/libs/ztree/style/img/*')
+            .pipe(gulp.dest('Runtime/Static/js/libs/ztree/style/img/'));
+        //scrollbar
+        // gulp.src('_Runtime/Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar.js')
+        //     .pipe(uglify())
+        //     .pipe(gulp.dest('Runtime/Static/js/libs/jquery.scrollbar/'));
+        gulp.src('_Runtime/Static/js/libs/jquery.scrollbar/style/**/*')
+            .pipe(gulp.dest('Runtime/Static/js/libs/jquery.scrollbar/style/'));
+
+        gulp.src('_Runtime/Static/js/libs/jquery-ui/**/*')
+            .pipe(gulp.dest('Runtime/Static/js/libs/jquery-ui/'));
+
     } else {
         gulp.src('_Runtime/Static/js/libs/require-css/css.min.js')
             .pipe(uglify())
@@ -193,7 +228,7 @@ gulp.task('develop', ['clean'], function() {
     // /*add listener*/
     // livereload.listen();
     /*add listener*/
-    gulp.watch(['_Runtime/**/*.js', '!_Runtime/Static/js/libs/**/*.js'], function() {
+    gulp.watch(['_Runtime/**/*.js','_Runtime/**/*.vue', '!_Runtime/Static/js/libs/**/*.js'], function() {
         gulp.run('build-script');
     });
     gulp.watch(['_Runtime/**/*.styl'], function() {

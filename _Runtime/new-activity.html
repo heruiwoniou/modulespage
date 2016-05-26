@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: hidden
+    }
+    </style>
+</head>
+
+<body class="new-activity" v-cloak>
+    <div class="no-m-container section part-one" v-show="currentStep==0" transition="toggle-animate">
+        <h1>欢迎使用</h1>
+        <div class="field-wrap">
+            只需要几个基本步骤，您就可以创建一次全新的问卷调查活动，现在让我们开始吧！
+        </div>
+        <div class="field-wrap head" style="margin-top:0">
+            <b>本次活动的名称</b>
+        </div>
+        <div class="field-wrap">
+            <div class="inline-container" style="width:50%">
+                <input type="text">
+            </div>
+        </div>
+        <div class="field-wrap head">
+            <b>详细介绍</b>
+        </div>
+        <div class="field-wrap">
+            <textarea cols="30" rows="3" style="width:50%"></textarea>
+        </div>
+        <div class="field-wrap head">
+            <b>选择一个分类</b>
+        </div>
+        <div class="field-wrap">
+            <div class="inline-container" style="width:50%">
+                <label v-for="index in 10"><input name="groups" type="checkbox">{{"分类"+index}}</label>
+            </div>
+        </div>
+        <div class="field-wrap head">
+            <a href="javascript:;" class="button p no-radius">设置协同管理员</a>
+        </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b" @click="next">下一步</a>
+        </div>
+    </div>
+    <div class="no-m-container section part-two" v-show="currentStep==1&&!issetpersonpanel" transition="toggle-animate">
+        <h1>如何参与</h1>
+        <div class="field-wrap">
+            您可以为此次活动的所有问卷统一指定参与人员，也可以单独为每个问卷筛选参加者。
+        </div>
+        <div class="field-wrap head" style="margin-top:0px"><b>匿名参与</b></div>
+        <div class="field-wrap">
+            <input type="checkbox" data-buttontype="slider" @click="setisanonymous" id="isanonymous" />关闭
+        </div>
+        <div class="field-wrap" v-if="isanonymous">
+            包括完全公开,除去
+        </div>
+        <div class="field-wrap disabled" v-else>
+            包括完全公开,除去
+        </div>
+        <div class="field-wrap" v-if="isanonymous">
+            <div class="inline-container">
+                <a href="javascript:;" @click="gopersontoggle" class="button p no-radius">设置参与人</a>
+            </div>
+        </div>
+        <div class="field-wrap disabled" v-else>
+            <div class="inline-container">
+                <a href="javascript:;" class="button p no-radius">设置参与人</a>
+            </div>
+        </div>
+        <div class="field-wrap  head">
+            <b>有效时间</b>
+        </div>
+        <div class="field-wrap">
+            从何时开始：<span class="color3">2016年5月1日</span> 到何时结束：
+            <span class="color3">2016年6月1日</span>
+        </div>
+        <div class="field-wrap  head">
+            <b>每台设备只能答卷一次</b>
+        </div>
+        <div class="field-wrap">
+            <input type="checkbox" data-buttontype="slider" id="isonce" />关闭
+        </div>
+        <div class="field-wrap head">
+            <b>收集到指定的答卷份数时停止活动</b>
+        </div>
+        <div class="field-wrap">
+            <div class="inline-container" style="width:100px">
+                <input type="text" tip-title="无限制">
+            </div>&nbsp;份
+        </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b empty" @click="last">上一步</a>
+            <a href="javascript:;" class="button no-radius b" @click="next">下一步</a>
+        </div>
+    </div>
+    <div class="no-m-container section part-three setperson" v-show="currentStep==1&&issetpersonpanel" transition="toggle-animate">
+        <b><i @click="gopersontoggle"></i>设置参与人</b>
+        <div class="field-wrap">
+            包括 完全公开
+        </div>
+        <div class="FrameLeftRightControl" style="height:330px">
+            <div class="FrameLeft mCustomScrollbar" style="width:200px">
+                <div class="no-m-container">
+                    <ul id="treeDemo" class="ztree"></ul>
+                </div>
+            </div>
+            <div class="FrameBar" style="left:200px"></div>
+            <div class="FrameRight" style="padding-left:210px">
+                <div class="no-m-container mCustomScrollbar" style="overflow:auto">
+                    <div class="button-panel" style="width:100%;padding-bottom:10px">
+                        <a href="javascript:;" class="button g no-radius">全部允许</a>
+                        <a href="javascript:;" class="button r no-radius">全部排除</a>
+                        <div class="inline-container search-container" style="width:280px;float:right">
+                            <input type="text" id="search">
+                        </div>
+                    </div>
+                    <table class="list-grid">
+                        <colgroup>
+                            <col>
+                            <col style="width:140px">
+                        </colgroup>
+                        <tr>
+                            <th>名称</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr v-for="index in 10">
+                            <td>xxx县教育局</td>
+                            <td>
+                                <a href="javascript:;" class="sure">允许</a>
+                                <a href="javascript:;" class="cancel">排除</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b">保存设置</a>
+            <label>
+                <input type="checkbox">并添加到组</label>
+        </div>
+    </div>
+    <div class="no-m-container section part-four" v-show="currentStep==2" transition="toggle-animate">
+        <h1>选择问卷</h1>
+        <div class="field-wrap">
+            选择您喜欢的问卷，您可以在一次活动中为不同的人使用多份问卷。
+        </div>
+        <div class="field-wrap">
+            <a href="javascript:;" class="button no-radius g">新建</a>
+            <a href="javascript:;" class="button no-radius p">从库中选择</a>
+        </div>
+        <div class="field-wrap head">
+            <b>已选择的问卷</b>
+        </div>
+        <div class="field-wrap">
+            <ul class="list-item">
+                <li v-for="index in 5">
+                    <h1><i></i>关于XXXX的问卷调查{{index}}</h1>
+                    <p>
+                        <a href="javascriptp:;" class="edit">编辑</a>
+                        <a href="javascriptp:;" class="delete">删除</a>
+                        <a href="javascriptp:;" class="power">权限</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b empty" @click="last">上一步</a>
+            <a href="javascript:;" class="button no-radius g" @click="save">完成</a>
+        </div>
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/newactivity" src="Static/js/libs/requirejs/require.js"></script>
+
+</html>

@@ -7,73 +7,76 @@
     <link rel="stylesheet" href="Content/style/common.css">
     <style>
     html {
-        overflow: auto
+        overflow: hidden
     }
     </style>
 </head>
 
 <body class="publish" v-cloak>
-    <div class="no-m-container part-one" v-show="ispartone" transition="part-scroll">
-        <div class="filed-div head"><b>设置为匿名参加活动</b></div>
-        <div class="filed-div">
-            <input type="checkbox" @click="setisanonymous" id="isanonymous" />关闭
+    <div class="no-m-container section part-one" v-show="ispartone" transition="toggle-animate">
+        <div class="field-wrap head"><b>设置为匿名参加活动</b></div>
+        <div class="field-wrap">
+            <input type="checkbox" data-buttontype="slider" @click="setisanonymous" id="isanonymous" />关闭
         </div>
-        <div class="filed-div" v-if="isanonymous">
+        <div class="field-wrap" v-if="isanonymous">
             包括完全公开,除去
         </div>
-        <div class="filed-div disabled" v-else>
+        <div class="field-wrap disabled" v-else>
             包括完全公开,除去
         </div>
-        <div class="filed-div" v-if="isanonymous">
+        <div class="field-wrap" v-if="isanonymous">
             <div class="inline-container">
                 <a href="javascript:;" @click="gonext" class="button p no-radius">设置参与人</a>
             </div>
         </div>
-        <div class="filed-div disabled" v-else>
+        <div class="field-wrap disabled" v-else>
             <div class="inline-container">
                 <a href="javascript:;" class="button p no-radius">设置参与人</a>
             </div>
         </div>
-        <div class="filed-div  head">
-            <b>从何时开始：</b><span class="color3">2016年5月1日</span><b>到何时结束：</b><span class="color3">2016年6月1日</span>
+        <div class="field-wrap  head">
+            <b>有效时间</b>
         </div>
-        <div class="filed-div  head">
+        <div class="field-wrap">
+            从何时开始：<span class="color3">2016年5月1日</span> 到何时结束：
+            <span class="color3">2016年6月1日</span>
+        </div>
+        <div class="field-wrap  head">
             <b>每台设备只能答卷一次</b>
         </div>
-        <div class="filed-div">
-            <input type="checkbox" id="isonce" />关闭
+        <div class="field-wrap">
+            <input type="checkbox" data-buttontype="slider" id="isonce" />关闭
         </div>
-        <div class="filed-div head">
+        <div class="field-wrap head">
             <b>收集到指定的答卷份数时停止活动</b>
         </div>
-        <div class="filed-div">
+        <div class="field-wrap">
             <div class="inline-container" style="width:100px">
                 <input type="text">
             </div>&nbsp;份
         </div>
-        <div class="filed-div" style="text-align: right; margin-top :20px">
-            <div class="button-panel">
-                <a href="javascript:;" class="button no-radius b">保存</a>
-            </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b">保存</a>
         </div>
     </div>
-    <div class="no-m-container part-two" v-else transition="part-scroll">
+    <div class="no-m-container section part-two setperson" v-else transition="toggle-animate">
         <b><i @click="gonext"></i>设置参与人</b>
-        <div class="filed-div">
+        <div class="field-wrap">
             包括 完全公开
         </div>
         <div class="FrameLeftRightControl" style="height:330px">
-            <div class="FrameLeft" style="width:200px">
-                <div class="no-m-container"></div>
+            <div class="FrameLeft mCustomScrollbar" style="width:200px">
+                <div class="no-m-container">
+                    <ul id="treeDemo" class="ztree"></ul>
+                </div>
             </div>
             <div class="FrameBar" style="left:200px"></div>
             <div class="FrameRight" style="padding-left:210px">
-
-                <div class="no-m-container" style="overflow:auto">
+                <div class="no-m-container mCustomScrollbar" style="overflow:auto">
                     <div class="button-panel" style="width:100%;padding-bottom:10px">
                         <a href="javascript:;" class="button g no-radius">全部允许</a>
                         <a href="javascript:;" class="button r no-radius">全部排除</a>
-                        <div class="inline-container search-container" style="width:310px;float:right">
+                        <div class="inline-container search-container" style="width:280px;float:right">
                             <input type="text" id="search">
                         </div>
                     </div>
@@ -97,11 +100,10 @@
                 </div>
             </div>
         </div>
-        <div class="filed-div" style="text-align: right; margin-top :13px">
-            <div class="button-panel">
-                <a href="javascript:;" class="button no-radius b">保存设置</a>
-                <label><input type="checkbox">并添加到组</label>
-            </div>
+        <div class="button-panel position-panel">
+            <a href="javascript:;" class="button no-radius b">保存设置</a>
+            <label>
+                <input type="checkbox">并添加到组</label>
         </div>
     </div>
 </body>

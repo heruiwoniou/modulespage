@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: hidden
+    }
+    </style>
 </head>
 
-<body class="state-analyze">
+<body class="state-analyze mCustomScrollbar">
     <div class="container">
         <div class="button-panel" v-cloak>
             <a href="javascript:;" @click="setIndex(0)" :class="['button',current==0?'g':'gray','no-radius']">基本情况</a>
@@ -32,7 +37,7 @@
                                 <a href="javascript:;"><h1>全部</h1></a>
                                 <ul>
                                     <li v-for="(index,item) in questions">
-                                        <a href="javascriptp:;">
+                                        <a href="javascriptp:;" @click="scrollTo(index)">
                                             <span>Q{{index + 1}}:</span> {{item.question}}
                                         </a>
                                     </li>
@@ -56,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="SmallPanelControl" v-for="(index,item) in questions">
-                                <div class="SmallPanel-head">
+                                <div class="SmallPanel-head question-item">
                                     <span class="color7">Q{{index + 1}}:</span> {{item.question}}
                                     <div class="small-button-panel">
                                         <a href="javascript:;" class="export">导出</a>
@@ -126,9 +131,9 @@
         <div class="PanelControl" v-show="current==1" v-el:panel-control-2>
             <div class="panel-head r">综合情况</div>
             <div class="panel-body">
-            	<div class="table-grid">
-            		 <div class="row" v-for="index in Math.ceil ( ( analyzes.length + 1 ) / 4 )">
-            		 	<div class="col-3 rows" v-for="col in 4" v-if="(index * 4 + col - 1) < analyzes.length">
+                <div class="table-grid">
+                    <div class="row" v-for="index in Math.ceil ( ( analyzes.length + 1 ) / 4 )">
+                        <div class="col-3 rows" v-for="col in 4" v-if="(index * 4 + col - 1) < analyzes.length">
                             <div :class="['column',getColor()]" v-if="(index * 4 + col - 1) !== -1">
                                 <span class="thumbtack" @click="togglecommand($event)"></span>
                                 <h1>
@@ -148,8 +153,8 @@
                                 <a href="javascript:;">新的报告</a>
                             </div>
                         </div>
-            		 </div>
-            	</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="PanelControl" v-show="current==2" v-el:panel-control-3>

@@ -52,6 +52,7 @@ define(
                     });
 
                     $this.data(ClassName, this);
+                    $this.attr("data-binded",true)
                 }
                 return this;
             },
@@ -65,8 +66,9 @@ define(
 
         $.fn.extend({
             RadioBoxInit: function () {
-                return this.each(function () {
-                    new RadioBox({element: this}).initialize();
+                return this.filter(":not([data-binded])").each(function () {
+                    var setting = { buttontype: $(this).attr('data-buttontype') || '' }
+                    new RadioBox({element: this , setting : setting}).initialize();
                 });
             }
         });

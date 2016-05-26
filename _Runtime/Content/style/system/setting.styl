@@ -21,39 +21,9 @@ $Color9=#8869ca;
 $Color10=#e1e1e1;
 $Color11=#909090;
 
-.bcolor1
-	background $Color1
-.bcolor2
-	background $Color2
-.bcolor3
-	background $Color3
-.bcolor4
-	background $Color4
-.bcolor5
-	background $Color5
-.bcolor6
-	background $Color6
-.bcolor7
-	background $Color7
-.bcolor8
-	background $Color8
-.bcolor9
-	background $Color9
-.color1
-	color $Color1
-.color2
-	color $Color2
-.color3
-	color $Color3
-.color4
-	color $Color4
-.color5
-	color $Color5
-.color6
-	color $Color6
-.color7
-	color $Color7
-.color8
-	color $Color8
-.color9
-	color $Color9
+for index in 1..11
+	.bcolor{index}
+		background $Color + index
+for index in 1..11
+	.color{index}
+		color $Color1 + index

@@ -26,7 +26,7 @@ define(
                         this.$element = $(element);
                         this.appendTo = args.appendTo || document.body;
                         this.setting = {
-                            lineHeight: this.setting.lineHeight || 28,
+                            lineHeight: this.setting.lineHeight || 27,
                             dropLength: this.setting.dropLength || 5
                         };
                         this.element.style.display = "none";

@@ -20,7 +20,7 @@ define([
             this.callParent(args);
             this.options=[];
             this.$GroupInputs=args.element;
-            this.setting.lineHeight= this.setting.lineHeight || 28;
+            this.setting.lineHeight= this.setting.lineHeight || 27;
             this.setting.dropLength=  this.setting.dropLength || 4
             for(var i=0;i<this.$GroupInputs.length;i++) {
                 var data=$(this.$GroupInputs[i]).data("Control.CheckBox");

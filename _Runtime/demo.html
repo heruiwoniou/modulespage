@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo</title>
+	<link rel="stylesheet" href="Content/style/common.css">
+</head>
+<body class="demo" v-cloak>
+<div class="left">
+	<div class="left-control-container">
+		<div class="control-small" data-type="ChoiceQuestion">选择题</div>
+		<div class="control-small" data-type="Group">段落</div>
+	</div>
+</div>
+<div class="right" @click.self="setindex">
+	<div class="right-control-container">
+		<div class="accept" data-index="0"></div>
+		<component  v-for="item in children"
+			:is="item.type"
+			:component="item"
+			:index="$index"
+			:iscurrent="$index == selectindex"
+			transition="fadeInOut"
+			></component>
+	</div>
+</div>
+<div style="padding:10px;" class="bcolor1" @click.stop="alert(1)">
+	<div style="padding:10px;" class="bcolor2" @click.stop="alert(2)">
+		<div style="padding:10px;" class="bcolor3" @click.stop="alert(3)">
+			<div style="padding:10px;" class="bcolor4" @click.stop="alert(4)"></div>
+		</div>
+	</div>
+</div>
+</body>
+<script data-main="Static/js/config" main="demo" src="Static/js/libs/requirejs/require.js"></script>
+</html>

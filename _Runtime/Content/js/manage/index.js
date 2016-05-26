@@ -30,6 +30,12 @@ define(['vue','./../widget/FullScreenModal','./../util/filter/nameSplit'], funct
                     }()
                 },
                 methods: {
+                    addnew:function(){
+                        WebApi.modal('addnewwindow',{title:"新的活动",src:"new-activity.html",height:500,width:810})
+                        .then(function(command){
+                            alert(command)
+                        });
+                    },
                     view:function(status){
                         modal.viewsrc="state-viewer.html";
                         if(status=="已结束")

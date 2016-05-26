@@ -1,13 +1,18 @@
 {
-  "name": "Runtime",
-  "description": "Runtime",
+  "name": "Qe",
+  "description": "Qe",
   "main": "",
   "moduleType": [],
   "license": "MIT",
   "homepage": "index.html",
   "private": true,
   "ignore": [
-    "**/.*"
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "_Runtime/Static/js/libs",
+    "test",
+    "tests"
   ],
   "authors": [
     "hero <heruiwoniou@qq.com>"
@@ -15,7 +20,7 @@
   "dependencies": {
     "jquery": "~1.11.0",
     "jquery-ui": "~1.11.4",
-    "require-css": "~0.1.8",
+    "require-css": "^0.1.8",
     "requirejs": "^2.2.0",
     "AutoPrefixCSS": "AutoPrefixCss#^1.0.1"
   }

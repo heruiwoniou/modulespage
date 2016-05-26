@@ -13,6 +13,8 @@ define([
     '../../Content/js/util/common',
     'common/client/XImage',
     'common/client/Sync',
+
+    //缓存内容
     'vue',
     'widget/TextBox',
     'widget/TipTextBox',
@@ -20,6 +22,8 @@ define([
     'widget/CheckBox',
     'widget/RadioBox',
     'widget/SingleCombox',
+    'widget/MulCombox',
+    'libs/jquery.scrollbar/jquery.mCustomScrollbar'
 ], function($,CommonSetting,MaskLayer,Win,common,XImage,Sync) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
@@ -124,12 +128,12 @@ define([
 
     return {
         interface: function(action) {
-            common.init();
             if (action)
             {
                 $.extend(WebApi, action);
                 WebApi.init();
             }
+            common.init();
         },
         initialize: function() {
             var browser=CommonSetting.Browser();

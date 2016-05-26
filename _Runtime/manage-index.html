@@ -43,10 +43,12 @@
                     </div>
                 </div>
                 <div class="col-7">
-                    <div class="inline-container" style="min-width:380px">
-                        <input type="text" tip-title="输入你想要查询的问卷" id="search"/>
+                    <div class="button-panel">
+                        <div class="inline-container" style="min-width:380px">
+                            <input type="text" tip-title="输入你想要查询的问卷" id="search"/>
+                        </div>
+                        <a v-if="!tableView" href="javascript:;" class="button y no-radius" @click="addnew">新建活动</a>
                     </div>
-                    <a v-if="!tableView" href="javascript:;" class="button y no-radius">新建活动</a>
                 </div>
                 <div class="col-1">
                     <a href="javascript:;" @click="togglelist(true)" :class="['table-show',tableView?'select':'']"></a>
@@ -87,7 +89,7 @@
                                     <a href="javascript:;" class="delete"><i></i><b>删除</b></a>
                                 </div>
                             </div>
-                            <div class="column new" v-else>
+                            <div class="column new" v-else @click="addnew">
                                 <a href="javascript:;">新的活动</a>
                             </div>
                         </div>
@@ -107,7 +109,7 @@
                         <td>
                             <a href="javascript:;" class="delete"></a>
                             <a href="javascript:;" class="edit"></a>
-                            <a href="javascript:;" class="view"></a>
+                            <a href="javascript:;" class="view" @click="view(row[1])"></a>
                         </td>
                     </tr>
                 </table>

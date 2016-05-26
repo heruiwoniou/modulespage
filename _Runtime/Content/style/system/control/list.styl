@@ -158,3 +158,67 @@ ul.list-style-two
 			h1
 				b
 					background-color $Color+b
+ul.list-item
+	&:after
+		clear()
+	li
+		position relative
+		height 70px
+		line-height 70px
+		width 19%
+		margin 10px .5%
+		padding 1px 0px 0px 80px
+		floatLeft()
+		h1
+		p
+			line-height 1
+			textHidden()
+		p
+			color $fontSmallColor
+			a
+				font-size 14px
+				padding 0 10px
+				color $Color6
+			a.delete
+			a.edit
+			a.power
+				color $fontSmallColor
+				padding 0 5px
+				&:before
+					content ''
+					width 12px
+					height 13px
+					display inline-block
+					margin-right 10px
+			a.delete
+				&:before
+					background url('images/delete.png') no-repeat
+			a.edit
+				&:before
+					background url('images/edit.png') no-repeat
+			a.power
+				&:before
+					background url('images/power.png') no-repeat
+		h1
+			font-size 16px
+			line-height 40px
+		i
+			top 9px
+			left 14px
+			position absolute
+			border-radius 100%
+			height 52px
+			width 52px
+			display block
+			background red
+			&:before
+				content ''
+				height 52px
+				width 52px
+				display block
+				background url('images/big-book-icon.png') no-repeat
+		for i in 1..9
+			&:nth-child({i}n)
+				h1
+					i
+						background $Color + i

@@ -214,6 +214,7 @@ ModelManifest.xml
 #WebStrom
 .idea
 
+#Project
 _Runtime/Static/js/libs
 Runtime
 *.zip

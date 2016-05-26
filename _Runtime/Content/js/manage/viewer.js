@@ -2,7 +2,7 @@ define(['libs/echarts/echarts'], function(echarts) {
     return {
         init: function() {
             $("input[id*=search]").ButtonTextBoxInit({ ButtonClass: "search" });
-            this.echarts()
+            this.echarts();
         },
         echarts: function() {
 

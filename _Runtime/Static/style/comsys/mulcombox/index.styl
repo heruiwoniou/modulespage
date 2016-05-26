@@ -82,7 +82,7 @@
         @extend .textHidden
         border-bottom:1px solid #fff
         position: relative
-        padding-left:30px
+        padding-left:8px
         font-size: 14px
         &:hover
             background: #e3e3fd
@@ -90,25 +90,19 @@
             background: #5050ef
             color:#fff
         div.before
+            margin-right 8px
+            display inline-block
+            width 16px
+            height 16px
             content:""
             background: url(images/checkbox.png) no-repeat center
-            position: absolute
-            left: 0px
-            top:0px
-            height:  $line-height
             vertical-align: middle
-            line-height: $line-height
-            width: 30px
-            font-size: 1.8em
-            text-align: center
-            color:#ccc
+            margin-top -2px
     div.selected
         box-sizing: border-box
         border-bottom:1px solid #fff
         div.before
             content:""
             background: url(images/checkbox-checked.png) no-repeat center
-            height:  $line-height
             vertical-align: middle
-            line-height: $line-height
             color:limegreen

@@ -1,10 +1,13 @@
-define(['vue','libs/echarts/echarts','common/client/Bumper','./../util/filter/date'], function(Vue,echarts,Bumper) {
+define(['vue','echarts','common/client/Bumper','./../util/filter/date'], function(Vue,echarts,Bumper) {
     var vm,colors=['c1','c2','c3']
     return {
         init: function() {
+            var me=this;
             this.vue();
-            this.echarts();
-            this.echartsQuestions();
+            Bumper.trigger(function(){
+                me.echarts();
+                me.echartsQuestions();
+            })
 
             //此页面有两种呈现方式,
             //1:选择问题后生成图片
@@ -37,6 +40,9 @@ define(['vue','libs/echarts/echarts','common/client/Bumper','./../util/filter/da
                     $(this.$els.frameRightContent).css({minHeight:height -54 - 40 - 45 - 20 + 'px'})
                 },
                 methods: {
+                    scrollTo:function(index){
+                        $(".mCustomScrollbar").mCustomScrollbar('scrollTo',$('.question-item:eq(' + index + ')'))
+                    },
                     getColor:function(){
                         return 'c'+Math.ceil(Math.random()*3);
                     },
