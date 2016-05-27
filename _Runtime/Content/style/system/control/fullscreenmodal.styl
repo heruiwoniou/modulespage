@@ -1,13 +1,11 @@
 .full-screen-modal
 	position fixed
 	background white
-	z-index 100
+	z-index 5000
 	height 100%
 	width 100%
-	top -200%
+	top 0
 	left 0
-	opacity 0
-	transition opacity .2s ease
 	line-height 1
 	padding-top .5%
 	.gradient-canvas
@@ -22,25 +20,18 @@
 	.modal-frame
 		position relative
 		vertical-align middle
-		top -10%
+		top .2%
 		z-index 1
 		margin-left .5%
 		height 99%
 		width 99%
 		background white
-		transition top .2s ease
 		box-shadow 0 0 10px 2px black + 90%
-	&.show
-		opacity 1
-		top 0
-		.modal-frame
-			top 0
 	.modal-menu
 		float left
 		background $BColor3
 		width 78px
 		height 100%
-		.back
 		a
 			position relative
 			box-sizing content-box
@@ -86,18 +77,7 @@
 				&:before
 					background $Color3
 		div.back
-			height 78px
-			width 78px
-			background $Color3
-			cursor pointer
-			i
-				width 34px
-				height 27px
-				top 50%
-				margin-top -13px
-				background url('images/modal-back-arrow.png') no-repeat
-			&:hover
-				background $Color3 + 20%
+			position relative
 		a.view
 			i
 				background url('images/modal-view.png') no-repeat;
@@ -121,6 +101,35 @@
 			.modal-content
 				position absolute
 				top 78px
-				left 0
+				left 1px
 				right 1px
 				bottom 1px
+		&.custom
+			padding-left 0
+			.modal-content
+				top 0
+	div.back
+		position absolute
+		z-index 9999;
+		left 0
+		top 0
+		box-sizing content-box
+		display inline-block
+		text-align center
+		line-height 78px
+		height 78px
+		width 78px
+		background $Color3
+		cursor pointer
+		i
+			position absolute
+			display block
+			left 50%
+			width 34px
+			height 27px
+			top 50%
+			margin-top -13px
+			margin-left -15px
+			background url('images/modal-back-arrow.png') no-repeat
+		&:hover
+			background $Color3 + 20%

@@ -1,14 +1,23 @@
-define(['vue','./../widget/FullScreenModal','./../util/filter/nameSplit'], function(Vue,FullScreenModal) {
-    var vm,modal;Modal=Vue.extend(FullScreenModal);
+define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vue,Modal) {
+    var vm,$ModalWin;
     return {
+        $ModalWin:new Modal(),
         init: function() {
             $("#search").ButtonTextBoxInit({ ButtonClass: "search" });
             this.dataInit();
             this.modalInit();
         },
+        addQuestionnaire:function(){
+            WebApi.invoke('$ModalWin','show',{
+                defaultsrc:"questionnaire.html",
+                custom:true,
+                title:'新增问卷'
+            }).then(function(){
+                alert('add success !');
+            })
+        },
         modalInit:function(){
-            modal=new Modal();
-            modal.$mount('modal');
+            this.$ModalWin.$mount('modal');
         },
         dataInit: function() {
             vm = new Vue({
@@ -36,11 +45,14 @@ define(['vue','./../widget/FullScreenModal','./../util/filter/nameSplit'], funct
                             alert(command)
                         });
                     },
-                    view:function(status){
-                        modal.viewsrc="state-viewer.html";
+                    view:function(status,title){
+                        var option={
+                            defaultsrc:"state-viewer.html",
+                            title:title
+                        }
                         if(status=="已结束")
-                            modal.analyzesrc="state-analyze.html";
-                        modal.show=true;
+                            option.analyzesrc="state-analyze.html";
+                        WebApi.$ModalWin.show(option);
                     },
                     togglecommand:function($event){
                         var $el=$($event.currentTarget).closest('.rows')

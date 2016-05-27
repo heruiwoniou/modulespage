@@ -1,4 +1,4 @@
-define(['vue','system/js/util/transition/toggleAnimate' , 'ztree'],function(Vue){
+define(['vue','system/js/components/common/transition/toggleAnimate' , 'ztree'],function(Vue){
 	var viewModel;
 	return {
 		init:function(){
@@ -14,6 +14,15 @@ define(['vue','system/js/util/transition/toggleAnimate' , 'ztree'],function(Vue)
 		},
 		save:function(){
 			WebApi.close({command:'savesuccess'})
+		},
+		addQuestionnaire:function(){
+			WebApi.invoke('$ModalWin','show',{
+				defaultsrc:"questionnaire.html",
+				custom:true,
+				title:'新增问卷'
+			}).then(function(){
+				alert('add success !');
+			})
 		},
 		//设置是否匿名
 		setisanonymous:function(){

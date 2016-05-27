@@ -1,26 +1,24 @@
 define(function() {
-    //to define something
-    //
-    var library = {}
-
-    var common = {
-        scrollReplace: function() {
-            $(".mCustomScrollbar").mCustomScrollbar({
-                theme: "dark",
-                scrollInertia: 400
-            });
-        },
-        init: function() {
-            WebApi.initControl();
-
-            //Scroll init
-            this.scrollReplace();
-
-            //to do something
+        //to define something
+        //
+        var library = {}
+        var common = {
+            scrollReplace: function() {
+                $(".mCustomScrollbar").mCustomScrollbar({
+                    theme: "dark",
+                    scrollInertia: 400
+                });
+            },
+            init: function() {
+                //init controls
+                WebApi.initControl();
+                //LoadImage
+                WebApi.imageViewerInit();
+                //Scroll init
+                WebApi.scrollReplace();
+                //to do something
+            }
         }
-    }
-
-    $.extend(WebApi, library);
-
-    return common;
-})
+        $.extend(WebApi, library);
+        return common;
+    })

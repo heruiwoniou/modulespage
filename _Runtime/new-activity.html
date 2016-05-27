@@ -6,9 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="Content/style/common.css">
     <style>
-    html {
-        overflow: hidden
-    }
+        html{
+            overflow-y: hidden;
+        }
     </style>
 </head>
 
@@ -151,7 +151,7 @@
             选择您喜欢的问卷，您可以在一次活动中为不同的人使用多份问卷。
         </div>
         <div class="field-wrap">
-            <a href="javascript:;" class="button no-radius g">新建</a>
+            <a href="javascript:;" class="button no-radius g" onclick="WebApi.addQuestionnaire()">新建</a>
             <a href="javascript:;" class="button no-radius p">从库中选择</a>
         </div>
         <div class="field-wrap head">

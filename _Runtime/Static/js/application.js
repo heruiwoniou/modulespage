@@ -65,25 +65,26 @@ define([
             return parent.WebApi._error.apply(parent,arguments);
         },
 
-        //弹出窗口
         /**
-         * [modal 窗口]
+         * [modal 本身frame弹出窗口]
          * @param  {[type]} name    [窗体标识(可选)]
          * @param  {[type]} setting [设置]
          */
         _modal:function(){
             return Win.show.apply(Win,concatArg(arguments,['window']));
         },
+        /**
+         * [modal 顶级frame弹出窗口(建议使用)]
+         * @param  {[type]} name    [窗体标识(可选)]
+         * @param  {[type]} setting [设置]
+         */
         modal:function(){
             var parent=window.parent
             while(parent!=window.parent) parent=parent.parent
             return parent.WebApi._modal.apply(parent,arguments);
         },
         /**
-         * 该窗口暂时不用窗口放大缩小功能
-         */
-        /**
-         * [modal 窗口]
+         * [window 窗口(已同modal一样,弃用)]
          * @param  {[type]} name    [窗体标识(可选)]
          * @param  {[type]} setting [设置]
          */
@@ -96,7 +97,24 @@ define([
             return parent.WebApi._window.apply(parent,arguments);
         },
 
-        //关闭弹出窗口
+        /**
+         * [invoke 反射父亲frame的第一个的对象的方法]
+         * @param  {[type]} objectName [对象名称]
+         * @param  {[type]} action     [方法名称]
+         * @return {[type]}            [Promise Object]
+         */
+        invoke:function(objectName,action){
+            var parent=window;
+            while(parent!=parent.parent&&parent.WebApi&&!parent.WebApi[objectName])
+                parent=parent.parent;
+            if(parent.WebApi&&parent.WebApi[objectName]) return parent.WebApi[objectName][action].apply(parent.WebApi,[].slice.call(arguments,2));
+        },
+
+        /**
+         * [close 关闭弹出窗口(如带name将找到第一个同名的关闭,如不带名称将会关闭所有)]
+         * @param  {[type]} setting [description]
+         * @return {[type]}         [description]
+         */
         close:function(setting){
             setting=setting||{};
             //如果没在当前页面找到相关的内容尝试查找上级
@@ -104,41 +122,43 @@ define([
                 window.parent.WebApi.close({name:setting.name,command:setting.command});
         },
 
-        //页面调用初始化功能
-        initControl:function(parent){
-            var $parent=parent?$(parent):$(document);
+
+        initControl: function(parent) {
+            var $parent = parent ? $(parent) : $(document);
             $parent.find("input[tip-title]").TipTextBoxInit();
             $parent.find("select").SingleComboxInit();
             $parent.find("input[type='text']").TextBoxInit();
             $parent.find(":radio").RadioBoxInit();
             $parent.find(":checkbox").CheckBoxInit();
         },
-        ImageViewerInit:function(){
+        imageViewerInit: function() {
             Sync.ClearAsync("ImageLoad");
-            $("div.imageViewer[bind-width][bind-height][bind-src]").each(function(i){
-                var $this=$(this);
-                Sync.SetAsync(function(){
-                    var  width=$this.attr("bind-width"),height=$this.attr("bind-height"),src=$this.attr("bind-src"),after=function(){$(this.re).fadeIn()},before=function(){$(this.re).hide()};
-                    $this.css({lineHeight:height+"px"}).removeAttr("bind-width").removeAttr("bind-height").removeAttr("bind-src")
-                            .prepend(new XImage(src,width,height,after,after,before,before));
-                },"ImageLoad",i*50)
+            $("div.imageViewer[bind-width][bind-height][bind-src]").each(function(i) {
+                var $this = $(this);
+                Sync.SetAsync(function() {
+                    var width = $this.attr("bind-width"),
+                        height = $this.attr("bind-height"),
+                        src = $this.attr("bind-src"),
+                        after = function() { $(this.re).fadeIn() },
+                        before = function() { $(this.re).hide() };
+                    $this.css({ lineHeight: height + "px" }).removeAttr("bind-width").removeAttr("bind-height").removeAttr("bind-src")
+                        .prepend(new XImage(src, width, height, after, after, before, before));
+                }, "ImageLoad", i * 50)
             })
         }
-    });
+    },common);
 
     return {
         interface: function(action) {
             if (action)
             {
                 $.extend(WebApi, action);
-                WebApi.init();
-            }
-            common.init();
+                if(WebApi.init()!== false) common.init();
+            } else common.init();
         },
         initialize: function() {
             var browser=CommonSetting.Browser();
             document.getElementsByTagName('HTML').item(0).className=browser;
-            WebApi.ImageViewerInit();
             this.load();
         },
         load: function() {

@@ -1,118 +1,276 @@
 $basecolor=#f3f3f3;
-.demo
-	background #f3f3f3
+
+$control-samll-width=160px;
+
+.demo,.questionnaire
+	frame-base(78px,0);
+	background $BackColor
 	position relative
+	.header
+		height 78px
+		.nav
+			height 78px
+		.menu
+			height 78px
+			text-align center
+			ul.ul-menu
+				li
+					height 78px
+					a
+						line-height 78px
+						height 78px
+		.person
+			height 78px
+			.login
+				height 78px
+				line-height 78px
 	.left
-		min-height 100%
-		position absolute
+		position fixed
+		padding-top 78px;
 		left 0
 		top 0
-		width 300px
-		text-align right
-		border-right 1px solid #ccc
-	.right
-		min-height 100%
-		margin-left 310px
-	.left-control-container
+		bottom 0px
 		width 200px
+		text-align left
+		div.line
+			height 1px
+			font-size 0px;
+			overflow hidden;
+			background #c0c0c0;
+			width $control-samll-width
+			margin 0 auto;
+		h1
+		h2
+			line-height 50px
+			font-size 24px;
+			text-indent 20px
+		h2
+			font-size 20px
+		.control-small
+			box-shadow none
+	.control-small
+		text-indent 50px
+		margin-bottom 10px
+		float left
+		background white
+		height 40px;
+		line-height 40px
+		text-align left;
+		width $control-samll-width;
+		cursor pointer
+		position relative
+		box-shadow 0 0 5px 0 #ccc
+		&:before
+			position absolute
+			content ''
+			width 43px
+			height 40px
+			left 0
+			top 0
+			background-color #d8d8d8
+		&[data-type*=ChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/ChoiceQuestion.png') no-repeat
+		&[data-type*=PicChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/PicChoiceQuestion.png') no-repeat
+		&[data-type*=GradeQuestion]
+			&:before
+				background #d8d8d8 url('images/GradeQuestion.png') no-repeat
+		&[data-type*=MatrixChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/MatrixChoiceQuestion.png') no-repeat
+		&[data-type*=QuestionsAndAnswersQuestion]
+			&:before
+				background #d8d8d8 url('images/QuestionsAndAnswersQuestion.png') no-repeat
+		&[data-type*=Section]
+			&:before
+				background #d8d8d8 url('images/Section.png') no-repeat
+		&[data-type*=UnmixedText]
+			&:before
+				background #d8d8d8 url('images/UnmixedText.png') no-repeat
+	.left-control-container
+		width $control-samll-width
 		margin 0 auto;
 		&:after
 			clear()
 	.right-control-container
+		padding-bottom 20px;
 		width 80%
 		margin 0 auto
-	.control-small
-		margin-top 10px
-		float left
-		background white
-		height 50px;
-		line-height 50px
-		text-align center;
-		width 200px
-		border 1px solid #ccc - 20%
-		cursor pointer
+	.control-static
 	.control
 		width 100%
-	.accept
-		width 100%
-		height 10px
-		margin 0 auto
-		&.begin
-			&:before
-				border-bottom-color blue
-		&.draging
-			&:before
-				border-bottom-width 2px
-				border-bottom-color blue
-		&:before
-			content ''
-			height 5px
+	.right
+		position fixed
+		padding-top 78px
+		top 0
+		bottom 0
+		left 210px
+		right 10px
+		.accept
+			position relative
 			width 100%
-			display block
-			border-bottom 1px dotted transparent
+			height 10px
+			margin 0 auto
+				&:before
+					border-bottom-color blue
+			&.draging
+				&:before
+					border-bottom-style solid
+			&:before
+				content ''
+				height 5px
+				width 100%
+				display block
+				border-bottom 1px dotted transparent
+			&.draging
+				b
+					z-index 1
+					position absolute
+					content ''
+					width 14px
+					height 14px
+					box-sizing content-box
+					top -6px
+					left -11px;
+					transform rotate(45deg);
+					border-top 8px solid $BackColor
+					border-right 8px solid $BackColor
+					&:before
+						position absolute
+						content ''
+						width 14px
+						height 14px
+						background $Color3
+						left 0
+						bottom 0
+					// z-index 1
+					// position absolute
+					// content ''
+					// width 14px
+					// height 14px
+					// box-sizing content-box
+					// top -6px
+					// left -11px;
+					// transform rotate(45deg);
+					// border-top 8px solid $BackColor
+					// border-right 8px solid $BackColor
+					// &:before
+					// 	position absolute
+					// 	content ''
+					// 	width 14px
+					// 	height 14px
+					// 	background $Color3
+					// 	left 0
+					// 	bottom 0
+		&.begin
+			.ui-draggable-dragging .accept:before
+				border-bottom-color transparent
+			.accept:before
+				border-bottom-color $Color3
+		.header-container
+			width 80%
+			margin 0 auto
+		.questions-title
+			padding 0 10px
+			font-size 0px;
+			margin 10px auto
+			width 100%
+			height 45px;
+			line-height 45px;
+			background #fff
 	.control-item
 		position relative
 		border 1px solid $basecolor - 5%
 		background white
-		padding 35px 10px 10px 10px
+		padding 55px 10px 10px 10px
 		min-height 50px
 		h2.control-title
 			position absolute
 			top 0
 			left 0
 			right 0
-			height 25px
-			line-height 25px
+			height 45px
+			line-height 45px
 			text-indent 5px
 			//background #ccc + 5%
 			border-bottom 1px solid $basecolor - 5%
 		&.select
-			box-shadow 0 0 5px 0 #ccc - 40%
-			border-color $basecolor - 40%
+			//box-shadow 0 0 5px 0 #ccc - 40%
+			border-color $basecolor - 40%//$basecolor - 40%
+			&:hover
+				border-color $basecolor - 40%//transparent
 		&:hover
-			border-color $basecolor - 40%
+			border-color $basecolor - 20%
 	//控制条
 	.control-panel
+		font-size 0px
+		background white
 		position absolute
-		height 25px
-		line-height 20px
-		padding 0 2px
+		height 45px
+		line-height 44px
 		top 0
 		left 0
 		right 0
-		//background #ccc + 5%
 		border-bottom 1px solid $basecolor - 20%
 		&>*
-			margin-right 2px
 			display inline-block
 			vertical-align middle
 		span.split
 			width 1px
 			height 100%
 			background $basecolor - 20%
-			margin-left -3px
-			margin-right -1px
+		a
+			text-align center
+			min-width 80px
+			&:hover
+				background #ebebeb
+			&:before
+				content ''
+				width 24px
+				height 24px
+				display inline-block
+				vertical-align middle
 		.inline-container
 			height 100%
 			span.split
-				margin-right 2px
-				margin-left 0px;
 			&>*
-				margin-right 0
 				display inline-block
-				vertical-align middle
+				vertical-align top
 				white-space: nowrap;
 			float right
-	.Group
+		a.icon-bold
+		a.icon-color
+		a.icon-check
+		a.icon-radio
+			&:before
+				position relative
+				top -2px
+				width 13px
+				height 13px
+				margin-right 5px
+		a.icon-bold
+			&:before
+				background url('images/icon-bold.png') no-repeat;
+		a.icon-color
+			&:before
+				background url('images/icon-color.png') no-repeat;
+		a.icon-check
+			&:before
+				background url('images/icon-check.png') no-repeat;
+		a.icon-radio
+			&:before
+				background url('images/icon-radio.png') no-repeat;
+		a.delete
+			&:before
+				background url('images/ash-binpng.png') no-repeat;
+	.StaticHeader
+	.SectionGroup
 	.ChoiceQuestion
-		button
-			outline none
-			border 1px solid #ccc
-			height 19px
 		input[type=text]
-			border 1px solid #ccc
-		input
 		textarea
+			border 1px solid #ccc
 			line-height 19px
 			box-sizing border-box
 			font-family "微软雅黑","宋体","Simsun","Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
@@ -123,22 +281,56 @@ $basecolor=#f3f3f3;
 			height 19px
 			input
 				width 100%
+				padding-left 1px
+				padding-right 1px
 		.content-area
 			h1
-				margin 5px 0
+				padding-left 2px
+				margin 7px 0 3px 0
 				line-height 19px
 				height 19px
-	.Group
+	.StaticHeader
+		.content-area
+			.background
+				background white - 5%
+				width 165px
+				height 165px
+				float left
+				margin-right 10px
+			.text-content
+				padding-left 175px;
+			.edittitle
+				height 40px;
+				line-height 40px;
+				input
+					height 40px;
+					line-height 40px;
+					font-size 30px;
+			h1
+				margin 5px 0
+				font-size 30px;
+				line-height 40px;
+				height 40px;
+			p
+				padding-left 3px
+				padding-top 6px
+				min-height 120px
+	.SectionGroup
 		background $basecolor + 40%
 		&.no-children
 			.content-area
 				height 100px
+		.accept
+			&.draging
+				b
+					border-color $basecolor + 40%
 	.ChoiceQuestion
 		.rowitems
 			width 40px
 			text-align center;
 		.edititems-tip
 			height 25px
+			padding-left 2px
 			line-height 25px
 		.content-area
 			label
@@ -155,3 +347,10 @@ $basecolor=#f3f3f3;
 				td
 					height 19px
 					line-height 19px
+@media all and (max-width: 1024px)
+	.demo,.questionnaire
+		.right
+			.right-control-container
+				width 100%
+			.header-container
+				width 100%

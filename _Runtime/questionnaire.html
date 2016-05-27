@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: hidden
+    }
+    </style>
+</head>
+<body class="questionnaire">
+    <div class="header">
+    	<div class="nav">
+            <div class="container">
+                <div class="menu">
+                    <ul class="ul-menu drop-menu">
+                        <li><a href="javascript:;">样式</a></li>
+                        <li><a href="javascript:;">插入</a> </li>
+                        <li><a href="javascript:;">逻辑</a></li>
+                    </ul>
+                    <div class="person">
+                        <div class="login">
+                        	<span></span>
+                            <a href="javascript:;" class="button p no-radius">新增问卷</a>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body" v-cloak>
+        <div class="left" @click="setindex">
+            <h1>题型选择</h1>
+            <div class="line"></div>
+            <h2>选择题</h2>
+            <div class="left-control-container">
+                <div class="control-small" data-type="ChoiceQuestion">选择题</div>
+                <div class="control-small" data-type="PicChoiceQuestion">图片选择题</div>
+            </div>
+            <h2>其他题型</h2>
+            <div class="left-control-container">
+                <div class="control-small" data-type="GradeQuestion">评分题</div>
+                <div class="control-small" data-type="MatrixChoiceQuestion">矩阵选择题</div>
+                <div class="control-small" data-type="QuestionsAndAnswersQuestion">问答题</div>
+            </div>
+            <h2>小部件</h2>
+            <div class="left-control-container">
+                <div class="control-small" data-type="SectionGroup">段落</div>
+                <div class="control-small" data-type="UnmixedText">纯文本</div>
+            </div>
+        </div>
+        <div class="right mCustomScrollbar" @click="setindex">
+            <div class="header-container">
+                <div class="questions-title">
+                    <div class="button-panel">
+                        <a href="javascript:;" class="button r empty no-radius">删除问卷</a>
+                        <a href="javascript:;" class="button g no-radius">保存</a>
+                    </div>
+                </div>
+                <component :is="header.type" :component="header" :index="99" :selectindex='selectindex'><component>
+            </div>
+            <div class="right-control-container">
+                <div class="accept" data-index="0"><b></b></div>
+                <component v-for="item in children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :selectindex='selectindex' transition="fadeInOut"></component>
+            </div>
+        </div>
+    </div>
+</body>
+<script data-main="Static/js/config" main="demo" src="Static/js/libs/requirejs/require.js"></script>
+</html>

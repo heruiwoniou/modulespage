@@ -1,6 +1,14 @@
 define(['Guid'],function(guid){
 	var setting={
 		//外部公用
+		StaticHeader: function () {
+			return {
+				type : "StaticHeader" ,
+				id:guid.NewGuid().ToString("D"),
+				title:'问卷调查标题(点击编辑)',
+				comment:'问卷调查标注(点击编辑)'
+			}
+		},
 		ChoiceQuestion: function () {
 			return {
 				type : "ChoiceQuestion" ,
@@ -9,9 +17,9 @@ define(['Guid'],function(guid){
 				items:''
 			}
 		},
-		Group:function(){
+		SectionGroup:function(){
 			return {
-				type : "Group" ,
+				type : "SectionGroup" ,
 				id:guid.NewGuid().ToString("D"),
 				title:'段落描述(点击编辑)',
 				children:[]
@@ -20,6 +28,7 @@ define(['Guid'],function(guid){
 	}
 	return function(type){
 		var scope=setting[type];
+		if(!scope) return null;
 		return scope.apply(scope,[].slice.call(arguments,1));
 	}
 })

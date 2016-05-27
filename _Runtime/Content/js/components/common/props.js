@@ -4,14 +4,14 @@ define(function(){
 			component:{
 				type:Object
 			},
-			iscurrent:{
-				type:Boolean,
-				default:false
-			},
 			index:{
 				type:Number
 			},
 			paths:{
+				type:String,
+				default:''
+			},
+			selectindex:{
 				type:String,
 				default:''
 			}

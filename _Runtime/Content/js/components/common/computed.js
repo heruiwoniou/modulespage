@@ -5,5 +5,11 @@ define(function(){
 	prototype.prefixpath=function(){
 		return this.paths + this.index + '-';
 	}
+	prototype.fullindex=function(){
+		return this.paths + this.index;
+	}
+	prototype.iscurrent=function(){
+		return this.fullindex === this.selectindex;
+	}
 	return new Computed();
 })

@@ -14,7 +14,7 @@ define(function(){
 				if(typeof callback == 'function') callback.apply(this)
 			}
 			else
-				this.$dispatch("selectchange",this.index);
+				this.$dispatch("selectchange",this.fullindex);
 		}
 	}
 	/**
@@ -22,7 +22,7 @@ define(function(){
 	 * @return {[type]} [description]
 	 */
 	prototype.removecontrol=function(){
-		this.$dispatch("removeItem",this.index);
+		this.$parent.$emit("removeItem",this.index);
 	}
 	return new Methods();
 })

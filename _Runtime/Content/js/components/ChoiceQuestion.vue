@@ -1,11 +1,18 @@
 <template>
 	<div class="control" data-index="{{paths + index}}">
 		<div :class="['control-item','ChoiceQuestion',iscurrent?'select':'']" @click.stop="setindex">
-			<h2 class="control-title">选择题控件</h2>
-			<div class="control-panel" v-show="iscurrent">
+			<h2 class="control-title"  v-show="!iscurrent">选择题控件</h2>
+			<div class="control-panel" v-show="iscurrent" transition="fadeInOut">
+				<a href="javascript:;" class="icon-bold">加粗</a>
+				<span class="split"></span>
+				<a href="javascript:;" class="icon-color">颜色</a>
+				<span class="split"></span>
+				<a href="javascript:;" class="icon-radio">单选</a>
+				<span class="split"></span>
+				<a href="javascript:;" class="icon-check">多选</a>
 				<div class="inline-container">
 					<span class="split"></span>
-					<button @click="removecontrol">删除</button>
+					<a href="javascript:;" class="delete" @click="removecontrol"></a>
 				</div>
 			</div>
 			<div class="content-area">
@@ -28,14 +35,16 @@
 				</table>
 			</div>
 		</div>
-		<div class="accept" data-index="{{paths + ( index + 1 )}}"></div>
+		<div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
 	</div>
 </template>
 <script>
+	import './common/transition/fadeInOut';
+
 	import props from './common/props';
 	import { setindex ,removecontrol } from './common/methods';
 	import { setdefault } from './common/events';
-	import { prefixpath } from './common/computed';
+	import { prefixpath , fullindex , iscurrent } from './common/computed';
 
 	export default {
 		data(){
@@ -63,7 +72,9 @@
 			columns(){
 				return Math.ceil( this.children.length / this.maxrows );
 			},
-			prefixpath
+			prefixpath,
+			fullindex,
+			iscurrent
 		},
 		ready(){
 			this.titletip = this.component.title;

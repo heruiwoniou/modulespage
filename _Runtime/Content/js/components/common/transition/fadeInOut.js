@@ -6,7 +6,7 @@ define(['vue'], function(Vue) {
         },
         leave: function(el, done) {
         	var $el=$(el);
-            $el.css('opacity', "1").animate({ opacity: "0" }, 150, function(){
+            $el.css('opacity', 1).animate({ opacity: 0 }, 150, function(){
             	$el.hide(50,done)
             })
         }
