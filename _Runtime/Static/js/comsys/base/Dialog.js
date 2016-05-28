@@ -38,6 +38,9 @@ define(
                     "<div class='comsys-box-button' command='<%=this[i].command%>'><%=this[i].text%></div>"+
                     "<%}%>"
                 },
+                getColor:function(){
+                    return "boxColor1"
+                },
                 OnButtonsClikHanler:function(e,$button){
                     var command=$button.attr("command")||"uncommand";
                     this.close(command);

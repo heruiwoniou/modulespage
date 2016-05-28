@@ -1,0 +1,43 @@
+previewModal()
+	.preview-modal
+		position fixed
+		top 78px
+		min-width 840px
+		width 50%
+		right 0
+		bottom 0
+		background white - 2%
+		border-left 1px solid $BackColor
+		.preview-container
+			position absolute
+			top 0
+			left 0
+			right 0
+			bottom 0
+		.preview-content
+			margin 0 auto;
+			width 800px
+			padding 10px 0 20px 0
+		.preview-close
+			position absolute
+			z-index 1
+			height 30px
+			width 30px;
+			left 10px
+			top 10px
+			line-height 30px;
+			text-align center
+			font-size 0
+			&:before
+				iconfont()
+				position relative
+				content 'Q'
+				font-size 30px
+				line-height 1;
+				left -1.5px
+				top -1px
+				transition color .2s ease
+				color $fontSmallColor
+			&:hover
+				&:before
+					color $fontBaseColor

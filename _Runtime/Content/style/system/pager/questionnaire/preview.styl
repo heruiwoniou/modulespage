@@ -1,0 +1,36 @@
+questionnairePreview()
+	.preview
+		padding 100px 20px 400px 20px
+		box-shadow 0 0 5px 0 #ccc
+		background white
+		min-width 750px;
+		max-width 1024px;
+		margin 0 auto
+		&.public-preview
+			padding 20px 0
+		.StaticHeader
+			padding 10px 0 20px 0
+			h1
+				text-align center
+				margin 5px 0
+				line-height 40px;
+				font-size 30px
+			p
+				text-indent 27px
+				margin-top 30px
+				line-height 1.5
+				color $fontMiddleColor - 40%
+			border-bottom 1px solid #ccc
+		.SectionGroup
+			margin-top 26px;
+			&>h1
+				line-height 30px;
+				font-size 16px
+		.ChoiceQuestion
+			margin-top 13px;
+			&>h1
+				line-height 30px;
+			&>table
+				margin-left 26px
+				td
+					line-height 30px;

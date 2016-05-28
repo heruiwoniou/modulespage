@@ -1,0 +1,154 @@
+$basecolor=#f3f3f3;
+$control-samll-width=160px;
+
+@import './edit.styl'
+@import './preview.styl'
+@import './previewModal.styl'
+
+@keyframes pointer-animate
+	0%
+		opacity 0
+		left 200px
+	100%
+		opacity 1
+		left -4px
+
+.questionnaire
+	previewModal()
+	frame-base(78px,0);
+	background $BackColor
+	position relative
+	.header
+		height 78px
+		padding-top 78px;
+		.nav
+			height 78px
+		.menu
+			height 78px
+			text-align center
+			ul.ul-menu
+				li
+					height 78px
+					a
+						line-height 78px
+						height 78px
+		.person
+			height 78px
+			.login
+				height 78px
+				line-height 78px
+	.left
+		position fixed
+		padding-top 78px;
+		left 0
+		top 0
+		bottom 0px
+		width 200px
+		text-align left
+		div.line
+			height 1px
+			font-size 0px;
+			overflow hidden;
+			background #c0c0c0;
+			width $control-samll-width
+			margin 0 auto;
+		h1
+		h2
+			line-height 50px
+			font-size 24px;
+			text-indent 20px
+		h2
+			font-size 20px
+		.control-small
+			box-shadow none
+	.control-small
+		text-indent 50px
+		margin-bottom 10px
+		float left
+		background white
+		height 40px;
+		line-height 40px
+		text-align left;
+		width $control-samll-width;
+		cursor pointer
+		position relative
+		box-shadow 0 0 5px 0 #ccc
+		&:before
+			position absolute
+			content ''
+			width 43px
+			height 40px
+			left 0
+			top 0
+			background-color #d8d8d8
+		&[data-type*=ChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/ChoiceQuestion.png') no-repeat
+		&[data-type*=PicChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/PicChoiceQuestion.png') no-repeat
+		&[data-type*=GradeQuestion]
+			&:before
+				background #d8d8d8 url('images/GradeQuestion.png') no-repeat
+		&[data-type*=MatrixChoiceQuestion]
+			&:before
+				background #d8d8d8 url('images/MatrixChoiceQuestion.png') no-repeat
+		&[data-type*=QuestionsAndAnswersQuestion]
+			&:before
+				background #d8d8d8 url('images/QuestionsAndAnswersQuestion.png') no-repeat
+		&[data-type*=Section]
+			&:before
+				background #d8d8d8 url('images/Section.png') no-repeat
+		&[data-type*=UnmixedText]
+			&:before
+				background #d8d8d8 url('images/UnmixedText.png') no-repeat
+	.left-control-container
+		width $control-samll-width
+		margin 0 auto;
+		&:after
+			clear()
+	//右侧上方保存条
+	.header-container
+		width 80%
+		margin 0 auto
+		.questions-title
+			padding 0 10px
+			font-size 0px;
+			margin 10px auto
+			width 100%
+			height 45px;
+			line-height 45px;
+			background #fff
+			.inline-container
+				float right
+	//右侧大框架
+	.right
+		position fixed
+		padding-top 78px
+		top 0
+		bottom 0
+		left 210px
+		right 10px
+		//右侧大框架内的margin
+		.right-control-container
+			padding-bottom 30%;
+			width 80%
+			margin 0 auto
+		//初始化右侧编辑
+		questionnaireEdit()
+.questionnaire
+.public-preview
+	questionnairePreview()
+.public-preview
+	padding-top 20px
+	.preview
+		margin-bottom 100px
+		padding-bottom 100px
+
+@media all and (max-width: 1024px)
+	.questionnaire
+		.right
+			.right-control-container
+				width 100%
+			.header-container
+				width 100%

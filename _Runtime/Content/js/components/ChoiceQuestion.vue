@@ -9,7 +9,7 @@
             <tr v-for="row in Math.ceil(children.length / columns)">
                 <td v-for="col in columns" v-if="( row * columns + col ) <= children.length - 1">
                     <label>
-                        <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{row * columns + col}}">{{ children[row * columns + col] }}
+                        <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{ children[row * columns + col] }}">{{ children[row * columns + col] }}
                     </label>
                 </td>
             </tr>
@@ -36,20 +36,20 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" v-model="component.title" v-el:title-input>
+                    <input type="text" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
-                <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title }}</h1>
+                <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                 <div v-show="!edititemsing&&children.length==0" @click.stop="edititems" class="edititems-tip">
                     内容(点击编辑)
                 </div>
                 <div v-show="edititemsing" class="edititems" @click.stop="">
-                    <textarea cols="30" rows="{{textarearow}}" v-model="component.items" v-el:items-textarea></textarea>
+                    <textarea cols="30" rows="{{textarearow}}" @focusout="closeitems" v-model="component.items" v-el:items-textarea></textarea>
                 </div>
                 <table v-if="!edititemsing&&children.length!=0" @click.stop="edititems">
                     <tr v-for="row in Math.ceil(children.length / columns)">
                         <td v-for="col in columns" v-if="( row * columns + col ) <= children.length - 1">
                             <label>
-                                <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{row * columns + col}}">{{ children[row * columns + col] }}
+                                <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{ children[row * columns + col] }}">{{ children[row * columns + col] }}
                             </label>
                         </td>
                     </tr>
@@ -83,81 +83,73 @@ from './common/computed';
 export default {
     data() {
             return {
-                titletip: '',
+                titletip: '标题(点击编辑)',
                 edittitling: false,
                 edititemsing: false,
                 maxrows: 10
             }
         },
         props: props,
-        watch: {
-            'component.title': function(_new_, _old_) {
-                if (_new_ === '') this.component.title = this.titletip;
-            }
-        },
         computed: {
             textarearow() {
                     var l = this.component.items.split('\n').length;
                     return l > this.maxrows ? this.maxrows : l;
-                },
-                children() {
-                    return this.component.items.split('\n').filter(o => o !== '');
-                },
-                columns() {
-                    return Math.ceil(this.children.length / this.maxrows);
-                },
-                prefixpath,
-                fullindex,
-                iscurrent
-        },
-        ready() {
-            this.titletip = this.component.title;
+            },
+            children() {
+                return this.component.items.split('\n').filter(o => o !== '');
+            },
+            columns() {
+                return Math.ceil(this.children.length / this.maxrows);
+            },
+            prefixpath,
+            fullindex,
+            iscurrent
         },
         methods: {
             setmodel(issingle) {
                     this.component.single = issingle;
-                },
-                edititems() {
-                    if (this.iscurrent) {
-                        this.edititemsing = true;
-                        this.edittitling = false;
-                        this.$nextTick(() => {
-                            this.$els.itemsTextarea.focus();
-                        })
-                    } else //stop 冒泡,手动触发
-                        this.setindex();
-                },
-                closeedititems() {
-                    this.edititemsing = false;
-                },
-                edittitle() {
-                    if (this.iscurrent) {
-                        this.edittitling = true;
-                        this.edititemsing = false;
-                        this.$nextTick(() => {
-                            this.$els.titleInput.focus();
-                            this.$els.titleInput.select();
-                        })
-                    } else //stop 冒泡,手动触发
-                        this.setindex();
-                },
-                closeedittitle() {
+            },
+            edititems() {
+                if (this.iscurrent) {
+                    this.edititemsing = true;
                     this.edittitling = false;
-                },
-                //移除控件
-                removecontrol,
-                //设置是否当前选择项及取消编辑
-                setindex: setindex(function() {
-                    if (this.edittitling)
-                        this.closeedittitle();
-                    if (this.edititemsing)
-                        this.closeedititems();
-                })
+                    this.$nextTick(() => {
+                        this.$els.itemsTextarea.focus();
+                    })
+                } else //stop 冒泡,手动触发
+                    this.setindex();
+            },
+            closeitems() {
+                this.edititemsing = false;
+            },
+            edittitle() {
+                if (this.iscurrent) {
+                    this.edittitling = true;
+                    this.edititemsing = false;
+                    this.$nextTick(() => {
+                        this.$els.titleInput.focus();
+                        this.$els.titleInput.select();
+                    })
+                } else //stop 冒泡,手动触发
+                    this.setindex();
+            },
+            closetitle() {
+                this.edittitling = false;
+            },
+            //移除控件
+            removecontrol,
+            //设置是否当前选择项及取消编辑
+            setindex: setindex(function() {
+                if (this.edittitling)
+                    this.closetitle();
+                if (this.edititemsing)
+                    this.closeitems();
+            })
         },
         events: {
             setdefault: setdefault(function() {
-                this.closeedittitle()
-                this.closeedititems();
+                this.closetitle()
+                this.closeitems();
             })
         }
 }

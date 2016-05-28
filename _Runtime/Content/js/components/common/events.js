@@ -11,7 +11,7 @@ define(function(){
 				return true;
 			}
 		},
-		removeItem:function(){
+		removeItem:function(index){
 			this.component.children.splice(index, 1);
 		}
 	}

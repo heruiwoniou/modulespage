@@ -5,8 +5,8 @@ define(['Guid'],function(guid){
 			return {
 				type : "StaticHeader" ,
 				id:guid.NewGuid().ToString("D"),
-				title:'问卷调查标题(点击编辑)',
-				comment:'问卷调查标注(点击编辑)'
+				title:'',
+				comment:''
 			}
 		},
 		ChoiceQuestion: function () {
@@ -14,7 +14,7 @@ define(['Guid'],function(guid){
 				type : "ChoiceQuestion" ,
 				id:guid.NewGuid().ToString("D"),
 				single:true,
-				title:'标题(点击编辑)',
+				title:'',
 				items:''
 			}
 		},
@@ -22,7 +22,7 @@ define(['Guid'],function(guid){
 			return {
 				type : "SectionGroup" ,
 				id:guid.NewGuid().ToString("D"),
-				title:'段落描述(点击编辑)',
+				title:'',
 				children:[]
 			}
 		}

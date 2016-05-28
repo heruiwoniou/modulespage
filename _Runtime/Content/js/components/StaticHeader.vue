@@ -21,13 +21,13 @@
             <div class="text-content">
                 <div class="content">
                     <div v-show="edittitling" class="edittitle" @click.stop="">
-                        <input type="text" v-model="component.title" v-el:title-input>
+                        <input type="text" v-model="component.title" @focusout="closettitle" v-el:title-input>
                     </div>
-                    <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title }}</h1>
+                    <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                     <div v-show="editcommenting" class="editcomment" @click.stop="">
-                        <textarea cols="30" rows="6" v-model="component.comment" v-el:comment-input></textarea>
+                        <textarea cols="30" rows="6" v-model="component.comment" @focusout="closecomment" v-el:comment-input></textarea>
                     </div>
-                    <p v-show="!editcommenting" @click.stop="editcomment">{{ component.comment }}</p>
+                    <p v-show="!editcommenting" @click.stop="editcomment">{{ component.comment || commenttip }}</p>
                 </div>
             </div>
         </div>
@@ -57,28 +57,16 @@ from './common/computed';
 export default {
     data() {
             return {
-                titletip: '',
-                commenttip: '',
+                titletip: '问卷调查标题(点击编辑)',
+                commenttip: '问卷调查标注(点击编辑)',
                 edittitling: false,
                 editcommenting: false
             }
         },
         props: props,
-        watch: {
-            'component.title': function(_new_, _old_) {
-                if (_new_ === '') this.component.title = this.titletip;
-            },
-            'component.comment': function(_new_, _old_) {
-                if (_new_ === '') this.component.comment = this.commenttip;
-            }
-        },
         computed: {
             fullindex,
             iscurrent
-        },
-        ready() {
-            this.titletip = this.component.title;
-            this.commenttip = this.component.comment;
         },
         methods: {
             edittitle() {
@@ -89,33 +77,33 @@ export default {
                         })
                     } else //stop 冒泡,手动触发
                         this.setindex();
-                },
-                closeedittitle() {
-                    this.edittitling = false;
-                },
-                editcomment() {
-                    if (this.iscurrent) {
-                        this.editcommenting = true;
-                        this.$nextTick(() => {
-                            this.$els.commentInput.focus();
-                        })
-                    } else //stop 冒泡,手动触发
-                        this.setindex();
-                },
-                closecomment() {
-                    this.editcommenting = false;
-                },
-                //设置是否当前选择项及取消编辑
-                setindex: setindex(function() {
-                    if (this.edittitling)
-                        this.closeedittitle();
-                    if (this.editcommenting)
-                        this.closecomment();
-                })
+            },
+            closettitle() {
+                this.edittitling = false;
+            },
+            editcomment() {
+                if (this.iscurrent) {
+                    this.editcommenting = true;
+                    this.$nextTick(() => {
+                        this.$els.commentInput.focus();
+                    })
+                } else //stop 冒泡,手动触发
+                    this.setindex();
+            },
+            closecomment() {
+                this.editcommenting = false;
+            },
+            //设置是否当前选择项及取消编辑
+            setindex: setindex(function() {
+                if (this.edittitling)
+                    this.closettitle();
+                if (this.editcommenting)
+                    this.closecomment();
+            })
         },
         events: {
             setdefault: setdefault(function() {
-                this.closeedittitle();
+                this.closettitle();
                 this.closecomment();
             })
         }

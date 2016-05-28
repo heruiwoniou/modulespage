@@ -124,7 +124,7 @@ define([
 
 
         initControl: function(parent) {
-            var $parent = parent ? $(parent) : $(document);
+            var $parent = parent&&parent.length!=0 ? $(parent) : $(document);
             $parent.find("input[tip-title]").TipTextBoxInit();
             $parent.find("select").SingleComboxInit();
             $parent.find("input[type='text']").TextBoxInit();

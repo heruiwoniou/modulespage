@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+<body class="public-preview" style="background:url('/Upload/images/preview-background.jpg') repeat fixed">
+	<div class="preview">
+		<component
+		    :is="header.type"
+		    :component="header"
+		    :index="99"
+		    :selectindex='selectindex'
+		    :preview = 'preview'
+		></component>
+		<component v-for="item in children" v-if="item!=null"
+		    :is="item.type"
+		    :component="item"
+		    :index="$index"
+		    :selectindex='selectindex'
+		    :preview = 'preview'
+		    transition="fadeInOut"
+		></component>
+	</div>
+	<script data-main="Static/js/config" main="public/questionnaire" src="Static/js/libs/requirejs/require.js"></script>
+</body>
+</html>

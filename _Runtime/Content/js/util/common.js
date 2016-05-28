@@ -3,10 +3,12 @@ define(function() {
         //
         var library = {}
         var common = {
-            scrollReplace: function() {
-                $(".mCustomScrollbar").mCustomScrollbar({
+            scrollReplace: function(parent) {
+                var $parent = parent&&parent.length!=0 ? $(parent) : $(".mCustomScrollbar");
+                $parent.mCustomScrollbar({
                     theme: "dark",
-                    scrollInertia: 400
+                    scrollInertia: 400,
+                    alwaysShowScrollbar: 2
                 });
             },
             init: function() {

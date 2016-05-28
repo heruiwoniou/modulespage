@@ -5,16 +5,29 @@ define(
         'jquery.ui/ui/draggable',
 
         //引用控件
-        './components/StaticHeader',
-        './components/ChoiceQuestion',
-        './components/SectionGroup'
+        './../components/StaticHeader',
+        './../components/ChoiceQuestion',
+        './../components/SectionGroup',
+        './../components/Perview'
     ],
-    function(Vue, setting, draggable, droppable) {
-        var viewModel, droppables, droppablecache;
+    function(
+        Vue,
+        setting,
+        draggable,
+        StaticHeader,
+        ChoiceQuestion,
+        SectionGroup,
+        Perview
+    ) {
+        var viewModel,//数据模型
+        droppables,//可填充对象坐标信息
+        droppablescrollbar,//滚动范围对象
+        droppablescrolltop,//开始拖动时的滚动条位置信息
+        droppablecache;//当前选中的可填充对象信息
         return {
+            $Preview:new Perview(),
             init: function() {
                 this.vue();
-                this.scrollReplace();
                 return false;
             },
             //计算容器所在坐标
@@ -24,49 +37,55 @@ define(
                 droppables = [];
                 droppablecache = {};
                 $target.each(function(i, el) {
-                    var $el=$(el);
+                    var $el = $(el);
                     arr.push({
                         top: $el.offset().top,
                         el: el
                     });
                 });
                 arr.sort(function(a, b) {
-                    return a.top - b.top });
+                    return a.top - b.top
+                });
                 arr.forEach(function(o, index) {
-                    droppables.push({
-                        left: 200,
-                        top: (index == 0 ? -9999999999 : (o.top - (o.top - arr[index - 1].top) / 2)),
-                        bottom: ((index == arr.length - 1) ? 9999999999 : ( o.top + (arr[index + 1].top - o.top) / 2)),
-                        el: o.el
+                        droppables.push({
+                            left: 200,
+                            top: (index == 0 ? -9999999999 : (o.top - (o.top - arr[index - 1].top) / 2)),
+                            bottom: ((index == arr.length - 1) ? 9999999999 : (o.top + (arr[index + 1].top - o.top) / 2)),
+                            el: o.el
+                        })
                     })
-                })
                 //标识颜色
-                $(".right:first").addClass('begin')
+                $(".right:first").addClass('begin');
+                //获取scrolltop信息
+                $droppablescrollbar = $target.first().closest('.mCSB_container');
+                droppablescrolltop = $droppablescrollbar.css('top').replace('px','')*1;
             },
             drag: function(event, ui) {
-                var y = event.pageY;
+                var scrolldistance = $droppablescrollbar.css('top').replace('px','')*1 - droppablescrolltop;
+                var y = event.pageY - scrolldistance;
                 var x = event.pageX;
-                if (droppablecache.y !==undefined && y > droppablecache.top && y < droppablecache.bottom && x > droppablecache.left) return;
+                if (droppablecache.y !== undefined && y > droppablecache.top && y < droppablecache.bottom && x > droppablecache.left) return;
                 for (var i = 0; i < droppables.length; i++) {
-                    var pos = droppables[i],$el=$(pos.el);
+                    var pos = droppables[i],
+                        $el = $(pos.el);
                     if (y > pos.top && y < pos.bottom && x > pos.left) {
-                        if(droppablecache.$el!==undefined && droppablecache.$el.length!=0) droppablecache.$el.removeClass('draging');
-                        droppablecache.left =pos.left;
+                        if (droppablecache.$el !== undefined && droppablecache.$el.length != 0) droppablecache.$el.removeClass('draging');
+                        droppablecache.left = pos.left;
                         droppablecache.top = pos.top;
                         droppablecache.bottom = pos.bottom;
                         droppablecache.$el = $el.addClass('draging');
-                        return ;
+                        return;
                     }
                 }
-                if(droppablecache.$el!==undefined && droppablecache.$el.length!=0) droppablecache.$el.removeClass('draging');
-                droppablecache={};
+                if (droppablecache.$el !== undefined && droppablecache.$el.length != 0) droppablecache.$el.removeClass('draging');
+                droppablecache = {};
             },
-            drop:function(ui){
+            drop: function(ui) {
                 try {
                     // statements
                     $(".right:first").removeClass('begin')
-                    if(droppablecache.$el===undefined || droppablecache.$el.length===0) {
-                        return ;
+                    if (droppablecache.$el === undefined || droppablecache.$el.length === 0) {
+                        return;
                     }
                     //取消标识颜色
                     droppablecache.$el.removeClass('draging');
@@ -77,19 +96,16 @@ define(
                         insertIndex = ~~toPaths.pop(),
                         toPathStr = toPaths.join('');
                     var fromPaths, fromPathStr, fromIndex, target = viewModel,
-                        $target = viewModel,
                         index;
                     if (type) {
                         component = setting(ui.helper.data('type'));
-                        if(component!==null) {
+                        if (component !== null) {
                             while (path = toPaths.shift()) {
-                                index = ~~path;
-                                target = target.children[index];
-                                $target = $target.$children[index]
+                                target = target.children[~~path];
                             }
                             target.children.splice(insertIndex, 0, component)
-                        }else {
-                            WebApi.error('尚未定义！请联系管理员！')
+                        } else {
+                            WebApi._error('尚未定义！请联系管理员！')
                         }
                     } else {
                         var fromTarget = viewModel;
@@ -100,18 +116,16 @@ define(
                             fromTarget = fromTarget.children[~~path];
                         component = fromTarget.children.splice(fromIndex, 1, null);
                         while (path = toPaths.shift()) {
-                            index = ~~path;
-                            target = target.children[index];
-                            $target = $target.$children[index]
+                            target = target.children[~~path];
                         }
                         target.children.splice(insertIndex, 0, component[0])
                         fromTarget.children.splice((fromPathStr == toPathStr && fromIndex >= insertIndex ? (fromIndex + 1) : fromIndex), 1);
                     };
-                    if($target)$target.$nextTick(function() {
+                    viewModel.$nextTick(function() {
                         WebApi.bindaccept();
                     });
-                } catch(e) {
-                    console.log(e);
+                } catch (e) {
+                   console.log(e);
                 }
             },
             bindaccept: function() {
@@ -141,13 +155,19 @@ define(
             vue: function() {
                 viewModel = new Vue({
                     el: 'body',
-                    data: {
-                        preview:false,
-                        dragging: false,
-                        selectindex: "",
-                        header:function(){return setting('StaticHeader') }(),
-                        children: []
-                    },
+                    data: (function() {
+                        if (localStorage.data && localStorage.data !== "null" && localStorage.data !== "undefined") {
+                            return JSON.parse(localStorage.data);
+                        } else
+                            return {
+                                preview: false,
+                                dragging: false,
+                                selectindex: "",
+                                header: function() {
+                                    return setting('StaticHeader') }(),
+                                children: []
+                            };
+                    }()),
                     ready: function() {
                         $(".control-small").draggable({
                             distance: 10,
@@ -164,12 +184,35 @@ define(
                             }
                         });
                         WebApi.bindaccept();
+                        //挂载预览框
+                        WebApi.$Preview.$mount("#Perview");
+                        //绑定滚动条
+                        WebApi.scrollReplace();
+                    },
+                    watch:{
+                        //通过改变状态来获取预览表单
+                        "preview":function(_new_){
+                            var that=this;
+                            if(!_new_) this.$nextTick(function() { WebApi.bindaccept(); });
+                            else
+                            {
+                                this.$nextTick(function() {
+                                    WebApi.$Preview.show({html:document.querySelector('.right-control-container').outerHTML})
+                                    that.preview = !that.preview;
+                                    that.$nextTick(function() {
+                                        WebApi.bindaccept();
+                                    })
+                                });
+                            }
+                        }
                     },
                     methods: {
-                        toggle:function(){
-                            this.preview=!this.preview;
-                            if(!this.preview)
-                                this.$nextTick(function(){WebApi.bindaccept();});
+                        save: function() {
+                            var str = JSON.stringify(this.$data);
+                            localStorage.data = str;
+                        },
+                        toggle: function() {
+                            this.preview = true;
                         },
                         setindex: function() {
                             this.selectindex = "";
