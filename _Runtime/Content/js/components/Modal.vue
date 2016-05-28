@@ -72,7 +72,6 @@
 	    	close(){
 	    		this.animated=false;
 	    		this.$nextTick(function(){
-	    			this.xtype=true;
 		    		this.showframe=false;
 		            this.defaultsrc="about:blank";
 		            this.analyzesrc="about:blank";

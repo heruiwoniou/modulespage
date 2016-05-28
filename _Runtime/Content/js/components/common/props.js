@@ -14,6 +14,10 @@ define(function(){
 			selectindex:{
 				type:String,
 				default:''
+			},
+			preview:{
+				type:Boolean,
+				default:false
 			}
 		}
 	}

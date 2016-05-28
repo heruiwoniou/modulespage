@@ -60,12 +60,28 @@
                         <a href="javascript:;" class="button r empty no-radius">删除问卷</a>
                         <a href="javascript:;" class="button g no-radius">保存</a>
                     </div>
+                    <div class="inline-container">
+                        <a href="javascript:;" class="button o no-radius" @click="toggle">预览</a>
+                    </div>
                 </div>
-                <component :is="header.type" :component="header" :index="99" :selectindex='selectindex'><component>
+                <component
+                    :is="header.type"
+                    :component="header"
+                    :index="99"
+                    :selectindex='selectindex'
+                    :preview = 'preview'
+                ><component>
             </div>
             <div class="right-control-container">
                 <div class="accept" data-index="0"><b></b></div>
-                <component v-for="item in children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :selectindex='selectindex' transition="fadeInOut"></component>
+                <component v-for="item in children" v-if="item!=null"
+                    :is="item.type"
+                    :component="item"
+                    :index="$index"
+                    :selectindex='selectindex'
+                    :preview = 'preview'
+                    transition="fadeInOut"
+                ></component>
             </div>
         </div>
     </div>

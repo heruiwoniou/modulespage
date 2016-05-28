@@ -122,7 +122,7 @@ define(
                     opacity: 0.8,
                     revertDuration: 200,
                     start: function(event, ui) {
-                        viewModel.selectindex="";
+                        viewModel.setindex();
                         ui.helper.css({ zIndex: 100 });
                         viewModel.dragging = true;
                         WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')));
@@ -142,6 +142,7 @@ define(
                 viewModel = new Vue({
                     el: 'body',
                     data: {
+                        preview:false,
                         dragging: false,
                         selectindex: "",
                         header:function(){return setting('StaticHeader') }(),
@@ -154,7 +155,7 @@ define(
                             helper: "clone",
                             opacity: 0.8,
                             start: function(event, ui) {
-                                viewModel.selectindex="";
+                                viewModel.setindex();
                                 WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')));
                             },
                             drag: WebApi.drag,
@@ -165,6 +166,11 @@ define(
                         WebApi.bindaccept();
                     },
                     methods: {
+                        toggle:function(){
+                            this.preview=!this.preview;
+                            if(!this.preview)
+                                this.$nextTick(function(){WebApi.bindaccept();});
+                        },
                         setindex: function() {
                             this.selectindex = "";
                             //广播所有的对象都进入非编辑模式

@@ -1,19 +1,20 @@
 define(function(){
 	function Events (){ }
-	var prototype=Events.prototype;
-
-	prototype.setdefault=function(callback){
-		return function(selectindex){
-			if(selectindex === this.fullindex) return true;
-			this.selectchild = (new RegExp("^"+ this.fullindex + '-','i')).test(selectindex);
-			if(typeof callback == 'function')
-				callback.apply(this,arguments)
-			return true;
+	Events.prototype={
+		constructor:Events,
+		setdefault:function(callback){
+			return function(selectindex){
+				if(selectindex === this.fullindex) return true;
+				this.selectchild = (new RegExp("^"+ this.fullindex + '-','i')).test(selectindex);
+				if(typeof callback == 'function')
+					callback.apply(this,arguments)
+				return true;
+			}
+		},
+		removeItem:function(){
+			this.component.children.splice(index, 1);
 		}
 	}
 
-	prototype.removeItem=function(index) {
-		this.component.children.splice(index, 1);
-	}
 	return new Events();
 })

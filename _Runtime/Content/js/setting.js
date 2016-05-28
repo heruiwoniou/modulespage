@@ -13,6 +13,7 @@ define(['Guid'],function(guid){
 			return {
 				type : "ChoiceQuestion" ,
 				id:guid.NewGuid().ToString("D"),
+				single:true,
 				title:'标题(点击编辑)',
 				items:''
 			}

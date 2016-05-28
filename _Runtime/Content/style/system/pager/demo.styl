@@ -2,6 +2,14 @@ $basecolor=#f3f3f3;
 
 $control-samll-width=160px;
 
+@keyframes pointer-animate
+	0%
+		opacity 0
+		left 200px
+	100%
+		opacity 1
+		left -4px
+
 .demo,.questionnaire
 	frame-base(78px,0);
 	background $BackColor
@@ -126,44 +134,18 @@ $control-samll-width=160px;
 				border-bottom 1px dotted transparent
 			&.draging
 				b
+					animation pointer-animate .2s
 					z-index 1
 					position absolute
 					content ''
-					width 14px
-					height 14px
-					box-sizing content-box
-					top -6px
-					left -11px;
+					width 0
+					height 0
+					left -15px
+					top -4px
 					transform rotate(45deg);
-					border-top 8px solid $BackColor
-					border-right 8px solid $BackColor
-					&:before
-						position absolute
-						content ''
-						width 14px
-						height 14px
-						background $Color3
-						left 0
-						bottom 0
-					// z-index 1
-					// position absolute
-					// content ''
-					// width 14px
-					// height 14px
-					// box-sizing content-box
-					// top -6px
-					// left -11px;
-					// transform rotate(45deg);
-					// border-top 8px solid $BackColor
-					// border-right 8px solid $BackColor
-					// &:before
-					// 	position absolute
-					// 	content ''
-					// 	width 14px
-					// 	height 14px
-					// 	background $Color3
-					// 	left 0
-					// 	bottom 0
+					border-color $BackColor transparent $BackColor $Color3
+					border-style solid
+					border-width 3px 0px 3px 20px
 		&.begin
 			.ui-draggable-dragging .accept:before
 				border-bottom-color transparent
@@ -180,6 +162,8 @@ $control-samll-width=160px;
 			height 45px;
 			line-height 45px;
 			background #fff
+			.inline-container
+				float right
 	.control-item
 		position relative
 		border 1px solid $basecolor - 5%
@@ -226,6 +210,10 @@ $control-samll-width=160px;
 			min-width 80px
 			&:hover
 				background #ebebeb
+			&.select
+				background #ebebeb
+				cursor default
+				text-decoration none
 			&:before
 				content ''
 				width 24px
@@ -323,7 +311,7 @@ $control-samll-width=160px;
 		.accept
 			&.draging
 				b
-					border-color $basecolor + 40%
+					border-color $basecolor + 40% transparent $basecolor + 40% $Color3
 	.ChoiceQuestion
 		.rowitems
 			width 40px

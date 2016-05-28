@@ -1,33 +1,47 @@
 <template>
-	<div class="control" data-index="{{paths + index}}">
-		<div :class="['control-item','SectionGroup',iscurrent||selectchild?'select':'',component.children.length==0?'no-children':'']" @click.stop="setindex">
-			<h2 class="control-title"  v-show="!iscurrent">段落控件</h2>
-			<div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
-				<a href="javascript:;" class="icon-bold">加粗</a>
-				<span class="split"></span>
-				<a href="javascript:;" class="icon-color">颜色</a>
-				<div class="inline-container">
-					<span class="split"></span>
-					<a href="javascript:;" class="delete" @click="removecontrol"></a>
-				</div>
-			</div>
-			<div class="content-area">
-				<div v-show="edittitling"  class="edittitle" @click.stop="">
-					<input type="text" v-model="component.title" v-el:title-input>
-				</div>
-				<h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title }}</h1>
-				<div class="accept" data-index="{{paths +  index + '-0'}}"><b></b></div>
-				<component  v-for="item in component.children" v-if="item!=null"
-					:is = "item.type"
-					:component = "item"
-					:index = "$index"
-					:paths = "prefixpath"
-					:selectindex = 'selectindex'
-					transition = "fadeInOut"
-					></component>
-			</div>
+	<div>
+		<div v-if="preview" class="SectionGroup">
+			<h1>{{ component.title }}</h1>
+			<component  v-for="item in component.children" v-if="item!=null"
+				:is = "item.type"
+				:component = "item"
+				:index = "$index"
+				:paths = "prefixpath"
+				:preview = 'preview'
+				></component>
 		</div>
-		<div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+		<div class="control" data-index="{{paths + index}}" v-else>
+			<div :class="['control-item','SectionGroup',iscurrent||selectchild?'select':'',component.children.length==0?'no-children':'']" @click.stop="setindex">
+				<h2 class="control-title"  v-show="!iscurrent">段落控件</h2>
+				<div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
+					<a href="javascript:;" class="icon-bold">加粗</a>
+					<span class="split"></span>
+					<a href="javascript:;" class="icon-color">颜色</a>
+					<span class="split"></span>
+					<div class="inline-container">
+						<span class="split"></span>
+						<a href="javascript:;" class="delete" @click="removecontrol"></a>
+					</div>
+				</div>
+				<div class="content-area">
+					<div v-show="edittitling"  class="edittitle" @click.stop="">
+						<input type="text" v-model="component.title" v-el:title-input>
+					</div>
+					<h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title }}</h1>
+					<div class="accept" data-index="{{paths +  index + '-0'}}"><b></b></div>
+					<component  v-for="item in component.children" v-if="item!=null"
+						:is = "item.type"
+						:component = "item"
+						:index = "$index"
+						:paths = "prefixpath"
+						:selectindex = 'selectindex'
+						:preview = 'preview'
+						transition = "fadeInOut"
+						></component>
+				</div>
+			</div>
+			<div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+		</div>
 	</div>
 </template>
 <script>
@@ -35,7 +49,7 @@
 
 	import props from './common/props';
 	import { setindex , removecontrol } from './common/methods';
-	import { setdefault , removeItem } from './common/events';
+	import { setdefault , removeItem} from './common/events';
 	import { prefixpath , fullindex , iscurrent } from './common/computed';
 
 	export default {

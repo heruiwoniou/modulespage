@@ -16,9 +16,7 @@ define( [
             $.stellar({
                 horizontalScrolling: false
             });
-
             $(".login").click(function(){
-
                 //窗体弹出
                 //
                 //

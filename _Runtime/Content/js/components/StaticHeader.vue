@@ -1,5 +1,9 @@
 <template>
-	<div class="control-static">
+	<div v-if="preview" class="StaticHeader">
+		<h1>{{ component.title }}</h1>
+		<p>{{ component.comment }}</p>
+	</div>
+	<div v-else class="control-static">
 		<div :class="['control-item','StaticHeader',iscurrent?'select':'']" @click.stop="setindex">
 			<h2 class="control-title" v-show="!iscurrent">标题控件</h2>
 			<div class="control-panel" v-show="iscurrent" transition="fadeInOut">
@@ -32,7 +36,7 @@
 
 	import props from './common/props';
 	import { setindex , removecontrol } from './common/methods';
-	import { setdefault } from './common/events';
+	import { setdefault  } from './common/events';
 	import { prefixpath , fullindex , iscurrent } from './common/computed';
 
 	export default {
