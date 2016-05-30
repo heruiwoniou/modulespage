@@ -8,7 +8,11 @@ define(
         './../components/StaticHeader',
         './../components/ChoiceQuestion',
         './../components/SectionGroup',
-        './../components/Perview'
+        
+
+        //公用组件
+        './../components/Perview',
+        './../components/ColorPicker'
     ],
     function(
         Vue,
@@ -17,7 +21,9 @@ define(
         StaticHeader,
         ChoiceQuestion,
         SectionGroup,
-        Perview
+
+        Perview,
+        ColorPicker
     ) {
         var viewModel,//数据模型
         droppables,//可填充对象坐标信息
@@ -26,6 +32,7 @@ define(
         droppablecache;//当前选中的可填充对象信息
         return {
             $Preview:new Perview(),
+            $ColorPicker:new ColorPicker(),
             init: function() {
                 this.vue();
                 return false;
@@ -186,6 +193,8 @@ define(
                         WebApi.bindaccept();
                         //挂载预览框
                         WebApi.$Preview.$mount("#Perview");
+                        //挂载颜色选择框
+                        WebApi.$ColorPicker.$mount("#ColorPicker");
                         //绑定滚动条
                         WebApi.scrollReplace();
                     },

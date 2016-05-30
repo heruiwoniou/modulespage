@@ -14,7 +14,12 @@
         <div v-else class="back" @click="close"><i></i></div>
         <div :class="['modal-right-frame',iscustom?'custom':'']">
             <div class="modal-body">
-                <div class="modal-head" v-if="!iscustom">{{title}}</div>
+                <div class="modal-head" v-if="!iscustom">
+                    <span v-if="typeof title != 'string' && title.length == 0">{{titleName || '查看'}}</span>
+                    <select v-else name="title" id="FrameModalTitle">
+                        <option v-for="item in title" value="item.value">{{item.text}}</option>
+                    </select>
+                </div>
                 <div class="modal-content">
                     <iframe :src="showframe&&animated?geturl():'about:blank'" frameborder="0" height="100%" width="100%"></iframe>
                 </div>
@@ -32,10 +37,15 @@ let callback = function() {};
 export default {
     data() {
             return {
+                //样式是否自动义
                 iscustom: false,
                 isview: true,
+                //控制是否显示框架
                 showframe: false,
-                title: '',
+                titleName:'',
+                title: [
+                // {value:0,text:"text"},{value:1,text:"text"},{value:3,text:"text"}
+                ],
                 defaultsrc: "about:blank",
                 analyzesrc: "about:blank",
                 animated: false
@@ -55,11 +65,12 @@ export default {
         methods: {
             show({
                     defaultsrc = "about:blank",
-                        analyzesrc = "about:blank",
-                        custom = false,
-                        title = '',
-                        callback = function() {}
+                    analyzesrc = "about:blank",
+                    custom = false,
+                    title = [],
+                    callback = function() {}
                 }) {
+                debugger;
                     this.deferred = new $.Deferred();
                     this.deferred.promise(this);
 
@@ -68,6 +79,7 @@ export default {
                     this.defaultsrc = defaultsrc;
                     this.analyzesrc = analyzesrc;
                     this.iscustom = custom;
+                    this.isview = true;
 
                     this.then((cmd) => {
                         callback.call(this, cmd);
@@ -83,9 +95,11 @@ export default {
                         this.defaultsrc = "about:blank";
                         this.analyzesrc = "about:blank";
                         this.iscustom = false;
-                        this.title = '';
+                        this.title = [];
+                        this.titleName = '';
                         this.animated = false;
                         this.deferred.resolve("close");
+                        this.isview=false;
                     })
                 },
                 seturl(isview, $event) {

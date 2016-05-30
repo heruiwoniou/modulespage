@@ -10,8 +10,7 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
         addQuestionnaire:function(){
             WebApi.invoke('$ModalWin','show',{
                 defaultsrc:"questionnaire.html",
-                custom:true,
-                title:'新增问卷'
+                custom:true
             }).then(function(){
                 alert('add success !');
             })
@@ -48,7 +47,7 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
                     view:function(status,title){
                         var option={
                             defaultsrc:"state-viewer.html",
-                            title:title
+                            title:[{value:1,text:'测试文字'},{value:2,text:'测试文字2'},{value:3,text:'测试文字3'}]
                         }
                         if(status=="已结束")
                             option.analyzesrc="state-analyze.html";

@@ -6,12 +6,12 @@
 	<script src="Upload/JSColor/jscolor.js"></script>
 </head>
 <body>
-	<button onclick="show()">show</button>
+	<button onclick="show(this)">show</button>
 	<script>
 		var color;
-		function show(){
-			if(!color) color =new jscolor.color();
-			alert(color.showPicker());
+		function show(el){
+			if(!color) color =new jscolor.color(el);
+			color.showPicker();
 		}
 	</script>
 </body>
