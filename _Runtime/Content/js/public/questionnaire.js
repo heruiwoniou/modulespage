@@ -21,7 +21,14 @@ define(
                             data.preview = true;
                             return data;
                         }
-                    }())
+                    }()),
+                    computed:{
+                        exportStyle:function(){
+                            return {
+                                background:"#ffffff url(" + this.header.src + ') repeat fixed'
+                            }
+                        }
+                    }
                 })
             }
         }

@@ -1,5 +1,5 @@
 <template>
-	<div class="preview-modal" v-show="visible" transition="translate-from-right" style="background:url('/Upload/images/preview-background.jpg') repeat">
+	<div class="preview-modal" v-show="visible" transition="translate-from-right" :style="exportStyle">
 		<div class="preview-close" @click="close"></div>
 		<div class="preview-container mCustomScrollbar">
 			<div class="preview-content" v-el:content></div>
@@ -23,7 +23,15 @@
 	export default {
 		data(){
 			return {
-				visible:false
+				visible:false,
+				background:''
+			}
+		},
+		computed:{
+			exportStyle(){
+				return {
+					background:"#ffffff url(" + this.background + ') repeat fixed'
+				}
 			}
 		},
 		watch:{
@@ -35,9 +43,10 @@
 			}
 		},
 		methods:{
-			show({html}){
+			show({html,background}){
 				this.$els.content.innerHTML = html;
 				this.visible = true;
+				this.background=background;
 			},
 			close(){
 				this.visible = false;

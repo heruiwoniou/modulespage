@@ -8,7 +8,7 @@ define(
         './../components/StaticHeader',
         './../components/ChoiceQuestion',
         './../components/SectionGroup',
-        
+        './../components/UnmixedText',
 
         //公用组件
         './../components/Perview',
@@ -21,6 +21,7 @@ define(
         StaticHeader,
         ChoiceQuestion,
         SectionGroup,
+        UnmixedText,
 
         Perview,
         ColorPicker
@@ -206,7 +207,7 @@ define(
                             else
                             {
                                 this.$nextTick(function() {
-                                    WebApi.$Preview.show({html:document.querySelector('.right-control-container').outerHTML})
+                                    WebApi.$Preview.show({html:document.querySelector('.right-control-container').outerHTML,background:that.header.src || that.header.default})
                                     that.preview = !that.preview;
                                     that.$nextTick(function() {
                                         WebApi.bindaccept();
@@ -224,6 +225,7 @@ define(
                             this.preview = true;
                         },
                         setindex: function() {
+                            if(WebApi.$ColorPicker.visible) return ;
                             this.selectindex = "";
                             //广播所有的对象都进入非编辑模式
                             this.$broadcast("setdefault", this.selectindex);

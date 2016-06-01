@@ -14,7 +14,11 @@ define(function(){
 				if(typeof callback == 'function') callback.apply(this)
 			}
 			else
+			{
+				//公用的隐藏colorpicker
+				if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
 				this.$dispatch("selectchange",this.fullindex);
+			}
 		}
 	}
 	/**
@@ -24,5 +28,25 @@ define(function(){
 	prototype.removecontrol=function(){
 		this.$parent.$emit("removeItem",this.index);
 	}
+
+	prototype.setBold=function(){
+		this.component.bold = !this.component.bold;
+	}
+	prototype.showColorPicker=function(e){
+		var that=this;
+        WebApi.$ColorPicker.show({
+            target:e.target,
+            color:this.component.color,
+            time:function(color){
+                that.component.color=color;
+            },
+            sure:function(color){
+                that.component.color=color;
+            },
+            close:function(color){
+                that.component.color=color;
+            }
+        });
+    }
 	return new Methods();
 })

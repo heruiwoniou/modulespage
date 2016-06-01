@@ -4,16 +4,16 @@
 
 <div>
     <div v-if="preview" class="SectionGroup">
-        <h1>{{ component.title }}</h1>
+        <h1 :style="styleExport">{{ component.title }}</h1>
         <component v-for="item in component.children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :paths="prefixpath" :preview='preview'></component>
     </div>
     <div class="control" data-index="{{paths + index}}" v-else>
         <div :class="['control-item','SectionGroup',iscurrent||selectchild?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">段落控件</h2>
             <div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
-                <a href="javascript:;" class="icon-bold">加粗</a>
+                <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
                 <span class="split"></span>
-                <a href="javascript:;" class="icon-color">颜色</a>
+                <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
@@ -22,9 +22,9 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
-                <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                 <div class="accept" data-index="{{paths +  index + '-0'}}"><b></b></div>
                 <component v-for="item in component.children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :paths="prefixpath" :selectindex='selectindex' :preview='preview' transition="fadeInOut"></component>
             </div>
@@ -37,24 +37,24 @@
 
 <script>
 
-import './common/transition/fadeInOut';
+    import './common/transition/fadeInOut';
 
-import props from './common/props';
-import {
-    setindex, removecontrol
-}
-from './common/methods';
-import {
-    setdefault, removeItem
-}
-from './common/events';
-import {
-    prefixpath, fullindex, iscurrent
-}
-from './common/computed';
+    import props from './common/props';
+    import {
+        setindex, removecontrol,showColorPicker, setBold
+    }
+    from './common/methods';
+    import {
+        setdefault, removeItem
+    }
+    from './common/events';
+    import {
+        prefixpath, fullindex, iscurrent, colorPanel, styleExport
+    }
+    from './common/computed';
 
-export default {
-    data() {
+    export default {
+        data() {
             return {
                 titletip: '段落描述(点击编辑)',
                 edittitling: false,
@@ -65,9 +65,13 @@ export default {
         computed: {
             prefixpath,
             fullindex,
-            iscurrent
+            iscurrent,
+            colorPanel,
+            styleExport
         },
         methods: {
+            showColorPicker,
+            setBold,
             edittitle() {
                 if (this.iscurrent) {
                     this.edittitling = true;
@@ -94,6 +98,6 @@ export default {
             }),
             removeItem
         }
-}
+    }
 
 </script>

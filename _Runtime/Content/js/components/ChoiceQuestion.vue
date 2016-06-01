@@ -4,7 +4,7 @@
 
 <div>
     <div v-if="preview" class="ChoiceQuestion">
-        <h1>{{ component.title }}</h1>
+        <h1 :style="styleExport">{{ component.title }}</h1>
         <table v-if="!edititemsing&&children.length!=0">
             <tr v-for="row in Math.ceil(children.length / columns)">
                 <td v-for="col in columns" v-if="( row * columns + col ) <= children.length - 1">
@@ -19,9 +19,9 @@
         <div :class="['control-item','ChoiceQuestion',iscurrent?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">选择题控件</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
-                <a href="javascript:;" class="icon-bold">加粗</a>
+                <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
                 <span class="split"></span>
-                <a href="javascript:;" class="icon-color">颜色</a>
+                <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
                 <span class="split"></span>
                 <a href="javascript:;" v-if="component.single" class="icon-radio select">单选</a>
                 <a href="javascript:;" v-else class="icon-radio" @click="setmodel(true)">单选</a>
@@ -36,9 +36,9 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
-                <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                 <div v-show="!edititemsing&&children.length==0" @click.stop="edititems" class="edititems-tip">
                     内容(点击编辑)
                 </div>
@@ -68,7 +68,7 @@ import './common/transition/fadeInOut';
 
 import props from './common/props';
 import {
-    setindex, removecontrol
+    setindex, removecontrol, showColorPicker, setBold
 }
 from './common/methods';
 import {
@@ -76,7 +76,7 @@ import {
 }
 from './common/events';
 import {
-    prefixpath, fullindex, iscurrent
+    prefixpath, fullindex, iscurrent, colorPanel, styleExport
 }
 from './common/computed';
 
@@ -103,9 +103,13 @@ export default {
             },
             prefixpath,
             fullindex,
-            iscurrent
+            iscurrent,
+            colorPanel,
+            styleExport
         },
         methods: {
+            showColorPicker,
+            setBold,
             setmodel(issingle) {
                     this.component.single = issingle;
             },

@@ -23,7 +23,8 @@ define([
     'widget/RadioBox',
     'widget/SingleCombox',
     'widget/MulCombox',
-    'libs/jquery.scrollbar/jquery.mCustomScrollbar'
+    'libs/jquery.scrollbar/jquery.mCustomScrollbar',
+    'libs/jquery-extend/jquery.form'
 ], function($,CommonSetting,MaskLayer,Win,common,XImage,Sync) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }

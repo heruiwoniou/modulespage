@@ -1,8 +1,14 @@
 colorPicker()
-	.colorpicker
+	.colorpicker-container
 		position absolute
-		background white
-		width 1
-		height 1
-		left 0
-		top 0
+	.colorpicker
+		.cross
+			/* @meta {"spritesheet": {"include": false}} */
+			background url(images/JSColor/cross.gif) 0 0 no-repeat
+		.arrow
+			/* @meta {"spritesheet": {"include": false}} */
+			background url(images/JSColor/arrow.gif) 0 0 no-repeat
+		.pad
+			background url(images/JSColor/hs.png) 0 0 no-repeat
+		button
+			float right

@@ -70,7 +70,6 @@ export default {
                     title = [],
                     callback = function() {}
                 }) {
-                debugger;
                     this.deferred = new $.Deferred();
                     this.deferred.promise(this);
 

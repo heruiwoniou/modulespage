@@ -3,27 +3,38 @@
 <template>
 
 <div v-if="preview" class="StaticHeader">
-    <h1>{{ component.title }}</h1>
+    <h1 :style="styleExport">{{ component.title }}</h1>
     <p>{{ component.comment }}</p>
 </div>
 <div v-else class="control-static">
     <div :class="['control-item','StaticHeader',iscurrent?'select':'']" @click.stop="setindex">
         <h2 class="control-title" v-show="!iscurrent">标题控件</h2>
         <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
-            <a href="javascript:;" class="icon-bold">加粗</a>
+            <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
             <span class="split"></span>
-            <a href="javascript:;" class="icon-color">颜色</a>
+            <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
             <span class="split"></span>
         </div>
         <div class="content-area">
-            <div class="background">
+            <div class="background" v-el:background>
+                <div class="imageViewer" v-el:image-container>
+                    <img :src="component.src" v-el:image :width="image.w" :width="image.h" alt="">
+                </div>
+                <div class="filecommand">
+                    <form :action="imagedispose" enctype="multipart/form-data" method="POST">
+                    <div class="filecommand-background"></div>
+                    <a href="javascript:;" class="upload"></a>
+                    <a href="javascript:;" class="delete"></a>
+                    <input type="file" v-el:file @change="fileschange" name="file">
+                    </form>
+                </div>
             </div>
             <div class="text-content">
                 <div class="content">
                     <div v-show="edittitling" class="edittitle" @click.stop="">
-                        <input type="text" v-model="component.title" @focusout="closettitle" v-el:title-input>
+                        <input type="text" :style="styleExport" v-model="component.title" @focusout="closettitle" v-el:title-input>
                     </div>
-                    <h1 v-show="!edittitling" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                    <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                     <div v-show="editcommenting" class="editcomment" @click.stop="">
                         <textarea cols="30" rows="6" v-model="component.comment" @focusout="closecomment" v-el:comment-input></textarea>
                     </div>
@@ -38,45 +49,87 @@
 
 <script>
 
-import './common/transition/fadeInOut';
+    import './common/transition/fadeInOut';
 
-import props from './common/props';
-import {
-    setindex, removecontrol
-}
-from './common/methods';
-import {
-    setdefault
-}
-from './common/events';
-import {
-    prefixpath, fullindex, iscurrent
-}
-from './common/computed';
+    import ComsysFileReader from './common/filereader.js';
 
-export default {
-    data() {
-            return {
-                titletip: '问卷调查标题(点击编辑)',
-                commenttip: '问卷调查标注(点击编辑)',
-                edittitling: false,
-                editcommenting: false
+    import XImage from 'common/client/XImage';
+
+    import props from './common/props';
+    import {
+        setindex, removecontrol, showColorPicker, setBold
+    }
+    from './common/methods';
+    import {
+        setdefault
+    }
+    from './common/events';
+    import {
+        prefixpath, fullindex, iscurrent, colorPanel, styleExport
+    }
+    from './common/computed';
+
+    var filereader=new ComsysFileReader();
+
+    export default {
+        data() {
+                return {
+                    titletip: '问卷调查标题(点击编辑)',
+                    commenttip: '问卷调查标注(点击编辑)',
+                    edittitling: false,
+                    editcommenting: false,
+                    imagedispose:'common/base64',
+                    image:{
+                        w:0,
+                        h:0
+                    }
+                }
+        },
+        watch:{
+            "component.src":function(src){
+                var that = this;
+                var ret = new XImage(src, 163, 163,function(){
+                     that.image.w = ret.width
+                     that.image.h = ret.height
+                });
             }
+        },
+        ready(){
+            var that = this;
+            var ret = new XImage(this.component.src, 163, 163,function(){
+                 that.image.w = ret.width
+                 that.image.h = ret.height
+            });
         },
         props: props,
         computed: {
             fullindex,
-            iscurrent
+            iscurrent,
+            colorPanel,
+            styleExport
         },
         methods: {
+            showColorPicker,
+            setBold,
+            fileschange(){
+                var that=this;
+                filereader.read(this.$els.file).then(function(image){
+                    that.component.src=image;
+                }).fail(function(message){
+                    that.image.w = 80;
+                    that.component.src=XImage.prototype.errorImageCode
+                });
+                that.image.w = 16;
+                that.component.src=XImage.prototype.loadingImageCode
+            },
             edittitle() {
-                    if (this.iscurrent) {
-                        this.edittitling = true;
-                        this.$nextTick(() => {
-                            this.$els.titleInput.focus();
-                        })
-                    } else //stop 冒泡,手动触发
-                        this.setindex();
+                if (this.iscurrent) {
+                    this.edittitling = true;
+                    this.$nextTick(() => {
+                        this.$els.titleInput.focus();
+                    })
+                } else //stop 冒泡,手动触发
+                    this.setindex();
             },
             closettitle() {
                 this.edittitling = false;
@@ -107,6 +160,6 @@ export default {
                 this.closecomment();
             })
         }
-}
+    }
 
 </script>

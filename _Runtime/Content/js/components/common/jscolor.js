@@ -6,20 +6,28 @@ define(function(){
 			cross : [ 15, 15 ],
 			arrow : [ 7, 11 ]
 		},
-		getElementPos : function(e) {
+		getElementPos : function(e,end) {
+			end = end || function(node){
+				return node.nodeName.toUpperCase() !== 'BODY';
+			}
 			var e1=e, e2=e;
 			var x=0, y=0;
 			if(e1.offsetParent) {
 				do {
 					x += e1.offsetLeft;
 					y += e1.offsetTop;
-				} while(e1 = e1.offsetParent);
+					if(e1.className.indexOf("SectionGroup")!=-1)
+						{
+							x += 1;
+							y += 1;
+						}
+				} while((e1 = e1.offsetParent) && end(e1));
 			}
-			while((e2 = e2.parentNode) && e2.nodeName.toUpperCase() !== 'BODY') {
+			while((e2 = e2.parentNode) && end(e2)) {
 				x -= e2.scrollLeft;
 				y -= e2.scrollTop;
 			}
-			return [x, y];
+			return [x - 1, y];
 		},
 		getElementSize : function(e) {
 			return [e.offsetWidth, e.offsetHeight];
@@ -35,7 +43,7 @@ define(function(){
 				];
 			}
 		},
-		getViewPos : function() {
+		getViewPos : function(target) {
 			if(typeof window.pageYOffset === 'number') {
 				return [window.pageXOffset, window.pageYOffset];
 			} else if(document.body && (document.body.scrollLeft || document.body.scrollTop)) {
@@ -58,35 +66,61 @@ define(function(){
 			}
 		},
 		color : function(append , prop) {
-			this.append = append;
+			var that=this;
+			this.append=append;
 			this.hsv = [0, 0, 1]; // read-only  0-6, 0-1, 0-1
 			this.rgb = [1, 1, 1]; // read-only  0-1, 0-1, 0-1
 			this.pickerMode = 'HSV'; // HSV | HVS
 			this.pickerPosition = 'bottom'; // left | right | top | bottom
-			this.pickerFace = 10; // px
-			this.pickerFaceColor = 'ThreeDFace'; // CSS color
+			this.pickerFace = 5; // px
+			this.pickerFaceColor = 'white'//'ThreeDFace'; // CSS color
 			this.pickerBorder = 1; // px
-			this.pickerBorderColor = 'ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight'; // CSS color
+			//this.pickerBorderColor = 'ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight'; // CSS color
+			this.pickerBorderColor = '#c2c2c2'
 			this.pickerInset = 1; // px
-			this.pickerInsetColor = 'ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow'; // CSS color
+			this.pickerInsetColor = '#c2c2c2'//'ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow'; // CSS color
 			this.pickerZIndex = 10000;
+
+			this.runtime={
+				time:function(){},
+				sure:function(){},
+				close:function(){}
+			}
 			for(var p in prop) {
 				if(prop.hasOwnProperty(p)) {
 					this[p] = prop[p];
 				}
 			}
-			this.hidePicker = function() {
-				removePicker();
+			this.bind=function(){
+				$(document.body).off('click.jscolor')
+					.on('click.jscolor',function(e){
+						if($(e.target).closest('.colorpicker').length==0)
+						{
+							that.runtime.close();
+							that.unbind();
+						}
+					});
+			},
+			this.unbind=function(){
+				$(document.body).off('click.jscolor');
 			};
-			this.showPicker = function(target) {
+			this.showPicker = function(target,time,sure,close) {
+				this.runtime.time = time || this.runtime.time;
+				this.runtime.sure = sure || this.runtime.sure;
+				this.runtime.close = close || this.runtime.close;
+				this.$container = $(target).closest(".mCSB_container");
 				var tp = jscolor.getElementPos(target); // target pos
 				var ts = jscolor.getElementSize(target); // target size
-				var vp = jscolor.getViewPos(); // view pos
-				var vs = jscolor.getViewSize(); // view size
+				var vp = jscolor.getElementPos(this.$container.get(0)); // view pos
+				var vs = jscolor.getElementSize(this.$container.get(0)); // view size
 				var ps = [ // picker size
 					2*this.pickerBorder + 4*this.pickerInset + 2*this.pickerFace + jscolor.images.pad[0] + 2*jscolor.images.arrow[0] + jscolor.images.sld[0],
 					2*this.pickerBorder + 2*this.pickerInset + 2*this.pickerFace + jscolor.images.pad[1]
 				];
+				this.scrolltemp={
+					x:this.$container.css('left').replace('px','')*1,
+					y:this.$container.css('top').replace('px','')*1
+				};
 				var a, b, c;
 				switch(this.pickerPosition.toLowerCase()) {
 					case 'left': a=1; b=0; c=-1; break;
@@ -104,6 +138,7 @@ define(function(){
 						(tp[b]+ts[b]-l+l*c >= 0 ? tp[b]+ts[b]-l+l*c : tp[b]+ts[b]-l-l*c)
 				];
 				drawPicker(pp[a], pp[b]);
+				this.bind();
 			};
 			this.importColor = function() {
 				this.exportColor();
@@ -119,6 +154,8 @@ define(function(){
 				if(!(flags & leaveSld)) {
 					redrawSld();
 				}
+				this.runtime.time(_color);
+				return _color;
 			};
 			this.fromHSV = function(h, s, v, flags) { // null = don't change
 				h<0 && (h=0) || h>6 && (h=6);
@@ -147,7 +184,7 @@ define(function(){
 					this.hsv[1] = hsv[1];
 				}
 				this.hsv[2] = hsv[2];
-				this.exportColor(flags);
+				//this.exportColor(flags);
 			};
 			this.fromString = function(hex, flags) {
 				var m = hex.match(/^\W*([0-9A-F]{3}([0-9A-F]{3})?)\W*$/i);
@@ -203,9 +240,6 @@ define(function(){
 					case 5: return [v,m,n];
 				}
 			}
-			function removePicker() {
-				document.getElementsByTagName('body')[0].removeChild(jscolor.picker.boxB);
-			}
 			function drawPicker(x, y) {
 				if(!jscolor.picker) {
 					jscolor.picker = {
@@ -216,7 +250,9 @@ define(function(){
 						padM : document.createElement('div'),
 						sld : document.createElement('div'),
 						sldB : document.createElement('div'),
-						sldM : document.createElement('div')
+						sldM : document.createElement('div'),
+						sure: document.createElement('button'),
+						close: document.createElement('button'),
 					};
 					for(var i=0,segSize=4; i<jscolor.images.sld[1]; i+=segSize) {
 						var seg = document.createElement('div');
@@ -232,15 +268,17 @@ define(function(){
 					jscolor.picker.box.appendChild(jscolor.picker.padB);
 					jscolor.picker.box.appendChild(jscolor.picker.padM);
 					jscolor.picker.boxB.appendChild(jscolor.picker.box);
+					jscolor.picker.boxB.appendChild(jscolor.picker.close);
+					jscolor.picker.boxB.appendChild(jscolor.picker.sure);
 				}
 				var p = jscolor.picker;
 				// recompute controls positions
 				posPad = [
-					x+THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset,
-					y+THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset ];
+					x  + THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset,
+					y  + THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset ];
 				posSld = [
 					null,
-					y+THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset ];
+					y + THIS.pickerBorder+THIS.pickerFace+THIS.pickerInset ];
 				// controls interaction
 				p.box.onmouseup =
 				//p.box.onmouseout = function() { };
@@ -255,15 +293,17 @@ define(function(){
 				// picker
 				p.box.style.width = 4*THIS.pickerInset + 2*THIS.pickerFace + jscolor.images.pad[0] + 2*jscolor.images.arrow[0] + jscolor.images.sld[0] + 'px';
 				p.box.style.height = 2*THIS.pickerInset + 2*THIS.pickerFace + jscolor.images.pad[1] + 'px';
+
 				// picker border
 				p.boxB.style.position = 'absolute';
 				p.boxB.style.clear = 'both';
-				p.boxB.style.left = x+'px';
-				p.boxB.style.top = y+'px';
+				p.boxB.style.left = 0+'px';
+				p.boxB.style.top = 0+'px';
 				p.boxB.style.zIndex = THIS.pickerZIndex;
 				p.boxB.style.border = THIS.pickerBorder+'px solid';
 				p.boxB.style.borderColor = THIS.pickerBorderColor;
 				p.boxB.style.background = THIS.pickerFaceColor;
+				p.boxB.className="colorpicker";
 				// pad image
 				p.pad.style.width = jscolor.images.pad[0]+'px';
 				p.pad.style.height = jscolor.images.pad[1]+'px';
@@ -297,14 +337,39 @@ define(function(){
 				p.sldM.style.width = jscolor.images.sld[0] + jscolor.images.arrow[0] + THIS.pickerFace + 2*THIS.pickerInset + 'px';
 				p.sldM.style.height = p.box.style.height;
 				p.sldM.style.cursor = "debfault";
+				//button
+				p.sure.innerHTML="确认";
+				p.sure.className="button smaller g empty no-radius";
+				p.sure.style.marginRight = THIS.pickerFace + 'px';
+				p.sure.style.marginBottom = THIS.pickerFace + 'px';
+				p.sure.onclick = function(e){
+					e = e || event;
+					e.stopPropagation();
+					THIS.runtime.close();
+					THIS.runtime.sure(THIS.exportColor());
+					THIS.unbind();
+				}
+
+				p.close.innerHTML="关闭";
+				p.close.className="button smaller r empty no-radius";
+				p.close.style.marginRight = THIS.pickerFace + 'px';
+				p.close.style.marginBottom = THIS.pickerFace + 'px';
+				p.close.onclick = function(e){
+					e = e || event;
+					e.stopPropagation();
+					THIS.runtime.close();
+					THIS.unbind();
+				}
+
+
 				// load images in optimal order
 				switch(modeID) {
 					case 0: var padImg = 'hs.png'; break;
 					case 1: var padImg = 'hv.png'; break;
 				}
-				p.padM.style.background = "url('/Content/style/images/JSColor/cross.gif') no-repeat";
-				p.sldM.style.background = "url('/Content/style/images/JSColor/arrow.gif') no-repeat";
-				p.pad.style.background = "url('/Content/style/images/JSColor/" + padImg + "') 0 0 no-repeat";
+				p.padM.className="cross"//.style.background = "url('/Content/style/images/JSColor/cross.gif') no-repeat";
+				p.sldM.className="arrow";//.style.background = "url('/Content/style/images/JSColor/arrow.gif') no-repeat";
+				p.pad.className="pad";
 				// place pointers
 				redrawPad();
 				redrawSld();
@@ -366,12 +431,12 @@ define(function(){
 				}
 				var y = Math.round((1-THIS.hsv[yComponent]) * (jscolor.images.sld[1]-1));
 				jscolor.picker.sldM.style.backgroundPosition =
-					'0 ' + (THIS.pickerFace+THIS.pickerInset+y - Math.floor(jscolor.images.arrow[1]/2)) + 'px';
+					'0 ' + (THIS.pickerFace+THIS.pickerInset + y - Math.floor(jscolor.images.arrow[1]/2)) + 'px';
 			}
 			function setPad(e) {
 				var posM = jscolor.getMousePos(e);
-				var x = posM[0]-posPad[0];
-				var y = posM[1]-posPad[1];
+				var x = posM[0]-posPad[0] - (THIS.$container.css('left').replace('px','')*1 - THIS.scrolltemp.x);
+				var y = posM[1]-posPad[1] - (THIS.$container.css('top').replace('px','')*1 - THIS.scrolltemp.y);
 				switch(modeID) {
 					case 0: THIS.fromHSV(x*(6/(jscolor.images.pad[0]-1)), 1 - y/(jscolor.images.pad[1]-1), null, leaveSld); break;
 					case 1: THIS.fromHSV(x*(6/(jscolor.images.pad[0]-1)), null, 1 - y/(jscolor.images.pad[1]-1), leaveSld); break;
@@ -379,7 +444,7 @@ define(function(){
 			}
 			function setSld(e) {
 				var posM = jscolor.getMousePos(e);
-				var y = posM[1]-posPad[1];
+				var y = posM[1]-posPad[1]  - (THIS.$container.css('top').replace('px','')*1 - THIS.scrolltemp.y);
 				switch(modeID) {
 					case 0: THIS.fromHSV(null, null, 1 - y/(jscolor.images.sld[1]-1), leavePad); break;
 					case 1: THIS.fromHSV(null, 1 - y/(jscolor.images.sld[1]-1), null, leavePad); break;
