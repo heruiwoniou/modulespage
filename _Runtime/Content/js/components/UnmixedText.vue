@@ -7,7 +7,7 @@
     </div>
     <div v-else class="control" data-index="{{paths + index}}">
         <div :class="['control-item','UnmixedText',iscurrent?'select':'']" @click.stop="setindex">
-            <h2 class="control-title" v-show="!iscurrent">纯文本控件</h2>
+            <h2 class="control-title" v-show="!iscurrent">纯文本</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
                 <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
                 <span class="split"></span>

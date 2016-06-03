@@ -5,29 +5,29 @@
  * Describe:
  */
 define(function(){
-    var Sync={
+    var Async={
         ClearAsync:function(type){
-            var Timers=Sync.AsyncTimerController(type);
+            var Timers=Async.AsyncTimerController(type);
             for(var i in Timers.length) {
                 window.clearTimeout(Timers[i]);
                 Timers[i]=null;
             }
-            Sync.AsyncTimerController(type,new Array());
+            Async.AsyncTimerController(type,new Array());
         },
         SetAsync:function(fn,type,interval){
             interval=interval||0;
-            var Timers=Sync.AsyncTimerController(type);
+            var Timers=Async.AsyncTimerController(type);
             Timers.push(window.setTimeout(fn,interval));
         },
         AsyncTimerController:function(type,value){
             type=type||"Default";
             if(value)
-                Sync.AsyncTimer[type]=value;
+                Async.AsyncTimer[type]=value;
             else
-                return Sync.AsyncTimer[type]?Sync.AsyncTimer[type]:(Sync.AsyncTimer[type]=new Array())
+                return Async.AsyncTimer[type]?Async.AsyncTimer[type]:(Async.AsyncTimer[type]=new Array())
         },
         AsyncTimer:{}
     }
 
-    return Sync
+    return Async
 })

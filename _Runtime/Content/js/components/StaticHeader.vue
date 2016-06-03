@@ -8,7 +8,7 @@
 </div>
 <div v-else class="control-static">
     <div :class="['control-item','StaticHeader',iscurrent?'select':'']" @click.stop="setindex">
-        <h2 class="control-title" v-show="!iscurrent">标题控件</h2>
+        <h2 class="control-title" v-show="!iscurrent">标题</h2>
         <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
             <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
             <span class="split"></span>
@@ -21,11 +21,10 @@
                     <img :src="component.src" v-el:image :width="image.w" :width="image.h" alt="">
                 </div>
                 <div class="filecommand">
-                    <form :action="imagedispose" enctype="multipart/form-data" method="POST">
+                    <form enctype="multipart/form-data" method="POST">
                     <div class="filecommand-background"></div>
-                    <a href="javascript:;" class="upload"></a>
-                    <a href="javascript:;" class="delete"></a>
-                    <input type="file" v-el:file @change="fileschange" name="file">
+                    <a href="javascript:;" class="upload"><input type="file" v-el:file @change="fileschange" name="file"></a>
+                    <a href="javascript:;" v-if="component.src != component.default" class="delete" @click="removeImage"></a>
                     </form>
                 </div>
             </div>
@@ -78,7 +77,6 @@
                     commenttip: '问卷调查标注(点击编辑)',
                     edittitling: false,
                     editcommenting: false,
-                    imagedispose:'common/base64',
                     image:{
                         w:0,
                         h:0
@@ -96,10 +94,15 @@
         },
         ready(){
             var that = this;
-            var ret = new XImage(this.component.src, 163, 163,function(){
-                 that.image.w = ret.width
-                 that.image.h = ret.height
-            });
+            if(this.component.src === '')
+                this.component.src = this.component.default;
+            else
+            {
+                var ret = new XImage(this.component.src, 163, 163,function(){
+                     that.image.w = ret.width
+                     that.image.h = ret.height
+                });
+            }
         },
         props: props,
         computed: {
@@ -111,6 +114,9 @@
         methods: {
             showColorPicker,
             setBold,
+            removeImage(){
+                this.component.src = this.component.default;
+            },
             fileschange(){
                 var that=this;
                 filereader.read(this.$els.file).then(function(image){

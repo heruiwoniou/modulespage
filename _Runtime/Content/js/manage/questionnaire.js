@@ -2,27 +2,19 @@ define(
     [
         'vue',
         './setting',
-        'jquery.ui/ui/draggable',
-
+        //公用组件
+        './../components/Perview',
+        './../components/ColorPicker',
         //引用控件
         './../components/StaticHeader',
         './../components/ChoiceQuestion',
+        './../components/PicChoiceQuestion',
         './../components/SectionGroup',
-        './../components/UnmixedText',
-
-        //公用组件
-        './../components/Perview',
-        './../components/ColorPicker'
+        './../components/UnmixedText'
     ],
     function(
         Vue,
         setting,
-        draggable,
-        StaticHeader,
-        ChoiceQuestion,
-        SectionGroup,
-        UnmixedText,
-
         Perview,
         ColorPicker
     ) {

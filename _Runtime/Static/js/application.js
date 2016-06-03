@@ -12,7 +12,7 @@ define([
     'widget/Window',
     '../../Content/js/util/common',
     'common/client/XImage',
-    'common/client/Sync',
+    'common/client/Async',
 
     //缓存内容
     'vue',
@@ -25,7 +25,7 @@ define([
     'widget/MulCombox',
     'libs/jquery.scrollbar/jquery.mCustomScrollbar',
     'libs/jquery-extend/jquery.form'
-], function($,CommonSetting,MaskLayer,Win,common,XImage,Sync) {
+], function($,CommonSetting,MaskLayer,Win,common,XImage,Async) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
     $.extend(WebApi,{
@@ -133,10 +133,10 @@ define([
             $parent.find(":checkbox").CheckBoxInit();
         },
         imageViewerInit: function() {
-            Sync.ClearAsync("ImageLoad");
+            Async.ClearAsync("ImageLoad");
             $("div.imageViewer[bind-width][bind-height][bind-src]").each(function(i) {
                 var $this = $(this);
-                Sync.SetAsync(function() {
+                Async.SetAsync(function() {
                     var width = $this.attr("bind-width"),
                         height = $this.attr("bind-height"),
                         src = $this.attr("bind-src"),

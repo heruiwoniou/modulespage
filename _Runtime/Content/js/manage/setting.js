@@ -1,5 +1,5 @@
 define(['Guid'],function(guid){
-	var defaultfontcolor = '#2a2727';
+	var color = '#2a2727';
 	var setting={
 		//外部公用
 		StaticHeader: function () {
@@ -11,18 +11,29 @@ define(['Guid'],function(guid){
 				bold:false,
 				src:'',
 				default:'/Upload/images/preview-background.jpg',
-				color: defaultfontcolor,
+				color: color,
 			}
 		},
 		ChoiceQuestion: function () {
 			return {
 				type : "ChoiceQuestion" ,
-				id:guid.NewGuid().ToString("D"),
-				single:true,
-				title:'',
-				items:'',
-				bold:false,
-				color: defaultfontcolor
+				id : guid.NewGuid().ToString("D"),
+				single : true,
+				title : '',
+				items : '',
+				bold : false,
+				color : color
+			}
+		},
+		PicChoiceQuestion:function(){
+			return {
+				type : "PicChoiceQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				title : "",
+				items : [],
+				single : true,
+				bold : false,
+				color : color
 			}
 		},
 		SectionGroup:function(){
@@ -31,7 +42,7 @@ define(['Guid'],function(guid){
 				id:guid.NewGuid().ToString("D"),
 				title:'',
 				bold:false,
-				color: defaultfontcolor,
+				color: color,
 				children:[]
 			}
 		},
@@ -41,7 +52,7 @@ define(['Guid'],function(guid){
 				id:guid.NewGuid().ToString("D"),
 				content:'',
 				bold:false,
-				color: defaultfontcolor
+				color: color
 			}
 		}
 	}

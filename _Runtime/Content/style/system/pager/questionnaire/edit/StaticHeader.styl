@@ -1,0 +1,91 @@
+StaticHeader()
+	.StaticHeader
+		.content-area
+			.background:hover
+				.filecommand
+					.filecommand-background
+						opacity 1
+					a
+						margin-top 0
+			.background
+				background white - 5%
+				width 165px
+				height 165px
+				float left
+				margin-right 10px
+				position relative
+				overflow hidden
+				.imageViewer
+					position absolute
+					line-height 165px;
+					height 165px
+					width 165px;
+				.filecommand
+					position absolute
+					z-index 1
+					height 100%
+					width 100%
+					text-align center
+					line-height 165px;
+					font-size 0
+					left 0
+					overflow hidden
+					.filecommand-background
+						z-index -1
+						position absolute
+						left 0
+						height 100%
+						width 100%
+						opacity 0
+						background rgba(100,100,100,.5)
+						transition opacity .2s ease
+					a
+						position relative
+						text-decoration none;
+						height 50px;
+						width 50px;
+						display inline-block;
+						vertical-align middle
+						line-height 1
+						margin-top 100%
+						transition margin-top .2s ease
+						color $fontBaseColor
+						border-radius 100%
+						background white
+						font-size 30px
+						&.upload
+							&:before
+								iconfont()
+								content ''
+						&.delete
+							font-size 23px
+							color $Color7
+							&:before
+								position relative
+								top 5px
+								left -2px
+								iconfont()
+								content ''
+					input[type*="file"]
+						cursor pointer
+						position absolute
+						top 0px
+						left 0px
+						height 50px
+						width 50px
+						opacity 0
+						border-radius 100%
+			.text-content
+				padding-left 175px;
+			.edittitle
+				height 40px;
+				line-height 40px;
+				input
+					height 40px;
+					line-height 40px;
+					font-size 30px;
+			h1
+				margin 5px 0
+				font-size 30px;
+				line-height 40px;
+				height 40px;

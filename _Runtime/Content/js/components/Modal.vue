@@ -16,9 +16,11 @@
             <div class="modal-body">
                 <div class="modal-head" v-if="!iscustom">
                     <span v-if="typeof title != 'string' && title.length == 0">{{titleName || '查看'}}</span>
-                    <select v-else name="title" id="FrameModalTitle">
-                        <option v-for="item in title" value="item.value">{{item.text}}</option>
-                    </select>
+                    <div class="inline-container" style="width:400px">
+                        <select v-else name="title" id="FrameModalTitle">
+                            <option v-for="item in title" :value="item.value">{{item.text}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-content">
                     <iframe :src="showframe&&animated?geturl():'about:blank'" frameborder="0" height="100%" width="100%"></iframe>
@@ -33,7 +35,8 @@
 <script>
 
 import './common/transition/fadeInOutDown';
-let callback = function() {};
+var callback = function() {};
+var titlechange = function() { alert(1);};
 export default {
     data() {
             return {
@@ -52,6 +55,17 @@ export default {
             }
         },
         watch: {
+            'title.length':function(){
+                this.$nextTick(function(){
+                    $("#FrameModalTitle").SingleComboxInit(
+                        {
+                            onChange:function(){
+                                titlechange.apply(this);
+                            }
+                        }
+                    );
+                });
+            },
             'showframe': function(_new_, _old_) {
                 if (_new_) {
                     $(document.documentElement).addClass('scroll-hide')
@@ -68,6 +82,7 @@ export default {
                     analyzesrc = "about:blank",
                     custom = false,
                     title = [],
+                    change= function() {},
                     callback = function() {}
                 }) {
                     this.deferred = new $.Deferred();
@@ -79,7 +94,7 @@ export default {
                     this.analyzesrc = analyzesrc;
                     this.iscustom = custom;
                     this.isview = true;
-
+                    titlechange = change;
                     this.then((cmd) => {
                         callback.call(this, cmd);
                         return cmd;

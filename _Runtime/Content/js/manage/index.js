@@ -47,7 +47,10 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
                     view:function(status,title){
                         var option={
                             defaultsrc:"state-viewer.html",
-                            title:[{value:1,text:'测试文字'},{value:2,text:'测试文字2'},{value:3,text:'测试文字3'}]
+                            title:[{value:1,text:'测试文字2222'},{value:2,text:'测试文字2'},{value:3,text:'测试文字3'}],
+                            change:function(){
+                                alert(this.value);
+                            }
                         }
                         if(status=="已结束")
                             option.analyzesrc="state-analyze.html";

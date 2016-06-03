@@ -324,9 +324,10 @@ define(
 
 
         $.fn.extend({
-            SingleComboxInit: function () {
+            SingleComboxInit: function (setting) {
+                setting=setting || {};
                 return this.each(function () {
-                    new SingleCombox({ element: this }).initialize();
+                    new SingleCombox({ element: this , onChange : setting.onChange }).initialize();
                 });
             }});
 
