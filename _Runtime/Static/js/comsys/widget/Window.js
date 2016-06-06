@@ -36,6 +36,7 @@ define(
             dialog: [],
             window: [],
             resizewindow: [],
+            maxindex:0,
             resetindex: function() {
                 var me = this,current = this.setting.zindex,max = current,i,c
                 for (i = 0; i < Win.window.length; i++) {
@@ -50,7 +51,7 @@ define(
                     c = Win.resizewindow[i].window;
                     if(max < c.setting.zindex) max = c.setting.zindex;
                 }
-
+                Win.maxindex=max + 1;
                 this.setindex(max + 1);
             },
             clear: function(type, name) {
@@ -178,6 +179,7 @@ define(
                 }
                 _win = this.create(setting.type, name);
                 setting.zindex = this.window.length + this.resizewindow.length + this.dialog.length;
+                Win.maxindex = setting.zindex;
                 setting.headmousedown=this.resetindex;
                 _win.show(setting);
                 _win.then(

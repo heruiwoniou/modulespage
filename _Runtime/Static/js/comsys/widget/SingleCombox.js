@@ -49,7 +49,7 @@ define(
                     },
                     TPL: {
                         layout: "<div class='comsys-base comsys-SingleCombox-layout' id='SingleCombox-<%= this.classids%>'>@{layout}@</div>",
-                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' <%=$(this.element).attr(\"readonly\")?\"readonly\":\"\"%> tip-title='<%=$(this.element).attr(\"tip-title\")?$(this.element).attr(\"tip-title\"):\"\"%>' value='<%=this.element.options.length==0?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
+                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' readonly tip-title='<%=$(this.element).attr(\"tip-title\")?$(this.element).attr(\"tip-title\"):\"\"%>' value='<%=this.element.options.length==0?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
                         drop: "<div class='comsys-combox-base comsys-SingleCombox-drop' id='SingleCombox-drop-<%= this.classids%>'><%for(var i=0;i<this.element.options.length;i++){%>@{section:this.TPL.option,this.element.options[i]}@<%}%></div>",
                         option: "<div class='comsys-base comsys-SingleCombox-option<%=this.selected?\' selected\':\'\'%>' data-index='<%=this.index%>'><%=this.text%></div>"
                     },
@@ -68,20 +68,33 @@ define(
                         var THIS = this;
                         THIS.state = false;
                         THIS.$controller = $(TPLEngine.render(this.TPL.main, this));
+                        this.options=this.element.options.length;
                         $(this.element.parentNode).append(THIS.$controller);
                         THIS.$drop = THIS.$controller.find(".comsys-SingleCombox-drop");
                         THIS.$input = THIS.$controller.find("input");
+                        if(this.fixed())
+                            THIS.$drop.css({position:"fixed"});
                         $(this.appendTo).append(THIS.$drop);
 
                         $(this.element).on("rebind",function(){return THIS.ReBind.apply(THIS,arguments);})
                             .on("reload",function(){return THIS.ReLoad.apply(THIS,arguments);})
                         THIS.$drop.on("mousedown", function () { return THIS.OnDropClick.apply(THIS, arguments); });
                         THIS.$drop.bind("otherhide",function(){return THIS.OnOtherClick.apply(THIS,arguments);});
-                        THIS.$controller.delegate(".comsys-SingleCombox-button", "click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
+                        //THIS.$controller.delegate(".comsys-SingleCombox-button", "click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
+                        THIS.$controller.on("click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
                         THIS.$controller.delegate(".comsys-SingleCombox-input input", "keydown", function () { return THIS.OnKeyDown.apply(THIS, arguments); });
                         THIS.$drop.get(0).onmousewheel = function (e) { return THIS.OnMouseWheel.call(THIS, e, THIS.$drop.get(0)); }
                         THIS.$input.off(".SingleComboxFocusOut").on("focusout.SingleComboxFocusOut", function () { return THIS.OnFocusOut.apply(THIS, arguments); });
                         THIS.$drop.delegate(".comsys-SingleCombox-option", "click", function () { return THIS.OnOptionClick.apply(THIS, [arguments[0], this]); });
+                    },
+                    //获取定位模式
+                    fixed:function(){
+                        var node=this.element;
+                        do{
+                            if($(node).css("position").indexOf('fixed')>-1)
+                                return true;
+                        }while(node=node.parentElement);
+                        return false;
                     },
                     ReBind:function(){
                         var THIS = this;
@@ -91,6 +104,7 @@ define(
                     ReLoad:function(){
                         var THIS=this;
                         THIS.$drop.html($(TPLEngine.render(this.TPL.drop, this)).html());
+                        this.options=this.element.options.length;
                         this.ReBind();
                     },
                     OnOtherClick:function(){
@@ -190,6 +204,9 @@ define(
                         var THIS = this;
                         window.clearTimeout(THIS.Timer);
                         THIS.Timer = null;
+                        if(this.element.disabled) return ;
+                        if(this.options!=this.element.options.length) this.ReLoad();
+
                         var offset = THIS.Offset(THIS.$controller.get(0));//THIS.$controller.offset();//
                         if (!THIS.state) {
                             THIS.$input.focus();
@@ -198,7 +215,7 @@ define(
                             THIS.$drop.css({
                                 left: -99999,
                                 maxHeight: THIS.setting.lineHeight * THIS.setting.dropLength
-                            }).show();
+                            }).appendTo(document.body).show();
                             THIS.$drop.css({
                                 minWidth: THIS.$controller.width() + 2 - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
                                 left: offset.left,

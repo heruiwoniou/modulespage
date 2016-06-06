@@ -29,7 +29,7 @@
 					sure=function(){},
 					close=function(){}
 				} = {}){
-				if(!target||!color) return
+				if(!target||!color||this.visible) return
 				this.visible = true;
 				var targetpos= jscolor.getElementPos(target,function(node){ return !$(node).hasClass('mCSB_container') });
 				this.x = targetpos[0];

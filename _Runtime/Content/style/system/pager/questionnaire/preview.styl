@@ -40,3 +40,35 @@ questionnairePreview()
 				word-break break-all
 				text-indent 28px;
 				margin 20px 0
+		.PicChoiceQuestion
+			margin-top 26px;
+			.images-container
+				padding 10px 0
+				.image
+					float left
+					width 150px
+					height 175px
+					border 1px solid #ccc + 60%
+					margin-right 5px;
+					margin-bottom 5px;
+					text-align center
+					&.item
+						text-align right;
+						padding-right 7px
+						.imageViewer
+							background #ccc + 60%
+							margin 7px auto 5px auto
+							height 134px
+							line-height 134px
+							width 134px
+							display inline-block;
+					.span-text
+						textHidden()
+						max-width 114px
+						display inline-block
+						margin 3px 0
+						vertical-align middle
+					input[type="checkbox"],input[type="radio"]
+						vertical-align middle
+				&:after
+					clear()

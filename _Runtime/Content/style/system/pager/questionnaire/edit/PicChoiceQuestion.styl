@@ -3,10 +3,61 @@ PicChoiceQuestion()
 		.images-container
 			padding 10px 0
 			.image
+				position relative
 				float left
-				width 130px
-				height 150px
-				background #ccc + 60%
+				width 150px
+				height 175px
+				border 1px solid #ccc + 60%
 				margin-right 5px;
+				margin-bottom 5px;
+				text-align center;
+				font-size 0px
+				.span-text
+					textHidden()
+					max-width 114px
+					display inline-block
+					margin 3px 0
+					vertical-align middle
+				input[type="checkbox"],input[type="radio"]
+					vertical-align middle
+				.imageViewer
+					background #ccc + 60%
+					margin 7px auto 5px auto
+					height 134px
+					line-height 134px
+					width 134px
+					display inline-block;
+				&.add,.edit-item
+					border 2px dotted #ccc + 60%
+					.imageViewer
+						background white;
+					& b:before
+						iconfont()
+						font-size 70px
+						color #ccc + 60%
+						vertical-align middle
+						content "\e005"
+						position relative
+						top -5%
+					&:hover b:before
+						color #ccc + 30%
+					.span-text
+						max-width 134px
+					&.edit-item
+						.imageViewer
+							margin-bottom 2px;
+						input[type="file"]
+							position absolute
+							top 0
+							left 0
+							opacity 0
+							height 140px
+							width 100%
+						input[type="text"]
+							margin-top 1px;
+							width 134px;
+							text-align center
+				.edit-item
+					border none;
 			&:after
 				clear()

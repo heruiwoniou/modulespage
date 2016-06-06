@@ -28,6 +28,7 @@
             },
             get: function (node) {
                 node = this.getNode(node);
+                if(node == undefined) return "";
                 if (node.nodeValue && !/^\s*$/.test(node.nodeValue))
                     return node.nodeValue;
                 else if (!node.nodeValue && node.nodeName == "SPAN")

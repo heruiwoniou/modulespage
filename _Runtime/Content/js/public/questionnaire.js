@@ -4,7 +4,9 @@ define(
         //引用控件
         './../components/StaticHeader',
         './../components/ChoiceQuestion',
-        './../components/SectionGroup'
+        './../components/PicChoiceQuestion',
+        './../components/SectionGroup',
+        './../components/UnmixedText'
     ],
     function(Vue) {
         var viewModel;//数据模型

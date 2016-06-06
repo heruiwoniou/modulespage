@@ -14,14 +14,6 @@
         <div v-else class="back" @click="close"><i></i></div>
         <div :class="['modal-right-frame',iscustom?'custom':'']">
             <div class="modal-body">
-                <div class="modal-head" v-if="!iscustom">
-                    <span v-if="typeof title != 'string' && title.length == 0">{{titleName || '查看'}}</span>
-                    <div class="inline-container" style="width:400px">
-                        <select v-else name="title" id="FrameModalTitle">
-                            <option v-for="item in title" :value="item.value">{{item.text}}</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="modal-content">
                     <iframe :src="showframe&&animated?geturl():'about:blank'" frameborder="0" height="100%" width="100%"></iframe>
                 </div>
@@ -36,7 +28,6 @@
 
 import './common/transition/fadeInOutDown';
 var callback = function() {};
-var titlechange = function() { alert(1);};
 export default {
     data() {
             return {
@@ -45,27 +36,12 @@ export default {
                 isview: true,
                 //控制是否显示框架
                 showframe: false,
-                titleName:'',
-                title: [
-                // {value:0,text:"text"},{value:1,text:"text"},{value:3,text:"text"}
-                ],
                 defaultsrc: "about:blank",
                 analyzesrc: "about:blank",
                 animated: false
             }
         },
         watch: {
-            'title.length':function(){
-                this.$nextTick(function(){
-                    $("#FrameModalTitle").SingleComboxInit(
-                        {
-                            onChange:function(){
-                                titlechange.apply(this);
-                            }
-                        }
-                    );
-                });
-            },
             'showframe': function(_new_, _old_) {
                 if (_new_) {
                     $(document.documentElement).addClass('scroll-hide')
@@ -81,20 +57,16 @@ export default {
                     defaultsrc = "about:blank",
                     analyzesrc = "about:blank",
                     custom = false,
-                    title = [],
-                    change= function() {},
                     callback = function() {}
                 }) {
                     this.deferred = new $.Deferred();
                     this.deferred.promise(this);
 
                     this.showframe = true;
-                    this.title = title;
                     this.defaultsrc = defaultsrc;
                     this.analyzesrc = analyzesrc;
                     this.iscustom = custom;
                     this.isview = true;
-                    titlechange = change;
                     this.then((cmd) => {
                         callback.call(this, cmd);
                         return cmd;
@@ -109,8 +81,6 @@ export default {
                         this.defaultsrc = "about:blank";
                         this.analyzesrc = "about:blank";
                         this.iscustom = false;
-                        this.title = [];
-                        this.titleName = '';
                         this.animated = false;
                         this.deferred.resolve("close");
                         this.isview=false;

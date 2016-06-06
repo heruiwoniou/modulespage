@@ -9,7 +9,7 @@ define(function() {
                     theme: "dark",
                     scrollInertia: 400,
                     alwaysShowScrollbar: 2,
-                    advanced:{ updateOnImageLoad: false }
+                    advanced:{ autoScrollOnFocus: false }
                 });
             },
             init: function() {
