@@ -111,7 +111,7 @@ export default {
             showColorPicker,
             setBold,
             setmodel(issingle) {
-                    this.component.single = issingle;
+                this.component.single = issingle;
             },
             edititems() {
                 if (this.iscurrent) {

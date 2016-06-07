@@ -6,11 +6,13 @@ define(
         './../components/Perview',
         './../components/ColorPicker',
         //引用控件
+        './../components/TabBar',
         './../components/StaticHeader',
         './../components/ChoiceQuestion',
         './../components/PicChoiceQuestion',
         './../components/SectionGroup',
-        './../components/UnmixedText'
+        './../components/UnmixedText',
+        './../components/QuestionResponse'
     ],
     function(
         Vue,
@@ -97,6 +99,10 @@ define(
                         toPathStr = toPaths.join('');
                     var fromPaths, fromPathStr, fromIndex, target = viewModel,
                         index;
+                    if(toPaths.length > 2 && type === 'SectionGroup') {
+                        WebApi._error('[段落]最多进行三次嵌套!');
+                        return;
+                    }
                     if (type) {
                         component = setting(ui.helper.data('type'));
                         if (component !== null) {
@@ -164,7 +170,11 @@ define(
                                 dragging: false,
                                 selectindex: "",
                                 header: function() {
-                                    return setting('StaticHeader') }(),
+                                    return setting('StaticHeader');
+                                }(),
+                                tab:function(){
+                                    return setting('TabBar');
+                                }(),
                                 children: []
                             };
                     }()),

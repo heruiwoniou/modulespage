@@ -19,7 +19,7 @@
 
     return {
         layerSetting: {
-            type: 0,
+            type: 1,
             debug:true
         },
         LabelSetting: {

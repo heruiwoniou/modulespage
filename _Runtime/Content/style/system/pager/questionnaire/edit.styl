@@ -2,6 +2,8 @@
 @import './edit/SectionGroup.styl';
 @import './edit/ChoiceQuestion.styl';
 @import './edit/PicChoiceQuestion.styl';
+@import './edit/QuestionResponse.styl';
+@import './edit/TabBar.styl';
 
 questionnaireEdit()
 	.edit
@@ -31,6 +33,8 @@ questionnaireEdit()
 		.control-static
 		.control
 			width 100%
+		.control-static
+			margin-top 10px;
 		.accept
 			position relative
 			width 100%
@@ -66,6 +70,7 @@ questionnaireEdit()
 		.ChoiceQuestion
 		.PicChoiceQuestion
 		.UnmixedText
+		.QuestionResponse
 			input[type=text]
 			textarea
 				border 1px solid #ccc
@@ -97,6 +102,8 @@ questionnaireEdit()
 		SectionGroup();
 		ChoiceQuestion();
 		PicChoiceQuestion();
+		QuestionResponse();
+		TabBar();
 		.control-panel
 			font-size 0px
 			background white
@@ -141,6 +148,8 @@ questionnaireEdit()
 			a.icon-color
 			a.icon-check
 			a.icon-radio
+			a.single-line
+			a.multi-line
 				position relative
 				&:before
 					position relative
@@ -163,6 +172,12 @@ questionnaireEdit()
 			a.delete
 				&:before
 					background url('images/ash-binpng.png') no-repeat;
+			a.single-line
+				&:before
+					background url('images/single-line.png') no-repeat;
+			a.multi-line
+				&:before
+					background url('images/multi-line.png') no-repeat;
 			a.icon-color
 				b
 					height 3px

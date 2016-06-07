@@ -48,14 +48,15 @@
                                 <input type="{{component.single?'radio':'checkbox'}}" :name="component.id" :value="item.text"><div class="span-text">{{item.text}}</div>
                             </label>
                             <div class="edit-item" v-show = "edititeming&&edititemindex==$index" @click.stop="">
+                                <div class="close" @click.stop="removeitem($index)">移除</div>
                                 <div class="imageViewer">
                                     <b v-if="item.image===''"></b>
                                     <img v-else :src="item.image" :width="item.w" :height="item.h" v-el:image alt="">
                                 </div>
                                 <form enctype="multipart/form-data" method="POST">
-                                    <input type="file" name="file">
+                                    <input type="file" name="file" @change="fileschange($event,$index)" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                                 </form>
-                                <input type="text" v-model="item.text">
+                                <input type="text" v-model="item.text" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                             </div>
                         </div>
                         <div class="image add" v-show="!editcacheiteming" @click.stop="editcacheitem">
@@ -67,11 +68,11 @@
                         </div>
                         <div class="image add edit-item" v-show="editcacheiteming" @click.stop="">
                             <div class="imageViewer">
-                                <b v-if="itemcache.image===''"></b>
-                                <img v-else :src="itemcache.image" :width="itemcache.w" :height="itemcache.h" v-el:image alt="">
+                                <b v-show="itemcache.image===''"></b>
+                                <img v-show="itemcache.image!==''" :src="itemcache.image" :width="itemcache.w" :height="itemcache.h" v-el:item-image alt="">
                             </div>
                             <form enctype="multipart/form-data" method="POST">
-                                <input type="file" v-el:file @change="fileschange" name="file" @keydown.enter="validate($event)" @keydown.tab="validate($event)">
+                                <input type="file" v-el:file @change="fileschange($event)" name="file" @keydown.enter="validate($event)" @keydown.tab="validate($event)">
                             </form>
                             <input type="text" v-model="itemcache.text" @keydown.enter="validate($event)" @keydown.tab="validate($event)" v-el:item-text>
                         </div>
@@ -109,7 +110,7 @@
         data() {
             return {
                 titletip: '标题(点击编辑)',
-                itemtip: '选项(点击编辑)',
+                itemtip: '添加选项(点击编辑)',
                 edittitling: false,
                 editcacheiteming: false,
                 edititeming:false,
@@ -138,6 +139,7 @@
                 this.component.single = issingle;
             },
             resize($event){
+                var deferred = new $.Deferred();
                 var img = $event.target
                 var ratio = 1, w = img.width, h = img.height, maxWidth = 134, maxHeight = 134, wRatio = maxWidth / w, hRatio = maxHeight / h;
                 if (maxWidth == 0 && maxHeight == 0) {
@@ -153,16 +155,25 @@
                     w = w * ratio;
                     h = h * ratio;
                 }
-                this.itemcache.w = w;
-                this.itemcache.h = h;
+                deferred.resolve(w,h);
+                return deferred;
             },
-            fileschange($event){
+            fileschange($event,index){
                 var that=this;
+                var itemedit = index !== undefined;
+                var $parent = $($event.target).closest(".edit-item");
+                var targetImage = itemedit ? $parent.find("img").get(0):that.$els.itemImage
+                var targetItem = itemedit?that.component.items[index]:that.itemcache;
                 filereader.read($event.target).then(function(image){
-                    that.itemcache.image = image;
+                    targetItem.image = image
+                    targetItem.w = "";
+                    targetItem.h = "";
                     that.$nextTick(()=>{
-                        that.resize({target:that.$els.image})
-                        that.validate({target:$(that.$el).find('.add.edit-item')});
+                        that.resize({target:targetImage}).then((w,h)=>{
+                            targetItem.w = w;
+                            targetItem.h = h;
+                        });
+                        that.validate({target:$parent });
                     })
                 }).fail(function(message){
 
@@ -170,8 +181,10 @@
             },
             edititem(index,$event){
                 if (this.iscurrent) {
-                    this.edititeming = true;
                     this.edititemindex = index;
+                    this.edititeming = true;
+                    this.edittitling = false;
+                    this.editcacheiteming = false;
                     this.$nextTick(() => {
                         $($event.target).closest(".item").find(":text").focus().select();
                     })
@@ -184,7 +197,10 @@
             },
             edittitle() {
                 if (this.iscurrent) {
+                    this.edititeming = false;
+                    this.edititemindex = -1;
                     this.edittitling = true;
+                    this.editcacheiteming = false;
                     this.$nextTick(() => {
                         this.$els.titleInput.focus();
                         this.$els.titleInput.select();
@@ -197,6 +213,9 @@
             },
             editcacheitem(){
                 if (this.iscurrent) {
+                    this.edititeming = false;
+                    this.edititemindex = -1;
+                    this.edittitling = false;
                     this.editcacheiteming = true;
                     this.$nextTick(() => {
                         this.$els.itemText.focus();
@@ -208,19 +227,36 @@
                 this.editcacheiteming = false;
                 this.validate({target:$(this.$el).find('.add.edit-item')});
             },
-            validate:function($event){
+            validate:function($event,index){
+                var edititem = index !== undefined;
                 var $parent = $($event.target).closest(".edit-item");
                 var file=$parent.find(":file");
                 var itemText=$parent.find(":text");
-                if(this.itemcache.image!==''&&this.itemcache.text!=='')
+                var targetViewModel = edititem ? this.component.items[index] : this.itemcache
+
+                if(targetViewModel.image!==''&&targetViewModel.text!=='')
                 {
-                    this.component.items.push({text:this.itemcache.text,image:this.itemcache.image,w:this.itemcache.w,h:this.itemcache.h})
-                    this.$nextTick(()=>this.clear())
+                    if(edititem)
+                    {
+                        if(this.edititemindex + 1 < this.component.items.length)
+                        {
+                            this.edititemindex += 1;
+                            this.$nextTick(()=>$parent.closest(".images-container").find(".item:eq("+ this.edititemindex +")").find(":text").focus())
+                        }
+                        else
+                            this.editcacheitem()
+                    }
+                    else
+                    {
+                        this.component.items.push({text:targetViewModel.text,image:targetViewModel.image,w:targetViewModel.w,h:targetViewModel.h})
+                        this.$nextTick(()=>this.clear())
+                    }
                 }
-                else if(this.itemcache.image===''&&this.itemcache.text!=='')
+                else if(targetViewModel.image===''&&targetViewModel.text!=='')
                     file.click();
-                else if(this.itemcache.image!==''&&this.itemcache.text==='')
+                else if(targetViewModel.image!==''&&targetViewModel.text==='')
                     itemText.focus();
+
                 if($event&&$event.keyCode===9)
                 {
                     $event.stopPropagation();
@@ -234,6 +270,12 @@
                 this.itemcache.w = "";
                 this.itemcache.h = "";
                 this.$nextTick(()=>this.$els.itemText.focus())
+            },
+            //
+            removeitem(index){
+                this.component.items.splice(index,1);
+                if(this.edititemindex >= this.component.items.length)
+                    this.closeitem();
             },
             //移除控件
             removecontrol,

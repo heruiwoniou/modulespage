@@ -45,7 +45,7 @@
             <div class="left-control-container">
                 <div class="control-small" data-type="GradeQuestion">评分题</div>
                 <div class="control-small" data-type="MatrixChoiceQuestion">矩阵选择题</div>
-                <div class="control-small" data-type="QuestionsAndAnswersQuestion">问答题</div>
+                <div class="control-small" data-type="QuestionResponse">问答题</div>
             </div>
             <h2>小部件</h2>
             <div class="left-control-container">
@@ -70,6 +70,13 @@
                     :is="header.type"
                     :component="header"
                     :index="99"
+                    :selectindex='selectindex'
+                    :preview = 'preview'
+                ></component>
+                <component
+                    :is="tab.type"
+                    :component="tab"
+                    :index="98"
                     :selectindex='selectindex'
                     :preview = 'preview'
                 ></component>

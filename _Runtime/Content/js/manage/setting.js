@@ -2,6 +2,13 @@ define(['Guid'],function(guid){
 	var color = '#2a2727';
 	var setting={
 		//外部公用
+		TabBar:function(){
+			return {
+				type : "TabBar" ,
+				id:guid.NewGuid().ToString("D"),
+				items:[]
+			}
+		},
 		StaticHeader: function () {
 			return {
 				type : "StaticHeader" ,
@@ -51,6 +58,17 @@ define(['Guid'],function(guid){
 				type : "UnmixedText" ,
 				id:guid.NewGuid().ToString("D"),
 				content:'',
+				bold:false,
+				color: color
+			}
+		},
+		QuestionResponse:function(){
+			return {
+				type : "QuestionResponse" ,
+				id:guid.NewGuid().ToString("D"),
+				question:'',
+				answer:'',
+				single:true,
 				bold:false,
 				color: color
 			}

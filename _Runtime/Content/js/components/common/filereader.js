@@ -9,7 +9,6 @@ define(function(){
 	{
 		constructor:ComsysFileReader,
 		read:function(file){
-
 			var that=this;
 			that.deferred = new $.Deferred();
             that.deferred.promise(that);

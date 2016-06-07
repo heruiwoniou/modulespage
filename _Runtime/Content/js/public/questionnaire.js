@@ -6,7 +6,8 @@ define(
         './../components/ChoiceQuestion',
         './../components/PicChoiceQuestion',
         './../components/SectionGroup',
-        './../components/UnmixedText'
+        './../components/UnmixedText',
+        './../components/QuestionResponse'
     ],
     function(Vue) {
         var viewModel;//数据模型
