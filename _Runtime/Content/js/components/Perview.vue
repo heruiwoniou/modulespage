@@ -1,8 +1,8 @@
 <template>
-	<div class="preview-modal" v-show="visible" transition="translate-from-right" :style="exportStyle">
+	<div class="preview-modal" v-show="visible" transition="translate-from-right">
 		<div class="preview-close" @click="close"></div>
-		<div class="preview-container mCustomScrollbar">
-			<div class="preview-content" v-el:content></div>
+		<div class="preview-container">
+			<iframe :src="data?'questionnaire-preview.html?data='+ data:'about:blank'" frameborder="0"></iframe>
 		</div>
 	</div>
 </template>
@@ -24,33 +24,16 @@
 		data(){
 			return {
 				visible:false,
-				background:''
-			}
-		},
-		computed:{
-			exportStyle(){
-				return {
-					background:"#ffffff url(" + this.background + ') repeat fixed'
-				}
-			}
-		},
-		watch:{
-			'visible':function(_new_){
-				if(_new_) this.$nextTick(()=>{
-					WebApi.scrollReplace();
-					WebApi.initControl($(this.$els.content))
-				})
+				data:''
 			}
 		},
 		methods:{
-			show({html,background}){
-				this.$els.content.innerHTML = html;
+			show(data){
+				this.data = encodeURIComponent(data);
 				this.visible = true;
-				this.background=background;
 			},
 			close(){
 				this.visible = false;
-				this.$els.content.innerHTML = ""
 			}
 		}
 	}

@@ -9,6 +9,14 @@ define(['Guid'],function(guid){
 				items:[]
 			}
 		},
+		TabContent:function(name){
+			return {
+				type : "TabContent" ,
+				name : name,
+				id:guid.NewGuid().ToString("D"),
+				children:[]
+			}
+		},
 		StaticHeader: function () {
 			return {
 				type : "StaticHeader" ,

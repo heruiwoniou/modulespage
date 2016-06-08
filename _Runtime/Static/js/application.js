@@ -24,7 +24,8 @@ define([
     'widget/SingleCombox',
     'widget/MulCombox',
     'libs/jquery.scrollbar/jquery.mCustomScrollbar',
-    'libs/jquery-extend/jquery.form'
+    'libs/jquery-extend/jquery.form',
+    'common/client/Request'
 ], function($,CommonSetting,MaskLayer,Win,common,XImage,Async) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }

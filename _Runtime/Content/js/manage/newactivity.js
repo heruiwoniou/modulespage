@@ -20,8 +20,8 @@ define(['vue','system/js/components/common/transition/toggleAnimate' , 'ztree'],
 				defaultsrc:"questionnaire.html",
 				custom:true,
 				title:'新增问卷'
-			}).then(function(){
-				alert('add success !');
+			}).then(function(arg){
+				alert(arg);
 			})
 		},
 		//设置是否匿名

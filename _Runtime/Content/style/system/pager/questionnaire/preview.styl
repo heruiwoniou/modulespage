@@ -1,4 +1,5 @@
 questionnairePreview()
+	$TabColor = #4c98c5;
 	.preview
 		padding 100px 20px 400px 20px
 		box-shadow 0 0 5px 0 #ccc
@@ -6,8 +7,15 @@ questionnairePreview()
 		min-width 750px;
 		max-width 1024px;
 		margin 0 auto
-		&.public-preview
-			padding 20px 0
+		.TabBar
+			padding 10px 0
+			.tab-item
+				vertical-align: middle;
+				padding 5px 10px;
+				display inline-block;
+				height 20px
+				line-height 20px
+				box-sizing content-box
 		.StaticHeader
 			padding 10px 0 20px 0
 			h1

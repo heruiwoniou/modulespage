@@ -1,108 +1,90 @@
-
-
 <template>
-    <div>
-        <div v-if="preview" class="PicChoiceQuestion">
-            <h1 :style="styleExport">{{ component.title }}</h1>
-            <div class="images-container">
-                <div class="image item" v-for="item in component.items">
-                   <label>
-                       <div class="imageViewer">
-                           <img :src="item.image" alt="" :width="item.w" :height="item.h">
-                       </div>
-                       <input type="{{component.single?'radio':'checkbox'}}" :name="component.id" :value="item.text"><div class="span-text">{{item.text}}</div>
-                   </label>
-               </div>
-            </div>
-        </div>
-        <div class="control" data-index="{{paths + index}}" v-else>
-            <div :class="['control-item','PicChoiceQuestion',iscurrent?'select':'']" @click.stop="setindex">
-                <h2 class="control-title" v-show="!iscurrent">图片选择题</h2>
-                <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
-                    <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
+    <div class="control" data-index="{{paths + index}}">
+        <div :class="['control-item','PicChoiceQuestion',iscurrent?'select':'']" @click.stop="setindex">
+            <h2 class="control-title" v-show="!iscurrent">图片选择题</h2>
+            <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
+                <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
+                <span class="split"></span>
+                <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
+                <span class="split"></span>
+                <a href="javascript:;" v-if="component.single" class="icon-radio select">单选</a>
+                <a href="javascript:;" v-else class="icon-radio" @click="setmodel(true)">单选</a>
+                <span class="split"></span>
+                <a href="javascript:;" v-if="!component.single" class="icon-check select">多选</a>
+                <a href="javascript:;" v-else class="icon-check" @click="setmodel(false)">多选</a>
+                <span class="split"></span>
+                <div class="inline-container">
                     <span class="split"></span>
-                    <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
-                    <span class="split"></span>
-                    <a href="javascript:;" v-if="component.single" class="icon-radio select">单选</a>
-                    <a href="javascript:;" v-else class="icon-radio" @click="setmodel(true)">单选</a>
-                    <span class="split"></span>
-                    <a href="javascript:;" v-if="!component.single" class="icon-check select">多选</a>
-                    <a href="javascript:;" v-else class="icon-check" @click="setmodel(false)">多选</a>
-                    <span class="split"></span>
-                    <div class="inline-container">
-                        <span class="split"></span>
-                        <a href="javascript:;" class="delete" @click="removecontrol"></a>
-                    </div>
+                    <a href="javascript:;" class="delete" @click="removecontrol"></a>
                 </div>
-                <div class="content-area">
-                    <div v-show="edittitling" class="edittitle" @click.stop="">
-                        <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
-                    </div>
-                    <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
-                    <div class="images-container">
-                        <div class="image item" v-for="item in component.items">
-                            <label v-show = "edititemindex!==$index" @click.stop="edititem($index,$event)">
-                                <div class="imageViewer">
-                                    <img :src="item.image" alt="" :wdth="item.w" :height="item.h">
-                                </div>
-                                <input type="{{component.single?'radio':'checkbox'}}" :name="component.id" :value="item.text"><div class="span-text">{{item.text}}</div>
-                            </label>
-                            <div class="edit-item" v-show = "edititeming&&edititemindex==$index" @click.stop="">
-                                <div class="close" @click.stop="removeitem($index)">移除</div>
-                                <div class="imageViewer">
-                                    <b v-if="item.image===''"></b>
-                                    <img v-else :src="item.image" :width="item.w" :height="item.h" v-el:image alt="">
-                                </div>
-                                <form enctype="multipart/form-data" method="POST">
-                                    <input type="file" name="file" @change="fileschange($event,$index)" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
-                                </form>
-                                <input type="text" v-model="item.text" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
-                            </div>
-                        </div>
-                        <div class="image add" v-show="!editcacheiteming" @click.stop="editcacheitem">
+            </div>
+            <div class="content-area">
+                <div v-show="edittitling" class="edittitle" @click.stop="">
+                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                </div>
+                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                <div class="images-container">
+                    <div class="image item" v-for="item in component.items">
+                        <label v-show = "edititemindex!==$index" @click.stop="edititem($index,$event)">
                             <div class="imageViewer">
-                                <b v-if="itemcache.image===''"></b>
-                                <img v-else :src="itemcache.image" alt="" :width="itemcache.w" :height="itemcache.h">
+                                <img :src="item.image" alt="" :wdth="item.w" :height="item.h">
                             </div>
-                             <div class="span-text">{{itemcache.text || itemtip}}</div>
-                        </div>
-                        <div class="image add edit-item" v-show="editcacheiteming" @click.stop="">
+                            <input type="{{component.single?'radio':'checkbox'}}" :name="component.id" :value="item.text"><div class="span-text">{{item.text}}</div>
+                        </label>
+                        <div class="edit-item" v-show = "edititeming&&edititemindex==$index" @click.stop="">
+                            <div class="close" @click.stop="removeitem($index)">移除</div>
                             <div class="imageViewer">
-                                <b v-show="itemcache.image===''"></b>
-                                <img v-show="itemcache.image!==''" :src="itemcache.image" :width="itemcache.w" :height="itemcache.h" v-el:item-image alt="">
+                                <b v-if="item.image===''"></b>
+                                <img v-else :src="item.image" :width="item.w" :height="item.h" v-el:image alt="">
                             </div>
                             <form enctype="multipart/form-data" method="POST">
-                                <input type="file" v-el:file @change="fileschange($event)" name="file" @keydown.enter="validate($event)" @keydown.tab="validate($event)">
+                                <input type="file" name="file" @change="fileschange($event,$index)" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                             </form>
-                            <input type="text" v-model="itemcache.text" @keydown.enter="validate($event)" @keydown.tab="validate($event)" v-el:item-text>
+                            <input type="text" v-model="item.text" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                         </div>
+                    </div>
+                    <div class="image add" v-show="!editcacheiteming" @click.stop="editcacheitem">
+                        <div class="imageViewer">
+                            <b v-if="itemcache.image===''"></b>
+                            <img v-else :src="itemcache.image" alt="" :width="itemcache.w" :height="itemcache.h">
+                        </div>
+                         <div class="span-text">{{itemcache.text || itemtip}}</div>
+                    </div>
+                    <div class="image add edit-item" v-show="editcacheiteming" @click.stop="">
+                        <div class="imageViewer">
+                            <b v-show="itemcache.image===''"></b>
+                            <img v-show="itemcache.image!==''" :src="itemcache.image" :width="itemcache.w" :height="itemcache.h" v-el:item-image alt="">
+                        </div>
+                        <form enctype="multipart/form-data" method="POST">
+                            <input type="file" v-el:file @change="fileschange($event)" name="file" @keydown.enter="validate($event)" @keydown.tab="validate($event)">
+                        </form>
+                        <input type="text" v-model="itemcache.text" @keydown.enter="validate($event)" @keydown.tab="validate($event)" v-el:item-text>
                     </div>
                 </div>
             </div>
-            <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
         </div>
+        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
     </div>
-
 </template>
 
 <script>
-    import ComsysFileReader from './common/filereader.js';
+    import ComsysFileReader from './../common/filereader.js';
 
-    import './common/transition/fadeInOut';
+    import './../common/transition/fadeInOut';
 
-    import props from './common/props';
+    import props from './../common/props';
     import {
         setindex, removecontrol, showColorPicker, setBold
     }
-    from './common/methods';
+    from './../common/methods';
     import {
         setdefault
     }
-    from './common/events';
+    from './../common/events';
     import {
         prefixpath, fullindex, iscurrent, colorPanel, styleExport
     }
-    from './common/computed';
+    from './../common/computed';
 
     var filereader=new ComsysFileReader();
 

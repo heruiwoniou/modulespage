@@ -1,11 +1,5 @@
-
-
 <template>
-<div>
-    <div v-if="preview" class="UnmixedText">
-        <p :style="styleExport">{{ component.content }}</p>
-    </div>
-    <div v-else class="control" data-index="{{paths + index}}">
+    <div class="control" data-index="{{paths + index}}">
         <div :class="['control-item','UnmixedText',iscurrent?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">纯文本</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
@@ -27,26 +21,25 @@
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
     </div>
-</div>
 </template>
 
 <script>
 
-    import './common/transition/fadeInOut';
+    import './../common/transition/fadeInOut';
 
-    import props from './common/props';
+    import props from './../common/props';
     import {
         setindex, removecontrol, showColorPicker, setBold
     }
-    from './common/methods';
+    from './../common/methods';
     import {
         setdefault
     }
-    from './common/events';
+    from './../common/events';
     import {
         prefixpath, fullindex, iscurrent, colorPanel, styleExport
     }
-    from './common/computed';
+    from './../common/computed';
 
     export default {
         data() {

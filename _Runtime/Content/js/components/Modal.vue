@@ -74,7 +74,7 @@ export default {
 
                     return this;
                 },
-                close() {
+                close(cmd) {
                     this.animated = false;
                     this.$nextTick(function() {
                         this.showframe = false;
@@ -82,8 +82,8 @@ export default {
                         this.analyzesrc = "about:blank";
                         this.iscustom = false;
                         this.animated = false;
-                        this.deferred.resolve("close");
                         this.isview=false;
+                        this.deferred.resolve(cmd||"close");
                     })
                 },
                 seturl(isview, $event) {

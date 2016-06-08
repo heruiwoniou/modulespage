@@ -1,18 +1,18 @@
 define(
     [
         'vue',
-        './setting',
+        './../components/setting',
         //公用组件
         './../components/Perview',
         './../components/ColorPicker',
         //引用控件
-        './../components/TabBar',
-        './../components/StaticHeader',
-        './../components/ChoiceQuestion',
-        './../components/PicChoiceQuestion',
-        './../components/SectionGroup',
-        './../components/UnmixedText',
-        './../components/QuestionResponse'
+        './../components/edit/TabBar',
+        './../components/edit/StaticHeader',
+        './../components/edit/ChoiceQuestion',
+        './../components/edit/PicChoiceQuestion',
+        './../components/edit/SectionGroup',
+        './../components/edit/UnmixedText',
+        './../components/edit/QuestionResponse'
     ],
     function(
         Vue,
@@ -143,6 +143,7 @@ define(
                     revertDuration: 200,
                     start: function(event, ui) {
                         viewModel.setindex();
+                        if($(".accept:visible").length==0) return false;
                         ui.helper.css({ zIndex: 100 });
                         viewModel.dragging = true;
                         WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')));
@@ -186,6 +187,7 @@ define(
                             opacity: 0.8,
                             start: function(event, ui) {
                                 viewModel.setindex();
+                                if($(".accept:visible").length==0) return false;
                                 WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')));
                             },
                             drag: WebApi.drag,
@@ -201,30 +203,14 @@ define(
                         //绑定滚动条
                         WebApi.scrollReplace();
                     },
-                    watch:{
-                        //通过改变状态来获取预览表单
-                        "preview":function(_new_){
-                            var that=this;
-                            if(!_new_) this.$nextTick(function() { WebApi.bindaccept(); });
-                            else
-                            {
-                                this.$nextTick(function() {
-                                    WebApi.$Preview.show({html:document.querySelector('.right-control-container').outerHTML,background:that.header.src || that.header.default})
-                                    that.preview = !that.preview;
-                                    that.$nextTick(function() {
-                                        WebApi.bindaccept();
-                                    })
-                                });
-                            }
-                        }
-                    },
                     methods: {
                         save: function() {
                             var str = JSON.stringify(this.$data);
                             localStorage.data = str;
+                            WebApi.invoke('$ModalWin','close','aaa')
                         },
                         toggle: function() {
-                            this.preview = true;
+                            WebApi.$Preview.show(JSON.stringify(this.$data))
                         },
                         setindex: function() {
                             if(WebApi.$ColorPicker.visible) return ;
@@ -242,9 +228,6 @@ define(
                             this.selectindex = fullindex;
                             //广播所有的对象都进入非编辑模式
                             this.$broadcast("setdefault", this.selectindex);
-                        },
-                        removeItem: function(index) {
-                            this.children.splice(index, 1);
                         }
                     }
                 })

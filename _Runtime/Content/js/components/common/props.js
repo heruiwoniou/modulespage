@@ -15,9 +15,9 @@ define(function(){
 				type:String,
 				default:''
 			},
-			preview:{
-				type:Boolean,
-				default:false
+			tabselect:{
+				type:Number,
+				default:-1
 			}
 		}
 	}

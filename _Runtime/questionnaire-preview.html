@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
     <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    	html{
+    		overflow: hidden
+    	}
+    </style>
 </head>
-<body class="public-preview" :style="exportStyle">
+<body class="public-preview mCustomScrollbar" :style="exportStyle">
 	<div class="preview">
 		<component
 		    :is="header.type"
@@ -21,6 +25,6 @@
             :component="item"
         ></component>
 	</div>
-	<script data-main="Static/js/config" main="public/questionnaire" src="Static/js/libs/requirejs/require.js"></script>
+	<script data-main="Static/js/config" main="manage/preview" src="Static/js/libs/requirejs/require.js"></script>
 </body>
 </html>

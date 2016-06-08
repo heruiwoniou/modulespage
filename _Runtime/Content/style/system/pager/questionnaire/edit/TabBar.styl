@@ -44,6 +44,10 @@ TabBar()
 				overflow hidden;
 				line-height 50px;
 				white-space nowrap
+				.tab-item-container
+					font-size 0
+					display inline-block;
+					vertical-align middle
 				.tab-item
 					cursor pointer
 					color $TabColor
@@ -85,3 +89,6 @@ TabBar()
 							top -1px;
 						&:hover
 							color $Color7
+					input
+						border-color transparent
+						width 89px;

@@ -1,6 +1,7 @@
 define(
     [
         'vue',
+        'common/client/Request',
         //引用控件
         './../components/preview/TabBar',
         './../components/preview/StaticHeader',
@@ -10,7 +11,7 @@ define(
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse'
     ],
-    function(Vue) {
+    function(Vue,Request) {
         var viewModel;//数据模型
         return {
             init: function() {
@@ -20,15 +21,16 @@ define(
                 viewModel = new Vue({
                     el: 'body',
                     data: (function() {
-                        if (localStorage.data && localStorage.data !== "null" && localStorage.data !== "undefined") {
-                            data=JSON.parse(localStorage.data);
-                            return data;
+                        var data=decodeURIComponent(Request['data'])
+                        if (data && data !== "null" && data !== "undefined") {
+                            var json=JSON.parse(data);
+                            return json;
                         }
                     }()),
                     computed:{
                         exportStyle:function(){
                             return {
-                                background:"#ffffff url(" + this.header.src + ') repeat fixed'
+                                background:this.header&&this.header.src?"#ffffff url(" + this.header.src + ') repeat fixed' : "#fff"
                             }
                         }
                     }

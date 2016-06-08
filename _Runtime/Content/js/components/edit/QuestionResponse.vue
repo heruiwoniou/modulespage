@@ -1,13 +1,5 @@
-
-
 <template>
-<div>
-    <div v-if="preview" class="QuestionResponse">
-         <h1 :style="styleExport">{{ component.question }}</h1>
-         <input v-if="component.single" type="text" :name="component.id" :value="component.answer">
-         <textarea v-else cols="30" rows="5" @focusout="closeanswer">{{component.answer}}</textarea>
-    </div>
-    <div v-else class="control" data-index="{{paths + index}}">
+    <div class="control" data-index="{{paths + index}}">
         <div :class="['control-item','QuestionResponse',iscurrent?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">问答题</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
@@ -39,26 +31,25 @@
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
     </div>
-</div>
 </template>
 
 <script>
 
-    import './common/transition/fadeInOut';
+    import './../common/transition/fadeInOut';
 
-    import props from './common/props';
+    import props from './../common/props';
     import {
         setindex, removecontrol, showColorPicker, setBold
     }
-    from './common/methods';
+    from './../common/methods';
     import {
         setdefault
     }
-    from './common/events';
+    from './../common/events';
     import {
         prefixpath, fullindex, iscurrent, colorPanel, styleExport
     }
-    from './common/computed';
+    from './../common/computed';
 
     export default {
         data() {

@@ -1,21 +1,5 @@
-
-
 <template>
-
-<div>
-    <div v-if="preview" class="ChoiceQuestion">
-        <h1 :style="styleExport">{{ component.title }}</h1>
-        <table v-if="!edititemsing&&children.length!=0">
-            <tr v-for="row in Math.ceil(children.length / columns)">
-                <td v-for="col in columns" v-if="( row * columns + col ) <= children.length - 1">
-                    <label>
-                        <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{ children[row * columns + col] }}">{{ children[row * columns + col] }}
-                    </label>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="control" data-index="{{paths + index}}" v-else>
+    <div class="control" data-index="{{paths + index}}">
         <div :class="['control-item','ChoiceQuestion',iscurrent?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">选择题</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
@@ -58,27 +42,25 @@
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
     </div>
-</div>
-
 </template>
 
 <script>
 
-import './common/transition/fadeInOut';
+import './../common/transition/fadeInOut';
 
-import props from './common/props';
+import props from './../common/props';
 import {
     setindex, removecontrol, showColorPicker, setBold
 }
-from './common/methods';
+from './../common/methods';
 import {
     setdefault
 }
-from './common/events';
+from './../common/events';
 import {
     prefixpath, fullindex, iscurrent, colorPanel, styleExport
 }
-from './common/computed';
+from './../common/computed';
 
 export default {
     data() {

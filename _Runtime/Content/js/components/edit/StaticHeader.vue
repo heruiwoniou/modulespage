@@ -1,9 +1,5 @@
 <template>
-    <div v-if="preview" class="StaticHeader">
-        <h1 :style="styleExport">{{ component.title }}</h1>
-        <p>{{ component.comment }}</p>
-    </div>
-    <div v-else class="control-static">
+    <div class="control-static">
         <div :class="['control-item','StaticHeader',iscurrent?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">标题</h2>
             <div class="control-panel" v-show="iscurrent" transition="fadeInOut">
@@ -44,25 +40,25 @@
 
 <script>
 
-    import './common/transition/fadeInOut';
+    import './../common/transition/fadeInOut';
 
-    import ComsysFileReader from './common/filereader.js';
+    import ComsysFileReader from './../common/filereader.js';
 
     import XImage from 'common/client/XImage';
 
-    import props from './common/props';
+    import props from './../common/props';
     import {
         setindex, showColorPicker, setBold
     }
-    from './common/methods';
+    from './../common/methods';
     import {
         setdefault
     }
-    from './common/events';
+    from './../common/events';
     import {
         fullindex,iscurrent, colorPanel, styleExport
     }
-    from './common/computed';
+    from './../common/computed';
 
     var filereader=new ComsysFileReader();
 

@@ -80,13 +80,12 @@
                     :selectindex='selectindex'
                     :preview = 'preview'
                 ></component>
-                <div v-if = "!preview" class="accept" data-index="0"><b></b></div>
+                <div class="accept" data-index="0"><b></b></div>
                 <component v-for="item in children" v-if="item!=null"
                     :is="item.type"
                     :component="item"
                     :index="$index"
                     :selectindex='selectindex'
-                    :preview = 'preview'
                     transition="fadeInOut"
                 ></component>
             </div>

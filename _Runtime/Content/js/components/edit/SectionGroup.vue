@@ -1,13 +1,5 @@
-
-
 <template>
-
-<div>
-    <div v-if="preview" class="SectionGroup">
-        <h1 :style="styleExport">{{ component.title }}</h1>
-        <component v-for="item in component.children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :paths="prefixpath" :preview='preview'></component>
-    </div>
-    <div class="control" data-index="{{paths + index}}" v-else>
+    <div class="control" data-index="{{paths + index}}">
         <div :class="['control-item','SectionGroup',iscurrent||selectchild?'select':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">段落</h2>
             <div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
@@ -31,27 +23,26 @@
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
     </div>
-</div>
-
 </template>
 
 <script>
 
-    import './common/transition/fadeInOut';
+    import './../common/transition/fadeInOut';
 
-    import props from './common/props';
+    import props from './../common/props';
     import {
         setindex, removecontrol,showColorPicker, setBold
     }
-    from './common/methods';
+    from './../common/methods';
     import {
         setdefault, removeItem
     }
-    from './common/events';
+    from './../common/events';
+
     import {
         prefixpath, fullindex, iscurrent, colorPanel, styleExport
     }
-    from './common/computed';
+    from './../common/computed';
 
     export default {
         data() {
