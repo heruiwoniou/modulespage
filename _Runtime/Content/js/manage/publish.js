@@ -1,4 +1,4 @@
-define(['vue', 'system/js/util/transition/toggleAnimate' , 'ztree'], function(Vue) {
+define(['vue', './../components/common/transition/toggleAnimate' , 'ztree'], function(Vue) {
     var vm;
     return {
         init: function() {

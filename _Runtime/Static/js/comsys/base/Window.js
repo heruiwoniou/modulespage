@@ -30,6 +30,8 @@ define(
                     this.$BoxBaseContent = this.$BoxBaseEl.find(".comsys-box-content");
                     this.$BoxBaseFrame = this.$BoxBaseEl.find("iframe");
 
+                    this.contentParent=null;
+
                     this.setting.titleHeight = 50;
                     this.setting.borderWidth = 0;
                     this.setting.zindex=0;
@@ -152,9 +154,12 @@ define(
                     this.$BoxBaseContent.empty();
                     if (setting.content) {
                         this.windowLoadType = this.WindowLoadType.content;
-                        this.$BoxBaseFrame.hide();
                         if (setting.content.jquery && setting.content.jquery == $("head").jquery)
-                            setting.content.show();
+                        {
+                            //setting.content.show();
+                            this.contentParent = setting.content.parent();
+                        }
+                        this.$BoxBaseFrame.hide();
                         this.$BoxBaseContent.append(setting.content).show();
                     } else {
                         if (setting.src) {
@@ -187,14 +192,17 @@ define(
                 close: function (command) {
                     if(!this.status) return ;
                     this.$BoxBaseEl.hide();
-                    var cmd=command;
+                    var cmd = command;
                     this.$BoxBaseFrame.attr("src", "about:blank");
                     layer.hide();
                     if(command instanceof Function){
                         this.then(function(){command.apply(null,arguments);});
                         cmd="close";
                     }
+                    if(this.windowLoadType == this.WindowLoadType.content&&this.contentParent!=null)
+                        this.contentParent.append(this.$BoxBaseContent.find(":first"));
                     this.status=false;
+                    this.contentParent = null;
                     this.deferred.resolve(cmd||"close");
                 },
                 setindex:function(zindex){

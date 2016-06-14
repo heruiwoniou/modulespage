@@ -42,7 +42,7 @@
 
     import './../common/transition/fadeInOut';
 
-    import ComsysFileReader from './../common/filereader.js';
+    import ComsysFileReader from './../common/filereader';
 
     import XImage from 'common/client/XImage';
 

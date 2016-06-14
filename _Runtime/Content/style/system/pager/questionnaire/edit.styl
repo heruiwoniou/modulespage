@@ -4,6 +4,7 @@
 @import './edit/PicChoiceQuestion.styl';
 @import './edit/QuestionResponse.styl';
 @import './edit/TabBar.styl';
+@import './edit/GradeQuestion.styl';
 
 questionnaireEdit()
 	.edit
@@ -71,6 +72,7 @@ questionnaireEdit()
 		.PicChoiceQuestion
 		.UnmixedText
 		.QuestionResponse
+		.GradeQuestion
 			input[type=text]
 			textarea
 				border 1px solid #ccc
@@ -104,12 +106,13 @@ questionnaireEdit()
 		PicChoiceQuestion();
 		QuestionResponse();
 		TabBar();
+		GradeQuestion();
 		.control-panel
+		.control-panel-sub
 			font-size 0px
 			background white
 			position absolute
-			height 45px
-			line-height 44px
+			line-height 45px
 			top 0
 			left 0
 			right 0
@@ -119,7 +122,7 @@ questionnaireEdit()
 				vertical-align middle
 			span.split
 				width 1px
-				height 100%
+				height 45px
 				background $basecolor - 20%
 			a
 				text-align center
@@ -150,6 +153,15 @@ questionnaireEdit()
 			a.icon-radio
 			a.single-line
 			a.multi-line
+			a.icon-must
+			a.icon-five
+			a.icon-self
+			a.icon-star
+			a.icon-letter
+			a.icon-five
+			a.icon-self
+			a.icon-star
+			a.icon-char
 				position relative
 				&:before
 					position relative
@@ -160,6 +172,9 @@ questionnaireEdit()
 			a.icon-bold
 				&:before
 					background url('images/icon-bold.png') no-repeat;
+			a.icon-letter
+				&:before
+					background url('images/icon-letter.png') no-repeat;
 			a.icon-color
 				&:before
 					background url('images/icon-color.png') no-repeat;
@@ -178,6 +193,32 @@ questionnaireEdit()
 			a.multi-line
 				&:before
 					background url('images/multi-line.png') no-repeat;
+			a.icon-five
+				&:before
+					background url('images/icon-five.png') no-repeat;
+			a.icon-self
+				&:before
+					width 20px;
+					background url('images/icon-self.png') no-repeat;
+			a.icon-star
+				&:before
+					background url('images/icon-star.png') no-repeat;
+			a.icon-char
+				&:before
+					background url('images/icon-char.png') no-repeat;
+			a.icon-must
+				&:before
+					iconfont()
+					position relative
+					top: -8px;
+					font-size 16px;
+					left: -2px;
+			a.icon-must
+				&:before
+					content "\e000"
+				&.select
+					&:before
+						content "\7e"
 			a.icon-color
 				b
 					height 3px
@@ -186,6 +227,38 @@ questionnaireEdit()
 					left 20%
 					display block
 					top 35px
+			a.no-icon
+				&:before
+					content none
+			a.no-hover
+				&:hover
+					background white
+					cursor default
+					text-decoration none;
+		.control-panel-sub
+			background $basecolor - 20%
+			background white
+			border-top 1px solid $basecolor - 20%
+			top 45px;
+			span.split
+				background white
+			a:hover
+				background white
+			a.select
+				color #d05e4b
+				background-color white
+				&.icon-star:before
+					background url('images/icon-star-select.png') no-repeat;
+				&.icon-letter:before
+					background url('images/icon-letter-select.png') no-repeat;
+				&.icon-char:before
+					background url('images/icon-char-select.png') no-repeat;
+			a.no-hover
+				&:hover
+					background $basecolor - 20%
+					background white
+					cursor default
+					text-decoration none;
 	&.begin
 		.ui-draggable-dragging .accept:before
 			border-bottom-color transparent

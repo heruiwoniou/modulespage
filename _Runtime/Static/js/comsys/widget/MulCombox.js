@@ -26,6 +26,7 @@ define([
                 var data=$(this.$GroupInputs[i]).data("Control.CheckBox");
                 if(data!=undefined) data.destory();
                 var option=new LabelBase({element: this.$GroupInputs[i],setting:{ index:i } });
+                option.$BaseEl.data("index",i);
                 option.initialize();
                 this.options.push(option);
             }
@@ -82,7 +83,15 @@ define([
             this.$MulComboxButton.on('click.OnButtonClick',function(){ return me._OnButtonClick.apply(me,arguments)});
             this.$MulComboxDrop.bind("otherhide",function(){return me._OnOtherClick.apply(me,arguments);});
             this.$MulComboxDrop.get(0).onmousewheel = function () { return me._OnMouseWheel.apply(me, Array.prototype.slice.call(arguments,0).concat(this)); }
-            this.$HiddenBaseElContainer.off(".mulComboxChange").on("combox-change.mulComboxChange","input:checkbox",function(){return me._ComboxChange.apply(me,Array.prototype.slice.call(arguments,0).concat(this));});
+            this.$HiddenBaseElContainer
+            .off(".mulComboxChange")
+            .on("combox-change.mulComboxChange","input:checkbox",function(){return me._ComboxChange.apply(me,Array.prototype.slice.call(arguments,0).concat(this));});
+            this.$HiddenBaseElContainer.off("checked").on("check","input:checkbox",function(){
+                return me._check.apply(me,Array.prototype.slice.call(arguments,0).concat(this));
+            });
+            this.$HiddenBaseElContainer.off("uncheck").on("uncheck","input:checkbox",function(){
+                return me._uncheck.apply(me,Array.prototype.slice.call(arguments,0).concat(this));
+            });
             this.$MulComboxDrop.on("click.OnOptionClick",".comsys-MulCombox-option",function(){
                 return me._OnOptionClick.apply(me,Array.prototype.slice.call(arguments,0).concat(this));})
 
@@ -94,7 +103,22 @@ define([
             for(var i=0;i<this.options.length;i++)
                 this.$HiddenBaseElContainer.append(this.options[i].$LabelContainer);
         },
-
+        _check:function(e,el){
+            var $el=$(el),
+            index=$el.data("index");
+            if(!el.checked){
+                this.$MulComboxDrop.find(".comsys-MulCombox-option:eq('"+ index +"')").addClass("selected");
+                $el.trigger("combox-change.mulComboxChange",["Option" , index , true]);
+            }
+        },
+        _uncheck:function(e,el){
+            var $el=$(el),
+            index=$el.data("index");
+            if(el.checked) {
+                this.$MulComboxDrop.find(".comsys-MulCombox-option:eq('"+ index +"')").removeClass("selected");
+                $el.trigger("combox-change.mulComboxChange",["Option",index,false]);
+            }
+        },
         _OnOptionClick:function(e,el){
             var $option=$(el),state=false;
             var index=$option.attr("data-index");
@@ -130,7 +154,8 @@ define([
             }
         },
         _AddLabelOption:function(name,index){
-            this.$MulComboxDrag.append('<span data-index="'+index+'">'+name+'<b></b></span>');
+            if(this.$MulComboxDrag.find("span[data-index='"+index+"']:contains('"+name+"')").length==0)
+                this.$MulComboxDrag.append('<span data-index="'+index+'">'+name+'<b></b></span>');
             this._Scroll(this._GetUI(),true);
         },
         _DropHide: function () {

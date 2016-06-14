@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>manage-index</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+</head>
+<body class="manage-setting">
+	<div class="header">
+        <div class="nav">
+            <div class="container">
+                <div class="logo"></div>
+                <div class="menu">
+                    <div class="person">
+                        <div class="login">
+                            <a href="javascript:;">Administration</a>
+                            <span></span>
+                            <a href="javascript:;">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container section">
+            <div id="Frame" class="FrameLeftRightControl" style="height:780px">
+                <div class="FrameLeft mCustomScrollbar" style="width:230px">
+                    <ul>
+                        <li class="select" v-el:select-item v-cloak></li>
+                        <li :class="selectindex==$index?'choose':''" v-cloak v-for="item in menus" @click="showSection($index)"><a href="javascript:;">{{item}}</a></li>
+                    </ul>
+                </div>
+                <div class="FrameRight" style="padding-left:230px">
+                    <div class="no-m-container mCustomScrollbar" style="overflow:hidden" v-cloak>
+                        <div class="section-1" v-show="selectindex==0">
+                            <br />
+                            <h1>可用性</h1>
+                            <br />
+                            <div class="field-wrap head">
+                                <b>开启或关闭平台访问。若关闭，则仅有管理员可以访问后台</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许用户进行问卷调查</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许用户进行评教活动</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <h1>特殊事件</h1>
+                            <br />
+                            <div class="field-wrap head">
+                                <b>全平台去色。开启此选项将忽略灰色以外的全部颜色</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                        </div>
+                        <div class="section-2" v-show="selectindex==1">
+                            <br>
+                            <h1>账户管理</h1>
+                            <br>
+                            <div class="field-wrap">
+                                设置您系统的账户相关信息
+                            </div>
+                            <div id="FrameInnerAccount" class="FrameLeftRightControl">
+                                <div class="FrameLeft" style="width:240px">
+                                    <div class="PanelControl">
+                                        <div class="panel-head g">组织机构</div>
+                                        <div class="panel-body">
+                                            <input type="radio" name="group" checked="checked">按部门
+                                            <input type="radio" name="group">按职务
+                                            <input type="radio" name="group">按部门职务
+                                        </div>
+                                    </div>
+                                    <div class="no-m-container hasHorizontalBar">
+                                        <ul id="treeDemo" class="ztree"></ul>
+                                    </div>
+                                </div>
+                                <div class="FrameBar" style="left:240px"></div>
+                                <div class="FrameRight" style="padding-left:250px">
+                                    <div class="no-m-container mCustomScrollbar" style="overflow:auto">
+                                        <div class="button-panel" style="width:100%;padding-bottom:10px">
+                                            <a href="javascript:;" class="button g no-radius">全部允许</a>
+                                            <a href="javascript:;" class="button r no-radius">全部排除</a>
+                                            <div class="inline-container search-container" style="width:280px;float:right">
+                                                <input type="text" id="search1">
+                                            </div>
+                                        </div>
+                                        <table class="list-grid">
+                                            <colgroup>
+                                                <col>
+                                                <col style="width:140px">
+                                            </colgroup>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tr v-for="index in 10">
+                                                <td>xxx县教育局</td>
+                                                <td>
+                                                    <a href="javascript:;" class="sure">允许</a>
+                                                    <a href="javascript:;" class="cancel">排除</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-3" v-show="selectindex==2">
+                            <br>
+                            <h1>管理所有的群组</h1>
+                            <br>
+                            <div class="field-wrap">
+                                群组是一种非正式的组织或团体，可以由校级以上的管理人员建立
+                            </div>
+                            <div class="field-wrap">
+                                <div class="inline-container" style="width:400px;margin:5px 0 10px 0">
+                                    <input type="text" tip-title="搜索" id="search2" />
+                                </div>
+                            </div>
+                            <div id="FrameInnerGroup" class="FrameLeftRightControl">
+                                <div class="FrameLeft" style="width:240px">
+                                    <div class="no-m-container mCustomScrollbar">
+                                        <ul id="treeDemo" class="ztree"></ul>
+                                    </div>
+                                </div>
+                                <div class="FrameBar" style="left:240px"></div>
+                                <div class="FrameRight" style="padding-left:250px">
+                                    <div class="no-m-container mCustomScrollbar" style="overflow:auto">
+                                        <div class="button-panel" style="width:100%;padding-bottom:10px">
+                                            <a href="javascript:;" class="button r no-radius">全部删除</a>
+                                            <div class="inline-container search-container" style="width:100px;float:right">
+                                                <a href="javascript:;" class="button g no-radius">新建</a>
+                                            </div>
+                                        </div>
+                                        <table class="list-grid">
+                                            <colgroup>
+                                                <col>
+                                                <col style="width:140px">
+                                            </colgroup>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            <tr v-for="index in 10">
+                                                <td>xxx县教育局</td>
+                                                <td>
+                                                    <a href="javascript:;" class="sure">允许</a>
+                                                    <a href="javascript:;" class="cancel">排除</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-4" v-show="selectindex==3">
+                            <br>
+                            <h1>内置权限</h1>
+                            <br>
+                            <div class="field-wrap head">
+                                部门负责人可委任的管理人数量
+                            </div>
+                            <div class="field-wrap">
+                                <div class="inline-container" style="width:50%">
+                                    <select name="" id="">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="无限">无限</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许教师个人发布公开（匿名）的问卷活动</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>教师个人可发布的问卷活动范围</b>
+                            </div>
+                            <div class="field-wrap">
+                                <div class="inline-container" style="width:50%">
+                                    <select name="" id="">
+                                        <option value="关联的班级">关联的班级</option>
+                                        <option value="所在年级">所在年级</option>
+                                        <option value="所在学校">所在学校</option>
+                                        <option value="所在区域">所在区域</option>
+                                        <option value="无限">不限</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许教师个人发起评教活动</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许学生发起问卷活动</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许群组管理员发起公开（匿名）问卷活动</b>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="checkbox" data-buttontype="slider"/>关闭
+                            </div>
+                            <div class="field-wrap head">
+                                <b>允许分享报告和模板的范围</b>
+                            </div>
+                            <div class="field-wrap">
+                                <div class="inline-container" style="width:50%">
+                                    <select name="" id="">
+                                        <option value="所在机构">所在机构</option>
+                                        <option value="包含一级上级">包含一级上级</option>
+                                        <option value="包含二级上级">包含二级上级</option>
+                                        <option value="不允许分享">不允许分享</option>
+                                        <option value="无限">不限</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-5" v-show="selectindex==4">
+                            <br>
+                            <h1>外观与个性化</h1>
+                            <br>
+                            <div class="field-wrap">
+                                平台名称
+                            </div>
+                        </div>
+                        <div class="section-6" v-show="selectindex==5">
+                            <br>
+                            <h1>问卷分类设置</h1>
+                            <br>
+                            <div class="field-wrap">
+                                使用中的分类
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        版权所有：成都康赛信息技术有限公司
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/setting" src="Static/js/libs/requirejs/require.js"></script>
+</html>

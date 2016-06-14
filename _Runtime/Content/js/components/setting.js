@@ -6,79 +6,102 @@ define(['Guid'],function(guid){
 			return {
 				type : "TabBar" ,
 				id:guid.NewGuid().ToString("D"),
+
 				items:[]
 			}
 		},
-		TabContent:function(name){
+		GradeQuestion:function(name){
 			return {
-				type : "TabContent" ,
-				name : name,
-				id:guid.NewGuid().ToString("D"),
-				children:[]
+				type : "GradeQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+
+				self : false,
+				range : [],
+				value : "",
+
+				bold : false,
+				color : color,
+				must : false
 			}
 		},
 		StaticHeader: function () {
 			return {
 				type : "StaticHeader" ,
 				id:guid.NewGuid().ToString("D"),
+
 				title:'',
 				comment:'',
-				bold:false,
 				src:'',
 				default:'/Upload/images/preview-background.jpg',
-				color: color,
+
+				bold:false,
+				color: color
 			}
 		},
 		ChoiceQuestion: function () {
 			return {
 				type : "ChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
+
 				single : true,
 				title : '',
-				items : '',
+				items : [],
+
 				bold : false,
-				color : color
+				color : color,
+				must : false
 			}
 		},
 		PicChoiceQuestion:function(){
 			return {
 				type : "PicChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
+
 				title : "",
 				items : [],
 				single : true,
+
 				bold : false,
-				color : color
+				color : color,
+				must : false
 			}
 		},
 		SectionGroup:function(){
 			return {
 				type : "SectionGroup" ,
 				id:guid.NewGuid().ToString("D"),
+
 				title:'',
+				children:[],
+
 				bold:false,
-				color: color,
-				children:[]
+				color: color
 			}
 		},
 		UnmixedText:function(){
 			return {
 				type : "UnmixedText" ,
 				id:guid.NewGuid().ToString("D"),
+
 				content:'',
+
 				bold:false,
-				color: color
+				color: color,
+				must : false
 			}
 		},
 		QuestionResponse:function(){
 			return {
 				type : "QuestionResponse" ,
 				id:guid.NewGuid().ToString("D"),
+
 				question:'',
 				answer:'',
 				single:true,
+
 				bold:false,
-				color: color
+				color: color,
+				must : false
 			}
 		}
 	}

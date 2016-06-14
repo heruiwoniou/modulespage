@@ -1,47 +1,60 @@
-define(['vue','system/js/components/common/transition/toggleAnimate' , 'ztree'],function(Vue){
-	var viewModel;
+define(['vue','common/client/WinResizeResponder','ztree'],function(Vue,Responder){
+	var viewModel,
+	$Frame=$("#Frame"),
+	$FrameInnerAccount=$("#FrameInnerAccount"),
+	$FrameInnerGroup=$("#FrameInnerGroup");
 	return {
+		resize: function(wh,dh){
+			var fh = wh - 185,
+			account = wh - 280,
+			group = wh - 325;
+			$Frame.height(fh);
+			$FrameInnerAccount.height(account);
+			$FrameInnerGroup.height(group);
+		},
 		init:function(){
-			this.vue();
-			this.tree();
-		},
-		//页面方法
-		next:function(){
-			viewModel.currentStep += 1;
-		},
-		last:function(){
-			viewModel.currentStep -= 1;
-		},
-		save:function(){
-			WebApi.close({command:'savesuccess'})
-		},
-		addQuestionnaire:function(){
-			WebApi.invoke('$ModalWin','show',{
-				defaultsrc:"questionnaire.html",
-				custom:true,
-				title:'新增问卷'
-			}).then(function(arg){
-				alert(arg);
-			})
-		},
-		//设置是否匿名
-		setisanonymous:function(){
-			viewModel.isanonymous=!viewModel.isanonymous;
-		},
-		//到设置人页面
-		gopersontoggle:function(){
-			viewModel.issetpersonpanel = !viewModel.issetpersonpanel
-		},
-		ready:function(){
-			var $win=$(window),h=$win.height();
-			$(".section").css({height:h});
-			$("#isanonymous,#isonce").bind('click', function() {
+			Responder.resize(this.resize);
+			$(".section-1 input[data-buttontype]").bind('click', function() {
                 var id = this.id;
                 var $node = $(this).data("Control.CheckBox").$LabelText;
                 $node.textContent = ($node.textContent == "开启" ? '关闭' : '开启')
             });
-            $(":checkbox[name*=groups]").MulComboxInit()
-			$("#search").ButtonTextBoxInit({ ButtonClass: "search" });
+            $("input[id*=search]").ButtonTextBoxInit({ ButtonClass: "search" });
+            this.tree();
+            $(".hasHorizontalBar").mCustomScrollbar({
+            	theme: "dark",
+            	scrollInertia: 400,
+            	advanced:{ autoScrollOnFocus: false },
+            	axis:'yx'
+            });
+			viewModel=new Vue({
+				el:'body',
+				data:{
+					selectindex:0,
+
+					menus:[
+					'全局设置',
+					'用户帐户',
+					'群组',
+					'权限与安全',
+					'外观与个性化',
+					'问卷分类设置'
+					]
+				},
+				watch:{
+					'selectindex':function(_new_,_old_){
+						if(_new_!==_old_)
+							this.$nextTick(()=>{
+								$(this.$els.selectItem).stop().animate({top:_new_*60 + 'px'},200);
+							});
+					}
+				},
+				methods:{
+					showSection:function(index){
+						this.selectindex = index;
+					}
+				}
+			})
 		},
 		tree: function() {
             var setting = {
@@ -84,25 +97,6 @@ define(['vue','system/js/components/common/transition/toggleAnimate' , 'ztree'],
                 { id: 3, pId: 0, name: "父节点3 - 没有子节点", isParent: true, open: true }
             ];
             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        },
-		//渲染模板
-		vue:function(){
-			viewModel = new Vue({
-				el:'body',
-				data:{
-					issetpersonpanel:false,
-					isanonymous: false,
-					currentStep:0
-				},
-				ready:WebApi.ready,
-				methods:{
-					last:WebApi.last,
-					next:WebApi.next,
-					save:WebApi.save,
-					setisanonymous: WebApi.setisanonymous,
-                    gopersontoggle:WebApi.gopersontoggle
-				}
-			})
-		}
+        }
 	}
-})
+});

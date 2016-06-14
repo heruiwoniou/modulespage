@@ -12,7 +12,7 @@ define(function(){
 			var that=this;
 			that.deferred = new $.Deferred();
             that.deferred.promise(that);
-			if(false&&that.reader)
+			if(that.reader)
 			{
 				if(file.files.length == 0) {
 					that.deferred.reject('请选择上传文件');

@@ -68,7 +68,6 @@ body.manage-index
 			box-shadow none
 			padding 0
 		padding 10px 10px 20px 10px
-		box-shadow 0 0 3px 0 #ccc;
 		background white
 		.table-grid
 			.row
@@ -77,18 +76,15 @@ body.manage-index
 				perspective: 2000px;
 				&.setting
 					.column
-						transform scaleZ(10) rotateX(0deg)  translateZ(15px)
 						.command
 							top 0px
 			.column
 				height 150px;
-				box-shadow 0 0 5px 0 #ccc;
 				transition all .2s ease
 				background white
 				overflow hidden
 				&:hover
-					box-shadow 0 2px 3px 0px #ccc
-					transform scale3d(1,1.1,1) rotateX(20deg) translateZ(10px)
+					box-shadow 0 0px 5px 2px #ccc
 				span.thumbtack
 					transform rotate(45deg)
 					content ''
@@ -271,3 +267,4 @@ body.manage-index
 @import './stateAnalyze.styl';
 @import './publish.styl';
 @import './newActivity.styl';
+@import './setting.styl';

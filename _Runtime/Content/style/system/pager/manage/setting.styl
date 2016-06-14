@@ -1,0 +1,93 @@
+body.manage-setting
+	background $BackColor;
+	frame-base(84px,50px);
+	.header .nav
+		background $BColor2
+		border-color $BColor2
+		.logo
+			background url(images/logo-white.png)
+		.person .login
+			a
+				color white
+		.menu
+			ul.ul-menu
+				li
+					a
+						color white
+					&:hover
+						&>a
+							color white
+						&>.sub-menu li a
+							color $BColor2 + 20%
+						background $BColor2 + 20%
+						&.disabled
+							a
+								color $fontSmallColor
+							background $BColor2
+					&.select
+						background $hoverColor
+						&>a
+							color #fff
+					&.disabled
+						a
+							color $fontSmallColor
+					.sub-menu li:hover a
+						color white
+	.footer
+		border-top 4px solid $Color3
+		background $BColor2
+	.section
+		padding-top 20px;
+	.section > .FrameLeftRightControl
+		background white;
+		&>.FrameLeft
+			background $BackColor;
+			ul
+				position relative
+				li
+				a
+					line-height 60px;
+				a
+					display block
+					text-indent 40px;
+				li
+					position relative
+				li:hover
+					background white - 3%
+				li.select
+					position absolute
+					top 0
+					height 60px;
+					width 100%;
+					background white
+				li.choose
+					background transparent
+			.mCSB_inside > .mCSB_container
+				margin-right 0
+				margin-left 30px
+			.mCSB_scrollTools
+				right auto
+				left 0
+		&>.FrameRight
+			h1
+				font-weight bold
+				font-size 16px
+			.no-m-container
+				height 100%
+			.PanelControl
+				background transparent
+				box-shadow none
+			.FrameLeft
+				position relative
+				.ztree
+					float left
+				.no-m-container.hasHorizontalBar
+					position absolute
+					bottom 0px
+					right 0
+					left 0
+					top 70px
+					height auto
+					overflow hidden
+					&:after
+						clear()

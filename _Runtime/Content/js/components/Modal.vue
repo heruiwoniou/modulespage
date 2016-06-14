@@ -83,7 +83,7 @@ export default {
                         this.iscustom = false;
                         this.animated = false;
                         this.isview=false;
-                        this.deferred.resolve(cmd||"close");
+                        this.deferred.resolve(typeof cmd == 'string' ? cmd : "close");
                     })
                 },
                 seturl(isview, $event) {

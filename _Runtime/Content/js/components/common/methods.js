@@ -48,5 +48,8 @@ define(function(){
             }
         });
     }
+    prototype.setMust = function(){
+    	this.component.must = !this.component.must;
+    };
 	return new Methods();
 })

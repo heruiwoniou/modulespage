@@ -18,6 +18,15 @@ define(function(){
             window.clearTimeout(this.timer);
             this.timer=window.setTimeout(fn,interval)
         },
+        proxy:function(fn,ctx,interval){
+			interval = interval || 250;
+			window.clearTimeout(this.timer);
+			return function bumperProxy(){
+				this.timer=setTimeout(function(){
+					fn.apply(ctx,arguments);
+				}, interval);
+			}
+		},
         clear:function(){
         	window.clearTimeout(this.timer);
         }
@@ -32,6 +41,11 @@ define(function(){
 			if(!this.instance)
 				this.instance=new BumperCore();
 			this.instance.trigger(fn,interval);
+		},
+		proxy:function(fn,ctx,interval){
+			if(!this.instance)
+				this.instance=new BumperCore();
+			return this.instance.proxy(fn,ctx,interval);
 		}
 	}
 

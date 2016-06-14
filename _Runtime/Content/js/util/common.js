@@ -8,7 +8,6 @@ define(function() {
                 $parent.mCustomScrollbar({
                     theme: "dark",
                     scrollInertia: 400,
-                    alwaysShowScrollbar: 2,
                     advanced:{ autoScrollOnFocus: false }
                 });
             },

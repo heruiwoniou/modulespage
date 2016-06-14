@@ -12,7 +12,8 @@ define(
         './../components/edit/PicChoiceQuestion',
         './../components/edit/SectionGroup',
         './../components/edit/UnmixedText',
-        './../components/edit/QuestionResponse'
+        './../components/edit/QuestionResponse',
+        './../components/edit/GradeQuestion'
     ],
     function(
         Vue,
@@ -167,7 +168,6 @@ define(
                             return JSON.parse(localStorage.data);
                         } else
                             return {
-                                preview: false,
                                 dragging: false,
                                 selectindex: "",
                                 header: function() {
@@ -223,6 +223,9 @@ define(
                         }
                     },
                     events: {
+                        removeItem:function(index){
+                            this.children.splice(index, 1);
+                        },
                         selectchange: function(fullindex) {
                             if (this.dragging) return;
                             this.selectindex = fullindex;

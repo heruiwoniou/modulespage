@@ -288,12 +288,13 @@ define(
             forcehide: function(animate) {
                 this.status = false;
                 if (animate)
-                    $(me.c).fadeOut(animate);
+                    $(this.c).fadeOut(animate);
                 else
-                    $(me.c).hide();
-                if (me.LowIE) {
+                    $(this.c).hide();
+                if (this.LowIE) {
                     $(document.body).css({ overFlow: "auto" });
                 }
+                this.layoutCount = 0;
                 this.unbind();
             }
         }

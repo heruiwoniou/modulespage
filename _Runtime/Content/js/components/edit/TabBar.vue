@@ -82,7 +82,7 @@
                     this.setindex();
         	},
         	closeeditmodel(){
-                if(this.editindex!=-1)
+                if(this.editindex!=-1&&this.editindex<this.component.items.length)
                 {
                     var newv=this.component.items[this.editindex].trim();
                     if((newv===''||this.component.items.indexOf(newv)>-1))

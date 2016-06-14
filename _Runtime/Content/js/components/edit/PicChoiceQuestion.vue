@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    import ComsysFileReader from './../common/filereader.js';
+    import ComsysFileReader from './../common/filereader';
 
     import './../common/transition/fadeInOut';
 

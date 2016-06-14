@@ -37,7 +37,9 @@
         </div>
         <div class="field-wrap">
             <div class="inline-container" style="width:50%">
+            <form id="test">
                 <label v-for="index in 10"><input name="groups" type="checkbox">{{"分类"+index}}</label>
+            </from>
             </div>
         </div>
         <div class="field-wrap head">
@@ -54,7 +56,7 @@
         </div>
         <div class="field-wrap head" style="margin-top:0px"><b>匿名参与</b></div>
         <div class="field-wrap">
-            <input type="checkbox" data-buttontype="slider" @click="setisanonymous" id="isanonymous" />关闭
+            <input type="checkbox" data-buttontype="slider" @click="setisanonymous" id="isanonymous" />开启
         </div>
         <div class="field-wrap" v-if="isanonymous">
             包括完全公开,除去
@@ -83,7 +85,7 @@
             <b>每台设备只能答卷一次</b>
         </div>
         <div class="field-wrap">
-            <input type="checkbox" data-buttontype="slider" id="isonce" />关闭
+            <input type="checkbox" data-buttontype="slider" id="isonce" />开启
         </div>
         <div class="field-wrap head">
             <b>收集到指定的答卷份数时停止活动</b>
