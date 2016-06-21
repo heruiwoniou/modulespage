@@ -154,6 +154,7 @@ define(
                         THIS.cancelFocusOut = true;
                         if (THIS.LastKey != THIS.$input.val()) {
                             THIS.OnOptionChange.apply(this.element);
+                            $(THIS.element).trigger("vuechange");
                             THIS.LastKey = THIS.$input.val();
                         }
                         THIS.cancelFocusOut = false;

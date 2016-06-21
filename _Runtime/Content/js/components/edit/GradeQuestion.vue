@@ -7,9 +7,9 @@
 	            <span class="split"></span>
 	            <a href="javascript:;" class="icon-color" @click="showColorPicker($event)">颜色<b v-el:color-panel :style="colorPanel"></b></a>
                 <span class="split"></span>
-                <a href="javascript:;" :class="['icon-five']">五分制</a>
+                <a href="javascript:;" :class="['icon-five',component.self?'':'select']" @click="toggleMode(false)">五分制</a>
                 <span class="split"></span>
-                <a href="javascript:;" :class="['icon-self']">自填分</a>
+                <a href="javascript:;" :class="['icon-self',component.self?'select':'']" @click="toggleMode(true)">自填分</a>
                 <span class="split"></span>
 	            <div class="inline-container">
                     <span class="split"></span>
@@ -17,22 +17,73 @@
 	                <span class="split"></span>
 	                <a href="javascript:;" class="delete" @click="removecontrol"></a>
 	            </div>
-                <div class="control-panel-sub">
+                <div class="control-panel-sub"  v-show="!component.self">
                     <a href="javascript:;" class="no-icon no-hover">选项:</a>
                     <span class="split"></span>
-                    <a href="javascript:;" class="icon-star select">星星</a>
+                    <a href="javascript:;" :class="['icon-star',component.xtype==0 ?'select':'']" @click="toggleXtype(0)">星星</a>
                     <span class="split"></span>
-                    <a href="javascript:;" class="icon-letter">字母</a>
+                    <a href="javascript:;" :class="['icon-letter',component.xtype==1 ?'select':'']" @click="toggleXtype(1)">字母</a>
                     <span class="split"></span>
-                    <a href="javascript:;" class="icon-char">汉字</a>
+                    <a href="javascript:;" :class="['icon-char',component.xtype==2 ?'select':'']" @click="toggleXtype(2)">汉字</a>
                     <span class="split"></span>
+                </div>
+                <div class="control-panel-sub" v-show="component.self">
+                    <a href="javascript:;" class="no-icon no-hover">选项:</a>
+                    <span class="split"></span>
+                    <a href="javascript:;" :class="['icon-slider',component.xtype==3 ?'select':'']" @click="toggleXtype(3)">滑条</a>
+                    <span class="split"></span>
+                    <a href="javascript:;" :class="['icon-choose',component.xtype==4 ?'select':'']" @click="toggleXtype(4)">选择分数</a>
+                    <span class="split"></span>
+                    <a href="javascript:;" :class="['icon-input',component.xtype==5 ?'select':'']" @click="toggleXtype(5)">填分</a>
+                    <span class="split"></span>
+                    <a href="javascriptp:;" class="no-icon no-hover">
+                    分值:<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                     v-model="component.range.min" number lazy>到<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="component.range.max" number lazy>
+                    </a>
                 </div>
 	        </div>
 	        <div class="content-area">
 	        	<div v-show="edittitling" class="edittitle" @click.stop="">
 	        	    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
 	        	</div>
-	        	<h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+	        	<h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
+                <div class="operate star-panel" v-if="component.xtype==0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="operate letter-panel" v-if="component.xtype==1">
+                    <span>A</span>
+                    <span>B</span>
+                    <span>C</span>
+                    <span>D</span>
+                    <span>E</span>
+                </div>
+                <div class="operate char-panel" v-if="component.xtype==2">
+                    <span>优</span>
+                    <span>良</span>
+                    <span>中</span>
+                    <span>及格</span>
+                    <span>差</span>
+                </div>
+                <div class="operate slider-panel" v-if="component.xtype==3">
+                    <div class="containment">
+                        <div class="arrow">
+                            <div class="pointer">
+                                <div class="number">0</div>
+                            </div>
+                        </div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="operate choose-panel" v-if="component.xtype==4">
+                    <span v-for="n in limitRange">{{n}}</span>
+                </div>
+                <div class="operate input-panel" v-if="component.xtype==5">
+                    <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                </div>
             </div>
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
@@ -44,7 +95,7 @@
 
 	import props from './../common/props';
 
-	import { setindex, removecontrol, showColorPicker, setBold, setMust} from './../common/methods';
+	import { setindex, removecontrol, showColorPicker, setBold, setMust, closeColorPicker} from './../common/methods';
 
 	import { setdefault } from './../common/events';
 
@@ -63,12 +114,26 @@
         	fullindex,
         	iscurrent,
         	colorPanel,
-        	styleExport
+        	styleExport,
+            limitRange:function(){
+                var arr = [];
+                for(var i = this.component.range.min ; i <= this.component.range.max ; i++ )
+                    arr.push(i);
+                return arr;
+            }
         },
         methods: {
             showColorPicker,
             setBold,
             setMust,
+            toggleMode(status){
+                this.component.self = status;
+                closeColorPicker();
+            },
+            toggleXtype(xtype){
+                this.component.xtype = xtype;
+                closeColorPicker();
+            },
             edittitle() {
                 if (this.iscurrent) {
                     this.edittitling = true;

@@ -22,11 +22,11 @@
                 <div v-show="editquestioning" class="edittitle" @click.stop="">
                     <input type="text" :style="styleExport" v-model="component.question" @focusout="closequestion" v-el:question-input>
                 </div>
-                <h1 v-show="!editquestioning" :style="styleExport" @click.stop="editquestion">{{ component.question || questiontip }}</h1>
+                <h1 v-show="!editquestioning" :style="styleExport" @click.stop="editquestion"><span class="qindex">Q{{component.qindex}}:</span>{{ component.question || questiontip }}</h1>
                 <div v-show="editanswering" class="editanswer" @click.stop="">
-                    <input type="text" v-model="component.answer" @focusout="closeanswer" v-el:answer-input />
+                    <input type="text" v-model="component.value" @focusout="closeanswer" v-el:answer-input />
                 </div>
-                <p v-show="!editanswering" @click.stop="editanswer">{{ component.answer || answertip }}</p>
+                <p v-show="!editanswering" @click.stop="editanswer">{{ component.value || answertip }}</p>
             </div>
         </div>
         <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>

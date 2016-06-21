@@ -22,7 +22,7 @@
                 <div v-show="edittitling" class="edittitle" @click.stop="">
                     <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
-                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div class="images-container">
                     <div class="image item" v-for="item in component.items">
                         <label v-show = "edititemindex!==$index" @click.stop="edititem($index,$event)">

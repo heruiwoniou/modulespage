@@ -44,10 +44,21 @@ define([
                     } while ((o = nodes[i++]) && o != this.$BaseEl[0]);
                     this.$BaseEl.after(this.$LabelContainer).appendTo(this.$LabelContainer);
                     this.$LabelText=Setting.LabelSetting.getNode(nodes[i]);
-                    if (Setting.LabelSetting.check(this.$LabelText)) {
-                        this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get(this.$LabelText)));
-                        this.$LabelContainer.append(this.$LabelText);
+
+                    //如果含有data-label-on/data-label-off则替换内容
+                    this.label=this.$BaseEl.data("label") || $.trim(Setting.LabelSetting.get(this.$LabelText));
+                    this.on = this.$BaseEl.data("label-on");
+                    this.off=this.$BaseEl.data("label-off");
+                    if(this.label||this.on||this.off)
+                    {
+                        if(this.$BaseEl.is(":checked"))
+                            Setting.LabelSetting.set(this.$LabelText,this.on || this.label)
+                        else
+                            Setting.LabelSetting.set(this.$LabelText,this.off || this.label)
                     }
+
+                    this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get(this.$LabelText)));
+                    this.$LabelContainer.append(this.$LabelText);
                 }
                 else {
                     if($parent[0].childNodes.length>=2)

@@ -30,8 +30,6 @@ define(
                     this.$BoxBaseContent = this.$BoxBaseEl.find(".comsys-box-content");
                     this.$BoxBaseFrame = this.$BoxBaseEl.find("iframe");
 
-                    this.contentParent=null;
-
                     this.setting.titleHeight = 50;
                     this.setting.borderWidth = 0;
                     this.setting.zindex=0;
@@ -41,6 +39,7 @@ define(
                     }
 
                     this.windowLoadType = null;
+                    this.placeholder = null;
                     this.deferred = new $.Deferred();
                     this.color=""
                     this.status=false;
@@ -153,11 +152,12 @@ define(
 
                     this.$BoxBaseContent.empty();
                     if (setting.content) {
+                        var content = null;
                         this.windowLoadType = this.WindowLoadType.content;
-                        if (setting.content.jquery && setting.content.jquery == $("head").jquery)
+                        if(typeof setting.content !== 'string')
                         {
-                            //setting.content.show();
-                            this.contentParent = setting.content.parent();
+                            this.placeholder = $("<div id='placeholder"+ this.classids +"'></div>");
+                            $(setting.content).before(this.placeholder).show()
                         }
                         this.$BoxBaseFrame.hide();
                         this.$BoxBaseContent.append(setting.content).show();
@@ -184,9 +184,9 @@ define(
 
                     this.$BoxBaseEl.fadeIn();
                     layer.mask(function(e){
-                        me.$BoxBaseContent.animate({scrollTop:me.$BoxBaseContent.scrollTop()-e.wheelDelta})
+                        me.$BoxBaseContent.stop().animate({scrollTop:me.$BoxBaseContent.scrollTop()  - 2 * e.wheelDelta})
                         return false;
-                    });
+                    },950 + this.setting.zindex);
                     return this;
                 },
                 close: function (command) {
@@ -199,10 +199,12 @@ define(
                         this.then(function(){command.apply(null,arguments);});
                         cmd="close";
                     }
-                    if(this.windowLoadType == this.WindowLoadType.content&&this.contentParent!=null)
-                        this.contentParent.append(this.$BoxBaseContent.find(":first"));
+                    if(this.placeholder !== null)
+                    {
+                        this.placeholder.replaceWith(this.$BoxBaseContent.children().first());
+                        this.placeholder = null;
+                    }
                     this.status=false;
-                    this.contentParent = null;
                     this.deferred.resolve(cmd||"close");
                 },
                 setindex:function(zindex){

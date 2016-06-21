@@ -30,6 +30,7 @@ define(
                 width: opt.width || MaskLayer.LOADING[typeof opt.type == "number" ? opt.type % MaskLayer.LOADING.length : 0].width,
                 height: opt.height || MaskLayer.LOADING[typeof opt.type == "number" ? opt.type % MaskLayer.LOADING.length : 0].height,
                 color: "black",
+                zindex :[950],
                 defaultText: typeof opt.defaultText == "string" ? opt.defaultText : MaskLayer.LOADING[typeof opt.type == "number" ? opt.type % MaskLayer.LOADING.length : 0].defaultText
             }
             this.status = false;
@@ -104,9 +105,12 @@ define(
             unbind: function() {
                 document.body.onmousewheel = this.onmousewheel;
             },
-            mask: function(mousewheel) {
+            mask: function(mousewheel,zindex) {
                 this.status = true;
                 var me = this;
+                if(zindex !== undefined )
+                    me.options.zindex.push(zindex);
+                me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
                 if (++me.layoutCount !== 1) return;
                 if (me.LowIE) {
                     if (me.c.attr("scroll-bind") !== "true") {
@@ -121,7 +125,7 @@ define(
                 me.m.hide();
                 me.b.hide();
                 me.w.hide();
-                me.c.show();
+                me.c.show().css({zIndex:me.options.zindex[me.options.zindex.length-1]});
                 this.bind(mousewheel);
             },
             setprogress: function(percent, src, delay, completeTxt, errorTxt, width, height) {
@@ -274,6 +278,8 @@ define(
             },
             hide: function(animate) {
                 var me = this;
+                me.options.zindex.pop();
+                me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
                 if (--me.layoutCount !== 0) return;
                 this.status = false;
                 if (animate)

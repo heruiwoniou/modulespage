@@ -2,7 +2,7 @@
 
 <template>
 
-<div class="full-screen-modal" v-if="showframe" transition="fadeInOutDown">
+<div class="full-screen-modal" v-if="showframe" transition="fadeInOutDown" :style="{zIndex:zIndex}">
     <div class="modal-frame">
         <div class="modal-menu" v-if="!iscustom">
             <div class="back" @click="close"><i></i></div>
@@ -27,6 +27,8 @@
 <script>
 
 import './common/transition/fadeInOutDown';
+import golbalWindow from 'comsys/widget/Window';
+
 var callback = function() {};
 export default {
     data() {
@@ -38,7 +40,9 @@ export default {
                 showframe: false,
                 defaultsrc: "about:blank",
                 analyzesrc: "about:blank",
-                animated: false
+                animated: false,
+
+                zIndex :""
             }
         },
         watch: {
@@ -71,11 +75,13 @@ export default {
                         callback.call(this, cmd);
                         return cmd;
                     });
-
+                    golbalWindow.otherZIndexLength += 1;
+                    this.zIndex = 950 + golbalWindow.getZIndex()
                     return this;
                 },
                 close(cmd) {
                     this.animated = false;
+                    golbalWindow.otherZIndexLength -= 1;
                     this.$nextTick(function() {
                         this.showframe = false;
                         this.defaultsrc = "about:blank";

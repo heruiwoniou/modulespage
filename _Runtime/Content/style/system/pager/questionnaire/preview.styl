@@ -1,3 +1,11 @@
+@import './preview/TabBar.styl';
+@import './preview/StaticHeader.styl';
+@import './preview/SectionGroup.styl';
+@import './preview/ChoiceQuestion.styl';
+@import './preview/QuestionResponse.styl';
+@import './preview/UnmixedText.styl';
+@import './preview/PicChoiceQuestion.styl';
+@import './preview/GradeQuestion.styl';
 questionnairePreview()
 	$TabColor = #4c98c5;
 	.preview
@@ -7,80 +15,11 @@ questionnairePreview()
 		min-width 750px;
 		max-width 1024px;
 		margin 0 auto
-		.TabBar
-			padding 10px 0
-			.tab-item
-				vertical-align: middle;
-				padding 5px 10px;
-				display inline-block;
-				height 20px
-				line-height 20px
-				box-sizing content-box
-		.StaticHeader
-			padding 10px 0 20px 0
-			h1
-				text-align center
-				margin 5px 0
-				line-height 40px;
-				font-size 30px
-			p
-				text-indent 28px
-				margin-top 30px
-				line-height 1.5
-				word-break break-all
-				color $fontMiddleColor - 40%
-			border-bottom 1px solid #ccc
-		.SectionGroup
-			margin-top 26px;
-			&>h1
-				line-height 30px;
-				font-size 16px
-		.ChoiceQuestion
-			margin-top 13px;
-			&>h1
-				line-height 30px;
-			&>table
-				margin-left 26px
-				td
-					line-height 30px;
-		.QuestionResponse
-			margin-top 13px;
-			&>h1
-				line-height 30px;
-		.UnmixedText
-			p
-				word-break break-all
-				text-indent 28px;
-				margin 20px 0
-		.PicChoiceQuestion
-			margin-top 26px;
-			.images-container
-				padding 10px 0
-				.image
-					float left
-					width 150px
-					height 175px
-					border 1px solid #ccc + 60%
-					margin-right 5px;
-					margin-bottom 5px;
-					text-align center
-					&.item
-						text-align right;
-						padding-right 7px
-						.imageViewer
-							background #ccc + 60%
-							margin 7px auto 5px auto
-							height 134px
-							line-height 134px
-							width 134px
-							display inline-block;
-					.span-text
-						textHidden()
-						max-width 114px
-						display inline-block
-						margin 3px 0
-						vertical-align middle
-					input[type="checkbox"],input[type="radio"]
-						vertical-align middle
-				&:after
-					clear()
+		TabBarPreview();
+		StaticHeaderPreview();
+		SectionGroupPreview();
+		ChoiceQuestionPreview();
+		QuestionResponsePreview();
+		UnmixedTextPreview();
+		PicChoiceQuestionPreview();
+		GradeQuestionPreview();

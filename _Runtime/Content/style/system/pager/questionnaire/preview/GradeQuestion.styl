@@ -1,0 +1,34 @@
+@import './../edit/GradeQuestion.styl'
+GradeQuestionPreview()
+	GradeQuestion()
+	.GradeQuestion
+		margin-top 13px;
+		&>h1
+			line-height 30px;
+		.operate
+			padding 0
+			margin 10px 0 10px 26px;
+			&.input-panel
+				width 50%
+				input
+					ime-mode disabled
+			&.star-panel
+				span.select
+					&:before
+						content ''
+					& ~ span
+						&:before
+							content ''
+			&.letter-panel
+			&.char-panel
+				span
+					&.select
+						color #d05e4b
+						font-weight bold
+			&.choose-panel
+				span
+					&.select
+						border-color #d05e4b
+						background #d05e4b
+						color white
+						font-weight bold

@@ -9,9 +9,10 @@ define(
     [
         "jquery",
         'Class',
-        './baseClass/LabelBase'
+        './baseClass/LabelBase',
+        'common/setting'
     ],
-    function($, Class, LabelBase) {
+    function($, Class, LabelBase,Setting) {
         var ClassName = "Control.CheckBox";
 
         var CheckBox = Class(ClassName, {
@@ -20,6 +21,7 @@ define(
                 this.$CheckBoxEl = $(args.element);
             },
             initialize: function() {
+                var that = this;
                 var $this = this.$CheckBoxEl;
                 if ($this.data(ClassName) == undefined) {
                     this.callParent();
@@ -35,15 +37,28 @@ define(
                     }
 
                     $(document).on("click.CheckBoxClickHandler" + id, "#" + id, function() {
-                        if (this.checked)
-                            $($wrap).addClass("checkbox-checked");
-                        else $($wrap).removeClass("checkbox-checked");
+                        that.checkedChange(this);
                     })
-
                     $this.data(ClassName, this);
-                    $this.attr("data-binded",true)
+                }else
+                {
+                    that = $this.data(ClassName);
+                    this.checkedChange.apply(that,$this);
                 }
                 return this;
+            },
+            checkedChange:function(el){
+                var that=this;
+                if($(el).is(":checked"))
+                {
+                    that.$CheckBoxControl.addClass("checkbox-checked");
+                    Setting.LabelSetting.set(that.$LabelText,that.on || that.label)
+                }
+                else
+                {
+                    that.$CheckBoxControl.removeClass("checkbox-checked");
+                    Setting.LabelSetting.set(that.$LabelText,that.off || that.label)
+                }
             },
             destory: function() {
                 $(document).off(".CheckBoxClickHandler" + this.$CheckBoxEl.attr("id"));
@@ -56,7 +71,7 @@ define(
 
         $.fn.extend({
             CheckBoxInit: function() {
-                return this.filter(":not([data-binded])").each(function() {
+                return this.each(function() {
                     $(this).attr('data-button-type')
                     var setting = { buttontype: $(this).attr('data-buttontype') || '' }
                     new CheckBox({ element: this, setting: setting }).initialize();

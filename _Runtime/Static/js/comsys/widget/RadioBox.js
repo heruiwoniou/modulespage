@@ -52,7 +52,13 @@ define(
                     });
 
                     $this.data(ClassName, this);
-                    $this.attr("data-binded",true)
+                }else
+                {
+                    var that = $this.data(ClassName);
+                    if($this.is(":checked"))
+                        that.$RadioBoxControl.addClass("radiobox-checked");
+                    else
+                        that.$RadioBoxControl.removeClass("radiobox-checked");
                 }
                 return this;
             },
@@ -66,7 +72,7 @@ define(
 
         $.fn.extend({
             RadioBoxInit: function () {
-                return this.filter(":not([data-binded])").each(function () {
+                return this.each(function () {
                     var setting = { buttontype: $(this).attr('data-buttontype') || '' }
                     new RadioBox({element: this , setting : setting}).initialize();
                 });

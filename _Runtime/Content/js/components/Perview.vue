@@ -29,10 +29,11 @@
 		},
 		methods:{
 			show(data){
-				this.data = encodeURIComponent(data);
+				this.data = data;
 				this.visible = true;
 			},
 			close(){
+				this.data = '';
 				this.visible = false;
 			}
 		}

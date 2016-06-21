@@ -15,22 +15,23 @@
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
+                    <a href="javascript:;" class="icon-logic">逻辑</a>
+                    <span class="split"></span>
                     <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
                     <span class="split"></span>
                     <a href="javascript:;" class="delete" @click="removecontrol"></a>
                 </div>
-                
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
                     <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
-                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
+                <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div v-show="!edititemsing&&children.length==0" @click.stop="edititems" class="edititems-tip">
                     内容(点击编辑)
                 </div>
                 <div v-show="edititemsing" class="edititems" @click.stop="">
-                    <textarea cols="30" rows="{{textarearow}}" @focusout="closeitems" v-model="itemstring" v-el:items-textarea></textarea>
+                    <textarea cols="30" :rows="textarearow" @focusout="closeitems" v-model="itemstring" v-el:items-textarea></textarea>
                 </div>
                 <table v-if="!edititemsing&&children.length!=0" @click.stop="edititems">
                     <tr v-for="row in Math.ceil(children.length / columns)">
@@ -50,7 +51,6 @@
 <script>
 
 import './../common/transition/fadeInOut';
-
 import props from './../common/props';
 import {
     setindex, removecontrol, showColorPicker, setBold, setMust
@@ -65,6 +65,8 @@ import {
 }
 from './../common/computed';
 
+
+
 export default {
     data() {
             return {
@@ -76,15 +78,18 @@ export default {
             }
         },
         props: props,
+        ready(){
+            this.itemstring = this.component.items.join('\n');
+        },
         watch:{
-            'itemstring':function(_new_){
-                this.component.items = _new_.split('\n').filter(o => o !== '');
+            'itemstring':function(_new_,_old_){
+               this.component.items = _new_.split('\n').filter(o => o !== '');
             }
         },
         computed: {
             textarearow() {
-                    var l = this.itemstring.split('\n').length;
-                    return l > this.maxrows ? this.maxrows : l;
+                var l = this.itemstring.split('\n').length;
+                return l > this.maxrows ? this.maxrows : l;
             },
             children() {
                 return this.itemstring.split('\n').filter(o => o !== '');

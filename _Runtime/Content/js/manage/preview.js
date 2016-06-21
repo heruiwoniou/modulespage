@@ -1,7 +1,6 @@
 define(
     [
         'vue',
-        'common/client/Request',
         //引用控件
         './../components/preview/TabBar',
         './../components/preview/StaticHeader',
@@ -9,7 +8,8 @@ define(
         './../components/preview/PicChoiceQuestion',
         './../components/preview/SectionGroup',
         './../components/preview/UnmixedText',
-        './../components/preview/QuestionResponse'
+        './../components/preview/QuestionResponse',
+        './../components/preview/GradeQuestion'
     ],
     function(Vue,Request) {
         var viewModel;//数据模型
@@ -21,11 +21,9 @@ define(
                 viewModel = new Vue({
                     el: 'body',
                     data: (function() {
-                        var data=decodeURIComponent(Request['data'])
-                        if (data && data !== "null" && data !== "undefined") {
-                            var json=JSON.parse(data);
-                            return json;
-                        }
+                        var datastring=WebApi.invokeObject("$Preview").data;
+                        var json=JSON.parse(datastring);
+                        return json;
                     }()),
                     computed:{
                         exportStyle:function(){

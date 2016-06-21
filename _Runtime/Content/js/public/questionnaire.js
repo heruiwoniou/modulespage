@@ -8,7 +8,8 @@ define(
         './../components/preview/PicChoiceQuestion',
         './../components/preview/SectionGroup',
         './../components/preview/UnmixedText',
-        './../components/preview/QuestionResponse'
+        './../components/preview/QuestionResponse',
+        './../components/preview/GradeQuestion'
     ],
     function(Vue) {
         var viewModel;//数据模型
@@ -17,6 +18,7 @@ define(
                 this.vue();
             },
             vue: function() {
+                var that=this;
                 viewModel = new Vue({
                     el: 'body',
                     data: (function() {
@@ -30,6 +32,12 @@ define(
                             return {
                                 background:"#ffffff url(" + this.header.src + ') repeat fixed'
                             }
+                        }
+                    },
+                    methods:{
+                        save:function(){
+                            var str = JSON.stringify(this.$data);
+                            localStorage.data = str;
                         }
                     }
                 })

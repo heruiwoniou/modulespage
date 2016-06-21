@@ -1,4 +1,83 @@
 GradeQuestion()
 	.GradeQuestion
+		.control-panel-sub
+			input
+				ime-mode disabled
 		&.select
-			padding-top 100px;
+			padding-top 81px;
+		.operate
+			padding 10px 15px
+			span
+				display inline-block
+				vertical-align middle
+				text-align center
+				min-width 30px
+				cursor pointer
+				box-sizing border-box
+			&.star-panel
+				max-width 200px;
+				font-size 0px;
+				text-align left
+				direction rtl
+				span
+					color #d05e4b
+					&:before
+						iconfont()
+						content ''
+					font-size 25px;
+				span:hover
+					&:before
+						content ''
+					& ~ span
+						&:before
+							content ''
+			&.letter-panel
+				font-size 0px;
+				span
+					line-height 42px;
+					font-size 20px;
+					&:hover
+						color #d05e4b
+			&.char-panel
+				font-size 0px;
+				span
+					box-sizing border-box
+					line-height 42px;
+					font-size 18px;
+					&:hover
+						color #d05e4b
+			&.choose-panel
+				font-size 0px;
+				span
+					border 1px solid #ccc + 20%;
+					padding 2px 2px;
+					margin 2px;
+					font-size 14px
+					&:hover
+						color #d05e4b
+			&.slider-panel
+				.bar
+					width 300px;
+					height 2px
+					background #d05e4b
+				.arrow
+					height 43px
+					width 1px
+					position relative
+					.pointer
+						cursor pointer
+						position absolute
+						width 33px
+						height 38px
+						left -16px
+						top 0px
+						background url(images/arrow-bottom.png) no-repeat
+						.number
+							width 33px
+							line-height 33px
+							text-align center
+							color white
+				.containment
+					float left
+				&:after
+					clear();

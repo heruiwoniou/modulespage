@@ -10,20 +10,6 @@ define(['Guid'],function(guid){
 				items:[]
 			}
 		},
-		GradeQuestion:function(name){
-			return {
-				type : "GradeQuestion" ,
-				id : guid.NewGuid().ToString("D"),
-
-				self : false,
-				range : [],
-				value : "",
-
-				bold : false,
-				color : color,
-				must : false
-			}
-		},
 		StaticHeader: function () {
 			return {
 				type : "StaticHeader" ,
@@ -36,34 +22,6 @@ define(['Guid'],function(guid){
 
 				bold:false,
 				color: color
-			}
-		},
-		ChoiceQuestion: function () {
-			return {
-				type : "ChoiceQuestion" ,
-				id : guid.NewGuid().ToString("D"),
-
-				single : true,
-				title : '',
-				items : [],
-
-				bold : false,
-				color : color,
-				must : false
-			}
-		},
-		PicChoiceQuestion:function(){
-			return {
-				type : "PicChoiceQuestion" ,
-				id : guid.NewGuid().ToString("D"),
-
-				title : "",
-				items : [],
-				single : true,
-
-				bold : false,
-				color : color,
-				must : false
 			}
 		},
 		SectionGroup:function(){
@@ -86,22 +44,82 @@ define(['Guid'],function(guid){
 				content:'',
 
 				bold:false,
-				color: color,
-				must : false
+				color: color
+			}
+		},
+
+		//以下为含编号的控件
+		GradeQuestion:function(name){
+			return {
+				type : "GradeQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				//是否自填分
+				self : false,
+				//填分类型
+				//0:星,1:字母,2:汉字,3:滑条,4:选择分数,5:填分
+				xtype : 0,
+				range : {
+					min : 0,
+					max : 100
+				},
+
+				bold : false,
+				color : color,
+				must : false,
+
+				value : "",
+			}
+		},
+		ChoiceQuestion: function () {
+			return {
+				type : "ChoiceQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				single : true,
+				title : '',
+				items : [],
+
+				bold : false,
+				color : color,
+				must : false,
+
+				value: []
+			}
+		},
+		PicChoiceQuestion:function(){
+			return {
+				type : "PicChoiceQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				title : "",
+				items : [],
+				single : true,
+
+				bold : false,
+				color : color,
+				must : false,
+
+				value:[]
 			}
 		},
 		QuestionResponse:function(){
 			return {
 				type : "QuestionResponse" ,
 				id:guid.NewGuid().ToString("D"),
+				qindex:'',
 
 				question:'',
-				answer:'',
 				single:true,
 
 				bold:false,
 				color: color,
-				must : false
+				must : false,
+
+				value:'',
 			}
 		}
 	}

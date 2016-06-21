@@ -37,6 +37,7 @@ define(
             window: [],
             resizewindow: [],
             maxindex:0,
+            otherZIndexLength:0,
             resetindex: function() {
                 var me = this,current = this.setting.zindex,max = current,i,c
                 for (i = 0; i < Win.window.length; i++) {
@@ -53,6 +54,9 @@ define(
                 }
                 Win.maxindex=max + 1;
                 this.setindex(max + 1);
+            },
+            getZIndex:function(){
+                return 2 * ( this.window.length + this.resizewindow.length + this.dialog.length + this.otherZIndexLength);
             },
             clear: function(type, name) {
                 if (type === undefined) {
@@ -162,6 +166,7 @@ define(
                         setting.callback = setting.callback;
                         setting.icon = setting.icon || this.icon.info;
                         setting.buttons = setting.buttons || this.button.OK;
+                        setting.maxHeight = setting.maxHeight || maxheight;
                         break;
                     case this.type.resizewindow:
                         setting.full =
@@ -174,13 +179,13 @@ define(
                         setting.height = setting.height || maxheight;
                         setting.content = setting.content || '';
                         setting.callback = setting.callback;
-                        setting.maxHeight = setting.maxHeight || null;
+                        setting.maxHeight = setting.maxHeight || setting.height;
                         break;
                 }
                 _win = this.create(setting.type, name);
-                setting.zindex = this.window.length + this.resizewindow.length + this.dialog.length;
+                setting.zindex = this.getZIndex();
                 Win.maxindex = setting.zindex;
-                setting.headmousedown=this.resetindex;
+                //setting.headmousedown=this.resetindex;
                 _win.show(setting);
                 _win.then(
                     function(_type_) {

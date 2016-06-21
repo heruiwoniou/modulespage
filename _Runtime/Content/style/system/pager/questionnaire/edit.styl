@@ -74,6 +74,7 @@ questionnaireEdit()
 		.QuestionResponse
 		.GradeQuestion
 			input[type=text]
+			input[type=number]
 			textarea
 				border 1px solid #ccc
 				line-height 19px
@@ -162,6 +163,10 @@ questionnaireEdit()
 			a.icon-self
 			a.icon-star
 			a.icon-char
+			a.icon-slider
+			a.icon-choose
+			a.icon-input
+			a.icon-logic
 				position relative
 				&:before
 					position relative
@@ -207,6 +212,10 @@ questionnaireEdit()
 				&:before
 					background url('images/icon-char.png') no-repeat;
 			a.icon-must
+			a.icon-slider
+			a.icon-choose
+			a.icon-input
+			a.icon-logic
 				&:before
 					iconfont()
 					position relative
@@ -219,6 +228,18 @@ questionnaireEdit()
 				&.select
 					&:before
 						content "\7e"
+			a.icon-slider
+				&:before
+					content "\66"
+			a.icon-choose
+				&:before
+					content "\52"
+			a.icon-input
+				&:before
+					content "\6c"
+			a.icon-logic
+				&:before
+					content "\e02b"
 			a.icon-color
 				b
 					height 3px
@@ -235,18 +256,29 @@ questionnaireEdit()
 					background white
 					cursor default
 					text-decoration none;
+		//子菜单样式
 		.control-panel-sub
-			background $basecolor - 20%
-			background white
+			background #ebebeb
 			border-top 1px solid $basecolor - 20%
+			height 35px;
+			line-height 35px;
 			top 45px;
+			input
+				width 50px;
+				margin 0 10px;
+				line-height 22px !important;
+				text-align center
 			span.split
-				background white
+				height 32px;
+				background transparent
+			a
+				height 32px;
+				line-height 32px;
 			a:hover
-				background white
+				background transparent
 			a.select
 				color #d05e4b
-				background-color white
+				background-color transparent
 				&.icon-star:before
 					background url('images/icon-star-select.png') no-repeat;
 				&.icon-letter:before
@@ -255,8 +287,7 @@ questionnaireEdit()
 					background url('images/icon-char-select.png') no-repeat;
 			a.no-hover
 				&:hover
-					background $basecolor - 20%
-					background white
+					background transparent
 					cursor default
 					text-decoration none;
 	&.begin

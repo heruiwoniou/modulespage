@@ -5,6 +5,7 @@ $control-samll-width=160px;
 @import './preview.styl'
 @import './colorPicker.styl'
 @import './previewModal.styl'
+@import './logic.styl'
 
 @keyframes pointer-animate
 	0%
@@ -13,7 +14,7 @@ $control-samll-width=160px;
 	100%
 		opacity 1
 		left -4px
-
+logic()
 .questionnaire
 	previewModal()
 	colorPicker()
@@ -142,6 +143,8 @@ $control-samll-width=160px;
 .questionnaire
 .public-preview
 	questionnairePreview()
+	.qindex
+		padding-right 5px;
 	.preview
 		margin-top 20px
 		margin-bottom 100px

@@ -11,7 +11,7 @@ define(function(){
 			//如果焦点不在该对象上,先设置焦点
 			if(this.iscurrent)
 			{
-				if(typeof callback == 'function') callback.apply(this)
+				if(typeof callback == 'function') callback.apply(this);
 			}
 			else
 			{
@@ -29,8 +29,13 @@ define(function(){
 		this.$parent.$emit("removeItem",this.index);
 	}
 
+	prototype.closeColorPicker=function(){
+		if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
+	}
+
 	prototype.setBold=function(){
 		this.component.bold = !this.component.bold;
+		if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
 	}
 	prototype.showColorPicker=function(e){
 		var that=this;

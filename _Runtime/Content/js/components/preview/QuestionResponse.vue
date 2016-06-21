@@ -2,9 +2,11 @@
 
 <template>
     <div class="QuestionResponse">
-         <h1 :style="styleExport">{{ component.question }}</h1>
-         <input v-if="component.single" type="text" :name="component.id" :value="component.answer">
-         <textarea v-else cols="30" rows="5" @focusout="closeanswer">{{component.answer}}</textarea>
+        <h1 :style="styleExport"><span class="qindex">Q{{component.qindex}}:</span>{{ component.question }}</h1>
+        <div class="response-container">
+            <input v-if="component.single" type="text" :name="component.id" v-model="component.value" lazy>
+            <textarea v-else cols="30" rows="5" v-model="component.value" lazy></textarea>
+        </div>
     </div>
 </template>
 

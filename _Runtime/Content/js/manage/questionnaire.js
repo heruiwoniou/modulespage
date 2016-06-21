@@ -33,6 +33,9 @@ define(
                 this.vue();
                 return false;
             },
+            showLogic:function(){
+                WebApi.modal({content:$('#logic'),title:"逻辑设置",width:800,height:400})
+            },
             //计算容器所在坐标
             countdroppables: function($target) {
                 droppables = null;
@@ -128,6 +131,7 @@ define(
                         target.children.splice(insertIndex, 0, component[0])
                         fromTarget.children.splice((fromPathStr == toPathStr && fromIndex >= insertIndex ? (fromIndex + 1) : fromIndex), 1);
                     };
+                    viewModel.setQuestionIndex();
                     viewModel.$nextTick(function() {
                         WebApi.bindaccept();
                     });
@@ -207,7 +211,7 @@ define(
                         save: function() {
                             var str = JSON.stringify(this.$data);
                             localStorage.data = str;
-                            WebApi.invoke('$ModalWin','close','aaa')
+                            WebApi.invoke('$ModalWin','close')
                         },
                         toggle: function() {
                             WebApi.$Preview.show(JSON.stringify(this.$data))
@@ -218,8 +222,25 @@ define(
                             //广播所有的对象都进入非编辑模式
                             this.$broadcast("setdefault", this.selectindex);
                         },
-                        alert: function(index) {
-                            alert(index)
+                        setQuestionIndex:function(){
+                            var that = this,i = 1;
+                            var fn = function(c,index){
+                                var j = 0;
+                                while(j < c.length)
+                                {
+                                    var child = c[j++];
+                                    if(child.type.indexOf('Question') == -1){
+                                        if(child.type=='SectionGroup'&&child.children&&child.children.length!=0)
+                                            index = fn(child.children,index);
+                                        continue;
+                                    }
+                                    child.qindex = index ++ ;
+                                    if(child.children&&child.children.length!=0)
+                                        index = fn(child.children,index);
+                                }
+                                return index;
+                            }
+                            fn( that.children , i );
                         }
                     },
                     events: {

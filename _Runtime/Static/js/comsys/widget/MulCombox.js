@@ -63,7 +63,8 @@ define([
             var me=this;
             this.state=false;
             this.$MulComboxController=$(TPLEngine.render(this.TPL.main, this));
-            this.options[this.options.length-1].$LabelContainer.after(this.$MulComboxController);
+            if(this.$GroupInputs.length!==0)
+                this.options[this.options.length-1].$LabelContainer.after(this.$MulComboxController);
             this.draggable=null;
 
             this.$MulComboxDrag=this.$MulComboxController.find(".comsys-MulCombox-drag");

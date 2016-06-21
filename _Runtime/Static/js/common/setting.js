@@ -23,8 +23,11 @@
             debug:true
         },
         LabelSetting: {
-            check: function (node) {
-                return this.getNode(node) !== undefined;
+            set:function(node,text){
+                if (node.nodeName == "#text")
+                    node.nodeValue = text;
+                else if (node.nodeName == "SPAN")
+                    node.innerHTML = text;
             },
             get: function (node) {
                 node = this.getNode(node);
@@ -40,7 +43,7 @@
                     return undefined;
                 else if (node.nodeValue && !/^\s*$/.test(node.nodeValue) || !node.nodeValue && node.nodeName == "SPAN")
                     return node;
-                else return node.nextSibling && (node.nextSibling.nodeName == "SPAN" || node.nextSibling.nodeName == "#text") ? arguments.callee(node.nextSibling) : undefined;
+                else return node.nextSibling && (node.nextSibling.nodeName == "SPAN" || node.nextSibling.nodeName == "#text") ? arguments.callee(node.nextSibling) : document.createTextNode("");
             }
         },
         Browser:function(){

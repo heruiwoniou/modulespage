@@ -12,6 +12,9 @@ define(['vue','system/js/components/common/transition/toggleAnimate' , 'ztree'],
 		last:function(){
 			viewModel.currentStep -= 1;
 		},
+		test:function(){
+			WebApi.modal({content:"123123123",width:400,height:300})
+		},
 		save:function(){
 			WebApi.close({command:'savesuccess'})
 		},

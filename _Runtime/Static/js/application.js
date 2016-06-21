@@ -112,7 +112,18 @@ define([
                 parent=parent.parent;
             if(parent.WebApi&&parent.WebApi[objectName]) return parent.WebApi[objectName][action].apply(parent.WebApi,[].slice.call(arguments,2));
         },
-
+        /**
+         * [invoke 反射父亲frame的第一个的对象]
+         * @param  {[type]} objectName [对象名称]
+         * @param  {[type]} action     [方法名称]
+         * @return {[type]}            [Promise Object]
+         */
+        invokeObject:function(objectName)
+        {
+            var parent=window;
+            while(parent!=parent.parent&&parent.WebApi&&!parent.WebApi[objectName]) parent=parent.parent;
+            if(parent.WebApi&&parent.WebApi[objectName]) return parent.WebApi[objectName];
+        },
         /**
          * [close 关闭弹出窗口(如带name将找到第一个同名的关闭,如不带名称将会关闭所有)]
          * @param  {[type]} setting [description]

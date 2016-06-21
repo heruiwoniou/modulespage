@@ -14,11 +14,6 @@ define(['vue','common/client/WinResizeResponder','ztree'],function(Vue,Responder
 		},
 		init:function(){
 			Responder.resize(this.resize);
-			$(".section-1 input[data-buttontype]").bind('click', function() {
-                var id = this.id;
-                var $node = $(this).data("Control.CheckBox").$LabelText;
-                $node.textContent = ($node.textContent == "开启" ? '关闭' : '开启')
-            });
             $("input[id*=search]").ButtonTextBoxInit({ ButtonClass: "search" });
             this.tree();
             $(".hasHorizontalBar").mCustomScrollbar({
