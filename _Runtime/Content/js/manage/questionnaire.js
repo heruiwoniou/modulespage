@@ -5,6 +5,7 @@ define(
         //公用组件
         './../components/Perview',
         './../components/ColorPicker',
+        './../components/Logic',
         //引用控件
         './../components/edit/TabBar',
         './../components/edit/StaticHeader',
@@ -19,7 +20,8 @@ define(
         Vue,
         setting,
         Perview,
-        ColorPicker
+        ColorPicker,
+        Logic
     ) {
         var viewModel,//数据模型
         droppables,//可填充对象坐标信息
@@ -34,7 +36,7 @@ define(
                 return false;
             },
             showLogic:function(){
-                WebApi.modal({content:$('#logic'),title:"逻辑设置",width:800,height:400})
+                WebApi.modal({content:$('#Logic'),title:"逻辑设置",width:800,height:425})
             },
             //计算容器所在坐标
             countdroppables: function($target) {
@@ -180,6 +182,7 @@ define(
                                 tab:function(){
                                     return setting('TabBar');
                                 }(),
+                                logic:[],
                                 children: []
                             };
                     }()),

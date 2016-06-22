@@ -40,7 +40,7 @@
             },
             getNode: function (node) {
                 if (node === undefined)
-                    return undefined;
+                    return document.createTextNode("");
                 else if (node.nodeValue && !/^\s*$/.test(node.nodeValue) || !node.nodeValue && node.nodeName == "SPAN")
                     return node;
                 else return node.nextSibling && (node.nextSibling.nodeName == "SPAN" || node.nextSibling.nodeName == "#text") ? arguments.callee(node.nextSibling) : document.createTextNode("");

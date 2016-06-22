@@ -1,5 +1,5 @@
 <template>
-    <div class="GradeQuestion">
+    <div :class="['GradeQuestion',disabled?'gray':'']">
         <h1 :style="styleExport" ><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}</h1>
         <div class="operate star-panel" v-if="component.xtype==0">
             <span :class="[select == 4 || component.value == 5 ? 'select':'']" @click="setStar(4)"></span>
@@ -34,24 +34,24 @@
         </div>
         <div class="operate choose-panel" v-if="component.xtype==4">
             <template v-for="n in limitRange">
-                <span :class="[select == n || component.value == n ? 'select' : '']" @click="setChoose(n)">{{n}}</span>
+                <span :class="[select === n || component.value === n ? 'select' : '']" @click="setChoose(n)">{{n}}</span>
             </template>
         </div>
         <div class="operate input-panel" v-if="component.xtype==5">
-            <input type="text" v-model="component.value" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" number lazy>
+            <input type="text" :disabled="disabled" v-model="component.value" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" number lazy>
         </div>
         <input type="hidden" :name="component.id" :value="component.value">
     </div>
 </template>
 <script>
-
     import props from './../common/props';
-
     import { styleExport } from './../common/computed';
-
+    import { trigger } from './../common/events';
     export default {
         data() {
             return {
+                disabled : false,
+
                 select : -1,
             }
         },
@@ -69,13 +69,14 @@
             var that = this;
             if(this.component.xtype == 3)
             {
-                this.component.value = this.component.value == 0 || this.component.value == '' ? this.component.range.min : this.component.value;
+                //this.component.value = this.component.value == 0 || this.component.value == '' ? this.component.range.min : this.component.value;
                 $(this.$el).find(".arrow").draggable(
                     {
                         axis : "x",
                         containment : ".containment",
                         grid : [ 300.00 / (this.component.range.max - this.component.range.min) , 0 ],
                         drag( event, {helper , position ,offset } ){
+                            if(that.disabled) return false;
                             that.component.value = that.component.range.min + position.left * (that.component.range.max - that.component.range.min) / 300
                         },
                         create(event){
@@ -89,25 +90,43 @@
                     if(_new_>this.component.range.max||_new_<this.component.range.min) this.component.value = _old_;
                 })
             }
+
+            this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
         },
         methods:{
             setStar(index){
+                if(this.disabled) return;
                 this.select = index;
                 this.component.value = (index + 1)
             },
             setLetter(index,letter){
+                if(this.disabled) return;
                  this.select = index;
                  this.component.value = letter
             },
             setChar(index,char){
+                if(this.disabled) return;
                  this.select = index;
                  this.component.value = char
             },
             setChoose(index)
             {
+                if(this.disabled) return;
                 this.select = index;
                 this.component.value = index
             }
+        },
+        watch:{
+            'disabled':function(_new_,_old_){
+                var source,tos,ret;
+                source = this.$root.logic.filter(o=>o.from == this.component.id && o.option === 999);
+                tos = source.map(o=>{ return o.to });
+                ret = source.filter(o=>o.option == '999').map(o=>{ return o.to });
+                this.$root.$broadcast( 'trigger' , tos , ret , 'display' ,_new_);
+            }
+        },
+        events:{
+            trigger
         }
     }
 </script>

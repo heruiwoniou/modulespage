@@ -47,6 +47,12 @@
 		&:hover
 			color white !important
 			border-color white !important
+	&.disabled
+		cursor default;
+		background #ccc
+		&:hover
+			color white
+			border-color #ccc
 	&.empty
 		&.b
 		&.c
@@ -57,6 +63,7 @@
 		&.p
 		&.gray
 		&.w
+		&.disabled
 			background transparent
 		&.b
 			color $Color1
@@ -79,12 +86,17 @@
 		&.p
 			color $Color9
 			border-color $Color9
-		&.w
+		&.gray
 			color $Color10  - 10%
 			border-color $Color10  - 10%
 		&.w
 			color white - 10%
 			border-color white - 10%
+		&.disabled
+			color #ccc
+			border-color #ccc
+			&:hover
+				color #ccc
 .button-panel
 	display inline-block;
 	vertical-align middle

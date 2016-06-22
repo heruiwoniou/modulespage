@@ -45,26 +45,32 @@ define([
                     this.$BaseEl.after(this.$LabelContainer).appendTo(this.$LabelContainer);
                     this.$LabelText=Setting.LabelSetting.getNode(nodes[i]);
 
-                    //如果含有data-label-on/data-label-off则替换内容
-                    this.label=this.$BaseEl.data("label") || $.trim(Setting.LabelSetting.get(this.$LabelText));
-                    this.on = this.$BaseEl.data("label-on");
-                    this.off=this.$BaseEl.data("label-off");
-                    if(this.label||this.on||this.off)
-                    {
-                        if(this.$BaseEl.is(":checked"))
-                            Setting.LabelSetting.set(this.$LabelText,this.on || this.label)
-                        else
-                            Setting.LabelSetting.set(this.$LabelText,this.off || this.label)
-                    }
-
                     this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get(this.$LabelText)));
                     this.$LabelContainer.append(this.$LabelText);
                 }
                 else {
                     if($parent[0].childNodes.length>=2)
+                    {
                         this.$BaseEl.attr("data-label", $.trim(Setting.LabelSetting.get($parent[0].childNodes[1])));
+                        this.$LabelText=Setting.LabelSetting.getNode($parent[0].childNodes[1])
+                    }else {
+                        this.$LabelText=document.createTextNode('');
+                    }
                     this.$LabelContainer = $parent;
                 }
+
+                //如果含有data-label-on/data-label-off则替换内容
+                this.label=this.$BaseEl.data("label") || $.trim(Setting.LabelSetting.get(this.$LabelText));
+                this.on = this.$BaseEl.data("label-on");
+                this.off=this.$BaseEl.data("label-off");
+                if(this.label||this.on||this.off)
+                {
+                    if(this.$BaseEl.is(":checked"))
+                        Setting.LabelSetting.set(this.$LabelText,this.on || this.label)
+                    else
+                        Setting.LabelSetting.set(this.$LabelText,this.off || this.label)
+                }
+
                 return this;
             }else return data;
         }

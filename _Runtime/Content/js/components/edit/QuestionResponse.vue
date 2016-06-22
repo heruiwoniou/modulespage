@@ -20,9 +20,9 @@
             </div>
             <div class="content-area">
                 <div v-show="editquestioning" class="edittitle" @click.stop="">
-                    <input type="text" :style="styleExport" v-model="component.question" @focusout="closequestion" v-el:question-input>
+                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closequestion" v-el:question-input>
                 </div>
-                <h1 v-show="!editquestioning" :style="styleExport" @click.stop="editquestion"><span class="qindex">Q{{component.qindex}}:</span>{{ component.question || questiontip }}</h1>
+                <h1 v-show="!editquestioning" :style="styleExport" @click.stop="editquestion"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || questiontip }}</h1>
                 <div v-show="editanswering" class="editanswer" @click.stop="">
                     <input type="text" v-model="component.value" @focusout="closeanswer" v-el:answer-input />
                 </div>

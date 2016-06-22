@@ -54,6 +54,7 @@ define(['Guid'],function(guid){
 				type : "GradeQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
+				logic:[],
 
 				//是否自填分
 				self : false,
@@ -77,6 +78,7 @@ define(['Guid'],function(guid){
 				type : "ChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
+				logic:[],
 
 				single : true,
 				title : '',
@@ -94,6 +96,7 @@ define(['Guid'],function(guid){
 				type : "PicChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
+				logic:[],
 
 				title : "",
 				items : [],
@@ -111,8 +114,9 @@ define(['Guid'],function(guid){
 				type : "QuestionResponse" ,
 				id:guid.NewGuid().ToString("D"),
 				qindex:'',
+				logic:[],
 
-				question:'',
+				title:'',
 				single:true,
 
 				bold:false,
