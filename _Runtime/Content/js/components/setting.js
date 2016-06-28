@@ -1,5 +1,6 @@
 define(['Guid'],function(guid){
 	var color = '#2a2727';
+	var maxItems = 15;
 	var setting={
 		//外部公用
 		TabBar:function(){
@@ -54,7 +55,6 @@ define(['Guid'],function(guid){
 				type : "GradeQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
-				logic:[],
 
 				//是否自填分
 				self : false,
@@ -63,7 +63,8 @@ define(['Guid'],function(guid){
 				xtype : 0,
 				range : {
 					min : 0,
-					max : 100
+					max : 100,
+					charlength:5
 				},
 
 				bold : false,
@@ -78,7 +79,6 @@ define(['Guid'],function(guid){
 				type : "ChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
-				logic:[],
 
 				single : true,
 				title : '',
@@ -88,6 +88,8 @@ define(['Guid'],function(guid){
 				color : color,
 				must : false,
 
+				maxItems : maxItems,
+
 				value: []
 			}
 		},
@@ -96,7 +98,6 @@ define(['Guid'],function(guid){
 				type : "PicChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
-				logic:[],
 
 				title : "",
 				items : [],
@@ -106,6 +107,8 @@ define(['Guid'],function(guid){
 				color : color,
 				must : false,
 
+				maxItems:maxItems,
+
 				value:[]
 			}
 		},
@@ -114,7 +117,6 @@ define(['Guid'],function(guid){
 				type : "QuestionResponse" ,
 				id:guid.NewGuid().ToString("D"),
 				qindex:'',
-				logic:[],
 
 				title:'',
 				single:true,
@@ -124,6 +126,26 @@ define(['Guid'],function(guid){
 				must : false,
 
 				value:'',
+			}
+		},
+		MatrixChoiceQuestion:function(){
+			return {
+				type: 'MatrixChoiceQuestion',
+				id:guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				title:'',
+				single:true,
+				rows:[],
+				cells:[],
+
+				bold:false,
+				color: color,
+				must : false,
+
+				maxItems:maxItems,
+
+				value:[]
 			}
 		}
 	}

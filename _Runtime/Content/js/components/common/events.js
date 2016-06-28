@@ -13,6 +13,7 @@ define(function(){
 		},
 		removeItem:function(index){
 			this.component.children.splice(index, 1);
+			this.$root.setQuestionIndex();
 		},
 		trigger:function( tos , rets , type , ...arg ){
 			if(tos.indexOf(this.component.id) !== -1)
@@ -30,17 +31,18 @@ define(function(){
 				}
 				if(this.disabled)
 				{
+					var that = this;
 					this.component.value = Array.isArray(this.component.value)?[]:'';
-					this.$nextTick(()=>{
-						switch (this.component.type) {
+					this.$nextTick(function(){
+						switch (that.component.type) {
 							case 'ChoiceQuestion':
-								if(this.component.single)
-									$(this.$el).find(':radio').RadioBoxInit();
+								if(that.component.single)
+									$(that.$el).find(':radio').RadioBoxInit();
 								else
-									$(this.$el).find(':checkbox').CheckBoxInit();
+									$(that.$el).find(':checkbox').CheckBoxInit();
 								break;
 							case 'GradeQuestion':
-								$(this.$el).find('.select').removeClass('select');
+								$(that.$el).find('.select').removeClass('select');
 								break;
 							default:
 								// statements_def

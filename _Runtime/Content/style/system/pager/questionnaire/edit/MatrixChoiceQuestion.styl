@@ -1,0 +1,63 @@
+MatrixChoiceQuestion()
+	.MatrixChoiceQuestion
+		.content-area
+			table
+				border-collapse collapse
+				th,td
+					text-align center
+					border 1px solid #ccc
+					line-height 25px
+				th
+					background white - 1%
+					&:hover
+						background $edithovercolor
+					&.nh
+						background white - 1%
+					span
+						display block
+						padding 0 10px;
+						min-width 50px;
+			.addrow
+			.addcell
+				color #ccc;
+				iconfont();
+				&:hover
+					color $fontBaseColor
+				text-decoration none
+			.cell
+			.row
+				position relative
+				cursor pointer
+				input
+					position absolute
+					left 10px
+					top 1px
+					z-index 1
+					100%
+				b
+					iconfont()
+					position absolute
+					width 13px
+					height 12px
+					border-radius 100%
+					background $Color7
+					color white
+					font-size 10px
+					left -5px
+					top -5px
+					line-height 12px
+					text-align center
+			.ctp
+				background transparent;
+				a
+					display block
+					padding 0 10px;
+				&.ctp-cell
+					border-width 0 0 0 1px
+					a
+						padding 0;
+						min-width 30px;
+				&.ctp-row
+					border-width 1px 0 0 0
+					a
+						min-width 50px;

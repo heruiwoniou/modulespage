@@ -181,7 +181,8 @@
 					{
 						var history = this.logic.filter(o=>o.from == this.cache.from);
 						var ret = item.items
-						.filter((o,i)=>history.filter(m => m.option === i).length === 0)
+						//这里是过滤掉已经选过的对象
+						//.filter((o,i)=>history.filter(m => m.option === i).length === 0)
 						.map(o => { return { index:item.items.indexOf(o),value: (toString(o) == '[object String]' ? o : o.text) };});
 						ret.push({index:999,value:"显示"});
 						return ret;
@@ -199,23 +200,24 @@
 				var  { from , option , to , choice} = this.cache;
 				if(from === '' || option === '') return [];
 
-				//通过索引过滤出源题以下选项
+				//获取本身的索引
 				for(i = 0; i < arr.length ; i++)
 					if(arr[i].id == this.cache.from){
 						cindex = i;
 						break;
 					}
 				if(cindex === -1) return [];
-				arr = arr.filter((o,index)=>index > cindex );
+				//通过索引过滤出源题以下选项
+				//arr = arr.filter((o,index)=>index > cindex );
+				//通过索引过滤掉本身
+				arr = arr.filter((o,index)=>index !== cindex );
 
-				//如果是显示,则要剔除已经使用过的
-				if(option === 999) {
-					this.cache.choice = false;
-					var used = this.logic.filter(o => o.from===from && o.option === option);
-					arr = arr.filter(o=>{
-						return used.filter(m => m.to === o.id ).length == 0;
-					});
-				}
+				//剔除已经使用过的
+				this.cache.choice = false;
+				var used = this.logic.filter(o => o.from===from && o.option === option);
+				arr = arr.filter(o=>{
+					return used.filter(m => m.to === o.id ).length == 0;
+				});
 
 				return arr;
 			}

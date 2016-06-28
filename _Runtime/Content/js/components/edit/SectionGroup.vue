@@ -64,13 +64,11 @@
             showColorPicker,
             setBold,
             edittitle() {
-                if (this.iscurrent) {
-                    this.edittitling = true;
-                    this.$nextTick(() => {
-                        this.$els.titleInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.edittitling = true;
+                this.$nextTick(() => {
+                    this.$els.titleInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closetitle() {
                 this.edittitling = false;

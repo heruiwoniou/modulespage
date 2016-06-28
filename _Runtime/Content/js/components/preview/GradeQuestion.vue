@@ -45,6 +45,7 @@
 </template>
 <script>
     import props from './../common/props';
+    import { disabled } from './../common/watch';
     import { styleExport } from './../common/computed';
     import { trigger } from './../common/events';
     export default {
@@ -117,13 +118,7 @@
             }
         },
         watch:{
-            'disabled':function(_new_,_old_){
-                var source,tos,ret;
-                source = this.$root.logic.filter(o=>o.from == this.component.id && o.option === 999);
-                tos = source.map(o=>{ return o.to });
-                ret = source.filter(o=>o.option == '999').map(o=>{ return o.to });
-                this.$root.$broadcast( 'trigger' , tos , ret , 'display' ,_new_);
-            }
+            disabled
         },
         events:{
             trigger

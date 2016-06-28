@@ -59,13 +59,11 @@
             showColorPicker,
             setBold,
             editcontent() {
-                if (this.iscurrent) {
-                    this.editcontenting = true;
-                    this.$nextTick(() => {
-                        this.$els.contentInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.editcontenting = true;
+                this.$nextTick(() => {
+                    this.$els.contentInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closecontent() {
                 this.editcontenting = false;

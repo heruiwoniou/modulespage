@@ -17,11 +17,9 @@
 
 <script>
     import props from './../common/props';
+    import watch from './../common/watch';
     import { styleExport } from './../common/computed';
     import { trigger } from './../common/events';
-
-    import { isArray } from './../common/util';
-
     export default {
         data() {
             return {
@@ -30,29 +28,8 @@
                 maxrows: 10
             }
         },
-        props: props,
-        watch:{
-            'component.value':function(_new_,_old_){
-                var source,tos,ret;
-
-                source = this.$root.logic.filter(o=>o.from == this.component.id && o.option !== 999);
-                tos = source.map(o=>{ return o.to });
-
-                if(isArray(_new_))
-                    ret = source.filter(o=>_new_.indexOf(o.value.option) !== -1).map(o=>{ return o.to });
-                else
-                    ret = source.filter(o=>o.value.option == _new_).map(o=>{ return o.to });
-
-                this.$root.$broadcast( 'trigger' , tos , ret , 'choice' );
-            },
-            'disabled':function(_new_,_old_){
-                var source,tos,ret;
-                source = this.$root.logic.filter(o=>o.from == this.component.id && o.option === 999);
-                tos = source.map(o=>{ return o.to });
-                ret = source.filter(o=>o.option === 999).map(o=>{ return o.to });
-                this.$root.$broadcast( 'trigger' , tos , ret , 'display' ,_new_);
-            }
-        },
+        props: props ,
+        watch: watch ,
         ready(){
             this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
         },

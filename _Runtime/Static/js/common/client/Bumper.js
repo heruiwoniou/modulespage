@@ -20,9 +20,10 @@ define(function(){
         },
         proxy:function(fn,ctx,interval){
 			interval = interval || 250;
-			window.clearTimeout(this.timer);
+			var that = this;
 			return function bumperProxy(){
-				this.timer=setTimeout(function(){
+				window.clearTimeout(that.timer);
+				that.timer=setTimeout(function(){
 					fn.apply(ctx,arguments);
 				}, interval);
 			}

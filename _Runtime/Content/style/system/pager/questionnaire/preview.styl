@@ -6,6 +6,7 @@
 @import './preview/UnmixedText.styl';
 @import './preview/PicChoiceQuestion.styl';
 @import './preview/GradeQuestion.styl';
+@import './preview/MatrixChoiceQuestion.styl';
 questionnairePreview()
 	$TabColor = #4c98c5;
 	.preview
@@ -15,6 +16,8 @@ questionnairePreview()
 		min-width 750px;
 		max-width 1024px;
 		margin 0 auto
+		h1
+			min-height 30px
 		TabBarPreview();
 		StaticHeaderPreview();
 		SectionGroupPreview();
@@ -23,3 +26,4 @@ questionnairePreview()
 		UnmixedTextPreview();
 		PicChoiceQuestionPreview();
 		GradeQuestionPreview();
+		MatrixChoiceQuestionPreview();

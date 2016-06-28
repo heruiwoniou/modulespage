@@ -12,13 +12,13 @@
     </style>
 </head>
 <body class="questionnaire">
-    <div class="header">
+    <div class="header" @click="setindex">
     	<div class="nav">
             <div class="container">
                 <div class="menu">
                     <ul class="ul-menu drop-menu">
                         <li><a href="javascript:;">样式</a></li>
-                        <li><a href="javascript:;">插入</a> </li>
+                        <li><a href="javascript:;" onclick="WebApi.test()">插入</a> </li>
                         <li><a href="javascript:;" onclick="WebApi.showLogic()">逻辑</a></li>
                     </ul>
                     <div class="person">

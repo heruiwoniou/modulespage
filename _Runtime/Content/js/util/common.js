@@ -6,9 +6,11 @@ define(function() {
             scrollReplace: function(parent) {
                 var $parent = parent&&parent.length!=0 ? $(parent) : $(".mCustomScrollbar");
                 $parent.mCustomScrollbar({
-                    theme: "dark",
+                    theme: "dark",//"inset-dark"//"inset-2-dark",//minimal-dark//dark-3//"dark-2",
                     scrollInertia: 400,
-                    advanced:{ autoScrollOnFocus: false }
+                    advanced:{ autoScrollOnFocus: false },
+                    autoHideScrollbar:true,
+                    scrollButtons:{enable:false}
                 });
             },
             init: function() {

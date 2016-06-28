@@ -157,7 +157,7 @@ define(
                         if(typeof setting.content !== 'string')
                         {
                             this.placeholder = $("<div id='placeholder"+ this.classids +"'></div>");
-                            $(setting.content).before(this.placeholder).show()
+                            $(setting.content).before(this.placeholder)
                         }
                         this.$BoxBaseFrame.hide();
                         this.$BoxBaseContent.append(setting.content).show();

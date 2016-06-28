@@ -60,26 +60,20 @@
         },
         methods:{
         	goaddmodel(){
-                if (this.iscurrent) {
-        		  this.addnewing = true;
-        		  this.$nextTick(()=>this.$els.newItem.focus())
-                }
-                else
-                    this.setindex();
+        		this.addnewing = true;
+        		this.$nextTick(()=>this.$els.newItem.focus())
+                if (!this.iscurrent) this.setindex();
         	},
         	closeaddmodel(){
         		this.addnewing = false;
         		this.newcache = '';
         	},
         	goeditmodel($event,index){
-                if (this.iscurrent) {
-            		this.editing=true;
-                    this.editindex = index;
-                    this.oldedit = this.component.items[index];
-                    this.$nextTick(()=>$($event.target).next().find(":text").focus().select())
-                }
-                else
-                    this.setindex();
+        		this.editing=true;
+                this.editindex = index;
+                this.oldedit = this.component.items[index];
+                this.$nextTick(()=>$($event.target).next().find(":text").focus().select())
+                if (!this.iscurrent) this.setindex();
         	},
         	closeeditmodel(){
                 if(this.editindex!=-1&&this.editindex<this.component.items.length)

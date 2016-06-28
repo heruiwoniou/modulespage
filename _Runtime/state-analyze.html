@@ -143,12 +143,199 @@
         <div class="PanelControl" v-show="current==1" v-el:panel-control-2>
             <div class="panel-head r">综合情况</div>
             <div class="panel-body">
-                <div class="table-grid">
+                <div id="reportmain" class="part-1"  v-show="isadd||isview">
+                    <h1 @click="newviewtoggle(false,false)">&#x34;返回</h1>
+                    <div class="FrameLeftRightControl" v-el:add-new-report>
+                        <div class="FrameLeft" style="width:230px">
+                            <div class="FrameContainer mCustomScrollbar" style="overflow:hidden">
+                                <ul>
+                                    <li v-for="item in reportdata" :class="{select:$index == editindex}"><a href="javascript:;">{{item.title}}</a></li>
+                                    <li class="new"><a href="javascript:;"  @click="addnewmodeltoggle(true)">新增图表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="FrameBar" style="left:230px"></div>
+                        <div class="FrameRight mCustomScrollbar" style="margin-left:240px">
+                            <div class="FrameContainer" style="overflow:hidden">
+                                <div class="PanelControl">
+                                    <div class="panel-head b">报告名称</div>
+                                    <div class="panel-body">
+                                        <input type="text" placeholder="这里是报告的名称" value ="这里是报告的名称"/>
+                                    </div>
+                                </div>
+                                <div class="PanelControl addnewmode" v-for="chart in reportdata">
+                                    <div class="panel-head g">
+                                        <div class="inline-container" style="width:50%">
+                                            <input type="text" placeholder="报表标题，点击可修改" v-model="chart.title"/>
+                                        </div>
+                                        <div class="inline-container" style="float:right">
+                                            <a href="javascript:;" class="save">保存</a>
+                                            <a href="javascript:;">删除</a>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="FrameLeftRightControl rtl">
+                                            <div class="FrameRight" v-el:row-cell-setting style="width:400px">
+                                                <div class="PanelControl custom-row">
+                                                    <div class="panel-head p">自定义行
+                                                        <div class="inline-container">
+                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <template v-for="item in chart.rowsource">
+                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
+                                                                <option value=""></option>
+                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
+                                                            </select>
+                                                        </template>
+                                                        <template v-if="chart.rowsource && chart.rowsource.length==0">
+                                                            <div class="color7">
+                                                                并未添加任何选项
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                                <div class="PanelControl custom-cell">
+                                                    <div class="panel-head y">自定义列
+                                                        <div class="inline-container">
+                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <template v-for="item in chart.cellsource">
+                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
+                                                                <option value=""></option>
+                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
+                                                            </select>
+                                                        </template>
+                                                        <template v-if="chart.cellsource && chart.cellsource.length==0">
+                                                            <div class="color7">
+                                                                并未添加任何选项
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="FrameBar" style="right:400px"></div>
+                                            <div class="FrameLeft"  style="margin-right:410px">
+                                               <textarea cols="30" rows="5" placeholder="此处可填写针对此报表的评论" v-model="chart.comment"></textarea>
+                                               <div id="PresentationLayer{{$index}}" data-index="$index" class="PresentationLayer">
+                                                   <div class="color7">添加行列以生成图表</div>
+                                               </div>
+                                               <table v-if="chart.rowsource.length!==0&&chart.cellsource.length!==0">
+                                                    <tr v-for="row in chart.rowsource">
+                                                        <template v-if="$index == 0">
+                                                            <th></th>
+                                                            <th v-for="cell in chart.cellsource">{{cell | QIndexItem}}</th>
+                                                        </template>
+                                                        <template v-else>
+                                                            <th>{{row | QIndexItem}}</th>
+                                                            <td v-for="cell in chart.cellsource"></td>
+                                                        </template>
+                                                    </tr>
+                                               </table>
+                                               <div v-else class="color7">
+                                                    添加行列以生成表格
+                                               </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="PanelControl addnewmode" v-show="addnewmode||editmode">
+                                    <div class="panel-head g">
+                                        <div class="inline-container" style="width:50%">
+                                            <input type="text" placeholder="报表标题，点击可修改" v-model="currentdata.title"/>
+                                        </div>
+                                        <div class="inline-container" style="float:right">
+                                            <a href="javascript:;" class="save">保存</a>
+                                            <a href="javascript:;" @click="addnewmodeltoggle(false)">删除</a>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="FrameLeftRightControl rtl">
+                                            <div class="FrameRight" v-el:row-cell-setting style="width:400px">
+                                                <div class="PanelControl custom-row">
+                                                    <div class="panel-head p">自定义行
+                                                        <div class="inline-container">
+                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <template v-for="item in currentdata.rowsource">
+                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
+                                                                <option value=""></option>
+                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
+                                                            </select>
+                                                        </template>
+                                                        <template v-if="currentdata.rowsource && currentdata.rowsource.length==0">
+                                                            <div class="color7">
+                                                                并未添加任何选项
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                                <div class="PanelControl custom-cell">
+                                                    <div class="panel-head y">自定义列
+                                                        <div class="inline-container">
+                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <template v-for="item in currentdata.cellsource">
+                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
+                                                                <option value=""></option>
+                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
+                                                            </select>
+                                                        </template>
+                                                        <template v-if="currentdata.cellsource && currentdata.cellsource.length==0">
+                                                            <div class="color7">
+                                                                并未添加任何选项
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="FrameBar" style="right:400px"></div>
+                                            <div class="FrameLeft"  style="margin-right:410px">
+                                               <textarea cols="30" rows="5" placeholder="此处可填写针对此报表的评论" v-model="currentdata.comment"></textarea>
+                                               <div id="NewPresentationLayer" :class="['PresentationLayer',rows.length!==0&&cells.length!==0?'':'empty']">
+                                                   <div class="color7">添加行列以生成图表</div>
+                                               </div>
+                                               <table v-if="rows.length!==0&&cells.length!==0">
+                                                    <tr v-for="row in rows">
+                                                        <template v-if="$index == 0">
+                                                            <th></th>
+                                                            <th v-for="cell in cells">{{cell | QIndexItem}}</th>
+                                                        </template>
+                                                        <template v-else>
+                                                            <th>{{row | QIndexItem}}</th>
+                                                            <td v-for="cell in cells"></td>
+                                                        </template>
+                                                    </tr>
+                                               </table>
+                                               <div v-else class="color7">
+                                                    添加行列以生成表格
+                                               </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="center">
+                                    <div class="box" @click="addnewmodeltoggle(true)">
+                                        新增图表
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-grid part-2" v-show="!isview&&!isadd">
                     <div class="row" v-for="index in Math.ceil ( ( analyzes.length + 1 ) / 4 )">
                         <div class="col-3 rows" v-for="col in 4" v-if="(index * 4 + col - 1) < analyzes.length">
                             <div :class="['column',getColor()]" v-if="(index * 4 + col - 1) !== -1">
                                 <span class="thumbtack" @click="togglecommand($event)"></span>
-                                <h1>
+                                <h1 @click="newviewtoggle(false,true)">
                                     {{analyzes[ index * 4 + col -1 ].title}}
                                 </h1>
                                 <p></p>
@@ -162,7 +349,7 @@
                                 </div>
                             </div>
                             <div class="column new" v-else>
-                                <a href="javascript:;">新的报告</a>
+                                <a href="javascript:;" @click="newviewtoggle(true,false)">新的报告</a>
                             </div>
                         </div>
                     </div>

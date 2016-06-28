@@ -49,7 +49,6 @@ body.state-analyze
 				perspective: 2000px;
 				&.setting
 					.column
-						transform scaleZ(10) rotateX(0deg)  translateZ(15px)
 						.command
 							top 0px
 			.column
@@ -59,8 +58,7 @@ body.state-analyze
 				background white
 				overflow hidden
 				&:hover
-					box-shadow 0 2px 10px 0px #ccc
-					transform scale3d(1,1.1,1) rotateX(20deg) translateZ(10px)
+					box-shadow 0px 0px 20px #838383
 				span.thumbtack
 					transform rotate(45deg)
 					content ''
@@ -74,7 +72,6 @@ body.state-analyze
 					background red
 					cursor pointer
 					&:after
-						transform rotate(-45deg)
 						position absolute
 						z-index 2
 						bottom 13px
@@ -226,3 +223,108 @@ body.state-analyze
 					&.export
 						i
 							background url('images/export-big.png') no-repeat;
+	.PanelControl
+		.panel-body
+			.part-1
+			.part-3
+				h1
+					cursor pointer
+					font-size 16px
+					font-weight bold
+					width 80px;
+					iconfont();
+					&:hover
+						color $Color1
+				.FrameLeftRightControl
+					&>.FrameLeft
+					&>.FrameRight
+						.FrameContainer
+							height 100%
+							padding 10px
+							&>.PanelControl
+								margin-bottom 10px;
+							.center
+								width 300px
+								margin 0 auto;
+								margin-top 100px
+								.box
+									cursor pointer
+									height 110px
+									width 300px
+									line-height 110px
+									text-align center
+									font-size 18px
+									background #fff url('images/dottd-box.png') no-repeat;
+								&:hover
+									opacity .8
+						.panel-head
+							.inline-container
+								padding-right 20px
+								a
+									color $Color7
+								a.save
+									padding-right 10px
+									color $Color3
+						.PresentationLayer
+							width 100%
+							margin-top 15px
+							height 400px;
+							&.empty
+								height auto;
+								margin-bottom 15px;
+						.addnewmode
+							&>.panel-head
+								font-size 0px
+								text-indent 10px
+						table
+							table-layout fixed
+							border-collapse collapse
+							width 100%
+							margin-bottom 20px;
+							td
+							th
+								text-align center
+								border 1px solid #ccc
+								line-height 40px;
+							th
+								background #ccc + 50%
+						.rtl
+							background transparent
+							.FrameRight
+								padding 0 5px;
+								.PanelControl
+									margin-bottom 15px
+									.panel-head
+										.inline-container
+											float right
+											padding-right 20px
+											a
+												color $Color6
+												iconfont()
+												b
+													vertical-align middle
+									&.custom-row
+									&.custom-cell
+										.comsys-tip-span
+											color #ccc
+										.comsys-SingleCombox-layout
+											margin-bottom 15px
+										.comsys-SingleCombox-layout:last-child
+											margin-bottom 5px
+					&>.FrameLeft
+						.FrameContainer
+							padding-bottom 40px;
+							ul
+								li
+									line-height 35px;
+									margin-bottom 1px;
+									text-indent 20px
+									a
+										display block
+								li.new
+									a
+										color $Color1
+								li.select
+									a
+										color $Color3
+									background #fff

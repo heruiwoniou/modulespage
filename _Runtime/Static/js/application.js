@@ -30,7 +30,7 @@ define([
 ], function($,CommonSetting,MaskLayer,Win,common,XImage,Async) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
-    $.extend(WebApi,{
+    var self = {
         //图层控制
         progress:function(setting){
             layer.upload(setting);
@@ -43,31 +43,39 @@ define([
         },
 
         //弹出框
-        _confirm:function(message){
+        __confirm:function(message){
             return Win.show({content:message,buttons:Win.button.OKANDCANCEL,icon:Win.icon.question})
         },
-        _alert:function(message){
+        __alert:function(message){
             return Win.show({content:message,buttons:Win.button.OK,icon:Win.icon.info})
         },
-        _error:function(message){
+        __error:function(message){
             return Win.show({content:message,buttons:Win.button.OK,icon:Win.icon.error})
+        },
+        _confirm:function(message){
+            self.confirm(message);
+        },
+        _alert:function(message){
+            self.alert(message);
+        },
+        _error:function(message){
+            self.error(message);
         },
         confirm:function(message){
             var parent=window.parent
             while(parent!=window.parent) parent=parent.parent
-            return parent.WebApi._confirm.apply(parent,arguments);
+            return parent.WebApi.__confirm.apply(parent,arguments);
         },
         alert:function(message){
             var parent=window.parent
             while(parent!=window.parent) parent=parent.parent
-            return parent.WebApi._alert.apply(parent,arguments);
+            return parent.WebApi.__alert.apply(parent,arguments);
         },
         error:function(message){
             var parent=window.parent
             while(parent!=window.parent) parent=parent.parent
-            return parent.WebApi._error.apply(parent,arguments);
+            return parent.WebApi.__error.apply(parent,arguments);
         },
-
         /**
          * [modal 本身frame弹出窗口]
          * @param  {[type]} name    [窗体标识(可选)]
@@ -160,7 +168,8 @@ define([
                 }, "ImageLoad", i * 50)
             })
         }
-    },common);
+    };
+    $.extend(WebApi,self,common);
 
 
     return {

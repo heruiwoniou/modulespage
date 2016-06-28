@@ -14,7 +14,8 @@ define(
         './../components/edit/SectionGroup',
         './../components/edit/UnmixedText',
         './../components/edit/QuestionResponse',
-        './../components/edit/GradeQuestion'
+        './../components/edit/GradeQuestion',
+        './../components/edit/MatrixChoiceQuestion'
     ],
     function(
         Vue,
@@ -34,6 +35,10 @@ define(
             init: function() {
                 this.vue();
                 return false;
+            },
+            test:function(){
+                debugger;
+                WebApi.alert('123123');
             },
             showLogic:function(){
                 WebApi.modal({content:$('#Logic'),title:"逻辑设置",width:800,height:425})
@@ -249,6 +254,7 @@ define(
                     events: {
                         removeItem:function(index){
                             this.children.splice(index, 1);
+                            this.$root.setQuestionIndex();
                         },
                         selectchange: function(fullindex) {
                             if (this.dragging) return;

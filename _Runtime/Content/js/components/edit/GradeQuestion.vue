@@ -93,6 +93,8 @@
 
 	import './../common/transition/fadeInOut';
 
+    import Bumper from 'common/client/Bumper';
+
 	import props from './../common/props';
 
 	import { setindex, removecontrol, showColorPicker, setBold, setMust, closeColorPicker} from './../common/methods';
@@ -100,6 +102,8 @@
 	import { setdefault } from './../common/events';
 
 	import { prefixpath, fullindex, iscurrent, colorPanel, styleExport } from './../common/computed';
+
+    var bumper = Bumper.create();
 
 	export default {
 		data() {
@@ -122,6 +126,30 @@
                 return arr;
             }
         },
+        watch:{
+            'component.range.min':function(_new_,_old_){
+                if(_new_=="") this.component.range.min = 0;
+                if(_new_.toString().length > this.component.range.charlength)
+                    this.component.range.min = 1*this.component.range.min.toString().substr(0,this.component.range.charlength)
+            },
+            'component.range.max':function(_new_,_old_){
+                if(_new_=="") this.component.range.max = 0;
+                if(_new_.toString().length > this.component.range.charlength)
+                    this.component.range.max = 1*this.component.range.max.toString().substr(0,this.component.range.charlength)
+            },
+            'component.title':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o =>o.value.from ='Q' + this.component.qindex + ":" + _new_);
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to = 'Q' + this.component.qindex + ":" + _new_);
+                });
+            },
+            'component.qindex':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o => o.value.from = o.value.from.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to = o.value.to.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                });
+            }
+        },
         methods: {
             showColorPicker,
             setBold,
@@ -135,14 +163,12 @@
                 closeColorPicker();
             },
             edittitle() {
-                if (this.iscurrent) {
-                    this.edittitling = true;
-                    this.$nextTick(() => {
-                        this.$els.titleInput.focus();
-                        this.$els.titleInput.select();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.edittitling = true;
+                this.$nextTick(() => {
+                    this.$els.titleInput.focus();
+                    this.$els.titleInput.select();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closetitle() {
                 this.edittitling = false;
@@ -157,7 +183,7 @@
         },
         events: {
             setdefault: setdefault(function() {
-                this.closetitle()
+                this.closetitle();
             })
         }
 	}

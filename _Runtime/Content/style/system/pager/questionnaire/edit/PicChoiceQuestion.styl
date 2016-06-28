@@ -59,20 +59,31 @@ PicChoiceQuestion()
 							text-align center
 				.edit-item
 					border none;
-					.close
-						cursor pointer;
+					.cmd
+						height 20px;
 						position absolute
+						right -1px;
+						top -1px;
+						z-index 1;
+						font-size 0
+					.toleft
+					.toright
+					.close
+						display inline-block
+						cursor pointer;
 						color $Color7 - 20%
 						width 40px;
 						height 20px;
 						line-height 20px;
 						font-size 11px;
-						right -1px;
-						top -1px;
-						z-index 1;
 						border 1px solid #ccc + 60%;
 						background #ccc + 70%;
 						&:hover
+							background #ccc + 90%;
 							color $Color7
+					.toleft
+						right 79px;
+					.toright
+						right -1px
 			&:after
 				clear()

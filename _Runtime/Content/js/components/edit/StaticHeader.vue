@@ -114,32 +114,29 @@
                 filereader.read(this.$els.file).then(function(image){
                     that.component.src=image;
                 }).fail(function(message){
+                    WebApi.error(message);
                     that.image.w = 80;
-                    that.component.src=XImage.prototype.errorImageCode
+                    that.component.src=that.component.default
                 });
                 that.image.w = 16;
                 that.component.src=XImage.prototype.loadingImageCode
             },
             edittitle() {
-                if (this.iscurrent) {
-                    this.edittitling = true;
-                    this.$nextTick(() => {
-                        this.$els.titleInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.edittitling = true;
+                this.$nextTick(() => {
+                    this.$els.titleInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closettitle() {
                 this.edittitling = false;
             },
             editcomment() {
-                if (this.iscurrent) {
-                    this.editcommenting = true;
-                    this.$nextTick(() => {
-                        this.$els.commentInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.editcommenting = true;
+                this.$nextTick(() => {
+                    this.$els.commentInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closecomment() {
                 this.editcommenting = false;

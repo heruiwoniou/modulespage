@@ -15,6 +15,8 @@
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
+                    <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
+                    <span class="split"></span>
                     <a href="javascript:;" class="delete" @click="removecontrol"></a>
                 </div>
             </div>
@@ -37,9 +39,11 @@
 
     import './../common/transition/fadeInOut';
 
+    import Bumper from 'common/client/Bumper';
+
     import props from './../common/props';
     import {
-        setindex, removecontrol, showColorPicker, setBold
+        setindex, removecontrol, showColorPicker, setBold, setMust
     }
     from './../common/methods';
     import {
@@ -50,6 +54,8 @@
         prefixpath, fullindex, iscurrent, colorPanel, styleExport
     }
     from './../common/computed';
+
+    var bumper = Bumper.create();
 
     export default {
         data() {
@@ -67,32 +73,43 @@
             colorPanel,
             styleExport
         },
+        watch:{
+            'component.title':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o =>o.value.from ='Q' + this.component.qindex + ":" + _new_);
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to ='Q' + this.component.qindex + ":" + _new_);
+                });
+            },
+            'component.qindex':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o => o.value.from = o.value.from.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to = o.value.to.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                });
+            }
+        },
         methods: {
             showColorPicker,
             setBold,
+            setMust,
             setmodel(issingle) {
                 this.component.single = issingle;
             },
             editquestion() {
-                if (this.iscurrent) {
-                    this.editquestioning = true;
-                    this.$nextTick(() => {
-                        this.$els.questionInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.editquestioning = true;
+                this.$nextTick(() => {
+                    this.$els.questionInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closequestion() {
                 this.editquestioning = false;
             },
             editanswer() {
-                if (this.iscurrent) {
-                    this.editanswering = true;
-                    this.$nextTick(() => {
-                        this.$els.answerInput.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.editanswering = true;
+                this.$nextTick(() => {
+                    this.$els.answerInput.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closeanswer() {
                 this.editanswering = false;

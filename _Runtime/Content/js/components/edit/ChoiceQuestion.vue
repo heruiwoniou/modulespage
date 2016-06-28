@@ -15,8 +15,6 @@
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
-                    <a href="javascript:;" class="icon-logic">逻辑</a>
-                    <span class="split"></span>
                     <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
                     <span class="split"></span>
                     <a href="javascript:;" class="delete" @click="removecontrol"></a>
@@ -52,6 +50,7 @@
 
 import './../common/transition/fadeInOut';
 import props from './../common/props';
+import Bumper from 'common/client/Bumper';
 import {
     setindex, removecontrol, showColorPicker, setBold, setMust
 }
@@ -65,7 +64,7 @@ import {
 }
 from './../common/computed';
 
-
+var bumper = Bumper.create();
 
 export default {
     data() {
@@ -73,7 +72,6 @@ export default {
                 titletip: '标题(点击编辑)',
                 edittitling: false,
                 edititemsing: false,
-                maxrows: 10,
                 itemstring:''
             }
         },
@@ -83,19 +81,62 @@ export default {
         },
         watch:{
             'itemstring':function(_new_,_old_){
-               this.component.items = _new_.split('\n').filter(o => o !== '');
+                if(_new_.split('\n').filter(o => o !== '').length > this.component.maxItems) {
+                    this.itemstring = _old_ ;
+                    return;
+                }
+                bumper.trigger(()=>{
+                    this.component.items = _new_.split('\n').filter(o => o !== '');
+                    var source = this.$root.logic.filter(o => o.from == this.component.id && o.option !== 999);
+                    if(source.length > this.component.items.length)
+                    {
+                        //设置该数据源可用数据
+                        source = source.sort((a,b)=>a.option > b.option) ;
+                        var dret = source.splice(this.component.items.length);
+                        //清除所在原始数据源
+                        dret.forEach(o => {
+                            for(var i = this.$root.logic.length - 1 ;i >= 0;i --)
+                            {
+                                var {from,option} = this.$root.logic[i];
+                                if(from === o.from && option === o.option && option !== 999)
+                                    this.$root.logic.splice( i , 1 );
+                            }
+                        })
+                    }
+                    //更改选项
+                    source.forEach(o=>{
+                    for(var i = 0 ; i < this.component.items.length ; i ++)
+                    {
+                        if(i !== o.option) continue;
+                        var option = this.component.items[i];
+                        o.value.option = option;
+                    }
+                    })
+               })
+            },
+            'component.title':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o =>o.value.from ='Q' + this.component.qindex + ":" + _new_);
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to ='Q' + this.component.qindex + ":" +     _new_);
+                });
+            },
+            'component.qindex':function(_new_,_old_){
+                bumper.trigger(()=>{
+                    this.$root.logic.filter(o => o.from == this.component.id).forEach(o => o.value.from = o.value.from.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                    this.$root.logic.filter(o => o.to == this.component.id).forEach(o => o.value.to = o.value.to.replace(/^Q\d*:/,'Q' + _new_ + ':'));
+                });
             }
         },
         computed: {
             textarearow() {
                 var l = this.itemstring.split('\n').length;
-                return l > this.maxrows ? this.maxrows : l;
+                return l > this.component.maxItems ? this.component.maxItems : l;
             },
             children() {
                 return this.itemstring.split('\n').filter(o => o !== '');
             },
             columns() {
-                return Math.ceil(this.children.length / this.maxrows);
+                return Math.ceil(this.children.length / this.component.maxItems);
             },
             prefixpath,
             fullindex,
@@ -111,28 +152,24 @@ export default {
                 this.component.single = issingle;
             },
             edititems() {
-                if (this.iscurrent) {
-                    this.edititemsing = true;
-                    this.edittitling = false;
-                    this.$nextTick(() => {
-                        this.$els.itemsTextarea.focus();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.edititemsing = true;
+                this.edittitling = false;
+                this.$nextTick(() => {
+                    this.$els.itemsTextarea.focus();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closeitems() {
                 this.edititemsing = false;
             },
             edittitle() {
-                if (this.iscurrent) {
-                    this.edittitling = true;
-                    this.edititemsing = false;
-                    this.$nextTick(() => {
-                        this.$els.titleInput.focus();
-                        this.$els.titleInput.select();
-                    })
-                } else //stop 冒泡,手动触发
-                    this.setindex();
+                this.edittitling = true;
+                this.edititemsing = false;
+                this.$nextTick(() => {
+                    this.$els.titleInput.focus();
+                    this.$els.titleInput.select();
+                })
+                if (!this.iscurrent) this.setindex();
             },
             closetitle() {
                 this.edittitling = false;

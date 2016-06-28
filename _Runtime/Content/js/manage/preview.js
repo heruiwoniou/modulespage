@@ -9,7 +9,8 @@ define(
         './../components/preview/SectionGroup',
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse',
-        './../components/preview/GradeQuestion'
+        './../components/preview/GradeQuestion',
+        './../components/preview/MatrixChoiceQuestion'
     ],
     function(Vue,Request) {
         var viewModel;//数据模型

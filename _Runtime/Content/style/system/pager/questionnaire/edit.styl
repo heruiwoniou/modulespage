@@ -5,6 +5,7 @@
 @import './edit/QuestionResponse.styl';
 @import './edit/TabBar.styl';
 @import './edit/GradeQuestion.styl';
+@import './edit/MatrixChoiceQuestion.styl';
 
 questionnaireEdit()
 	.edit
@@ -73,6 +74,7 @@ questionnaireEdit()
 		.UnmixedText
 		.QuestionResponse
 		.GradeQuestion
+		.MatrixChoiceQuestion
 			input[type=text]
 			input[type=number]
 			textarea
@@ -91,10 +93,12 @@ questionnaireEdit()
 					padding-right 1px
 			.content-area
 				h1
+					cursor pointer
 					padding-left 35px
 					margin 7px 0 3px 0
 					line-height 19px
 					position relative
+					textHidden();
 				p
 					padding-left 3px
 					padding-top 3px
@@ -108,6 +112,7 @@ questionnaireEdit()
 		QuestionResponse();
 		TabBar();
 		GradeQuestion();
+		MatrixChoiceQuestion();
 		.control-panel
 		.control-panel-sub
 			font-size 0px

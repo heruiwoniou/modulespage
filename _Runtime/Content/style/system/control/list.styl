@@ -77,7 +77,12 @@ ul.list-style-one
 		h1
 			font-size 1.2em;
 			font-weight bold
+			textHidden()
+			margin-right 150px;
+			line-height 1.5
 			span
+				position absolute
+				right 10px;
 				font-size 16px;
 				font-weight normal;
 				float right
@@ -102,13 +107,16 @@ ul.list-style-two
 		border-top 1px solid $fontSmallColor + 80%;
 		padding-left 50px
 		margin-top 1px;
+		position relative
 		h1
-			position relative
 			line-height 60px
 			font-size 1.2em;
 			font-weight bold
+			textHidden()
+			margin-right 20px
+			padding-left 60px
 			b
-				left -50px;
+				left 0px;
 				top 12px
 				vertical-align middle
 				position absolute
@@ -122,6 +130,8 @@ ul.list-style-two
 					display block
 					background url("images/book-icon.png") no-repeat
 			span
+				position absolute
+				left 30px;
 				font-weight bold
 				font-size 16px
 				margin-left 20px;
@@ -130,11 +140,11 @@ ul.list-style-two
 				color $fontMiddleColor
 				margin-top 0px
 				line-height 1.5
+				height 45px
+				overflow hidden
 			button
 				margin-left 40px
 				floatRight()
-				position relative
-				top 10px
 		p
 			margin 20px 0
 			color $fontSmallColor

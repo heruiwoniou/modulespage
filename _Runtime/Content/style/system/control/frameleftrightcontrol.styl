@@ -5,6 +5,7 @@
 		height 100%
 		overflow auto
 		floatLeft()
+		position relative
 	.FrameBar
 		background: white
 		height 100%
@@ -14,5 +15,23 @@
 		top: 0
 	.FrameRight
 		height 100%
+		position relative
 	&:after
 		clear()
+	&.rtl
+		.FrameRight
+			height 100%
+			floatRight()
+			position relative
+		.FrameBar
+			background: white
+			height 100%
+			width: 10px
+			position: absolute
+			bottom: 0
+			top: 0
+		.FrameLeft
+			height 100%
+			float none;
+			overflow hidden
+			position relative
