@@ -19,6 +19,7 @@
                     </td>
                 </tr>
             </table>
+            <input type="hidden" :name="component.id" :value="component.value | json">
         </div>
     </div>
 </div>

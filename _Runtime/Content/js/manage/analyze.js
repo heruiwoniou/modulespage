@@ -11,7 +11,7 @@ define([
             return "Q" + object.qindex + ':' + object.value;
         });
         Vue.filter('QIndexTip', function(object) {
-            return "Q" + object.qindex + ':' + '选择以下选项';
+            return "Q" + object.qindex + ':' + object.title;
         })
         var emptydata = {
                             title:"",
@@ -26,31 +26,14 @@ define([
                 comment:"测试信息",
                 rowsource:[
                     {
-                        qindex:1,
-                        value:"选项1",
-                        options:['选项1','选项2','选项3']
-                    },
-                    {
-                        qindex:2,
-                        value:"选项2",
-                        options:['选项1','选项2','选项3']
-                    },
-                    {
-                        qindex:3,
-                        value:"选项3",
-                        options:['选项1','选项2','选项3']
+                        id:"",
+                        value:""
                     }
                 ],
                 cellsource:[
                     {
-                        qindex:4,
-                        value:"选项1",
-                        options:['选项1','选项2','选项3']
-                    },
-                    {
-                        qindex:5,
-                        value:"选项2",
-                        options:['选项1','选项2','选项3']
+                        id:"1",
+                        value:"选项1"
                     }
                 ]
             }
@@ -77,6 +60,13 @@ define([
                         //这里是报告的数据结构
                         reportdata:[],
 
+                        questionsLibray:[
+                            { qindex:1 , id:"1" , title : '你认为什么是教育？',items:['学习','生活','游戏'] },
+                            { qindex:2 , id:"2" , title : '你认为什么是素质教育？',items:['自觉','品味','德行'] },
+                            { qindex:3 , id:"3" , title : '你最希望在学校学到什么东西？',items:['电脑','数学','语文'] },
+                            { qindex:4 , id:"4" , title : '中学生上网情况问卷调查问卷调查',items:['1小时','2小时','三小时'] }
+                        ],
+
                         questions:[
                             {question:"你认为什么是教育？"},
                             {question:"你认为什么是素质教育？"},
@@ -92,10 +82,16 @@ define([
                     },
                     computed:{
                         rows:function(){
+                            var that=this;
                             if(!this.currentdata.rowsource)return [];
-                            return this.currentdata.rowsource.filter(function(o){
+                            var ret = this.currentdata.rowsource.filter(function(o){
                                 return o.value!=="";
+                            }).map(function(o){
+                                o.qindex = that.questionsLibray.find(function(q){return q.id == o.id}).qindex;
+                                return o;
                             });
+
+                            return ret;
                         },
                         cells:function(){
                             if(!this.currentdata.cellsource)return [];
@@ -144,6 +140,13 @@ define([
                                 $el.addClass('setting');
                             }
                         },
+                        hasChooseOption:function(id){
+                            return this.questionsLibray.filter(function(o){ return o.id == id }).length == 1;
+                        },
+                        setoption:function(item,option){
+                            debugger;
+                            item.value = option;
+                        },
                         newviewtoggle:function(s1,s2){
                             this.isadd = s1
                             this.isview = s2
@@ -168,6 +171,15 @@ define([
                             });
 
                         },
+                        addfilter:function($event,source){
+                            source.push({
+                                id:"",
+                                value:""
+                            });
+                            this.$nextTick(function(){
+                                $($event.target).closest(".PanelControl").find("select").SingleComboxInit();
+                            })
+                        },
                         addnewmodeltoggle:function(s){
                             if(s === this.addnewmode) return
                             var that = this;
@@ -179,6 +191,9 @@ define([
                     }
                 })
             },
+            selectchange:function(source,target){
+                            target.options = source.items;
+             },
             echarts: function() {
 
                 var myChart = echarts.init(document.getElementById('chart0'));

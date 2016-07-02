@@ -1,0 +1,228 @@
+insertModal()
+	.insert-modal
+		position fixed
+		background white
+		left 0
+		top 78px
+		bottom 0px
+		z-index 1
+		width 600px
+		text-align left
+		box-shadow 0 0 5px 1px #ccc
+		.insert-top
+			height 50px
+			padding-right 50px
+			padding 5px 43px 5px 5px
+			.comsys-base
+				height 40px
+				line-height 40px
+				.comsys-SingleCombox-input
+					.comsys-TextBox
+						.comsys-tip-span
+							font-size 12px
+				.comsys-SingleCombox-button
+					font-size 27px
+					&:before
+						content '3'
+				.comsys-ButtonTextBox-input
+					margin-right 50px
+				.comsys-ButtonTextBox-button
+					&.search
+						width 50px
+						&:hover
+							background $Color3 + 10%
+						&:before
+							iconfont()
+							content 'U'
+				&.comsys-ButtonTextBox-layout
+					border-right 0
+		.insert-bottom
+			overflow hidden
+			padding 0
+			position absolute
+			top 50px
+			left 5px
+			right 5px
+			bottom 0
+			ul
+				position relative
+				z-index 1
+				text-align left
+				padding-left 30px
+				line-height 30px
+				font-size 12px
+				li
+					text-align center
+					line-height 30px
+					min-width 100px
+					display inline-block
+					border 1px solid #e8e7e7
+					background white
+					a
+						display block
+						color #e8e7e7 - 20%
+					&.select
+						border-bottom-color white
+						a
+							color #3399FF
+			.insert-line-result
+				position relative
+				line-height 40px
+				padding 0 10px
+				top -1px
+				border-top 1px solid #e8e7e7
+				color darkgrey
+				i
+					color #39f
+					padding 0 10px
+			.insert-content
+				position absolute
+				top 70px
+				left 5px
+				right 5px
+				bottom 10px
+				.inline-container
+						button.button.gray
+							cursor default
+				.control-container
+					margin 5px 5px 10px 5px
+					width 98%
+					box-shadow 0 0 5px 0 #ccc
+					.insert-control-title
+						margin 0 0 0 43px
+						text-indent 8px
+						textHidden()
+					.control-libs
+						border 1px solid transparent
+						&:hover
+							border-color #39f + 50%
+						&.select
+							border-color #39f
+				.control-content
+					box-shadow none
+					display none
+					position relative
+					top 0px
+					border-top 1px solid #eaeaea
+					padding 20px 50px 0 50px
+					p
+						line-height 60px
+						i
+							float right
+						span
+							display inline-block
+							vertical-align middle
+						b
+							display inline-block
+							vertical-align middle
+							width 150px
+							textHidden()
+							padding-left 5px
+							color #3399FF
+				.lib-container
+					width 98%
+					margin 5px 5px 10px 5px
+					box-shadow 0 0 5px 0 #ccc
+				.lib
+					box-shadow 0 0 5px 0 #ccc
+					cursor pointer
+					line-height 40px
+					height 40px
+					position relative
+					background white
+					b
+						display block
+						height 40px
+						width 40px
+						position absolute
+						top 0
+						left 0
+						font-size 20px
+						text-align center
+						line-height 40px
+						color #3399FF
+						&:before
+							color #3399FF
+							iconfont();
+							content '4'
+							line-height 40px
+							vertical-align baseline
+					.topic
+						margin 0 80px 0 50px
+						textHidden()
+					.description
+						position absolute
+						top 0
+						right 0
+						width 80px
+						height 40px
+						text-align center
+						i
+							padding 0 5px
+				.tpllist
+					b
+						&:before
+							content ''
+					.lib:hover
+						background #3399FF
+						.topic
+						.description
+							color white
+							i
+								color white
+						b
+							color white
+							&:before
+								color white
+				.liblist
+					.inline-container
+						line-height 25px
+						margin 5px 5px 10px 5px
+						display block
+				.tpltemplate
+					.lib
+						cursor default
+						b
+							cursor pointer
+						b:hover
+							background #3399FF
+							color white
+							&:before
+								color white
+					.lib-content
+						padding 10px
+					.lib-title
+						line-height 40px
+						font-size 0
+						padding 0 10px
+						border-bottom 1px solid #eaeaea
+						.inline-container
+							float left
+							font-size 12px
+						.lib-info
+							text-align right
+							i
+								padding 0 5px
+		.insert-close
+			position absolute
+			z-index 1
+			height 30px
+			width 30px;
+			right 10px
+			top 10px
+			line-height 30px;
+			text-align center
+			font-size 0
+			&:before
+				iconfont()
+				position relative
+				content 'Q'
+				font-size 30px
+				line-height 1;
+				left -1.5px
+				top -1px
+				transition color .2s ease
+				color $fontSmallColor
+			&:hover
+				&:before
+					color $fontBaseColor

@@ -7,6 +7,7 @@ $control-samll-width=160px;
 @import './colorPicker.styl'
 @import './previewModal.styl'
 @import './logic.styl'
+@import './insert.styl'
 
 @keyframes pointer-animate
 	0%
@@ -15,8 +16,10 @@ $control-samll-width=160px;
 	100%
 		opacity 1
 		left -4px
-logic()
+logic();
+insertModal();
 .questionnaire
+	control-insert()
 	previewModal()
 	colorPicker()
 	frame-base(78px,0);
@@ -27,6 +30,7 @@ logic()
 		padding-top 78px;
 		.nav
 			height 78px
+			z-index 2
 		.menu
 			height 78px
 			text-align center
@@ -44,6 +48,7 @@ logic()
 	.left
 		position fixed
 		padding-top 78px;
+		border-right 2px $BackColor + 50% solid
 		left 0
 		top 0
 		bottom 0px
@@ -70,13 +75,13 @@ logic()
 		margin-bottom 10px
 		float left
 		background white
-		height 40px;
 		line-height 40px
 		text-align left;
-		width $control-samll-width;
+		width 100%
 		cursor pointer
 		position relative
 		box-shadow 0 0 5px 0 #ccc
+		z-index 1
 		&:before
 			position absolute
 			content ''
@@ -106,6 +111,24 @@ logic()
 		&[data-type*=UnmixedText]
 			&:before
 				background #d8d8d8 url('images/UnmixedText.png') no-repeat
+		&.control-libs
+			margin 0 0
+			padding-right 40px
+			position relative
+			float none
+			&:before
+				background-color #3399FF
+			b
+				position absolute
+				text-indent 0
+				text-align center
+				right 0
+				top 0
+				width 40px
+				line-height 40px
+				&:before
+					iconfont()
+					content '3'
 	.left-control-container
 		width $control-samll-width
 		margin 0 auto;

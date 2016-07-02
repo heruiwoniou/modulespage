@@ -6,6 +6,7 @@
 		overflow auto
 		floatLeft()
 		position relative
+		z-index 1
 	.FrameBar
 		background: white
 		height 100%
@@ -16,6 +17,7 @@
 	.FrameRight
 		height 100%
 		position relative
+		z-index 0
 	&:after
 		clear()
 	&.rtl
@@ -23,6 +25,7 @@
 			height 100%
 			floatRight()
 			position relative
+			z-index 1
 		.FrameBar
 			background: white
 			height 100%
@@ -35,3 +38,4 @@
 			float none;
 			overflow hidden
 			position relative
+			z-index 0

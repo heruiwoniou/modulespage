@@ -48,7 +48,7 @@
 
     import props from './../common/props';
     import {
-        setindex, showColorPicker, setBold
+        setindex, showColorPicker, setBold, resize
     }
     from './../common/methods';
     import {
@@ -75,24 +75,22 @@
                     }
                 }
         },
-        watch:{
-            "component.src":function(src){
-                var that = this;
-                var ret = new XImage(src, 163, 163,function(){
-                     that.image.w = ret.width
-                     that.image.h = ret.height
-                });
-            }
-        },
         ready(){
             var that = this;
-            if(this.component.src === '')
-                this.component.src = this.component.default;
-            else
+            if(that.component.src === '')
             {
-                var ret = new XImage(this.component.src, 163, 163,function(){
-                     that.image.w = ret.width
-                     that.image.h = ret.height
+                that.component.src = that.component.default;
+                that.image.w = 85;
+                that.image.h = 47;
+            }else
+            {
+                that.resize( that.component.src , 163 , 163 ).then((w,h)=>{
+                    that.image.w = w;
+                    that.image.h = h;
+                }).fail(function(){
+                    that.component.src=that.component.default
+                    that.image.w = 85;
+                    taht.image.h = 47;
                 });
             }
         },
@@ -109,14 +107,24 @@
             removeImage(){
                 this.component.src = this.component.default;
             },
+            resize,
             fileschange(){
                 var that=this;
                 filereader.read(this.$els.file).then(function(image){
-                    that.component.src=image;
+                    that.resize( image , 163 , 163 ).then((w,h)=>{
+                        that.component.src = image;
+                        that.image.w = w;
+                        that.image.h = h;
+                    }).fail(function(){
+                        that.component.src=that.component.default
+                        that.image.w = 85;
+                        taht.image.h = 47;
+                    });
                 }).fail(function(message){
                     WebApi.error(message);
-                    that.image.w = 80;
                     that.component.src=that.component.default
+                    that.image.w = 85;
+                    taht.image.h = 47;
                 });
                 that.image.w = 16;
                 that.component.src=XImage.prototype.loadingImageCode

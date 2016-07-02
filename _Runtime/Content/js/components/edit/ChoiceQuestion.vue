@@ -17,7 +17,7 @@
                     <span class="split"></span>
                     <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
                     <span class="split"></span>
-                    <a href="javascript:;" class="delete" @click="removecontrol"></a>
+                    <a href="javascript:;" class="delete" @click.stop="removecontrol"></a>
                 </div>
             </div>
             <div class="content-area">
@@ -42,7 +42,7 @@
                 </table>
             </div>
         </div>
-        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+        <Accept :index="paths + ( index + 1 )" :isnextaccept="isNextAccept"></Accept>
     </div>
 </template>
 
@@ -60,9 +60,11 @@ import {
 }
 from './../common/events';
 import {
-    prefixpath, fullindex, iscurrent, colorPanel, styleExport
+    prefixpath, fullindex, iscurrent, colorPanel, styleExport, isNextAccept
 }
 from './../common/computed';
+
+import './common/Accept';
 
 var bumper = Bumper.create();
 
@@ -81,6 +83,11 @@ export default {
         },
         watch:{
             'itemstring':function(_new_,_old_){
+                if(_new_.indexOf('|') != -1)
+                {
+                    this.itemstring = _new_.replace(/\|/g,'｜');
+                    return;
+                }
                 if(_new_.split('\n').filter(o => o !== '').length > this.component.maxItems) {
                     this.itemstring = _old_ ;
                     return;
@@ -142,7 +149,8 @@ export default {
             fullindex,
             iscurrent,
             colorPanel,
-            styleExport
+            styleExport,
+            isNextAccept
         },
         methods: {
             showColorPicker,

@@ -27,12 +27,11 @@ define(function(){
 	 */
 	prototype.removecontrol=function(){
 		this.$parent.$emit("removeItem",this.index);
+		if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
 	}
-
 	prototype.closeColorPicker=function(){
 		if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
 	}
-
 	prototype.setBold=function(){
 		this.component.bold = !this.component.bold;
 		if(WebApi.$ColorPicker.visible) WebApi.$ColorPicker.close();
@@ -56,5 +55,32 @@ define(function(){
     prototype.setMust = function(){
     	this.component.must = !this.component.must;
     };
+    prototype.resize = function ( src , mw , mh ){
+        var temp =new Image();
+        var deferred = new $.Deferred();
+        temp.onload=function(){
+            var ratio = 1, w = temp.width, h = temp.height, maxWidth = mw, maxHeight = mh, wRatio = maxWidth / w, hRatio = maxHeight / h;
+            if (maxWidth == 0 && maxHeight == 0) {
+                ratio = 1;
+            } else if (maxWidth == 0) {
+                if (hRatio < 1) ratio = hRatio;
+            } else if (maxHeight == 0) {
+                if (wRatio < 1) ratio = wRatio;
+            } else if (wRatio < 1 || hRatio < 1) {
+                ratio = (wRatio <= hRatio ? wRatio : hRatio);
+            }
+            if (ratio < 1) {
+                w = w * ratio;
+                h = h * ratio;
+            }
+
+            deferred.resolve(w,h);
+        }
+        temp.onerror = function(){
+            deferred.reject('加载错误!');
+        }
+        temp.src = src;
+        return deferred;
+    }
 	return new Methods();
 })

@@ -13,6 +13,8 @@ define(function(){
 		},
 		removeItem:function(index){
 			this.component.children.splice(index, 1);
+			if( this.component.children.length == 0 )
+				this.selectchild = false
 			this.$root.setQuestionIndex();
 		},
 		trigger:function( tos , rets , type , ...arg ){

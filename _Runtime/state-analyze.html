@@ -179,15 +179,24 @@
                                                 <div class="PanelControl custom-row">
                                                     <div class="panel-head p">自定义行
                                                         <div class="inline-container">
-                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                            <a href="javascript:;" @click="addfilter($event,chart.rowsource)">&#x4c;添加条件</a>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <template v-for="item in chart.rowsource">
-                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
-                                                                <option value=""></option>
-                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
-                                                            </select>
+                                                            <div class="filter">
+                                                                <div class="filter-header">
+                                                                <select tip-title="选择你要选择的题" v-model="item.id">
+                                                                    <option value=""></option>
+                                                                    <option v-for="q in questionsLibray" :value="q.id">{{q | QIndexTip}}</option>
+                                                                </select>
+                                                                <b></b></div>
+                                                                <div class="filter-drop"  v-if="hasChooseOption(item.id)">
+                                                                    <template v-for="o in questionsLibray | filterBy item.id in 'id'">
+                                                                        <div v-for="option in o.items" @click="setoption(item,option)" :class="['filter-option',item.value == option ? 'select':'']">{{option}}</div>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
                                                         </template>
                                                         <template v-if="chart.rowsource && chart.rowsource.length==0">
                                                             <div class="color7">
@@ -199,15 +208,24 @@
                                                 <div class="PanelControl custom-cell">
                                                     <div class="panel-head y">自定义列
                                                         <div class="inline-container">
-                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                            <a href="javascript:;" @click="addfilter($event,chart.cellsource)">&#x4c;添加条件</a>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <template v-for="item in chart.cellsource">
-                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
-                                                                <option value=""></option>
-                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
-                                                            </select>
+                                                            <div class="filter">
+                                                                <div class="filter-header">
+                                                                <select tip-title="选择你要选择的题" v-model="item.id">
+                                                                    <option value=""></option>
+                                                                    <option v-for="q in questionsLibray" :value="q.id">{{q | QIndexTip}}</option>
+                                                                </select>
+                                                                <b></b></div>
+                                                                <div class="filter-drop"  v-if="hasChooseOption(item.id)">
+                                                                    <template v-for="o in questionsLibray | filterBy item.id in 'id'">
+                                                                        <div v-for="option in o.items" @click="setoption(item,option)" :class="['filter-option',item.value == option ? 'select':'']">{{option}}</div>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
                                                         </template>
                                                         <template v-if="chart.cellsource && chart.cellsource.length==0">
                                                             <div class="color7">
@@ -220,17 +238,17 @@
                                             <div class="FrameBar" style="right:400px"></div>
                                             <div class="FrameLeft"  style="margin-right:410px">
                                                <textarea cols="30" rows="5" placeholder="此处可填写针对此报表的评论" v-model="chart.comment"></textarea>
-                                               <div id="PresentationLayer{{$index}}" data-index="$index" class="PresentationLayer">
+                                               <div id="PresentationLayer{{$index}}" :data-index="$index" class="PresentationLayer">
                                                    <div class="color7">添加行列以生成图表</div>
                                                </div>
                                                <table v-if="chart.rowsource.length!==0&&chart.cellsource.length!==0">
-                                                    <tr v-for="row in chart.rowsource">
+                                                    <tr v-for="index in chart.rowsource.length + 1">
                                                         <template v-if="$index == 0">
                                                             <th></th>
-                                                            <th v-for="cell in chart.cellsource">{{cell | QIndexItem}}</th>
+                                                            <th v-for="cell in chart.cellsource">{{cell.value}}</th>
                                                         </template>
                                                         <template v-else>
-                                                            <th>{{row | QIndexItem}}</th>
+                                                            <th>{{chart.rowsource[index - 1].value}}</th>
                                                             <td v-for="cell in chart.cellsource"></td>
                                                         </template>
                                                     </tr>
@@ -258,15 +276,24 @@
                                                 <div class="PanelControl custom-row">
                                                     <div class="panel-head p">自定义行
                                                         <div class="inline-container">
-                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                            <a href="javascript:;"  @click="addfilter($event,currentdata.rowsource)">&#x4c;添加条件</a>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <template v-for="item in currentdata.rowsource">
-                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
-                                                                <option value=""></option>
-                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
-                                                            </select>
+                                                            <div class="filter">
+                                                                <div class="filter-header">
+                                                                <select tip-title="选择你要选择的题" v-model="item.id">
+                                                                    <option value=""></option>
+                                                                    <option v-for="q in questionsLibray" :value="q.id">{{q | QIndexTip}}</option>
+                                                                </select>
+                                                                <b></b></div>
+                                                                <div class="filter-drop"  v-if="hasChooseOption(item.id)">
+                                                                    <template v-for="o in questionsLibray | filterBy item.id in 'id'">
+                                                                        <div v-for="option in o.items" @click="setoption(item,option)" :class="['filter-option',item.value == option ? 'select':'']">{{option}}</div>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
                                                         </template>
                                                         <template v-if="currentdata.rowsource && currentdata.rowsource.length==0">
                                                             <div class="color7">
@@ -278,15 +305,24 @@
                                                 <div class="PanelControl custom-cell">
                                                     <div class="panel-head y">自定义列
                                                         <div class="inline-container">
-                                                            <a href="javascript:;">&#x4c;添加条件</a>
+                                                            <a href="javascript:;"  @click="addfilter($event,currentdata.cellsource)">&#x4c;添加条件</a>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <template v-for="item in currentdata.cellsource">
-                                                            <select :tip-title="item | QIndexTip" v-model="item.value">
-                                                                <option value=""></option>
-                                                                <option v-for="option in item.options" :value="option" >{{option}}</option>
-                                                            </select>
+                                                            <div class="filter">
+                                                                <div class="filter-header">
+                                                                <select tip-title="选择你要选择的题" v-model="item.id">
+                                                                    <option value=""></option>
+                                                                    <option v-for="q in questionsLibray" :value="q.id">{{q | QIndexTip}}</option>
+                                                                </select>
+                                                                <b></b></div>
+                                                                <div class="filter-drop"  v-if="hasChooseOption(item.id)">
+                                                                    <template v-for="o in questionsLibray | filterBy item.id in 'id'">
+                                                                        <div v-for="option in o.items" @click="setoption(item,option)" :class="['filter-option',item.value == option ? 'select':'']">{{option}}</div>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
                                                         </template>
                                                         <template v-if="currentdata.cellsource && currentdata.cellsource.length==0">
                                                             <div class="color7">
@@ -303,13 +339,13 @@
                                                    <div class="color7">添加行列以生成图表</div>
                                                </div>
                                                <table v-if="rows.length!==0&&cells.length!==0">
-                                                    <tr v-for="row in rows">
+                                                    <tr v-for="index in rows.length + 1">
                                                         <template v-if="$index == 0">
                                                             <th></th>
-                                                            <th v-for="cell in cells">{{cell | QIndexItem}}</th>
+                                                            <th v-for="cell in cells">{{cell.value}}</th>
                                                         </template>
                                                         <template v-else>
-                                                            <th>{{row | QIndexItem}}</th>
+                                                            <th>{{rows[index - 1].value}}</th>
                                                             <td v-for="cell in cells"></td>
                                                         </template>
                                                     </tr>

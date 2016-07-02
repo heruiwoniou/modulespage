@@ -15,7 +15,7 @@
                     <span class="split"></span>
                     <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
 	                <span class="split"></span>
-	                <a href="javascript:;" class="delete" @click="removecontrol"></a>
+	                <a href="javascript:;" class="delete" @click.stop="removecontrol"></a>
 	            </div>
                 <div class="control-panel-sub"  v-show="!component.self">
                     <a href="javascript:;" class="no-icon no-hover">选项:</a>
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+        <Accept :index="paths + ( index + 1 )" :isnextaccept="isNextAccept"></Accept>
 	</div>
 </template>
 <script>
@@ -101,7 +101,9 @@
 
 	import { setdefault } from './../common/events';
 
-	import { prefixpath, fullindex, iscurrent, colorPanel, styleExport } from './../common/computed';
+	import { prefixpath, fullindex, iscurrent, colorPanel, styleExport, isNextAccept } from './../common/computed';
+
+    import './common/Accept';
 
     var bumper = Bumper.create();
 
@@ -119,6 +121,7 @@
         	iscurrent,
         	colorPanel,
         	styleExport,
+            isNextAccept,
             limitRange:function(){
                 var arr = [];
                 for(var i = this.component.range.min ; i <= this.component.range.max ; i++ )

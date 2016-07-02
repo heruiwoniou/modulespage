@@ -18,7 +18,7 @@
                 <div class="menu">
                     <ul class="ul-menu drop-menu">
                         <li><a href="javascript:;">样式</a></li>
-                        <li><a href="javascript:;" onclick="WebApi.test()">插入</a> </li>
+                        <li><a href="javascript:;" onclick="WebApi.insert()">插入</a> </li>
                         <li><a href="javascript:;" onclick="WebApi.showLogic()">逻辑</a></li>
                     </ul>
                     <div class="person">
@@ -33,6 +33,7 @@
         </div>
     </div>
     <div class="body" v-cloak>
+        <Insert v-show="insert_visible" :quote="quote" v-ref:insert></Insert>
         <div class="left" @click="setindex">
             <h1>题型选择</h1>
             <div class="line"></div>
@@ -53,7 +54,7 @@
                 <div class="control-small" data-type="UnmixedText">纯文本</div>
             </div>
         </div>
-        <div class="right mCustomScrollbar" @click="setindex">
+        <div class="right edit-mCustomScrollbar" @click="setindex">
             <div class="header-container">
                 <div class="questions-title">
                     <div class="button-panel">
@@ -71,14 +72,12 @@
                     :component="header"
                     :index="99"
                     :selectindex='selectindex'
-                    :preview = 'preview'
                 ></component>
                 <component
                     :is="tab.type"
                     :component="tab"
                     :index="98"
                     :selectindex='selectindex'
-                    :preview = 'preview'
                 ></component>
                 <div class="accept" data-index="0"><b></b></div>
                 <component v-for="item in children" v-if="item!=null"

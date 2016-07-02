@@ -286,6 +286,7 @@ body.state-analyze
 								text-align center
 								border 1px solid #ccc
 								line-height 40px;
+								height 40px;
 							th
 								background #ccc + 50%
 						.rtl
@@ -308,8 +309,42 @@ body.state-analyze
 										.comsys-tip-span
 											color #ccc
 										.comsys-SingleCombox-layout
+											width auto
+											margin-right 30px
+											border 0px
+										.comsys-SingleCombox-button
+											opacity 0
+											cursor default
+										.filter
 											margin-bottom 15px
-										.comsys-SingleCombox-layout:last-child
+											.filter-header
+												height 30px;
+												border 1px solid #ccc
+												line-height 30px;
+												text-indent 5px;
+												b
+													width 30px;
+													height 28px;
+													line-height 28px;
+													display inline-block;
+													float right;
+													cursor pointer
+													&:before
+														content '3';
+														iconfont();
+											.filter-drop
+												border 1px solid #ccc;
+												border-top-width 0px
+												padding 5px;
+												.filter-option
+													padding 0 23px;
+													line-height 30px;
+													cursor pointer
+													&:hover
+													&.select
+														cursor default
+														background #ccc + 20%
+										.filter:last-child
 											margin-bottom 5px
 					&>.FrameLeft
 						.FrameContainer

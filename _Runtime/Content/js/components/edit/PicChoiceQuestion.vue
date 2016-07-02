@@ -17,7 +17,7 @@
                     <span class="split"></span>
                     <a href="javascript:;" :class="['icon-must',component.must ? 'select':'']" @click="setMust">必答题</a>
                     <span class="split"></span>
-                    <a href="javascript:;" class="delete" @click="removecontrol"></a>
+                    <a href="javascript:;" class="delete" @click.stop="removecontrol"></a>
                 </div>
             </div>
             <div class="content-area">
@@ -71,12 +71,14 @@
                 </div>
             </div>
         </div>
-        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+        <Accept :index="paths + ( index + 1 )" :isnextaccept="isNextAccept"></Accept>
     </div>
 </template>
 
 <script>
     import ComsysFileReader from './../common/filereader';
+
+    import XImage from 'common/client/XImage';
 
     import Bumper from 'common/client/Bumper';
 
@@ -84,7 +86,7 @@
 
     import props from './../common/props';
     import {
-        setindex, removecontrol, showColorPicker, setBold, setMust
+        setindex, removecontrol, showColorPicker, setBold, setMust, resize
     }
     from './../common/methods';
     import {
@@ -92,9 +94,10 @@
     }
     from './../common/events';
     import {
-        prefixpath, fullindex, iscurrent, colorPanel, styleExport
+        prefixpath, fullindex, iscurrent, colorPanel, styleExport, isNextAccept
     }
     from './../common/computed';
+    import './common/Accept';
 
     var filereader=new ComsysFileReader();
 
@@ -138,7 +141,8 @@
             fullindex,
             iscurrent,
             colorPanel,
-            styleExport
+            styleExport,
+            isNextAccept
         },
         methods: {
             showColorPicker,
@@ -187,26 +191,7 @@
             setmodel(issingle) {
                 this.component.single = issingle;
             },
-            resize($event){
-                var deferred = new $.Deferred();
-                var img = $event.target
-                var ratio = 1, w = img.width, h = img.height, maxWidth = 134, maxHeight = 134, wRatio = maxWidth / w, hRatio = maxHeight / h;
-                if (maxWidth == 0 && maxHeight == 0) {
-                    ratio = 1;
-                } else if (maxWidth == 0) {
-                    if (hRatio < 1) ratio = hRatio;
-                } else if (maxHeight == 0) {
-                    if (wRatio < 1) ratio = wRatio;
-                } else if (wRatio < 1 || hRatio < 1) {
-                    ratio = (wRatio <= hRatio ? wRatio : hRatio);
-                }
-                if (ratio < 1) {
-                    w = w * ratio;
-                    h = h * ratio;
-                }
-                deferred.resolve(w,h);
-                return deferred;
-            },
+            resize,
             fileschange($event,index){
                 var that=this;
                 var itemedit = index !== undefined;
@@ -214,18 +199,18 @@
                 var targetImage = itemedit ? $parent.find("img").get(0):that.$els.itemImage
                 var targetItem = itemedit?that.component.items[index]:that.itemcache;
                 filereader.read($event.target).then(function(image){
-                    targetItem.image = image
-                    targetItem.w = "";
-                    targetItem.h = "";
-                    that.$nextTick(()=>{
-                        that.resize({target:targetImage}).then((w,h)=>{
-                            targetItem.w = w;
-                            targetItem.h = h;
-                        });
+                    that.resize( image , 134 , 134 ).then((w,h)=>{
+                        targetItem.image = image;
+                        targetItem.w = w;
+                        targetItem.h = h;
                         that.validate({target:$parent });
-                    })
+                    }).fail(function(){
+                        targetItem.image = XImage.prototype.errorImageCode
+                        targetItem.w = 80;
+                        targetItem.h = 25;
+                    });
                 }).fail(function(message){
-
+                    WebApi.alert(message);
                 });
             },
             edititem(index,$event){
@@ -270,16 +255,16 @@
                 if (!this.iscurrent) this.setindex();
             },
             closecacheitem(){
-                this.editcacheiteming = false;
                 this.validate({target:$(this.$el).find('.add.edit-item')});
+                this.editcacheiteming = false;
             },
             validate:function($event,index){
+                if(!this.edititeming&&!this.editcacheiteming) return;
                 var edititem = index !== undefined;
                 var $parent = $($event.target).closest(".edit-item");
                 var file=$parent.find(":file");
                 var itemText=$parent.find(":text");
                 var targetViewModel = edititem ? this.component.items[index] : this.itemcache
-
                 if(targetViewModel.image!==''&&targetViewModel.text!=='')
                 {
                     if(edititem)
@@ -295,10 +280,16 @@
                             this.componentwatch('edit',this.edititemindex);
                             this.editcacheitem()
                         }
+
+                        this.component.items[index].text = this.component.items[index].text.replace(/\|/g,'｜');
                     }
                     else
                     {
-                        this.component.items.push({text:targetViewModel.text,image:targetViewModel.image,w:targetViewModel.w,h:targetViewModel.h})
+                        this.component.items.push({
+                            text : targetViewModel.text.replace(/\|/g,'｜'),
+                            image: targetViewModel.image,
+                            w    : targetViewModel.w,h:targetViewModel.h
+                        });
                         this.componentwatch('edit',this.component.items.length - 1);
                         this.$nextTick(()=>this.clear())
                     }

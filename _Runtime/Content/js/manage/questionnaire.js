@@ -6,6 +6,7 @@ define(
         './../components/Perview',
         './../components/ColorPicker',
         './../components/Logic',
+        './../components/Insert',
         //引用控件
         './../components/edit/TabBar',
         './../components/edit/StaticHeader',
@@ -15,14 +16,21 @@ define(
         './../components/edit/UnmixedText',
         './../components/edit/QuestionResponse',
         './../components/edit/GradeQuestion',
-        './../components/edit/MatrixChoiceQuestion'
+        './../components/edit/MatrixChoiceQuestion',
+
+        //引用插件预览
+        './../components/insert/ChoiceQuestionInsert',
+        './../components/insert/PicChoiceQuestionInsert',
+        './../components/insert/GradeQuestionInsert',
+        './../components/insert/MatrixChoiceQuestionInsert'
     ],
     function(
         Vue,
         setting,
         Perview,
         ColorPicker,
-        Logic
+        Logic,
+        Insert
     ) {
         var viewModel,//数据模型
         droppables,//可填充对象坐标信息
@@ -30,21 +38,31 @@ define(
         droppablescrolltop,//开始拖动时的滚动条位置信息
         droppablecache;//当前选中的可填充对象信息
         return {
-            $Preview:new Perview(),
-            $ColorPicker:new ColorPicker(),
+            $Preview: new Perview(),
+            $ColorPicker: new ColorPicker(),
             init: function() {
                 this.vue();
                 return false;
             },
-            test:function(){
-                debugger;
-                WebApi.alert('123123');
+            insert:function(e){
+                e = e || event;
+                var that = this;
+                viewModel.$refs.insert.toggle();
+                viewModel.$nextTick(function(){
+                    if(that.$Preview) that.$Preview.close();
+                });
+                if ( e && e.stopPropagation ) e.stopPropagation();
+                else window.event.cancelBubble = true;
+                if ( e && e.preventDefault ) e.preventDefault();
+                else window.event.returnValue = false;
+                return false;
             },
             showLogic:function(){
                 WebApi.modal({content:$('#Logic'),title:"逻辑设置",width:800,height:425})
             },
             //计算容器所在坐标
-            countdroppables: function($target) {
+            countdroppables: function($target,left) {
+                left = left || 200;
                 droppables = null;
                 var arr = [];
                 droppables = [];
@@ -61,7 +79,7 @@ define(
                 });
                 arr.forEach(function(o, index) {
                         droppables.push({
-                            left: 200,
+                            left: left,
                             top: (index == 0 ? -9999999999 : (o.top - (o.top - arr[index - 1].top) / 2)),
                             bottom: ((index == arr.length - 1) ? 9999999999 : (o.top + (arr[index + 1].top - o.top) / 2)),
                             el: o.el
@@ -93,6 +111,22 @@ define(
                 if (droppablecache.$el !== undefined && droppablecache.$el.length != 0) droppablecache.$el.removeClass('draging');
                 droppablecache = {};
             },
+            template: function( children , key ){
+                var template;
+                for( var i = 0 ; i < children.length ; i++ )
+                {
+                    if( children[ i ].children)
+                    {
+                        if((template = arguments.callee(children[ i ].children , key)) !== undefined) return template;
+                    }
+                    else
+                    {
+                        if( children[ i ].majorkey == key )
+                            if((template = children[ i ]) !== undefined) return template;
+                    }
+                }
+                return template;
+            },
             drop: function(ui) {
                 try {
                     // statements
@@ -104,6 +138,7 @@ define(
                     droppablecache.$el.removeClass('draging');
                     var $this = droppablecache.$el;
                     var type = ui.helper.data('type');
+                    var majorkey = ui.helper.data('majorkey');
                     var component;
                     var path, toPaths = $this.attr("data-index").split('-'),
                         insertIndex = ~~toPaths.pop(),
@@ -115,7 +150,13 @@ define(
                         return;
                     }
                     if (type) {
-                        component = setting(ui.helper.data('type'));
+                        if(majorkey)
+                        {
+                            var data = WebApi.template( viewModel.quote , majorkey );
+                            component = setting( type , data);
+                        }
+                        else
+                            component = setting(type);
                         if (component !== null) {
                             while (path = toPaths.shift()) {
                                 target = target.children[~~path];
@@ -146,6 +187,24 @@ define(
                    console.log(e);
                 }
             },
+            binddraggle:function(left){
+                $(".control-small:not([draggable])").draggable({
+                    distance: 10,
+                    appendTo: "body",
+                    helper: "clone",
+                    opacity: 0.8,
+                    start: function(event, ui) {
+                        ui.helper.css({ width : $(event.target).width() });
+                        viewModel.setindex();
+                        if($(".accept:visible").length==0) return false;
+                        WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')),left);
+                    },
+                    drag: WebApi.drag,
+                    stop: function(event, ui) {
+                        WebApi.drop(ui);
+                    }
+                }).attr("draggable", "");
+            },
             bindaccept: function() {
                 $(".control:not([draggable])").draggable({
                     addClasses: true,
@@ -154,6 +213,7 @@ define(
                     opacity: 0.8,
                     revertDuration: 200,
                     start: function(event, ui) {
+                        ui.helper.css({ width : $(event.target).width() });
                         viewModel.setindex();
                         if($(".accept:visible").length==0) return false;
                         ui.helper.css({ zIndex: 100 });
@@ -175,12 +235,11 @@ define(
                 viewModel = new Vue({
                     el: 'body',
                     data: (function() {
+                        var source ={};
                         if (localStorage.data && localStorage.data !== "null" && localStorage.data !== "undefined") {
-                            return JSON.parse(localStorage.data);
-                        } else
-                            return {
-                                dragging: false,
-                                selectindex: "",
+                            source = JSON.parse(localStorage.data);
+                        } else {
+                            source = {
                                 header: function() {
                                     return setting('StaticHeader');
                                 }(),
@@ -190,23 +249,16 @@ define(
                                 logic:[],
                                 children: []
                             };
+                        }
+                        return $.extend(source,{
+                            dragging: false,
+                            selectindex: "",
+                            quote:[]
+                        })
                     }()),
                     ready: function() {
-                        $(".control-small").draggable({
-                            distance: 10,
-                            appendTo: "body",
-                            helper: "clone",
-                            opacity: 0.8,
-                            start: function(event, ui) {
-                                viewModel.setindex();
-                                if($(".accept:visible").length==0) return false;
-                                WebApi.countdroppables($(".accept").not(ui.helper.find('.accept')));
-                            },
-                            drag: WebApi.drag,
-                            stop: function(event, ui) {
-                                WebApi.drop(ui);
-                            }
-                        });
+                        WebApi.binddraggle();
+
                         WebApi.bindaccept();
                         //挂载预览框
                         WebApi.$Preview.$mount("#Perview");
@@ -214,14 +266,25 @@ define(
                         WebApi.$ColorPicker.$mount("#ColorPicker");
                         //绑定滚动条
                         WebApi.scrollReplace();
+
+                        $('.edit-mCustomScrollbar').mCustomScrollbar({
+                            theme: "dark",
+                            scrollInertia: 400,
+                            advanced:{ autoScrollOnFocus: false },
+                            autoHideScrollbar:true,
+                            alwaysShowScrollbar:2,
+                            scrollButtons:{enable:false}
+                        });
                     },
                     methods: {
                         save: function() {
                             var str = JSON.stringify(this.$data);
                             localStorage.data = str;
-                            WebApi.invoke('$ModalWin','close')
+                            WebApi.invoke('$ModalWin','close');
+                            this.quote = [JSON.parse(str)];
                         },
                         toggle: function() {
+                            this.$refs.insert.hide();
                             WebApi.$Preview.show(JSON.stringify(this.$data))
                         },
                         setindex: function() {
@@ -261,6 +324,38 @@ define(
                             this.selectindex = fullindex;
                             //广播所有的对象都进入非编辑模式
                             this.$broadcast("setdefault", this.selectindex);
+                        },
+                        addSelected:function(objects){
+                            //添加到指定路径
+                            var component,target = viewModel;
+                            if(this.selectindex !=='' && this.selectindex !== '99' && this.selectindex !== '98')
+                            {
+                                var path_array = this.selectindex.split('-');
+                                var index = ~~path_array.pop(),path
+                                while (path = path_array.shift()) {
+                                    target = target.children[~~path];
+                                }
+                                objects.forEach(function(o){
+                                    component = setting( o.type , o );
+                                    target.children.splice(++index, 0, component)
+                                });
+                            }else
+                            {
+                                //添加到最后
+                                objects.forEach(function(o){
+                                    component = setting( o.type , o );
+                                    target.children.push( component );
+                                });
+                            }
+                            viewModel.setQuestionIndex();
+                        },
+                        addall:function(tpl){
+                            var component;
+                            tpl.children.forEach(function(o){
+                                component = setting( o.type , o );
+                                viewModel.children.push( component );
+                            });
+                            viewModel.setQuestionIndex();
                         }
                     }
                 })

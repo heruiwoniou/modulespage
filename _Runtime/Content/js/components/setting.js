@@ -25,8 +25,25 @@ define(['Guid'],function(guid){
 				color: color
 			}
 		},
-		SectionGroup:function(){
-			return {
+		SectionGroup:function(data){
+			return data?{
+				type : "SectionGroup" ,
+				id:guid.NewGuid().ToString("D"),
+
+				title:data.title,
+				children:function(){
+					var children = [];
+					data.children.forEach(function(o){
+						var scope = setting[o.type];
+						if(scope)
+							children.push(scope.call( scope , o ));
+					});
+					return children;
+				}(),
+
+				bold: data.bold,
+				color: data.color
+			}:{
 				type : "SectionGroup" ,
 				id:guid.NewGuid().ToString("D"),
 
@@ -37,8 +54,16 @@ define(['Guid'],function(guid){
 				color: color
 			}
 		},
-		UnmixedText:function(){
-			return {
+		UnmixedText:function(data){
+			return data ? {
+				type : "UnmixedText" ,
+				id:guid.NewGuid().ToString("D"),
+
+				content : data.content,
+
+				bold : data.bold,
+				color : data.color
+			}:{
 				type : "UnmixedText" ,
 				id:guid.NewGuid().ToString("D"),
 
@@ -50,32 +75,76 @@ define(['Guid'],function(guid){
 		},
 
 		//以下为含编号的控件
-		GradeQuestion:function(name){
-			return {
-				type : "GradeQuestion" ,
-				id : guid.NewGuid().ToString("D"),
-				qindex:'',
+		GradeQuestion:function(data){
+			debugger;
+			return data ?
+				{
+					type : "GradeQuestion" ,
+					id : guid.NewGuid().ToString("D") ,
+					qindex:'' ,
 
-				//是否自填分
-				self : false,
-				//填分类型
-				//0:星,1:字母,2:汉字,3:滑条,4:选择分数,5:填分
-				xtype : 0,
-				range : {
-					min : 0,
-					max : 100,
-					charlength:5
-				},
+					//是否自填分
+					self : data.self ,
+					//填分类型
+					//0:星,1:字母,2:汉字,3:滑条,4:选择分数,5:填分
+					xtype : data.xtype ,
+					range : {
+						min : data.range.min ,
+						max : data.range.max ,
+						charlength : data.range.charlength
+					},
+
+					bold : data.bold ,
+					color : data.color ,
+					must : data.must ,
+
+					value : ""
+				}
+				:
+				{
+					type : "GradeQuestion" ,
+					id : guid.NewGuid().ToString("D"),
+					qindex:'',
+
+					//是否自填分
+					self : false,
+					//填分类型
+					//0:星,1:字母,2:汉字,3:滑条,4:选择分数,5:填分
+					xtype : 0,
+					range : {
+						min : 0,
+						max : 100,
+						charlength:5
+					},
+
+					bold : false,
+					color : color,
+					must : false,
+
+					value : ""
+				};
+		},
+		ChoiceQuestion: function (data) {
+			return data ?
+			{
+				type : "ChoiceQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				qindex : '',
+
+				single : data.single ,
+				title : data.title ,
+				items : data.items ,
 
 				bold : false,
 				color : color,
 				must : false,
 
-				value : "",
+				maxItems : maxItems,
+
+				value: []
 			}
-		},
-		ChoiceQuestion: function () {
-			return {
+			:
+			{
 				type : "ChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
@@ -93,8 +162,27 @@ define(['Guid'],function(guid){
 				value: []
 			}
 		},
-		PicChoiceQuestion:function(){
-			return {
+		PicChoiceQuestion:function(data){
+			return data ?
+			{
+				type : "PicChoiceQuestion" ,
+				id : guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				title : data.title ,
+				items : data.items ,
+				single : data.single ,
+
+				bold : data.bold ,
+				color : data.color ,
+				must : data.must ,
+
+				maxItems:maxItems,
+
+				value:[]
+			}
+			:
+			{
 				type : "PicChoiceQuestion" ,
 				id : guid.NewGuid().ToString("D"),
 				qindex:'',
@@ -112,8 +200,24 @@ define(['Guid'],function(guid){
 				value:[]
 			}
 		},
-		QuestionResponse:function(){
-			return {
+		QuestionResponse:function(data){
+			return data?
+			{
+				type : "QuestionResponse" ,
+				id:guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				title:data.title,
+				single:data.single,
+
+				bold : data.bold,
+				color: data.color,
+				must : data.must,
+
+				value:''
+			}
+			:
+			{
 				type : "QuestionResponse" ,
 				id:guid.NewGuid().ToString("D"),
 				qindex:'',
@@ -125,11 +229,31 @@ define(['Guid'],function(guid){
 				color: color,
 				must : false,
 
-				value:'',
+				value:''
 			}
 		},
-		MatrixChoiceQuestion:function(){
-			return {
+		MatrixChoiceQuestion:function(data){
+			return data?
+			{
+				type: 'MatrixChoiceQuestion',
+				id:guid.NewGuid().ToString("D"),
+				qindex:'',
+
+				title:data.title,
+				single:data.single,
+				rows:data.rows,
+				cells:data.cells,
+
+				bold:data.bold,
+				color: data.color,
+				must : data.must,
+
+				maxItems:maxItems,
+
+				value:[]
+			}
+			:
+			{
 				type: 'MatrixChoiceQuestion',
 				id:guid.NewGuid().ToString("D"),
 				qindex:'',
@@ -152,6 +276,6 @@ define(['Guid'],function(guid){
 	return function(type){
 		var scope=setting[type];
 		if(!scope) return null;
-		return scope.apply(scope,[].slice.call(arguments,1));
+		return scope.apply(scope,([]).slice.call(arguments,1));
 	}
 })

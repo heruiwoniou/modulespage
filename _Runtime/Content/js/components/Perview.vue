@@ -2,7 +2,7 @@
 	<div class="preview-modal" v-show="visible" transition="translate-from-right">
 		<div class="preview-close" @click="close"></div>
 		<div class="preview-container">
-			<iframe :src="data?'questionnaire-preview.html?data='+ data:'about:blank'" frameborder="0"></iframe>
+			<iframe :src="data?'questionnaire-preview.html':'about:blank'" frameborder="0"></iframe>
 		</div>
 	</div>
 </template>
@@ -12,7 +12,7 @@
         enter(el, done) {
         	var $el=$(el);
         	var width = $el.width();
-            $el.css({ right: -1 * width }).animate({ right: 0 }, 200,done)
+            $el.css({ right: -1 * width }).animate({ right: 0 }, 200 , 'easeOutExpo' ,done)
         },
         leave(el, done) {
         	var $el=$(el);

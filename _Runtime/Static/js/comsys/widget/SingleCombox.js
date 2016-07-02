@@ -49,7 +49,7 @@ define(
                     },
                     TPL: {
                         layout: "<div class='comsys-base comsys-SingleCombox-layout' id='SingleCombox-<%= this.classids%>'>@{layout}@</div>",
-                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' readonly tip-title='<%=$(this.element).attr(\"tip-title\")?$(this.element).attr(\"tip-title\"):\"\"%>' value='<%=this.element.options.length==0 || this.element.selectedIndex == -1?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
+                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' readonly placeholder='<%=$(this.element).attr(\"tip-title\")?$(this.element).attr(\"tip-title\"):\"\"%>' value='<%=this.element.options.length==0 || this.element.selectedIndex == -1?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
                         drop: "<div class='comsys-combox-base comsys-SingleCombox-drop' id='SingleCombox-drop-<%= this.classids%>'><%for(var i=0;i<this.element.options.length;i++){%>@{section:this.TPL.option,this.element.options[i]}@<%}%></div>",
                         option: "<div class='comsys-base comsys-SingleCombox-option<%=this.selected?\' selected\':\'\'%>' data-index='<%=this.index%>'><%=this.text%></div>"
                     },

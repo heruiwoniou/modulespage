@@ -6,14 +6,21 @@
 @import './edit/TabBar.styl';
 @import './edit/GradeQuestion.styl';
 @import './edit/MatrixChoiceQuestion.styl';
+@import './edit/UnmixedText.styl';
 
+control-insert()
+	.insert-modal
+		ChoiceQuestionInsert();
+		PicChoiceQuestionInsert();
+		GradeQuestionInsert();
+		MatrixChoiceQuestionInsert();
 questionnaireEdit()
 	.edit
 		.control-item
 			position relative
 			border 1px solid $basecolor - 5%
 			background white
-			padding 55px 10px 10px 10px
+			padding 65px 30px 20px 30px
 			min-height 50px
 			h2.control-title
 				position absolute
@@ -22,16 +29,78 @@ questionnaireEdit()
 				right 0
 				height 45px
 				line-height 45px
-				text-indent 5px
-				//background #ccc + 5%
+				text-indent 15px
 				border-bottom 1px solid $basecolor - 5%
+			&~.border-top
+				width 16px
+				position absolute
+				box-sizing content-box
+				border-bottom 1px solid $basecolor - 5%
+				height 10px
+				background #ececec
+				line-height 0
+				font-size 0
+				top -3px
+				left -6px
+				transform rotate(-45deg)
+			&.selectchild
+			&:hover
+				border-color $basecolor - 20%
+				&~.border-top
+					border-bottom-color $basecolor - 20%
+				.border-top
+					background #f8f8f8
+			&.selectchild
+				.select
+					&~.accept .pointer
+						background #f8f8f8
 			&.select
 				//box-shadow 0 0 5px 0 #ccc - 40%
 				border-color $basecolor - 40%//$basecolor - 40%
 				&:hover
 					border-color $basecolor - 40%//transparent
-			&:hover
-				border-color $basecolor - 20%
+				&~.accept
+					position relative
+					width 100%
+					height 10px
+					margin 0 auto
+					.pointer
+						display block
+						background #ececec
+						position absolute
+						width 30px
+						height 30px
+						top -10px
+						left -20px
+						z-index 1
+						transform rotate(45deg)
+						.inner-border-top
+							height 1px
+							line-height 0
+							font-size 0
+							width 16px
+							position absolute
+							border-top 1px solid #929292
+							top -1px
+							left 7px
+						.add
+							height 21px
+							width 21px
+							line-height 20px
+							margin 5px
+							text-align center
+							background #3399FF
+							&:before
+								position relative
+								font-size 20px
+								color white
+								top -7px
+								left -1px
+								iconfont()
+								content 'M'
+				&~.accept:before
+					border-bottom-style solid
+					border-bottom-color #3399FF !important
 		.control-static
 		.control
 			width 100%
@@ -44,6 +113,8 @@ questionnaireEdit()
 			margin 0 auto
 				&:before
 					border-bottom-color blue
+			.pointer
+				display none
 			&.draging
 				&:before
 					border-bottom-style solid
@@ -113,6 +184,7 @@ questionnaireEdit()
 		TabBar();
 		GradeQuestion();
 		MatrixChoiceQuestion();
+		UnmixedText();
 		.control-panel
 		.control-panel-sub
 			font-size 0px

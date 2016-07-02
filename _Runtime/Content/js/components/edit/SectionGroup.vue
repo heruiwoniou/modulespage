@@ -1,6 +1,6 @@
 <template>
     <div class="control" data-index="{{paths + index}}">
-        <div :class="['control-item','SectionGroup',iscurrent||selectchild?'select':'']" @click.stop="setindex">
+        <div :class="['control-item','SectionGroup',iscurrent ?'select':'' ,selectchild&&!iscurrent ? 'selectchild':'' , fold ?'fold-parent':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">段落</h2>
             <div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
                 <a href="javascript:;" :class="['icon-bold',component.bold?'select':'']" @click="setBold">加粗</a>
@@ -9,10 +9,12 @@
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
-                    <a href="javascript:;" class="delete" @click="removecontrol"></a>
+                    <a href="javascript:;" :class="['no-icon',fold ? 'fold':'']" @click="setFold">{{fold ? '展开' : '折叠'}}</a>
+                    <span class="split"></span>
+                    <a href="javascript:;" class="delete" @click.stop="removecontrol"></a>
                 </div>
             </div>
-            <div class="content-area">
+            <div class="content-area" v-show="!fold">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
                     <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
@@ -21,7 +23,7 @@
                 <component v-for="item in component.children" v-if="item!=null" :is="item.type" :component="item" :index="$index" :paths="prefixpath" :selectindex='selectindex' :preview='preview' transition="fadeInOut"></component>
             </div>
         </div>
-        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+        <Accept :index="paths + ( index + 1 )" :isnextaccept="isNextAccept"></Accept>
     </div>
 </template>
 
@@ -40,16 +42,19 @@
     from './../common/events';
 
     import {
-        prefixpath, fullindex, iscurrent, colorPanel, styleExport
+        prefixpath, fullindex, iscurrent, colorPanel, styleExport,isNextAccept
     }
     from './../common/computed';
+    import './common/Accept';
 
     export default {
         data() {
             return {
-                titletip: '段落描述(点击编辑)',
-                edittitling: false,
-                selectchild: false
+                titletip : '段落描述(点击编辑)',
+                edittitling : false,
+                selectchild : false,
+
+                fold : false
             }
         },
         props: props,
@@ -58,11 +63,15 @@
             fullindex,
             iscurrent,
             colorPanel,
-            styleExport
+            styleExport,
+            isNextAccept
         },
         methods: {
             showColorPicker,
             setBold,
+            setFold(){
+                this.fold = !this.fold;
+            },
             edittitle() {
                 this.edittitling = true;
                 this.$nextTick(() => {

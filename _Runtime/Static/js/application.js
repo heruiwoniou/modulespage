@@ -13,7 +13,6 @@ define([
     '../../Content/js/util/common',
     'common/client/XImage',
     'common/client/Async',
-
     //缓存内容
     'vue',
     'widget/TextBox',
@@ -25,6 +24,7 @@ define([
     'widget/MulCombox',
     'libs/jquery.scrollbar/jquery.mCustomScrollbar',
     'libs/jquery-extend/jquery.form',
+    'libs/jquery-extend/jquery.easing',
     'common/client/Request',
     'common/client/WinResizeResponder'
 ], function($,CommonSetting,MaskLayer,Win,common,XImage,Async) {

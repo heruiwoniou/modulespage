@@ -9,7 +9,7 @@
                 <span class="split"></span>
                 <div class="inline-container">
                     <span class="split"></span>
-                    <a href="javascript:;" class="delete" @click="removecontrol"></a>
+                    <a href="javascript:;" class="delete" @click.stop="removecontrol"></a>
                 </div>
             </div>
             <div class="content-area">
@@ -19,7 +19,7 @@
                 <p :style="styleExport" v-show="!editcontenting" @click.stop="editcontent">{{ component.content || contenttip }}</p>
             </div>
         </div>
-        <div class="accept" data-index="{{paths + ( index + 1 )}}"><b></b></div>
+        <Accept :index="paths + ( index + 1 )" :isnextaccept="isNextAccept"></Accept>
     </div>
 </template>
 
@@ -37,9 +37,10 @@
     }
     from './../common/events';
     import {
-        prefixpath, fullindex, iscurrent, colorPanel, styleExport
+        prefixpath, fullindex, iscurrent, colorPanel, styleExport, isNextAccept
     }
     from './../common/computed';
+    import './common/Accept';
 
     export default {
         data() {
@@ -53,7 +54,8 @@
             fullindex,
             iscurrent,
             colorPanel,
-            styleExport
+            styleExport,
+            isNextAccept
         },
         methods: {
             showColorPicker,
