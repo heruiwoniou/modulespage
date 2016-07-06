@@ -42,7 +42,6 @@ export default {
         styleExport
     },
     ready(){
-        // this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
         this.disabled = false;
     },
     methods:{

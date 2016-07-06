@@ -91,7 +91,6 @@
                 })
             }
             this.disabled = false;
-            // this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
         },
         methods:{
             setStar(index){
