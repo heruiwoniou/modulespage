@@ -149,7 +149,7 @@ define([
             var $parent = parent&&parent.length!=0 ? $(parent) : $(document);
             $parent.find("input[tip-title]").TipTextBoxInit();
             $parent.find("select").SingleComboxInit();
-            $parent.find("input[type='text']").TextBoxInit();
+            $parent.find("input[type='text']:not(.pager-control input)").TextBoxInit();
             $parent.find(":radio").RadioBoxInit();
             $parent.find(":checkbox").CheckBoxInit();
         },

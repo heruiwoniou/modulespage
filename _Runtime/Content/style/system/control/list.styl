@@ -56,12 +56,38 @@ table.list-grid
  *
  */
 .table-grid
+	padding-bottom 10px
 	.row
 		margin-top 10px
 	.column
 		height 150px;
 		box-shadow 0 0 3px 0 #ccc;
 		background white
+	.column-small
+		position relative
+		height 50px
+		text-align center;
+		line-height 50px;
+		box-shadow 0 0 3px 0 #ccc;
+		background white
+		textHidden()
+		width 100%;
+		padding 0 5px
+		&:hover
+			box-shadow 0 0 5px 0 #ccc - 20%;
+		a
+			text-decoration none
+		b
+			cursor pointer
+			iconfont()
+			position absolute
+			display inline-block
+			height 14px
+			line-height 1
+			right 0
+			top 0px
+			&:hover
+				color $Color7
 
 /*
  *list-style-one
@@ -92,6 +118,10 @@ ul.list-style-one
 		p.info
 			color $fontSmallColor
 		p.content
+			height 50px
+			overflow hidden
+			white-space normal
+			word-break break-all
 			line-height 1.8
 			margin-bottom 40px
 	for b in 1..9

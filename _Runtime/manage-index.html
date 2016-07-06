@@ -94,25 +94,58 @@
                             </div>
                         </div>
                     </div>
+                    <div class="pager-control"><div class="pager-button">加载更多...</div></div>
                 </div>
-                <table class="list-grid" v-cloak v-else>
-                    <tr>
-                        <th>名称</th>
-                        <th>状态</th>
-                        <th>发布单位</th>
-                        <th>截止时间</th>
-                        <th>发布时间</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr v-for="row in list">
-                        <td v-for="col in row.slice(0,5)">{{col}}</td>
-                        <td>
-                            <a href="javascript:;" class="delete"></a>
-                            <a href="javascript:;" class="edit"></a>
-                            <a href="javascript:;" class="view" @click="view(row[1])"></a>
-                        </td>
-                    </tr>
-                </table>
+                <div v-else  v-cloak>
+                    <table class="list-grid">
+                        <tr>
+                            <th>名称</th>
+                            <th>状态</th>
+                            <th>发布单位</th>
+                            <th>截止时间</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr v-for="row in list">
+                            <td v-for="col in row.slice(0,5)">{{col}}</td>
+                            <td>
+                                <a href="javascript:;" class="delete"></a>
+                                <a href="javascript:;" class="edit"></a>
+                                <a href="javascript:;" class="view" @click="view(row[1])"></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="pager-control">
+                        <div class="pager-bar">
+                            <a href="javascript:;" class="pager-start disabled">首页</a>
+                            <a href="javascript:;" class="pager-last disabled">上一页</a>
+                            <a href="javascript:;" class="pager-number">1</a>
+                            <a href="javascript:;" class="pager-number">2</a>
+                            <a href="javascript:;" class="pager-number">3</a>
+                            <span class="ellipsis">...</span>
+                            <a href="javascript:;" class="pager-number">10</a>
+                            <a href="javascript:;" class="pager-number">11</a>
+                            <a href="javascript:;" class="pager-number">12</a>
+                            <span class="ellipsis">...</span>
+                            <a href="javascript:;" class="pager-number">99</a>
+                            <a href="javascript:;" class="pager-number">100</a>
+                            <a href="javascript:;" class="pager-number">101</a>
+                            <a href="javascript:;" class="pager-next">下一页</a>
+                            <a href="javascript:;" class="pager-end">尾页</a>
+                            <span class="text">
+                                当前第<i>10</i>在页
+                            </span>
+                            <span class="text">
+                                共<i>101</i>页
+                            </span>
+                            <span class="text">
+                                共<i>564561</i>条数据
+                            </span>
+                            <input type="text">
+                            <a href="javascript:;" class="pager-go">GO</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

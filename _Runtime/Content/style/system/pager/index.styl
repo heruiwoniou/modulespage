@@ -7,17 +7,27 @@ body.index
 		background url(images/banner.jpg) no-repeat center 0px
 		.button
 			position absolute
-			top 400px;
+			top 460px;
 			left 50%;
 			margin-left -55px
 		.banner-text
 			text-align center
+			.banner-text-container
+				max-height 228px
+				overflow hidden
+			table
+				height 310px
+				width 100%
+				td
+					text-align center;
 			h1
 				color white
 				font-size 3em
-				line-height 5
+				line-height 45px
 			p
 				font-size 1.1em
+				max-height 120px
+				overflow hidden
 				line-height 2
 				color white
 	.body
@@ -77,11 +87,13 @@ body.index
 				.col-3
 					text-align center
 				.item
+					width 100%
 					display inline-block
 					h2
 						font-size 1.1em
 						line-height 60px
 						color $Color3
+						textHidden()
 					p
 						height 32px
 						overflow hidden
@@ -120,6 +132,10 @@ body.index
 				color white - 10%
 				margin 15px 0
 				line-height 1.2
+				height 33px
+				overflow hidden
+				white-space normal
+				word-break break-all
 			.line
 				height 1px
 				background #a6a5a4

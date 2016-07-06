@@ -1,0 +1,49 @@
+.pager-control
+	.pager-button
+		line-height 40px
+		text-align center
+		background #1bb869
+		margin 20px 1% 0 1%
+		color white
+		cursor pointer
+		&:hover
+			background #1bb869 + 5%
+	.pager-bar
+		text-align right
+		line-height 40px;
+		margin 20px 0 0 0
+		a
+		span
+			display inline-block
+			padding 0 5px
+			text-align center
+			i
+				padding 0 5px
+		a
+			border 1px solid #f5f5f5 - 10%
+			&.pager-start
+			&.pager-end
+			&.pager-next
+			&.pager-last
+				min-width 60px
+			&.pager-number
+				min-width 45px
+			&.pager-go
+				border none
+			&:hover
+				border-color #1bb869
+				background #1bb869
+				color white
+			&.disabled
+				cursor default
+				color #f5f5f5 - 10%
+				&:hover
+					border-color #f5f5f5 - 10%
+					background white
+					text-decoration none
+		span.text
+			color #878787
+		input
+			line-height 30px
+			text-align center
+			width 40px

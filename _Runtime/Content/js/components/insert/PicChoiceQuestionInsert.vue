@@ -10,7 +10,7 @@
 					<div class="text" :title="item.text">{{item.text}}</div>
 				</div>
 			</div>
-			<p><span>来自</span><b :title="component.from">{{component.from}}</b><i>2344次使用</i></p>
+			<p><span>来自</span><b :title="component.from">{{component.from}}</b><i>{{component.used}}次使用</i></p>
 		</div>
 	</div>
 </template>

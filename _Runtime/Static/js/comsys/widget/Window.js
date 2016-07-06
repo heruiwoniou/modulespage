@@ -70,13 +70,11 @@ define(
                 var _w = this[type];
                 this[type] = $.grep(_w, function(n, i) {
                     if (name === undefined) {
-                        if (i === 0) return true;
                         if (!n.window.status) {
                             n.window.destory();
                             return false;
                         } else return true;
                     } else {
-                        if (i === 0) return true;
                         if (n.name === name) {
                             n.window.destory();
                             return false;

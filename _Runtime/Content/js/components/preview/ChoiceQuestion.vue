@@ -23,7 +23,7 @@
     export default {
         data() {
             return {
-                disabled : false ,
+                disabled : true ,
 
                 maxrows: 10
             }
@@ -31,7 +31,8 @@
         props: props ,
         watch: watch ,
         ready(){
-            this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
+            // this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
+            this.disabled = false;
         },
         computed: {
             columns() {

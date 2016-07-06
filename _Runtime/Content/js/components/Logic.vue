@@ -101,6 +101,7 @@
 	}
 
 	const validate = function(){
+		debugger;
 		var {choice,from,option,to} = this.cache;
 		if(from !== '' && option !== '' && to !== '')
 		{
@@ -160,14 +161,13 @@
 			fromquestions(){
 				//再次过滤已经有了的
 				var original =  filterArray(this.children);
-				return original;
-				// return original.filter(o => {
-				// 	var c = this.logic.filter(m => m.from == o.id);
-				// 	if (o.type == 'PicChoiceQuestion' || o.type == 'ChoiceQuestion')
-				// 		return c.length != o.items.length;
-				// 	else if ( o.type == 'GradeQuestion' || o.type == 'QuestionResponse' || o.type == 'MatrixChoiceQuestion')
-				// 		return c.length == 0;
-				// });
+				return original.filter(o => {
+					var c = this.logic.filter(m => m.from == o.id);
+					if (o.type == 'PicChoiceQuestion' || o.type == 'ChoiceQuestion')
+						return c.length != o.items.length;
+					else if ( o.type == 'GradeQuestion' || o.type == 'QuestionResponse' || o.type == 'MatrixChoiceQuestion')
+						return c.length == 0;
+				});
 			},
 			options(){
 				this.cache.choice = true;
@@ -182,9 +182,9 @@
 						var history = this.logic.filter(o=>o.from == this.cache.from);
 						var ret = item.items
 						//这里是过滤掉已经选过的对象
-						//.filter((o,i)=>history.filter(m => m.option === i).length === 0)
+						.filter((o,i)=>history.filter(m => m.option === i).length === 0)
 						.map(o => { return { index:item.items.indexOf(o),value: (toString(o) == '[object String]' ? o : o.text) };});
-						ret.push({index:999,value:"显示"});
+						//ret.push({index:999,value:"显示"});
 						return ret;
 					}
 					else if ( item.type == 'GradeQuestion' || item.type == 'QuestionResponse' || item.type == 'MatrixChoiceQuestion')
@@ -213,7 +213,7 @@
 				arr = arr.filter((o,index)=>index !== cindex );
 
 				//剔除已经使用过的
-				this.cache.choice = false;
+				//this.cache.choice = false;
 				var used = this.logic.filter(o => o.from===from && o.option === option);
 				arr = arr.filter(o=>{
 					return used.filter(m => m.to === o.id ).length == 0;

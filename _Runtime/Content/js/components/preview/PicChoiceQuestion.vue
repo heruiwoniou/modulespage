@@ -23,7 +23,7 @@
     import { trigger } from './../common/events';
     export default {
       data(){
-        return { disabled : false }
+        return { disabled : true }
       },
       watch: watch,
       props: props,
@@ -31,7 +31,8 @@
           styleExport
       },
       ready(){
-      	this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
+      	// this.disabled = this.$root.logic.filter(o=>o.to == this.component.id).length !== 0;
+        this.disabled = false; 
       },
       events:{
       	trigger

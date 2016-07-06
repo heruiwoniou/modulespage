@@ -1,4 +1,4 @@
-define(function(){
+define(['./util'],function(util){
 	function Events (){ }
 	Events.prototype={
 		constructor:Events,
@@ -17,41 +17,37 @@ define(function(){
 				this.selectchild = false
 			this.$root.setQuestionIndex();
 		},
-		trigger:function( tos , rets , type , ...arg ){
-			if(tos.indexOf(this.component.id) !== -1)
+		/**
+		 * trigger_disabled
+		 * @param  {[type]} id    [description]
+		 * @param  {[type]} state [description]
+		 * @return {[type]}       [description]
+		 */
+		trigger:function( id , state ){
+			if(this.component.id == id)
+				this.disabled = state;
+			if(this.disabled && this.component.value !=[] && this.component.value !== '')
 			{
-				switch (type) {
-					case 'choice':
-						this.disabled = rets.indexOf(this.component.id) == -1;
-						break;
-					case 'display':
-						this.disabled = arg[0];
-						break;
-					default:
-						// statements_def
-						break;
-				}
-				if(this.disabled)
-				{
-					var that = this;
-					this.component.value = Array.isArray(this.component.value)?[]:'';
-					this.$nextTick(function(){
-						switch (that.component.type) {
-							case 'ChoiceQuestion':
-								if(that.component.single)
-									$(that.$el).find(':radio').RadioBoxInit();
-								else
-									$(that.$el).find(':checkbox').CheckBoxInit();
-								break;
-							case 'GradeQuestion':
-								$(that.$el).find('.select').removeClass('select');
-								break;
-							default:
-								// statements_def
-								break;
-						}
-					})
-				}
+				if(util.isArray(this.component.value) && this.component.value.length === 0 || !util.isArray(this.component.value) && this.component.value === '')
+					return true;
+				var that = this;
+				this.component.value = Array.isArray(this.component.value)?[]:'';
+				this.$nextTick(function(){
+					switch (that.component.type) {
+						case 'ChoiceQuestion':
+							if(that.component.single)
+								$(that.$el).find(':radio').RadioBoxInit();
+							else
+								$(that.$el).find(':checkbox').CheckBoxInit();
+							break;
+						case 'GradeQuestion':
+							$(that.$el).find('.select').removeClass('select');
+							break;
+						default:
+							// statements_def
+							break;
+					}
+				})
 			}
 			return true;
 		}

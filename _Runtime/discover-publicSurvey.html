@@ -103,6 +103,20 @@
                         <li v-for="el in items" data-target="tab{{$index}}" :class="$index==0?'select':''">
                             <a href="javascript:;">{{el.tab}}<b><i>{{el.tab}}</i></b></a>
                         </li>
+                        <li class="other">
+                            <div class="inline-container">
+                                <input type="checkbox">测试
+                            </div>
+                        </li>
+                        <li class="other">
+                            <div class="inline-container">
+                                <select>
+                                    <option value=""></option>
+                                    <option value="1">进行中</option>
+                                    <option value="2">已结束</option>
+                                </select>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="tab-body">

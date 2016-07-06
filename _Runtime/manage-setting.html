@@ -259,6 +259,18 @@
                             <div class="field-wrap">
                                 使用中的分类
                             </div>
+                            <div class="table-grid">
+                                <div class="row" v-for="rowindex in 5">
+                                    <div class="col-2" v-for="colindex in 6">
+                                        <div class="column-small new" v-if="rowindex == 0 && colindex == 0">
+                                            <a href="javascript:;">+新的分类</a>
+                                        </div>
+                                        <div class="column-small" v-if="! (rowindex == 0 && colindex == 0 )">
+                                            <a href="javascript:;">测试测试测试</a><b>&#x4d;</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

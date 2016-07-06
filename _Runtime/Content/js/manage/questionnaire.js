@@ -57,6 +57,10 @@ define(
                 else window.event.returnValue = false;
                 return false;
             },
+            InsertSearch:function(classify,search){
+                var str = JSON.stringify(viewModel.$data);
+                viewModel.$refs.insert.$set('quote' , [JSON.parse(str)]);
+            },
             showLogic:function(){
                 WebApi.modal({content:$('#Logic'),title:"逻辑设置",width:800,height:425})
             },
@@ -152,7 +156,7 @@ define(
                     if (type) {
                         if(majorkey)
                         {
-                            var data = WebApi.template( viewModel.quote , majorkey );
+                            var data = WebApi.template( viewModel.$refs.insert.quote , majorkey );
                             component = setting( type , data);
                         }
                         else
@@ -252,8 +256,7 @@ define(
                         }
                         return $.extend(source,{
                             dragging: false,
-                            selectindex: "",
-                            quote:[]
+                            selectindex: ""
                         })
                     }()),
                     ready: function() {
@@ -275,13 +278,21 @@ define(
                             alwaysShowScrollbar:2,
                             scrollButtons:{enable:false}
                         });
+
+
+                        this.$refs.insert.dropsource=[
+                            {value:"1",text:"模板1"},
+                            {value:"1",text:"模板2"},
+                            {value:"1",text:"模板3"}
+                        ];
+
                     },
                     methods: {
                         save: function() {
                             var str = JSON.stringify(this.$data);
                             localStorage.data = str;
                             WebApi.invoke('$ModalWin','close');
-                            this.quote = [JSON.parse(str)];
+                            //this.quote = [JSON.parse(str)];
                         },
                         toggle: function() {
                             this.$refs.insert.hide();
@@ -327,7 +338,7 @@ define(
                         },
                         addSelected:function(objects){
                             //添加到指定路径
-                            var component,target = viewModel;
+                            var component,target = this;
                             if(this.selectindex !=='' && this.selectindex !== '99' && this.selectindex !== '98')
                             {
                                 var path_array = this.selectindex.split('-');
@@ -347,15 +358,20 @@ define(
                                     target.children.push( component );
                                 });
                             }
-                            viewModel.setQuestionIndex();
+                            this.$nextTick(function() {
+                                WebApi.bindaccept();
+                            });
                         },
                         addall:function(tpl){
-                            var component;
+                            var component,that=this;
                             tpl.children.forEach(function(o){
                                 component = setting( o.type , o );
-                                viewModel.children.push( component );
+                                that.children.push( component );
                             });
-                            viewModel.setQuestionIndex();
+                            this.setQuestionIndex();
+                            this.$nextTick(function() {
+                                WebApi.bindaccept();
+                            });
                         }
                     }
                 })

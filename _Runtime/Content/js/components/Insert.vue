@@ -5,13 +5,20 @@
 			<div class="insert-top-container">
 				<div class="row">
 					<div class="col-6">
-						<select tip-title="所有模板库和题库" v-el:classify>
+						<select tip-title="所有模板库和题库" v-model="classify" v-el:classify>
 							<option value=""></option>
-							<option v-for="i in 10" value="">{{i}}</option>
+							<option v-for="item in dropsource" :value="item.value">{{item.text}}</option>
 						</select>
 					</div>
 					<div class="col-6">
-						<input type="text" placeholder="搜索素材"  v-el:search/>
+						<div class="comsys-base comsys-ButtonTextBox-layout">
+							<div class="comsys-ButtonTextBox-input">
+								<div class="comsys-base comsys-TextBox">
+									<input type="text" placeholder="搜索素材" v-model="search" v-el:search>
+								</div>
+							</div>
+							<div class="comsys-ButtonTextBox-button search" @click="searchMethod"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -22,7 +29,7 @@
 				<li :class="[islibs?'':'select']"><a href="javascript:;" @click="toggleTab(false)">模板库</a></li>
 			</ul>
 			<div class="insert-line-result">
-				共<i>2,345</i>个结果
+				共<i>{{ islibs ? subjects.length : tpls.length }}</i>个结果
 			</div>
 			<div class="insert-content insert-mCustomScrollbar" v-show="islibs">
 				<div class="liblist">
@@ -56,7 +63,7 @@
 								<button class="button g smaller" @click="addall">使用整个模板</button>
 							</div>
 							<div class="lib-info">
-								共<i>{{tpl.number}}</i>题,被使用<i>32</i>次
+								共<i>{{tpl.number}}</i>题,被使用<i>{{tpl.used}}</i>次
 							</div>
 						</div>
 						<div class="lib-content">
@@ -85,10 +92,14 @@
 	var recursion = function(o , c , ret){
 		c.children.forEach(child => {
 			if(child.children)
+			{
 				recursion( o , child , ret );
+			}
 			else
+			{
 				if( child.qindex !== undefined )
 					ret.push( dispose( child , o.header.title ) );
+			}
 		})
 	}
 
@@ -114,13 +125,13 @@
 				select_array : [],
 
 				islibs : true,
-				tplSelectIndex : -1
-			}
-		},
-		props:{
-			quote:{
-				type:Array,
-				default: function(){ return []; }
+				tplSelectIndex : -1,
+
+				classify:"",
+				search:"",
+
+				quote:[],
+				dropsource:[]
 			}
 		},
 		watch:{
@@ -157,7 +168,6 @@
 		},
 		ready(){
 			$(this.$els.classify).SingleComboxInit();
-			$(this.$els.search).ButtonTextBoxInit({ ButtonClass: "search" });
 			$('.insert-mCustomScrollbar').mCustomScrollbar({
                 theme: "dark",
                 scrollInertia: 400,
@@ -212,6 +222,12 @@
 			addall(){
 				if( this.tplSelectIndex == -1 ) return;
 				this.$dispatch('addall',this.tpl);
+			},
+			searchMethod(){
+				WebApi.InsertSearch(this.classify,this.search);
+				this.islibs = true;
+				this.tplSelectIndex = -1;
+				this.select_array = [];
 			}
 		},
 		events:{

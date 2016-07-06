@@ -1,24 +1,34 @@
 define(['./util'],function(util){
 	return {
 		'component.value':function(_new_,_old_){
-            var source,tos,ret,that=this;
-
-            source = this.$root.logic.filter(function(o){ return o.from == that.component.id && o.option !== 999 });
-            tos = source.map(function(o){ return o.to });
-
+            var that = this;
+            var ret ;
+            var source = this.$root.logic.filter(function(o){ return o.from == that.component.id && o.option !== 999 });
             if(util.isArray(_new_))
-                ret = source.filter(function(o){ return _new_.indexOf(o.value.option) !== -1 }).map(function(o){ return o.to });
+                ret = source.filter(function(o){ return _new_.indexOf(o.value.option) !== -1 })
             else
-                ret = source.filter(function(o){ return o.value.option == _new_ }).map(function(o){ return o.to });
+                ret = source.filter(function(o){ return o.value.option == _new_ });
+            var min = 999;
+            var max = 0;
+            var limitStart = that.$root.questions.find(function(o){ return o.id == that.component.id });
+            var limitEnd = null;
+            var limitMaxEnd = null;
 
-            this.$root.$broadcast( 'trigger' , tos , ret , 'choice' );
-        },
-        'disabled':function(_new_,_old_){
-            var source,tos,ret,that=this;
-            source = this.$root.logic.filter(function(o){ return o.from == that.component.id && o.option === 999 });
-            tos = source.map(function(o){ return  o.to });
-            ret = source.filter(function(o){ return o.option === 999 }).map(function(o){ return o.to });
-            this.$root.$broadcast( 'trigger' , tos , ret , 'display' ,_new_);
+            ret.forEach(function(re){
+                var item ;
+                if((item = that.$root.questions.find(function(o){ return o.id == re.to ;})) !== undefined && item.qindex < min)
+                {
+                    min = item.qindex ;
+                    limitEnd = item ;
+                }
+                if(item.qindex > max)
+                {
+                    max = item.qindex ;
+                    limitMaxEnd = item;
+                }
+            });
+            console.log(limitStart , limitEnd , limitMaxEnd)
+            this.$root.$emit( 'tofilter' , limitStart , limitEnd , limitMaxEnd );
         }
 	}
 })
