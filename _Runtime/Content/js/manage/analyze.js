@@ -144,7 +144,6 @@ define([
                             return this.questionsLibray.filter(function(o){ return o.id == id }).length == 1;
                         },
                         setoption:function(item,option){
-                            debugger;
                             item.value = option;
                         },
                         newviewtoggle:function(s1,s2){

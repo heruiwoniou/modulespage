@@ -9,10 +9,10 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
         },
         addQuestionnaire:function(){
             WebApi.invoke('$ModalWin','show',{
-                defaultsrc:"questionnaire.html",
+                defaultsrc: "assess.html",//"questionnaire.html",
                 custom:true
             }).then(function(){
-                alert('add success !');
+                //alert('add success !');
             })
         },
         modalInit:function(){
