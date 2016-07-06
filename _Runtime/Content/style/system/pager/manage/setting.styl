@@ -1,41 +1,6 @@
+@import './manageBase.styl';
 body.manage-setting
-	background $BackColor;
-	frame-base(84px,50px);
-	.header .nav
-		background $BColor2
-		border-color $BColor2
-		.logo
-			background url(images/logo-white.png)
-		.person .login
-			a
-				color white
-		.menu
-			ul.ul-menu
-				li
-					a
-						color white
-					&:hover
-						&>a
-							color white
-						&>.sub-menu li a
-							color $BColor2 + 20%
-						background $BColor2 + 20%
-						&.disabled
-							a
-								color $fontSmallColor
-							background $BColor2
-					&.select
-						background $hoverColor
-						&>a
-							color #fff
-					&.disabled
-						a
-							color $fontSmallColor
-					.sub-menu li:hover a
-						color white
-	.footer
-		border-top 4px solid $Color3
-		background $BColor2
+	manageBase();
 	.section
 		padding-top 20px;
 	.section > .FrameLeftRightControl
