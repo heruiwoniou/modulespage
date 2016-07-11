@@ -10,7 +10,9 @@ define(
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse',
         './../components/preview/GradeQuestion',
-        './../components/preview/MatrixChoiceQuestion'
+        './../components/preview/MatrixChoiceQuestion',
+
+        'validator'
     ],
     function(Vue) {
         var viewModel;//数据模型

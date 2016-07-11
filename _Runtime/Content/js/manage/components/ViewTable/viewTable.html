@@ -1,0 +1,22 @@
+<div>
+	<table class="view-table" :style="{minWidth:40 + deep * deepWidth + rateData.length * rateWidth + 100 + 'px'}">
+		<tr>
+			<th rowspan="2" style="width:40px"><div class="text-wrap">编号</div></th>
+			<th v-if="deep !== 0" :colspan="deep" :style="{'width':deep * deepWidth + 'px' }"><div class="text-wrap">评价标准</div></th>
+			<th v-if="rateData.length !== 0" :colspan="rateData.length"><div class="text-wrap">得分</div></th>
+			<th rowspan="2"><div class="text-wrap">评分标准</div></th>
+		</tr>
+		<tr>
+			<th :style="{'width': deepWidth + 'px'}" v-for="index in deep"><div class="text-wrap">{{gIndex($index)}}级</div></th>
+			<template v-for="rate in rateData">
+				<th :style="{'width': rateWidth + 'px'}"><div class="text-wrap">{{rate.text}}</div></th>
+			</template>
+		</tr>
+		<tr v-for="node in gChildren()">
+			<td>{{ $index + 1 }}</td>
+			<td :colspan="deep + rateData.length + 1">
+				<table-item :model="node" :tree-data="treeData" :rate-data="rateData" :deep-width="deepWidth" :rate-width="rateWidth" :deep="deep" :self="self"></table-item>
+			</td>
+		</tr>
+	</table>
+</div>

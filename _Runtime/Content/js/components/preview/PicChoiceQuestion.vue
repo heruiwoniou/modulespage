@@ -5,7 +5,7 @@
         <h1 :style="styleExport"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}</h1>
         <div class="images-container">
             <div class="image item" v-for="item in component.items" @click="behavior">
-               <label>
+               <label :title="item.text">
                    <div class="imageViewer">
                        <img :src="item.image" alt="" :width="item.w" :height="item.h">
                    </div>

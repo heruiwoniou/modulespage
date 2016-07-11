@@ -1,0 +1,32 @@
+<table>
+	<tr>
+		<td :class="[noChildren ? 'last-col' : '']" :style="{'width': colspan + 'px'}">
+			<div class="text-wrap" :title="model.name">{{ model.name }}</div>
+		</td>
+		<!--以下是通过递归遍历树结构生成层级-->
+		<td v-if="!noChildren" class="noPadding">
+			<template v-for="node in gChildren(model)">
+				<table-item :model="node" :tree-data="treeData" :rate-data="rateData" :deep-width="deepWidth" :rate-width="rateWidth" :deep="deep" :current-deep="currentDeep + 1" :self="self"></table-item>
+			</template>
+		</td>
+		<td class="empty noPadding" v-else>
+			<table>
+				<tr>
+					<!--这里是选项的生成区域-->
+					<td v-for="item in rateData" :style="{'width': rateWidth + 'px'}"><div class="text-wrap">
+						<template v-if="self">
+							<input type="text" :name="model.id">
+						</template>
+						<template v-else>
+							<input type="radio" :name="model.id" :value="item.id"/>
+						</template>
+					</div></td>
+					<!--以下是描述-->
+					<td>
+						<div class="text-wrap" :title="model.description">{{model.description}}</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

@@ -192,7 +192,7 @@ define([
             for (var i = 0; i < l; i++)
                 if ((main = scripts[i].getAttribute("main"))) break;
             if (main)
-                require(["../../Content/js/" + main], this.interface);
+                require(["system/js/" + main], this.interface);
             else common.init();
         }
     };

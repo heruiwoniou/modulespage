@@ -24,12 +24,13 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
                 data: {
                     tableView: true,
                     list: function() {
+                        var type = ['未开始','已暂停','已结束','进行中'];
                         var arr = [];
                         var i=0;
-                        while(i<10)
+                        while(i<15)
                         {
                             i++
-                            arr.push(["中学生上网情况问卷调查问卷调查", '未开始', '电子科技大学附属第二实验小学', '2016-03-12', '2016-06-12', '200121']);
+                            arr.push(["中学生上网情况问卷调查问卷调查", type[Math.floor(Math.random() * 4)], '电子科技大学附属第二实验小学', '2016-03-12', '2016-06-12', '200121']);
                         }
                         return arr
                     }()

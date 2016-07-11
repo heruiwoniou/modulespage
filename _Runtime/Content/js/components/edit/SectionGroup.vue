@@ -16,7 +16,7 @@
             </div>
             <div class="content-area" v-show="!fold">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" maxlength="600" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
                 <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                 <div class="accept" data-index="{{paths +  index + '-0'}}"><b></b></div>

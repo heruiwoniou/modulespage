@@ -14,7 +14,7 @@
             </div>
             <div class="content-area">
                 <div v-show="editcontenting" class="editcomment" @click.stop="">
-                    <textarea :style="styleExport" cols="30" rows="6" v-model="component.content" @focusout="closecontent" v-el:content-input></textarea>
+                    <textarea :style="styleExport" cols="30" rows="6" maxlength="600" v-model="component.content" @focusout="closecontent" v-el:content-input></textarea>
                 </div>
                 <p :style="styleExport" v-show="!editcontenting" @click.stop="editcontent">{{ component.content || contenttip }}</p>
             </div>

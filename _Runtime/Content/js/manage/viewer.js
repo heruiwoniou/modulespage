@@ -38,8 +38,8 @@ define(['libs/echarts/echarts'], function(echarts) {
 
         //其他方法
         publish:function(){
-            WebApi.invokeObject('$ModalWin').analyzesrc = "";
-            WebApi.invokeObject('$ModalWin').defaultsrc = "";
+            // WebApi.invokeObject('$ModalWin').analyzesrc = "";
+            // WebApi.invokeObject('$ModalWin').defaultsrc = "";
             WebApi.modal('publishwindow',{title:"发布活动",src:"publish.html",height:500,width:810});
         }
     }

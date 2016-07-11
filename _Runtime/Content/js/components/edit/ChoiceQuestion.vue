@@ -22,7 +22,7 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" maxlength="600" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
                 <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div v-show="!edititemsing&&children.length==0" @click.stop="edititems" class="edititems-tip">

@@ -18,7 +18,169 @@
         </div>
     </div>
     <div class="body">
+        <div class="FrameLeftRightControl" id="LRCMain" style="display:none">
+            <div class="FrameLeft" style="width:700px">
+                <ul class="label-nav">
+                    <li :class="[labelNavIndex == 0 ? 'select' : '']" @click="toggleLabelNav(0)">基本属性</li>
+                    <li :class="[labelNavIndex == 1 ? 'select' : '']" @click="toggleLabelNav(1)">卷面设计</li>
+                </ul>
+                <div class="label-body mCustomScrollbar">
+                    <div class="label-content" v-show = "labelNavIndex == 0 ">
+                        <table class="field-table">
+                            <tr>
+                                <td class="label" style="width:40px">标题:</td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label top">简介:</td>
+                                <td>
+                                    <textarea cols="30" rows="5"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td class="label" style="width:40px">分值:</td>
+                                            <td class="input">
+                                                <input type="text">
+                                            </td>
+                                            <td class="label center" style="width:30px">到</td>
+                                            <td class="input">
+                                                <input type="text">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td class="label" style="width:70px">评分方式:</td>
+                                            <td class="select">
+                                                <select v-model="self">
+                                                    <option :value="false">按等级勾选</option>
+                                                    <option :value="true">自填分</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td class="label" style="width:70px">快速设置:</td>
+                                            <td class="button">
+                                               <div class="button-panel">
+                                                   <button class="button g smaller no-radius">英文五分制</button>
+                                                   <button class="button gray empty smaller no-radius">中文五分制</button>
+                                                   <button class="button gray empty smaller no-radius">直接显示分数</button>
+                                               </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="tip">
+                                    *满分为100分，我们将根据您的设置，依照每个指标的实际分值占比进行换算
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="field-table" style="width:300px;margin-top:20px">
+                            <tr v-for="index in 5">
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td class="label center" style="width:40px">=</td>
+                                <td>
+                                     <input type="text">
+                                </td>
+                                <td class="field-control center" style="width:70px">
+                                    <a href="javascript:;" class="delete"><b></b>删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <a href="javascript:;" class="add">+添加</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="field-wrap">
+                            <b>评分后是否有主观问答</b>
+                        </div>
+                        <div class="field-wrap">
+                            <div class="row">
+                                <div class="col-3">
+                                    <input type="checkbox" data-buttontype="slider" data-label-on="关闭" data-label-off="开启"/>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" placeholder="问题的题目">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="label-content" v-show = "labelNavIndex == 1 ">
+                        <div class="FrameLeftRightControl">
+                            <div class="FrameLeft"  style="width:40%">
+                                <div class="PanelControl" style="margin: 0 5px">
+                                    <div class="panel-head g">评价指标树</div>
+                                </div>
+                                <div class="x-scroll-mCustomScrollbar">
+                                    <ul id="ztree" class="ztree"></ul>
+                                </div>
+                            </div>
+                            <div class="FrameRight" style="padding-left:40%">
+                                <div class="PanelControl" style="margin: 0 5px">
+                                    <div class="panel-head r">已选择:教学目标</div>
+                                </div>
+                                <div class="field-table-container">
+                                    <table class="field-table">
+                                        <tr>
+                                            <td class="label" style="width:80px">指标名称：</td>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">指标分值：</td>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label top">评分标准：</td>
+                                            <td>
+                                                 <textarea cols="30" rows="10"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="button-panel" style="display:block; text-align:right">
+                                        <button class="button g no-radius">保存</button>
+                                        <button class="button gray no-radius">删除</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="FrameBar" id="draggle" style="left:700px;"></div>
+            <div class="FrameRight" style="margin-left:710px">
+                <div class="label-nav-text">
+                    预览
+                </div>
+                <div class="view-table-container preview-mCustomScrollbar">
+                    <view-table :self='self' :tree-data = "treeData" :rate-data="rateData"></view-table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-<script data-main="Static/js/config" main="assess" src="Static/js/libs/requirejs/require.js"></script>
+<script data-main="Static/js/config" main="manage/assess" src="Static/js/libs/requirejs/require.js"></script>
 </html>

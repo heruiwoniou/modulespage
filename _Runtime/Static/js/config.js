@@ -11,7 +11,8 @@ require.config({
     baseUrl: "Static/js",
     map: {
         '*': {
-            'css': 'libs/require-css/css.min' // or whatever the path to require-css is
+            'css': 'libs/require-css/css.min', // or whatever the path to require-css is
+            'text':'libs/require-text/text'
         }
     },
     paths: {
@@ -23,6 +24,7 @@ require.config({
         "widget": "comsys/widget",
         "client": "common/client",
 
+        "validator":"libs/nice-validator/local/zh-CN",
         "echarts": "libs/echarts/echarts",
         "jquery": "libs/jquery/dist/jquery.min",
         "vue": "libs/vue/dist/vue",

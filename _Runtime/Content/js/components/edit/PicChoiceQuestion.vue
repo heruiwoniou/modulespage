@@ -22,7 +22,7 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" maxlength="600" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
                 <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div class="images-container">
@@ -47,7 +47,7 @@
                                 <form enctype="multipart/form-data" method="POST">
                                     <input type="file" name="file" @change="fileschange($event,$index)" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                                 </form>
-                                <input type="text" v-model="item.text" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
+                                <input type="text" v-model="item.text" maxlength="200" @keydown.enter="validate($event,$index)" @keydown.tab="validate($event,$index)">
                             </div>
                         </div>
                     </template>
@@ -66,7 +66,7 @@
                         <form enctype="multipart/form-data" method="POST">
                             <input type="file" v-el:file @change="fileschange($event)" name="file" @keydown.enter="validate($event)" @keydown.tab="validate($event)">
                         </form>
-                        <input type="text" v-model="itemcache.text" @keydown.enter="validate($event)" @keydown.tab="validate($event)" v-el:item-text>
+                        <input type="text" v-model="itemcache.text" maxlength="200" @keydown.enter="validate($event)" @keydown.tab="validate($event)" v-el:item-text>
                     </div>
                 </div>
             </div>

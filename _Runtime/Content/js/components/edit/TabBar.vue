@@ -8,11 +8,11 @@
                     <div v-for="(index,item) in component.items" class="tab-item-container">
                         <div v-show="!editing||$index!=editindex" class="tab-item" @click.stop="goeditmodel($event,$index)">{{item}}<i @click.stop="removeitem($index)"></i></div>
                         <div v-show="editing&&$index==editindex" class="tab-item" @click.stop="">
-                            <input type="text" v-model="item" @keydown.enter.tab="validate($event,$index)" v-el:new-item>
+                            <input type="text" v-model="item" maxlength="100" @keydown.enter.tab="validate($event,$index)" v-el:new-item>
                         </div>
                     </div>
                     <div v-show="!addnewing" class="tab-item new" @click.stop="goaddmodel"><i></i>添加新标签</div>
-                    <div v-show="addnewing" class="tab-item new" @click.stop=""><input type="text" v-model="newcache" @focusout="closeaddmodel" @keydown.enter.tab="validate($event)" v-el:new-item></div>
+                    <div v-show="addnewing" class="tab-item new" @click.stop=""><input type="text" v-model="newcache" maxlength="100" @focusout="closeaddmodel" @keydown.enter.tab="validate($event)" v-el:new-item></div>
                 </div>
                 <div class="tab-scroll-right" @mousedown="mousedown($event,-1)"></div>
             </div>

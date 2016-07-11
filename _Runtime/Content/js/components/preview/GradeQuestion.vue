@@ -77,10 +77,13 @@
                         grid : [ 300.00 / (this.component.range.max - this.component.range.min) / 2 , 0 ],
                         drag( event, {helper , position ,offset } ){
                             if(that.disabled) return false;
-                            that.component.value = that.component.range.min + position.left * (that.component.range.max - that.component.range.min) / 300
+                            that.component.value = (that.component.range.min + position.left * (that.component.range.max - that.component.range.min) / 300).toFixed(1)
                         },
                         create(event){
-                            $(that.$els.arraw).css({left: (that.component.value - that.component.range.min) * 300 / (that.component.range.max - that.component.range.min) + 'px'})
+                            if(that.component.value == '' || that.component.value == 0 || that.component.value == "")
+                                $(that.$els.arraw).css({left : 0});
+                            else
+                                $(that.$els.arraw).css({left: ((that.component.value || 0) - that.component.range.min) * 300 / (that.component.range.max - that.component.range.min) + 'px'})
                         }
                     })
             }

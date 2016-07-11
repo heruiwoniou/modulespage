@@ -159,6 +159,8 @@ gulp.task('build-images', function() {
 gulp.task('build-html', function() {
     gulp.src(['_Runtime/**/*.html', '!_Runtime/Static/js/libs/**/*.html'])
         .pipe(gulp.dest('Runtime/'));
+    gulp.src(['_Runtime/Content/js/manage/components/**/*.html'])
+        .pipe(gulp.dest('Runtime/Content/js/manage/components/'));
 });
 
 gulp.task('clean', function() {
@@ -181,6 +183,10 @@ gulp.task('develop', ['clean'], function() {
         gulp.src('_Runtime/Static/js/libs/require-css/css.min.js')
             .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/require-css/'));
+        //require-css
+        gulp.src('_Runtime/Static/js/libs/require-text/text.js')
+            .pipe(uglify())
+            .pipe(gulp.dest('Runtime/Static/js/libs/require-text/'));
         //jquery-extend
         gulp.src('_Runtime/Static/js/libs/jquery-extend/*.js')
             .pipe(uglify())
@@ -189,6 +195,11 @@ gulp.task('develop', ['clean'], function() {
         gulp.src('_Runtime/Static/js/libs/echarts/**/*.js')
             .pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/echarts/'));
+        //nice-validator
+        gulp.src(['_Runtime/Static/js/libs/nice-validator/**/*','!_Runtime/Static/js/libs/nice-validator/**/*.js'])
+            .pipe(gulp.dest('Runtime/Static/js/libs/nice-validator/'));
+        gulp.src(['_Runtime/Static/js/libs/nice-validator/**/*.js'])
+            .pipe(gulp.dest('Runtime/Static/js/libs/nice-validator/'));
         //ztree
         gulp.src('_Runtime/Static/js/libs/ztree/jquery.ztree.js')
             .pipe(uglify())

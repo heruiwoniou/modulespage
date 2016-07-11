@@ -24,7 +24,7 @@
                 <div class="text-content">
                     <div class="content">
                         <div v-show="edittitling" class="edittitle" @click.stop="">
-                            <input type="text" :style="styleExport" v-model="component.title" @focusout="closettitle" v-el:title-input>
+                            <input type="text" :style="styleExport" maxlength="600" v-model="component.title" @focusout="closettitle" v-el:title-input>
                         </div>
                         <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle">{{ component.title || titletip }}</h1>
                         <div v-show="editcommenting" class="editcomment" @click.stop="">

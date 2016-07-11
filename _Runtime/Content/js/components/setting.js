@@ -76,7 +76,6 @@ define(['Guid'],function(guid){
 
 		//以下为含编号的控件
 		GradeQuestion:function(data){
-			debugger;
 			return data ?
 				{
 					type : "GradeQuestion" ,
@@ -135,9 +134,9 @@ define(['Guid'],function(guid){
 				title : data.title ,
 				items : data.items ,
 
-				bold : false,
-				color : color,
-				must : false,
+				bold : data.bold ,
+				color : data.color ,
+				must : data.must ,
 
 				maxItems : maxItems,
 
@@ -248,7 +247,8 @@ define(['Guid'],function(guid){
 				color: data.color,
 				must : data.must,
 
-				maxItems:maxItems,
+				maxRowItems:maxItems,
+				maxColItems:maxItems,
 
 				value:[]
 			}
@@ -267,7 +267,8 @@ define(['Guid'],function(guid){
 				color: color,
 				must : false,
 
-				maxItems:maxItems,
+				maxRowItems:maxItems,
+				maxColItems:maxItems,
 
 				value:[]
 			}

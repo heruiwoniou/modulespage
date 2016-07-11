@@ -22,7 +22,8 @@ define(
         './../components/insert/ChoiceQuestionInsert',
         './../components/insert/PicChoiceQuestionInsert',
         './../components/insert/GradeQuestionInsert',
-        './../components/insert/MatrixChoiceQuestionInsert'
+        './../components/insert/MatrixChoiceQuestionInsert',
+        './../components/insert/QuestionResponseInsert'
     ],
     function(
         Vue,

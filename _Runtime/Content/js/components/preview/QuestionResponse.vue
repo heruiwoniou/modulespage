@@ -4,8 +4,8 @@
     <div :class="['QuestionResponse',disabled?'gray':'']">
         <h1 :style="styleExport"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}</h1>
         <div class="response-container">
-            <input v-if="component.single" :disabled="disabled" type="text" :name="component.id" v-model="component.value" lazy>
-            <textarea v-else :disabled="disabled" cols="30" rows="5" v-model="component.value" lazy></textarea>
+            <input v-if="component.single" :disabled="disabled" type="text" :placeholder="tip" :name="component.id" v-model="component.value" lazy>
+            <textarea v-else :disabled="disabled" cols="30" rows="5" :placeholder="tip" v-model="component.value" lazy></textarea>
         </div>
     </div>
 </template>
@@ -18,6 +18,7 @@
         data(){
             return {
                 disabled:true,
+                tip:''
             }
         },
         props: props,
@@ -26,6 +27,11 @@
         },
         ready(){
             this.disabled = false;
+            if(this.component.value !== '')
+            {
+                this.tip = this.component.value;
+                this.component.value = ""
+            }
         },
         events:{
             trigger

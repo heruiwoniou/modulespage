@@ -11,7 +11,7 @@
             <a v-if="analyzesrc !== 'about:blank' && isview" @click="seturl(false,$event)" href="javascript:;" :class="{'analyze':true,'select':!isview}"><i></i><b>分析</b></a>
             <a v-if="analyzesrc !== 'about:blank' && !isview" href="javascript:;" :class="{'analyze':true,'select':!isview}"><i></i><b>分析</b></a>
         </div>
-        <div v-else class="back" @click="close"><i></i></div>
+        <div v-else class="back custom" @click="close"><i></i></div>
         <div :class="['modal-right-frame',iscustom?'custom':'']">
             <div class="modal-body">
                 <div class="modal-content">

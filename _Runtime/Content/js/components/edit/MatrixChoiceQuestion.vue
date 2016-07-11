@@ -22,7 +22,7 @@
             </div>
             <div class="content-area">
                 <div v-show="edittitling" class="edittitle" @click.stop="">
-                    <input type="text" :style="styleExport" v-model="component.title" @focusout="closetitle" v-el:title-input>
+                    <input type="text" :style="styleExport" maxlength="600" v-model="component.title" @focusout="closetitle" v-el:title-input>
                 </div>
                 <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div class='m-c'>
@@ -36,7 +36,7 @@
                                     <span @click.stop="editcell($event,index)">{{component.cells[index]}}</span>
                                 </th>
                                 <th class="nh ctp ctp-cell">
-                                    <a v-if="component.maxItems > component.cells.length" href="javascript:;" class="addcell" @click.stop="addcell">&#x50;</a>
+                                    <a v-if="component.maxColItems > component.cells.length" href="javascript:;" class="addcell" @click.stop="addcell">&#x50;</a>
                                 </th>
                             </tr>
                             <tr v-for="index in component.rows.length">
@@ -49,7 +49,7 @@
                             </tr>
                             <tr>
                                 <th class="nh ctp ctp-row">
-                                    <a  v-if="component.maxItems > component.rows.length" href="javascript:;" class="addrow" @click.stop="addrow">&#x50;</a>
+                                    <a  v-if="component.maxRowItems > component.rows.length" href="javascript:;" class="addrow" @click.stop="addrow">&#x50;</a>
                                 </th>
                             </tr>
                         </table>
@@ -277,8 +277,8 @@ export default {
                         }
                     }
 
-                    if(this.editcellindex + 1 >= this.component.cells.length && this.component.cells.length < this.component.maxItems) this.addcell()
-                    if(this.component.cells.length <= this.component.maxItems)
+                    if(this.editcellindex + 1 >= this.component.cells.length && this.component.cells.length < this.component.maxColItems) this.addcell()
+                    if(this.component.cells.length <= this.component.maxColItems)
                     {
                         this.editcellindex  += 1;
                         this.$nextTick(()=>$parent.closest("tr").find(".cell:eq("+ (this.editcellindex) +")").find(":text").focus().select())
@@ -317,8 +317,8 @@ export default {
                             return false;
                         }
                     }
-                    if(this.editrowindex + 1 >= this.component.rows.length && this.component.rows.length < this.component.maxItems) this.addrow()
-                    if(this.component.rows.length <= this.component.maxItems)
+                    if(this.editrowindex + 1 >= this.component.rows.length && this.component.rows.length < this.component.maxRowItems) this.addrow()
+                    if(this.component.rows.length <= this.component.maxRowItems)
                     {
                         this.editrowindex  += 1;
                         this.$nextTick(()=>$parent.closest("table").find(".row:eq("+ (this.editrowindex) +")").find(":text").focus().select())
