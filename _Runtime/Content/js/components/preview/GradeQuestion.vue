@@ -1,6 +1,6 @@
 <template>
     <div :class="['GradeQuestion',disabled?'gray':'']">
-        <h1 :style="styleExport" ><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}</h1>
+        <h1 :style="styleExport" ><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}<span class="msg-box" :for="component.id"></span></h1>
         <div class="operate star-panel" v-if="component.xtype==0">
             <span :class="[select == 4 || component.value == 5 ? 'select':'']" @click="setStar(4)"></span>
             <span :class="[select == 3 || component.value == 4 ? 'select':'']" @click="setStar(3)"></span>
@@ -38,15 +38,16 @@
             </template>
         </div>
         <div class="operate input-panel" v-if="component.xtype==5">
-            <input type="text" :disabled="disabled" v-model="component.value" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" number lazy>
+            <number-control v-ref:self-input :maxlength="component.range.charlength" @click.stop="" :value.sync="numberValue"></number-control>
         </div>
-        <input type="hidden" :name="component.id" :value="component.value">
+        <input v-el:hidden-input type="hidden" :id="component.id" :name="component.id" :data-rule="disabled || !component.must ? '' : 'required'" :value="component.value">
     </div>
 </template>
 <script>
     import props from './../common/props';
     import { styleExport } from './../common/computed';
     import { trigger } from './../common/events';
+    import './../edit/common/NumberControl'
     export default {
         data() {
             return {
@@ -57,6 +58,14 @@
         },
         props: props,
         computed:{
+            numberValue:{
+                get(){
+                    return 1*this.component.value;
+                },
+                set(value){
+                    this.component.value = value;
+                }
+            },
             styleExport,
             limitRange:function(){
                 var arr = [];
@@ -67,30 +76,41 @@
         },
         ready(){
             var that = this;
+
             if(this.component.xtype == 3)
             {
                 //this.component.value = this.component.value == 0 || this.component.value == '' ? this.component.range.min : this.component.value;
+                var step = 400.00 / (this.component.range.max - this.component.range.min) / 2;
                 $(this.$el).find(".arrow").draggable(
                     {
                         axis : "x",
                         containment : ".containment",
-                        grid : [ 300.00 / (this.component.range.max - this.component.range.min) / 2 , 0 ],
+                        grid : [ step , 0 ],
                         drag( event, {helper , position ,offset } ){
                             if(that.disabled) return false;
-                            that.component.value = (that.component.range.min + position.left * (that.component.range.max - that.component.range.min) / 300).toFixed(1)
+                            if(position.left % step !== 0) position.left = step * Math.ceil(position.left / step);
+                            that.component.value = (that.component.range.min + position.left * (that.component.range.max - that.component.range.min) / 400).toFixed(1);
                         },
                         create(event){
                             if(that.component.value == '' || that.component.value == 0 || that.component.value == "")
                                 $(that.$els.arraw).css({left : 0});
                             else
-                                $(that.$els.arraw).css({left: ((that.component.value || 0) - that.component.range.min) * 300 / (that.component.range.max - that.component.range.min) + 'px'})
+                                $(that.$els.arraw).css({left: ((that.component.value || 0) - that.component.range.min) * 400 / (that.component.range.max - that.component.range.min) + 'px'})
+                        },
+                        stop( event, ui ){
+                            $(that.$els.hiddenInput).trigger('validate');
                         }
                     })
             }
             if(this.component.xtype == 5)
             {
-                this.$watch("component.value",(_new_, _old_)=>{
-                    if(_new_>this.component.range.max||_new_<this.component.range.min) this.component.value = _old_;
+                if(this.component.value === '')
+                {
+                    this.component.value = 0;
+                    this.$refs.selfInput.setValue(0);
+                }
+                this.$watch("component.value",(_new_, _old_) => {
+                    if(_new_ > this.component.range.max || _new_<this.component.range.min ) this.component.value = _old_;
                 })
             }
             this.disabled = false;
@@ -99,23 +119,35 @@
             setStar(index){
                 if(this.disabled) return;
                 this.select = index;
-                this.component.value = (index + 1)
+                this.component.value = (index + 1);
+                this.$nextTick(()=>{
+                    $(this.$els.hiddenInput).trigger('validate');
+                });
             },
             setLetter(index,letter){
                 if(this.disabled) return;
-                 this.select = index;
-                 this.component.value = letter
+                this.select = index;
+                this.component.value = letter;
+                this.$nextTick(()=>{
+                    $(this.$els.hiddenInput).trigger('validate');
+                });
             },
             setChar(index,char){
                 if(this.disabled) return;
-                 this.select = index;
-                 this.component.value = char
+                this.select = index;
+                this.component.value = char
+                this.$nextTick(()=>{
+                    $(this.$els.hiddenInput).trigger('validate');
+                });
             },
             setChoose(index)
             {
                 if(this.disabled) return;
                 this.select = index;
-                this.component.value = index
+                this.component.value = index;
+                this.$nextTick(()=>{
+                    $(this.$els.hiddenInput).trigger('validate');
+                });
             }
         },
         events:{

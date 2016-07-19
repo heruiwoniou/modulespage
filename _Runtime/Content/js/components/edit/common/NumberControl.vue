@@ -1,5 +1,5 @@
 <template>
-	<input :id="id" :name="name" :maxlength="maxlength" :data-key = "dataKey" type="text" v-model="controlValue" number/>
+	<input :id="id" :name="name" :maxlength="maxlength" :data-key = "dataKey" :data-rule=" !rule ? '' : 'required'" type="text" v-model="controlValue" number/>
 </template>
 <script>
 	import Guid from 'Guid';
@@ -79,14 +79,12 @@
 			else
 				return false;
 	}
-	var getChar = function(keyCode)
-	{
+	var getChar = function(keyCode){
 		if( keyCode >= 96 && keyCode <= 105 )
 			return keyCode - 96;
 		else if( keyCode >= 48 && keyCode <= 57 )
 			return keyCode - 48;
 	}
-
 	var getCursortPosition = function(ctrl) {
 		//获取光标位置函数
 		var CaretPos = 0;
@@ -116,25 +114,11 @@
 		}
 	};
 
-	var watch = null;
-	var watchHandler = function (_new_,_old_){
-		var that = this;
-		if(toString(_new_) === '[object String]')
-		{
-			this.controlValue = _old_;
-		}else
-		{
-			bumper.trigger(function(){
-				that.value = that.controlValue ;
-			},500);
-		}
-	}
-
 	export default {
 		data(){
 			return {
 				dataKey : Guid.NewGuid().ToString("D"),
-				controlValue : 0,
+				controlValue : -1,
 
 				watchKey: true
 			}
@@ -142,7 +126,7 @@
 		props:{
 			value:{
 				type:Number,
-				default:''
+				default:'-1'
 			},
 			name:{
 				type:String,
@@ -152,7 +136,11 @@
 				type:String,
 				default:''
 			},
-			maxlength:Number
+			maxlength:Number,
+			rule:{
+				type:Boolean,
+				default:false
+			}
 		},
 		watch:{
 			'controlValue':function(_new_,_old_){
@@ -165,7 +153,9 @@
 					}else
 					{
 						bumper.trigger(function(){
+							that.$emit('changeBefore',that.controlValue,that.value)
 							that.value = that.controlValue ;
+							that.$emit('changeAfter')
 						},500);
 					}
 				}

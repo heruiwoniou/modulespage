@@ -9,14 +9,21 @@
                     <th class="cell" v-for="index in component.cells.length">
                         <span>{{component.cells[index]}}</span>
                     </th>
+                    <th class="empty"></th>
                 </tr>
                 <tr v-for="index in component.rows.length">
                     <th class="row">
                         <span>{{component.rows[index]}}</span>
                     </th>
                     <td v-for="i in component.cells.length">
-                        <input :type="component.single?'radio':'checkbox'" :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
+                        <template v-if="i === 0">
+                            <input :type="component.single?'radio':'checkbox'" :data-rule="disabled||!component.must?'':'checked'" :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
+                        </template>
+                        <template v-else>
+                            <input :type="component.single?'radio':'checkbox'" :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
+                        </template>
                     </td>
+                    <td class="empty"><span class="msg-box" :for="component.id + component.rows[index]"></span></td>
                 </tr>
             </table>
             <input type="hidden" :name="component.id" :value="component.value | json">
