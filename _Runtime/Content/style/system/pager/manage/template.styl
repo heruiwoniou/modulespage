@@ -1,0 +1,197 @@
+@import './manageBase.styl';
+body.manage-template
+	manageBase();
+	.section-search
+		padding-top 20px
+		.comsys-base
+			height 40px
+			line-height 40px
+		.search-bar-left
+			width 71px
+			float left
+			.comsys-SingleCombox-button:before
+				content '3';
+		.search-bar-center
+			margin 0 255px 0 70px
+			&.right
+				margin 0 0 0 70px
+		.search-bar-right
+			float right
+			.button
+				height 40px
+				line-height 37px
+				box-sizing border-box
+	.section
+		padding-top 20px;
+	.section > .FrameLeftRightControl
+		background white;
+		&>.FrameLeft
+			background white - 5%
+			.menu-container
+				position absolute
+				left 0px
+				right 0px
+				top 50px
+				bottom 0px
+			ul.history-list
+				padding 10px
+				li
+					line-height 40px
+					textHidden()
+					&:hover
+						background white - 3%
+			ul.menu-list
+				position relative
+				li
+				a
+					line-height 60px;
+				a
+					display block
+					text-indent 40px;
+				li
+					position relative
+				li:hover
+					background white - 3%
+				li.select
+					position absolute
+					top 60px
+					height 60px;
+					width 100%;
+					background white
+				li.tip
+					text-indent 20px
+					background transparent
+					color $fontSmallColor - 80%
+					font-weight bold
+					&:after
+						content ''
+						display block
+						height 1px
+						background white
+						position absolute
+						bottom 10px
+						right 10px
+						left 0
+						border-top 1px solid white - 10%
+					&:hover
+						background transparent
+					&.empty
+						&:after
+							bottom 25px
+				li.choose
+					background transparent
+					a
+						color $Color7
+			.mCSB_inside > .mCSB_container
+				margin-right 0
+				margin-left 15px
+			.mCSB_scrollTools
+				right auto
+				left 0
+		&>.FrameRight
+			.section-1
+				padding 8px 10px 10px 10px
+				.section-header
+					height 30px
+					.inline-container
+						float right
+						width 300px
+						.comsys-base
+							height 29px
+							line-height 29px
+							.comsys-ButtonTextBox-input
+								margin-right 29px
+							.comsys-ButtonTextBox-button
+								width 29px
+								background transparent
+								&:before
+									color #ccc
+									iconfont()
+									content 'U'
+			.section-2
+				padding 0 10px 10px 10px
+				a
+					color $Color1
+			.section-3
+				position absolute
+				top 81px
+				bottom 0px
+				padding 0 10px 10px 10px
+				.button-panel
+					margin-bottom 10px
+				.list-style-one
+					margin-left 15px
+					p.content
+						margin-bottom 0px
+				.list-grid
+					table-layout fixed
+					th
+						border-right 1px solid white
+					td
+						div.text-wrap
+							text-align left
+							width 98%
+							textHidden()
+						i
+							width 14px
+							height 16px
+							display inline-block
+							vertical-align middle
+							position relative
+							top -1px
+							margin-right 5px
+							&.w
+								background url(images/wicon.png) no-repeat
+							&.p
+								background url(images/picon.png) no-repeat
+							&.f
+								height 12px
+								background url(images/ficon.png) no-repeat;
+					tr:last-child
+						td
+							border-bottom 1px solid #ececec
+			.section-line
+				margin-top 8px
+				border-top 1px solid white - 10%
+				height 1px
+				background black
+	&.view-all
+		.section > .FrameLeftRightControl
+			&>.FrameLeft
+				background white
+			&>.FrameBar
+				width 1px
+				background $BackColor
+			&>.FrameRight
+				.section-3
+					position static
+		.TBControl
+			height 45px
+			.tab-head
+				background $BackColor
+				height 45px
+				ul
+					height 45px
+					li
+						width 50%
+						text-align center
+						margin 0
+						height 41px
+						line-height 41px
+						a
+							b
+								top 41px
+						&:hover
+							a
+								b
+									top 0
+									i
+										top 0
+						&.select
+							a
+								b
+									top -41px
+									i
+										top 41px
+		.panel-container
+			padding-top 10px

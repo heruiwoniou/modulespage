@@ -82,6 +82,7 @@ define(['Guid'],function(guid){
 					id : guid.NewGuid().ToString("D") ,
 					qindex:'' ,
 
+					title : data.title,
 					//是否自填分
 					self : data.self ,
 					//填分类型
@@ -105,6 +106,7 @@ define(['Guid'],function(guid){
 					id : guid.NewGuid().ToString("D"),
 					qindex:'',
 
+					title : '',
 					//是否自填分
 					self : false,
 					//填分类型

@@ -2,7 +2,7 @@
 	<div class="preview-modal" v-show="visible" transition="translate-from-right">
 		<div class="preview-close" @click="close"></div>
 		<div class="preview-container">
-			<iframe :src="data?'questionnaire-preview.html':'about:blank'" frameborder="0"></iframe>
+			<iframe :src="data?(url + loadParam) : 'about:blank'" frameborder="0"></iframe>
 		</div>
 	</div>
 </template>
@@ -24,16 +24,34 @@
 		data(){
 			return {
 				visible:false,
-				data:''
+				data:'',
+				type:0,
+				loadParam:''
+			}
+		},
+		computed:{
+			url:function(){
+				switch (this.type) {
+					case 0:
+						return 'questionnaire-preview.html';
+					case 1:
+						return 'assess-preview.html';
+					default:
+						// statements_def
+						break;
+				}
 			}
 		},
 		methods:{
-			show(data){
+			show(data,type = 0,urlParam = ''){
 				this.data = data;
+				this.loadParam = ( '?cache = ' + new Date().getTime() + '&') + urlParam ;
+				this.type = type;
 				this.visible = true;
 			},
 			close(){
 				this.data = '';
+				this.type = 0;
 				this.visible = false;
 			}
 		}

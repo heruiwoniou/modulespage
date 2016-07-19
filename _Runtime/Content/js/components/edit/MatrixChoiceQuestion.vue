@@ -32,7 +32,7 @@
                                 <th class="nh">&nbsp;&nbsp;&nbsp;</th>
                                 <th class="cell" v-for="index in component.cells.length">
                                     <b @click.stop="deletecell(index)" v-show="editcelling && index == editcellindex">&#x4d;</b>
-                                    <input v-show="editcelling && index == editcellindex" type="text" v-model="component.cells[index]" @keydown.enter.tab="validatecell($event,$index)" @focusout="closeeditcell" lazy>
+                                    <input v-show="editcelling && index == editcellindex" type="text" v-model="component.cells[index]" @click.stop="" @keydown.enter.tab="validatecell($event,$index)" @focusout="closeeditcell" lazy>
                                     <span @click.stop="editcell($event,index)">{{component.cells[index]}}</span>
                                 </th>
                                 <th class="nh ctp ctp-cell">
@@ -42,7 +42,7 @@
                             <tr v-for="index in component.rows.length">
                                 <th class="row">
                                     <b @click.stop="deleterow(index)" v-show="editrowing && index == editrowindex">&#x4d;</b>
-                                    <input v-show="editrowing && index == editrowindex" type="text" v-model="component.rows[index]" @keydown.enter.tab="validaterow($event,$index)" @focusout="closeeditrow" lazy>
+                                    <input v-show="editrowing && index == editrowindex" type="text" v-model="component.rows[index]" @click.stop="" @keydown.enter.tab="validaterow($event,$index)" @focusout="closeeditrow" lazy>
                                     <span @click.stop="editrow($event,index)">{{component.rows[index]}}</span>
                                 </th>
                                 <td v-for="i in component.cells.length"><input :type="component.single?'radio':'checkbox'" :name="component.rows[index]"></td>
@@ -361,7 +361,9 @@ export default {
         },
         events: {
             setdefault: setdefault(function() {
-                this.closetitle()
+                this.closetitle();
+                this.closeeditcell();
+                this.closeeditrow();
             })
         }
 }

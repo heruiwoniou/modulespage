@@ -1,6 +1,7 @@
 define(
     [
         'vue',
+        'common/client/Request',
         //引用控件
         './../components/preview/TabBar',
         './../components/preview/StaticHeader',
@@ -10,7 +11,9 @@ define(
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse',
         './../components/preview/GradeQuestion',
-        './../components/preview/MatrixChoiceQuestion'
+        './../components/preview/MatrixChoiceQuestion',
+
+        'validator'
     ],
     function(Vue,Request) {
         var viewModel;//数据模型
@@ -37,8 +40,7 @@ define(
                     el: 'body',
                     data: (function() {
                         var datastring=WebApi.invokeObject("$Preview").data;
-                        var json=JSON.parse(datastring);
-                        return json;
+                        return JSON.parse(datastring);
                     }()),
                     ready:function(){
                         this.$emit( 'tofilter' , this.questions[0], null, null)

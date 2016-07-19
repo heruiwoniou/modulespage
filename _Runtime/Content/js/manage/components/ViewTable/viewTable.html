@@ -18,5 +18,11 @@
 				<table-item :model="node" :tree-data="treeData" :rate-data="rateData" :deep-width="deepWidth" :rate-width="rateWidth" :deep="deep" :self="self"></table-item>
 			</td>
 		</tr>
+		<tr>
+			<td :colspan="deep + 1">备注</td>
+			<td :colspan="rateData.length + 2">
+				<textarea cols="30" rows="3"></textarea>
+			</td>
+		</tr>
 	</table>
 </div>

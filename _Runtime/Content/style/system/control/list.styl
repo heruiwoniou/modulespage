@@ -94,6 +94,7 @@ table.list-grid
  */
 ul.list-style-one
 	li
+		position relative
 		margin-top 40px
 		&:first-child
 			margin-top 0px
@@ -113,6 +114,13 @@ ul.list-style-one
 				font-weight normal;
 				float right
 				color $fontSmallColor
+			b
+				position absolute
+				left -15px
+				display block
+				width 5px
+				height 27px
+				background $Color3
 		p
 			margin 30px 0
 		p.info

@@ -22,7 +22,7 @@ var serverController = {
 			+ Guid.NewGuid().ToString("N") + '.' + files.file[0].path.split('.').pop();
 			fs.writeFile('Runtime/' + fullname, content, function (err) {
 				if (err) throw err;
-				that.response.writeHead(200, {'Content-Type': 'text/plain'});
+				that.response.writeHead(200, {'Content-Type': 'application/json'});
 				that.response.write(fullname);
 				that.response.end();
 			});

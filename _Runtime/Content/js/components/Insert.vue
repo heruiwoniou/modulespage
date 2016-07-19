@@ -6,7 +6,7 @@
 				<div class="row">
 					<div class="col-6">
 						<select tip-title="所有模板库和题库" v-model="classify" v-el:classify>
-							<option value=""></option>
+							<option value="-1">所有模板库和题库</option>
 							<option v-for="item in dropsource" :value="item.value">{{item.text}}</option>
 						</select>
 					</div>
@@ -127,7 +127,7 @@
 				islibs : true,
 				tplSelectIndex : -1,
 
-				classify:"",
+				classify:"-1",
 				search:"",
 
 				quote:[],

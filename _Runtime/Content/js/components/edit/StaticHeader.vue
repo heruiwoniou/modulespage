@@ -90,7 +90,7 @@
                 }).fail(function(){
                     that.component.src=that.component.default
                     that.image.w = 85;
-                    taht.image.h = 47;
+                    that.image.h = 47;
                 });
             }
         },
@@ -106,6 +106,7 @@
             setBold,
             removeImage(){
                 this.component.src = this.component.default;
+                this.$els.file.value = "";
             },
             resize,
             fileschange(){

@@ -1,5 +1,5 @@
 <template>
-    <div class="control" data-index="{{paths + index}}">
+    <div class="control" :data-index="paths + index" :data-deep="deep">
         <div :class="['control-item','SectionGroup',iscurrent ?'select':'' ,selectchild&&!iscurrent ? 'selectchild':'' , fold ?'fold-parent':'']" @click.stop="setindex">
             <h2 class="control-title" v-show="!iscurrent">段落</h2>
             <div class="control-panel" v-show="iscurrent||selectchild" transition="fadeInOut">
@@ -47,6 +47,20 @@
     from './../common/computed';
     import './common/Accept';
 
+    var cdeep = function(c,deep){
+        deep = deep || 0;
+        var re = deep ;
+        c.children.forEach(o=>{
+            if(o.children)
+            {
+                var n = cdeep(o,deep + 1);
+                re = re < n ? n : re ;
+            }
+        });
+
+        return c.children ? re : deep;
+    }
+
     export default {
         data() {
             return {
@@ -64,7 +78,11 @@
             iscurrent,
             colorPanel,
             styleExport,
-            isNextAccept
+            isNextAccept,
+
+            deep(){
+                return cdeep(this.component);
+            }
         },
         methods: {
             showColorPicker,

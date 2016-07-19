@@ -101,7 +101,6 @@
 	}
 
 	const validate = function(){
-		debugger;
 		var {choice,from,option,to} = this.cache;
 		if(from !== '' && option !== '' && to !== '')
 		{
@@ -208,9 +207,9 @@
 					}
 				if(cindex === -1) return [];
 				//通过索引过滤出源题以下选项
-				//arr = arr.filter((o,index)=>index > cindex );
+				arr = arr.filter((o,index)=>index > cindex );
 				//通过索引过滤掉本身
-				arr = arr.filter((o,index)=>index !== cindex );
+				//arr = arr.filter((o,index)=>index !== cindex );
 
 				//剔除已经使用过的
 				//this.cache.choice = false;

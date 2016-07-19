@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>manage-index</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Content/style/common.css">
+    </head>
+</head>
+
+<body class="manage-template view-all">
+    <div class="header">
+        <div class="nav">
+            <div class="container">
+                <div class="logo"></div>
+                <div class="menu">
+                    <ul class="ul-menu drop-menu">
+                        <li><a href="manage-index.html">问卷</a></li>
+                        <li><a href="javascript:;">评教</a></li>
+                        <li class="select"><a href="javascript:;">模版库</a></li>
+                        <li><a href="javascript:;">管理</a></li>
+                    </ul>
+                    <div class="person">
+                        <div class="login">
+                            <a href="javascript:;" class="button w empty smaller">设置</a>
+                            <span></span>
+                            <a href="javascript:;">Administration</a>
+                            <span></span>
+                            <a href="javascript:;">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container section-search" v-cloak>
+            <div class="search-bar-left">
+                <select>
+                    <option value="0">问卷</option>
+                    <option value="1">评教</option>
+                </select>
+            </div>
+            <div class="search-bar-center right">
+                <input id="search" type="text" placeholder="发现您感兴趣的模板">
+            </div>
+        </div>
+        <div class="container section">
+            <div id="Frame" class="FrameLeftRightControl" style="">
+                <div class="FrameLeft" style="width:230px">
+                    <div class="PanelControl">
+                        <div class="panel-head r">
+                            最近浏览
+                        </div>
+                    </div>
+                    <ul class="history-list">
+                            <li v-for="i in 20">
+                                测试历史测试历史测试历史测试历史测试历史
+                            </li>
+                        </ul>
+                </div>
+                <div class="FrameBar" style="left:230px;"></div>
+                <div class="FrameRight" style="padding-left:231px">
+                    <div class="TBControl" >
+                        <div class="tab-head">
+                            <ul>
+                                <li :class="[selectindex == 0?'select':'']" @click="showSection(0)"><a href="javascript:;">问卷模板<b><i>问卷模板</i></b></a></li>
+                                <li :class="[selectindex == 1?'select':'']" @click="showSection(1)"><a href="javascript:;">评教模板<b><i>评教模板</i></b></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-container" v-cloak>
+                        <div v-show="selectindex == 0" class="panel-1">
+                            <div class="section-3">
+                                <ul class="list-style-one">
+                                    <li v-for="item in listW">
+                                        <h1 :title="item.title"><b></b>{{item.title}}<span>{{item.qnumber}}</span></h1>
+                                        <p class="info">{{item.info}}</p>
+                                        <p class="content" :title="item.describe">{{item.describe}}</p>
+                                    </li>
+                                </ul>
+                                <div class="pager-control"><div class="pager-button">加载更多...</div></div>
+                            </div>
+                        </div>
+                        <div v-show="selectindex == 1" class="panel-2">
+                            <div class="section-3">
+
+                                <ul class="list-style-one">
+                                    <li v-for="item in listP">
+                                        <h1 :title="item.title"><b></b>{{item.title}}<span>{{item.qnumber}}</span></h1>
+                                        <p class="info">{{item.info}}</p>
+                                        <p class="content" :title="item.describe">{{item.describe}}</p>
+                                    </li>
+                                </ul>
+                                <div class="pager-control">
+                                    <div class="pager-bar">
+                                        <a href="javascript:;" class="pager-start disabled">首页</a>
+                                        <a href="javascript:;" class="pager-last disabled">上一页</a>
+                                        <a href="javascript:;" class="pager-next">下一页</a>
+                                        <a href="javascript:;" class="pager-end">尾页</a>
+                                        <span class="text">
+                                        共<i>101</i>页
+                                    </span>
+                                        <span class="text">
+                                        共<i>564561</i>条数据
+                                    </span>
+                                        <input type="text">
+                                        <a href="javascript:;" class="pager-go">GO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        版权所有：成都康赛信息技术有限公司
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/templateviewall" src="Static/js/libs/requirejs/require.js"></script>
+
+</html>

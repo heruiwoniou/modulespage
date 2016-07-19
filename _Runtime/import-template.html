@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>import-template</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: hidden
+    }
+    </style>
+</head>
+<body class="import-template">
+    <div class="header">
+    	<div class="nav">
+            <div class="container">
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container">
+            <div class="FrameLeftRightControl" id="LRCMain" style="display:none">
+                <div class="FrameLeft" style="width:300px">
+                    <div class="PanelControl">
+                        <div class="panel-head g">
+                            已选择
+                            <div class="inline-container">
+                                <button class="button b no-radius">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-container mCustomScrollbar">
+                        <ul class="select-list">
+                            <li v-for="item in select">
+                                <a href="javascript:;"></a>
+                                <h3>{{item.title}}</h3>
+                                <p>{{item.qnumber}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="FrameBar" id="draggle" style="left:300px;"></div>
+                <div class="FrameRight" style="margin-left:302px">
+                    <div class="search-container">
+                        <input type="text" id="search" v-model="filter.key" placeholder="发现您感兴趣的模板"/>
+                    </div>
+                    <div class="search-container">
+                        <label>
+                            <input type="checkbox" v-model="filter.self">只看我的库
+                        </label>
+
+                        {{filter | json}}
+                    </div>
+                    <div class="search-container result">
+                        <b class="key-word">大学</b><b class="key-word">模板</b>一共<i>{{total}}</i>个搜索结果
+                    </div>
+                    <div class="result-container mCustomScrollbar">
+                        <ul class="list-style-one">
+                            <li v-for="item in results">
+                                <h1 @click="ViewModel" :title="item.title"><b></b>{{item.title}}<span>{{item.qnumber}}</span></h1>
+                                <p class="info">{{item.info}}</p>
+                                <p class="content" :title="item.describe">{{item.describe}}</p>
+                            </li>
+                        </ul>
+                        <div class="pager-control"><div class="pager-button">加载更多...</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Perview"></div>
+</body>
+<script data-main="Static/js/config" main="manage/importtemplate" src="Static/js/libs/requirejs/require.js"></script>
+</html>

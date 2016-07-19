@@ -9,7 +9,7 @@ define(['vue','./../components/Modal','./../util/filter/nameSplit'], function(Vu
         },
         addQuestionnaire:function(){
             WebApi.invoke('$ModalWin','show',{
-                defaultsrc: "assess.html",//"questionnaire.html",
+                defaultsrc: "import-template.html",//"assess.html",//"questionnaire.html",
                 custom:true
             }).then(function(){
                 //alert('add success !');

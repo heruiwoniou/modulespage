@@ -50,16 +50,20 @@ TabBar()
 					vertical-align middle
 				.tab-item
 					cursor pointer
-					color $TabColor
 					vertical-align: middle;
 					border 1px solid $TabColor
 					padding 5px 10px;
+					max-width 200px
 					display inline-block;
 					margin 0 5px;
 					background white
 					height 20px
 					line-height 20px
 					box-sizing content-box
+					.text-wrap
+						color $TabColor
+						margin-right 20px;
+						textHidden()
 					&:hover
 						background $TabColor + 90%
 					&.select
@@ -78,6 +82,7 @@ TabBar()
 							&:hover
 								color $TabColor
 					i
+						float right
 						font-style normal
 						height 20px
 						margin-left 5px
@@ -91,4 +96,4 @@ TabBar()
 							color $Color7
 					input
 						border-color transparent
-						width 89px;
+						width 200px;

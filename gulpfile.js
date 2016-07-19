@@ -199,6 +199,7 @@ gulp.task('develop', ['clean'], function() {
         gulp.src(['_Runtime/Static/js/libs/nice-validator/**/*','!_Runtime/Static/js/libs/nice-validator/**/*.js'])
             .pipe(gulp.dest('Runtime/Static/js/libs/nice-validator/'));
         gulp.src(['_Runtime/Static/js/libs/nice-validator/**/*.js'])
+            //.pipe(uglify())
             .pipe(gulp.dest('Runtime/Static/js/libs/nice-validator/'));
         //ztree
         gulp.src('_Runtime/Static/js/libs/ztree/jquery.ztree.js')

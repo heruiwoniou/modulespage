@@ -6,7 +6,10 @@
         <table v-if="!edititemsing&&component.items.length!=0" @click="behavior">
             <tr v-for="row in Math.ceil(component.items.length / columns)">
                 <td v-for="col in columns" v-if="( row * columns + col ) <= component.items.length - 1">
-                    <label>
+                    <label v-if="(row * columns + col) === 0">
+                        <input data-rule="checked" type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{ component.items[row * columns + col] }}" v-model="component.value">{{ component.items[row * columns + col] }}
+                    </label>
+                    <label v-else>
                         <input type="{{component.single?'radio':'checkbox'}}" name="{{component.id}}" value="{{ component.items[row * columns + col] }}" v-model="component.value">{{ component.items[row * columns + col] }}
                     </label>
                 </td>

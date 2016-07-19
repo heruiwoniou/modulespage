@@ -36,10 +36,11 @@
                     <span class="split"></span>
                     <a href="javascript:;" :class="['icon-input',component.xtype==5 ?'select':'']" @click="toggleXtype(5)">填分</a>
                     <span class="split"></span>
-                    <a href="javascriptp:;" class="no-icon no-hover">
-                    分值:<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
-                     v-model="component.range.min" number lazy>到<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" v-model="component.range.max" number lazy>
-                    </a>
+                    <a href="javascriptp:;" class="no-icon no-hover" style="width:45px;min-width:45px;">
+                    分值:</a>
+                    <number-control v-ref:min-number :maxlength="component.range.charlength" @click.stop="" :value.sync="component.range.min"></number-control>
+                    <a href="javascriptp:;" class="no-icon no-hover" style="min-width:20px">到:</a>
+                    <number-control v-ref:max-number :maxlength="component.range.charlength" @click.stop="" :value.sync="component.range.max"></number-control>
                 </div>
 	        </div>
 	        <div class="content-area">
@@ -105,6 +106,8 @@
 
     import './common/Accept';
 
+    import './common/NumberControl';
+
     var bumper = Bumper.create();
 
 	export default {
@@ -131,14 +134,26 @@
         },
         watch:{
             'component.range.min':function(_new_,_old_){
-                if(_new_=="") this.component.range.min = 0;
+                if(_new_=="") this.setMin(0);
                 if(_new_.toString().length > this.component.range.charlength)
-                    this.component.range.min = 1*this.component.range.min.toString().substr(0,this.component.range.charlength)
+                {
+                    this.setMin(1*this.component.range.min.toString().substr(0,this.component.range.charlength));
+                }
+                else if(_new_ > this.component.range.max)
+                {
+                    this.setMin(0);
+                }
             },
             'component.range.max':function(_new_,_old_){
-                if(_new_=="") this.component.range.max = 0;
+                if(_new_=="") this.setMax(0);
                 if(_new_.toString().length > this.component.range.charlength)
-                    this.component.range.max = 1*this.component.range.max.toString().substr(0,this.component.range.charlength)
+                {
+                    this.setMax(1*this.component.range.max.toString().substr(0,this.component.range.charlength));
+                }
+                else if(_new_ < this.component.range.min)
+                {
+                    this.setMax(_old_);
+                }
             },
             'component.title':function(_new_,_old_){
                 bumper.trigger(()=>{
@@ -154,6 +169,14 @@
             }
         },
         methods: {
+            setMin(v){
+                this.component.range.min = v;
+                this.$refs.minNumber.setValue(v);
+            },
+            setMax(v){
+                this.component.range.max = v;
+                this.$refs.maxNumber.setValue(v);
+            },
             showColorPicker,
             setBold,
             setMust,

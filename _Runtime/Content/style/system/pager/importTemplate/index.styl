@@ -1,0 +1,96 @@
+body.import-template
+	frame-base(80px,0);
+	background $BackColor
+	position relative
+	.header
+		height 80px
+		padding-top 80px
+		.nav
+			height 80px
+			z-index 3
+		.menu
+			height 78px
+			text-align center
+			ul.ul-menu
+				li
+					height 78px
+					a
+						line-height 78px
+						height 78px
+		.person
+			height 78px
+			.login
+				height 78px
+				line-height 78px
+	.body>.container>.FrameLeftRightControl>.FrameBar
+		z-index 1
+		width 2px
+		background $BackColor
+	.body>.container>.FrameLeftRightControl>.FrameLeft
+		.PanelControl
+			.panel-head
+				.inline-container
+					float right
+					padding-right 10px
+		.list-container
+			position absolute
+			top 60px
+			bottom 10px
+			left 0px
+			right 0px
+		.select-list
+			li
+				line-height 0
+				padding 10px 0
+				h3
+					margin 0 40px 0 10px
+					line-height 30px
+					font-weight bold
+					textHidden()
+				a
+					background url(images/delete.png) no-repeat
+					width 12px
+					height 13px
+					margin-top 8px
+					margin-right 10px
+					display inline-block
+					float right
+				p
+					textHidden()
+					color $fontSmallColor
+					margin 0 10px
+					line-height 1.5
+				&:hover
+					background white
+	.body>.container>.FrameLeftRightControl>.FrameRight
+		padding-top 1px
+	.search-container
+		margin 20px
+		&.result
+			b.key-word
+			i
+				padding 0 5px
+			i
+				color $Color7
+		.comsys-base
+			height 40px
+			line-height 40px
+	.result-container
+		top 152px
+		left 20px
+		right 20px
+		bottom 20px
+		position absolute
+		.list-style-one
+			li
+				margin-top 20px
+				border-bottom-color $BackColor
+				&:first-child
+					margin-top 0
+				h1
+					text-indent 20px
+					cursor pointer
+					b
+						left 0px
+				p.content
+					margin-bottom 20px

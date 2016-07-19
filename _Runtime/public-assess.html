@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+</head>
+<body class="public-preview public">
+    <div class="header">
+        <div class="header-container">
+            <div class="container">
+                <h1>测试测试测试测试测试标题</h1>
+                <span>发起人:电子科大附小</span>
+            </div>
+        </div>
+        <div class="container info-panel" v-cloak>
+            <div class="large" v-if="toggleInfo">
+                <div class="row">
+                    <div class="col-5">
+                        电子科技大学附小<br/>
+                        <h3>2016年度教学质量评估</h3>
+                        状态： <span class="key">进行中</span> <br/>
+                        开始时间： <span class="key">2016年5月1日</span><br/>
+                        结束时间： <span class="key">2016年6月30日</span><br/>
+                        本次评估参与者为全校学生，分年级进行评教和填报，请大家根据自己需要进行填写的内容按时提交。
+                    </div>
+                    <div class="col-7">
+                        <div class="row line">
+                            <div class="col-6">评卷列表</div>
+                            <div class="col-6">
+                                <span class="doing">正在评</span>
+                                <span class="nodo">未评</span>
+                                <span class="finish">已评</span>
+                            </div>
+                        </div>
+                        <div v-for="j in 13" class="row">
+                            <div v-for="i in 4" class="col-3 template">
+                                <div class="box doing">
+                                    <div class="icon"></div>
+                                    <h2>评教一评教一评教一评教一</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="small" v-else>
+                <div class="small-toggle"></div>
+                <div class="box-container">
+                    <div class="box select doing">
+                        <div class="icon"></div>
+                        <h2>评教一评教一评教一评教一</h2>
+                    </div>
+                    <div class="box">
+                        <div class="icon"></div>
+                        <h2>评教一评教一评教一评教一</h2>
+                    </div>
+                    <div class="box finish">
+                        <div class="icon"></div>
+                        <h2>评教一评教一评教一评教一</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-button" @click="toggle"></div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="preview">
+            <div class="current">您正在评：{{chooseTeach.name}}<div class="choosePerson" @click="choosePerson"></div></div>
+            <view-table :self='self' :tree-data = "treeData" :rate-data="rateData"></view-table>
+        </div>
+    </div>
+    <div class="person-list" id="person-list" style="padding:0 0 0 10px;display:none">
+        <h1 style="height:40px;font-weight:bold;line-height:40px;">需要评价的老师</h1>
+        <div style="height:200px;" class="mCustomScrollbar">
+            <p style="line-height:30px" v-for="teacher in teacherList">
+                <label><input type="radio" name="checkperson" v-model="chooseTeach" :value="teacher">{{teacher.name}}</label>
+            </p>
+        </div>
+    </div>
+    <script data-main="Static/js/config" main="public/assess" src="Static/js/libs/requirejs/require.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="Content/style/common.css">
+    <style>
+    html {
+        overflow: hidden
+    }
+    </style>
+</head>
+
+<body class="public-preview mCustomScrollbar" :style="exportStyle">
+    <div class="preview">
+        <button class="use-template button g no-radius" v-cloak>使用此模板</button>
+        <view-table :self='self' :tree-data = "treeData" :rate-data="rateData"></view-table>
+    </div>
+    <script data-main="Static/js/config" main="manage/assess-preview" src="Static/js/libs/requirejs/require.js"></script>
+</body>
+
+</html>

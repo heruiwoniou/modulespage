@@ -46,7 +46,15 @@ define(
                             return {};
                     }()),
                     ready:function(){
-                        this.$emit( 'tofilter' , this.questions[0], null, null)
+                        this.$emit( 'tofilter' , this.questions[0], null, null);
+
+                        window.setTimeout(o=>{
+                            $(this.$els.form).validator({
+                                theme:'yellow_right_effect',
+                                stopOnError: true,
+                                timely: true,
+                            });
+                        }, 1000)
                     },
                     events:{
                         /**

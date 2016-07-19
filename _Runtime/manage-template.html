@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>manage-index</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Content/style/common.css">
+    </head>
+</head>
+
+<body class="manage-template">
+    <div class="header">
+        <div class="nav">
+            <div class="container">
+                <div class="logo"></div>
+                <div class="menu">
+                    <ul class="ul-menu drop-menu">
+                        <li><a href="manage-index.html">问卷</a></li>
+                        <li><a href="javascript:;">评教</a></li>
+                        <li class="select"><a href="javascript:;">模版库</a></li>
+                        <li><a href="javascript:;">管理</a></li>
+                    </ul>
+                    <div class="person">
+                        <div class="login">
+                            <a href="javascript:;" class="button w empty smaller">设置</a>
+                            <span></span>
+                            <a href="javascript:;">Administration</a>
+                            <span></span>
+                            <a href="javascript:;">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container section-search" v-cloak>
+            <div class="search-bar-left">
+                <select>
+                    <option value="0">问卷</option>
+                    <option value="1">评教</option>
+                </select>
+            </div>
+            <div class="search-bar-right">
+                <a href="manage-template-view-all.html" class="button p no-radius">查看云端的全部1,234,567份模板列表</a>
+            </div>
+            <div class="search-bar-center">
+                <input id="search" type="text" placeholder="发现您感兴趣的模板">
+            </div>
+        </div>
+        <div class="container section">
+            <div id="Frame" class="FrameLeftRightControl" style="height:780px">
+                <div class="FrameLeft" style="width:230px">
+                    <div class="PanelControl">
+                        <div class="panel-head r">
+                            我的库
+                        </div>
+                    </div>
+                    <div class="menu-container mCustomScrollbar">
+                        <ul class="menu-list">
+                            <li class="select" v-el:select-item v-cloak></li>
+                            <li class="tip">类别</li>
+                            <li :class="selectindex==1?'choose':''" @click="showSection(1)"><a href="javascript:;">全部文件</a></li>
+                            <li :class="selectindex==2?'choose':''" @click="showSection(2)"><a href="javascript:;">问卷模板</a></li>
+                            <li :class="selectindex==3?'choose':''" @click="showSection(3)"><a href="javascript:;">评教模板</a></li>
+                            <li class="tip empty">&nbsp;</li>
+                            <li :class="selectindex==5?'choose':''" @click="showSection(5)"><a href="javascript:;">我的分享</a></li>
+                            <li :class="selectindex==6?'choose':''" @click="showSection(6)"><a href="javascript:;">他人分享</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="FrameRight" style="padding-left:230px">
+                    <div class="panel-container" v-cloak>
+                        <div v-show="selectindex == 1" class="panel-1">
+                            <div class="section-1">
+                                <div class="section-header">
+                                    <button class="button g no-radius">+新建模板</button>
+                                    <button class="button gray no-radius">新建文件夹</button>
+                                    <div class="inline-container">
+                                        <input class="section-search-input" type="text" placeholder="查找我的模板" v-cloak>
+                                    </div>
+                                </div>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-2">
+                                <a href="javascript:;">全部文件</a>
+                                <span>></span>
+                                <a href="javascript:;">这是一个文件夹</a>
+                                <span>></span>
+                                <i>这是一个子文件夹</i>
+                            </div>
+                            <div class="section-3 mCustomScrollbar">
+                                <div class="button-panel">
+                                    <button class="button r no-radius smaller">删除</button>
+                                    <button class="button g no-radius smaller">分享</button>
+                                    <button class="button p no-radius smaller">移动到</button>
+                                </div>
+                                <table class="list-grid" v-cloak>
+                                    <tr>
+                                        <th style="width:50px">
+                                            <input type="checkbox">
+                                        </th>
+                                        <th>模板名称</th>
+                                        <th style="width:80px">类型</th>
+                                        <th style="width:150px">修改时间</th>
+                                    </tr>
+                                    <tr v-for="row in list">
+                                        <td>
+                                            <input type="checkbox">
+                                        </td>
+                                        <td v-for="col in row">
+                                            <template v-if="$index == 0">
+                                                <div class="text-wrap">
+                                                    <i :class="[gicon(row.type)]"></i>
+                                                    <template v-if="gicon(row.type) !== 'f'">
+                                                        {{col}}
+                                                    </template>
+                                                    <a href="javascript:;" v-else>
+                                                        {{col}}
+                                                    </a>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                {{col}}
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="pager-control">
+                                    <div class="pager-bar">
+                                        <a href="javascript:;" class="pager-start disabled">首页</a>
+                                        <a href="javascript:;" class="pager-last disabled">上一页</a>
+                                        <a href="javascript:;" class="pager-next">下一页</a>
+                                        <a href="javascript:;" class="pager-end">尾页</a>
+                                        <span class="text">
+                                        共<i>101</i>页
+                                    </span>
+                                        <span class="text">
+                                        共<i>564561</i>条数据
+                                    </span>
+                                        <input type="text">
+                                        <a href="javascript:;" class="pager-go">GO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-show="selectindex == 2" class="panel-2">
+                            <div class="section-1">
+                                <div class="section-header">
+                                    <div class="inline-container">
+                                        <input class="section-search-input" type="text" placeholder="查找我的模板" v-cloak>
+                                    </div>
+                                </div>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-2">
+                                <a href="javascript:;">问卷模板</a>
+                                <span>></span>
+                                <a href="javascript:;">这是一个文件夹</a>
+                                <span>></span>
+                                <i>这是一个子文件夹</i>
+                            </div>
+                            <div class="section-3 mCustomScrollbar">
+                                <div class="button-panel">
+                                    <button class="button r no-radius smaller">删除</button>
+                                    <button class="button g no-radius smaller">分享</button>
+                                    <button class="button p no-radius smaller">移动到</button>
+                                </div>
+                                <table class="list-grid" v-cloak>
+                                    <tr>
+                                        <th style="width:50px">
+                                            <input type="checkbox">
+                                        </th>
+                                        <th>模板名称</th>
+                                        <th style="width:80px">类型</th>
+                                        <th style="width:150px">修改时间</th>
+                                    </tr>
+                                    <tr v-for="row in list">
+                                        <td>
+                                            <input type="checkbox">
+                                        </td>
+                                        <td v-for="col in row">
+                                            <template v-if="$index == 0">
+                                                <div class="text-wrap">
+                                                    <i :class="[gicon(row.type)]"></i>
+                                                    <template v-if="gicon(row.type) !== 'f'">
+                                                        {{col}}
+                                                    </template>
+                                                    <a href="javascript:;" v-else>
+                                                        {{col}}
+                                                    </a>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                {{col}}
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="pager-control">
+                                    <div class="pager-bar">
+                                        <a href="javascript:;" class="pager-start disabled">首页</a>
+                                        <a href="javascript:;" class="pager-last disabled">上一页</a>
+                                        <a href="javascript:;" class="pager-next">下一页</a>
+                                        <a href="javascript:;" class="pager-end">尾页</a>
+                                        <span class="text">
+                                        共<i>101</i>页
+                                    </span>
+                                        <span class="text">
+                                        共<i>564561</i>条数据
+                                    </span>
+                                        <input type="text">
+                                        <a href="javascript:;" class="pager-go">GO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-show="selectindex == 3" class="panel-3">
+                            同panel-3
+                        </div>
+                        <div v-show="selectindex == 5" class="panel-5">
+                            同panel-5
+                        </div>
+                        <div v-show="selectindex == 6" class="panel-6">
+                            同panel-6
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        版权所有：成都康赛信息技术有限公司
+    </div>
+</body>
+<script data-main="Static/js/config" main="manage/template" src="Static/js/libs/requirejs/require.js"></script>
+
+</html>

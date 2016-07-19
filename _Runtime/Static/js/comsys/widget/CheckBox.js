@@ -36,7 +36,7 @@ define(
                         $parent.addClass("comsys-checkbox-label").attr("for", id);
                     }
 
-                    $(document).on("click.CheckBoxClickHandler" + id, "#" + id, function() {
+                    $this.off('click.CheckBoxClickHandler').on('click.CheckBoxClickHandler',function(e, state){
                         that.checkedChange(this);
                     })
                     $this.data(ClassName, this);

@@ -18,7 +18,7 @@
 							<input type="text" :name="model.id">
 						</template>
 						<template v-else>
-							<input type="radio" :name="model.id" :value="item.id"/>
+							<input type="radio" v-model="model.value" :name="model.id" :value="item.id"/>
 						</template>
 					</div></td>
 					<!--以下是描述-->

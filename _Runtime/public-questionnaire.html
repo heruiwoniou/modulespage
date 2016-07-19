@@ -6,25 +6,20 @@
     <title>Demo</title>
     <link rel="stylesheet" href="Content/style/common.css">
 </head>
+
 <body class="public-preview" :style="exportStyle">
-	<div class="preview">
-		<component
-		    :is="header.type"
-		    :component="header"
-		></component>
-		<component
-            :is="tab.type"
-            :component="tab"
-        ></component>
-        <component v-for="item in children" v-if="item!=null"
-            :is="item.type"
-            :component="item"
-        ></component>
-        <br />
-        <br />
-        <br />
-        <button class="button g" @click="save">保存</button>
-	</div>
-	<script data-main="Static/js/config" main="public/questionnaire" src="Static/js/libs/requirejs/require.js"></script>
+    <div class="preview">
+        <form v-el:form autocomplete="off">
+            <component :is="header.type" :component="header"></component>
+            <component :is="tab.type" :component="tab"></component>
+            <component v-for="item in children" v-if="item!=null" :is="item.type" :component="item"></component>
+            <br />
+            <br />
+            <br />
+            <button class="button g" @click="save">保存</button>
+        </form>
+    </div>
+    <script data-main="Static/js/config" main="public/questionnaire" src="Static/js/libs/requirejs/require.js"></script>
 </body>
+
 </html>

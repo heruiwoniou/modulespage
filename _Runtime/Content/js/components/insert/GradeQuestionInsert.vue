@@ -1,6 +1,6 @@
 <template>
 	<div class="control-container">
-		<control-lib-bar :type="component.type" :majorkey="component.majorkey" :title="component.title"></control-lib-bar>
+		<control-lib-bar :type="component.type" :majorkey="component.majorkey" :title="component.title" :main-id="component.id"></control-lib-bar>
 		<div class="control-content">
 			<div class="control-preview GradeQuestion">
                 <div class="operate star-panel" v-if="component.xtype==0">

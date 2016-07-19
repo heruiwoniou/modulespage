@@ -18,9 +18,9 @@ $control-samll-width=160px;
 		left -4px
 logic();
 insertModal();
+previewModal();
 .questionnaire
 	control-insert()
-	previewModal()
 	colorPicker()
 	frame-base(80px,0);
 	background $BackColor
@@ -30,7 +30,7 @@ insertModal();
 		padding-top 80px;
 		.nav
 			height 80px
-			z-index 2
+			z-index 3
 		.menu
 			height 78px
 			text-align center
@@ -166,6 +166,170 @@ insertModal();
 		questionnaireEdit()
 .questionnaire
 .public-preview
+	&.public
+		frame-base(40px,0);
+		.body
+			padding-top 80px
+		.header
+			position fixed
+			z-index 1
+			top 0
+			right 0
+			left 0
+			height 40px
+			line-height 40px
+			padding-top 40px
+			.header-container
+				background #333644
+				position absolute
+				top 0
+				left 0
+				width 100%
+			h1
+				display inline-block
+				color white
+				font-size 18px
+			span
+				margin-left 20px
+				color white - 20%
+			.container
+				&.info-panel
+					.col-3.template
+						font-size 0
+					.box
+						line-height 30px
+						position relative
+						margin 2.5px 0
+						width 100%
+						display inline-block
+						vertical-align middle
+						&.doing
+							.icon
+								background $Color3
+						&.finish
+							.icon
+								background $Color1
+						&:after
+							clear()
+						h2
+							color #ccc
+							margin-left 35px
+							textHidden()
+						.icon
+							margin-right 5px
+							position absolute
+							left 0
+							top 0
+							width 30px
+							height 30px
+							background #ccc
+						&.select
+							h2
+								color $fontBaseColor
+					background white
+					padding 5px
+					box-shadow 0 0 5px 0 #ccc
+					.small
+						min-width 750px
+						max-width 1024px
+						margin 0 auto
+						position relative
+						.small-toggle
+							margin-top 2.5px
+							position absolute
+							left 0
+							top 0
+							width 30px
+							height 30px;
+							line-height 30px
+							text-align center
+							&:before
+								font-size 16px
+								iconfont()
+								content '5'
+						.box-container
+							margin-left 40px
+							height 35px
+							overflow hidden
+						&:hover
+							.box-container
+								height auto
+								overflow inherit
+							.small-toggle
+								&:before
+									content '3'
+					.large
+						.line
+							border-bottom 1px solid #ccc
+						&>.row
+							padding 10px
+							h3
+								font-weight bold
+								font-size 16px
+							span.key
+								color #39f
+							span.doing
+							span.nodo
+							span.finish
+								&:before
+									display inline-block
+									content ''
+									width 14px
+									height 14px
+									background #ccc
+									position relative
+									top -1px
+									vertical-align middle
+									margin-right 5px
+							span.doing
+								&:before
+									background $Color3
+							span.finish
+								&:before
+									background $Color1
+				.toggle-button
+					width 100px
+					height 5px
+					background $Color1
+					margin 0 auto
+					cursor pointer
+				.box-container
+					font-size 0
+					margin-bottom 10px
+					line-height 30px
+					&:after
+						clear()
+					.box
+						float left
+						margin 2.5px 0.5%
+						display inline-block
+						width 19%
+		.preview
+			margin-top 70px
+			.current
+				line-height 80px
+				position absolute
+				top 0
+				left 20px
+				right 20px
+				border-bottom 2px solid $Color1
+				.choosePerson
+					position absolute
+					height 40px
+					width 40px
+					background $Color9
+					top 50%
+					right 0
+					margin-top -20px
+					cursor pointer
+					line-height 40px
+					font-size 0
+					text-align center
+					&:before
+						color white
+						font-size 16px
+						iconfont()
+						content ''
 	questionnairePreview()
 	.qindex
 		position absolute
@@ -174,7 +338,6 @@ insertModal();
 		margin-top 20px
 		margin-bottom 100px
 		padding-bottom 100px
-
 @media all and (max-width: 1024px)
 	.questionnaire
 		.right

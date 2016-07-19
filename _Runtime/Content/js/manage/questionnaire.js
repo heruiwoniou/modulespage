@@ -143,6 +143,7 @@ define(
                     droppablecache.$el.removeClass('draging');
                     var $this = droppablecache.$el;
                     var type = ui.helper.data('type');
+                    var deep = ui.helper.data('deep');
                     var majorkey = ui.helper.data('majorkey');
                     var component;
                     var path, toPaths = $this.attr("data-index").split('-'),
@@ -150,18 +151,22 @@ define(
                         toPathStr = toPaths.join('');
                     var fromPaths, fromPathStr, fromIndex, target = viewModel,
                         index;
-                    if(toPaths.length > 2 && type === 'SectionGroup') {
-                        WebApi._error('[段落]最多进行三次嵌套!');
-                        return;
-                    }
                     if (type) {
+
+                        if(majorkey === undefined && toPaths.length > 2 && type === 'SectionGroup') {
+                            WebApi._error('[段落]最多进行三次嵌套!');
+                            return;
+                        }
+
                         if(majorkey)
                         {
                             var data = WebApi.template( viewModel.$refs.insert.quote , majorkey );
+                            var id = ui.helper.data('main-id');
                             component = setting( type , data);
                         }
                         else
                             component = setting(type);
+
                         if (component !== null) {
                             while (path = toPaths.shift()) {
                                 target = target.children[~~path];
@@ -171,6 +176,11 @@ define(
                             WebApi._error('尚未定义！请联系管理员！')
                         }
                     } else {
+                        if(deep !== undefined && toPaths.length + ~~deep > 2)
+                        {
+                            WebApi._error('[段落]最多进行三次嵌套!');
+                            return;
+                        }
                         var fromTarget = viewModel;
                         fromPaths = ui.helper.attr("data-index").split('-');
                         fromIndex = ~~fromPaths.pop();
@@ -359,6 +369,7 @@ define(
                                     target.children.push( component );
                                 });
                             }
+                            this.setQuestionIndex();
                             this.$nextTick(function() {
                                 WebApi.bindaccept();
                             });

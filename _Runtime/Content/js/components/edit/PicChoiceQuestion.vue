@@ -118,7 +118,9 @@
                     w:"",
                     h:""
                 },
-                items:{}
+                items:{},
+
+                oldedit:''
             }
         },
         props: props,
@@ -218,6 +220,7 @@
                 this.edititeming = true;
                 this.edittitling = false;
                 this.editcacheiteming = false;
+                this.oldedit = this.component.items[index].text;
                 this.$nextTick(() => {
                     $($event.target).closest(".item").find(":text").focus().select();
                 })
@@ -225,6 +228,7 @@
             },
             closeitem() {
                 this.componentwatch('edit',this.edititemindex);
+                this.oldedit = '';
                 this.edititeming = false;
                 this.edititemindex = -1;
             },
@@ -269,11 +273,17 @@
                 {
                     if(edititem)
                     {
+                        if( targetViewModel.text === '' || this.component.items.slice(0,index).concat(this.component.items.slice(index +1)).filter(o=>o.text === targetViewModel.text).length > 0)
+                        {
+                            itemText.val(this.oldedit);
+                            itemText.trigger('change');
+                        }
                         if(this.edititemindex + 1 < this.component.items.length)
                         {
                             this.componentwatch('edit',this.edititemindex);
                             this.edititemindex += 1;
-                            this.$nextTick(()=>$parent.closest(".images-container").find(".item:eq("+ this.edititemindex +")").find(":text").focus())
+                            this.oldedit = this.component.items[this.edititemindex].text;
+                            this.$nextTick(()=>$parent.closest(".images-container").find(".item:eq("+ this.edititemindex +")").find(":text").focus().select())
                         }
                         else
                         {
@@ -295,7 +305,16 @@
                     }
                 }
                 else if(targetViewModel.image===''&&targetViewModel.text!=='')
-                    file.click();
+                {
+                    if( this.component.items.filter(o => o.text === targetViewModel.text).length > 0 )
+                    {
+                        itemText.val(this.oldedit);
+                        itemText.trigger('change');
+                    }else
+                    {
+                        file.click();
+                    }
+                }
                 else if(targetViewModel.image!==''&&targetViewModel.text==='')
                     itemText.focus();
 

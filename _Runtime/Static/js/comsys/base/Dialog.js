@@ -28,29 +28,47 @@ define(
                     this.$BoxBaseEl.append(this.$BoxBaseButtons)
 
 
-                    this.$BoxBaseButtons.on("click.buttonsClikHanler","div", function(){ return me.OnButtonsClikHanler.apply(me,Array.prototype.slice.call(arguments,0).concat($(this)));})
+                    this.$BoxBaseButtons.on("click.buttonsClikHanler keyup.buttonsKeyUpHanler","a", function(e){return me.OnButtonsClikHanler.apply(me,Array.prototype.slice.call(arguments,0).concat($(this)));})
                     return this;
                 },
                 DialogTPL:{
                     button:
                     "<%if(this.length==0)return '';%>"+
                     "<%for(var i=0;i<this.length;i++){%>"+
-                    "<div class='comsys-box-button' command='<%=this[i].command%>'><%=this[i].text%></div>"+
+                    "<a href='javascript:;' class='comsys-box-button' command='<%=this[i].command%>'><%=this[i].text%></a>"+
                     "<%}%>"
                 },
                 getColor:function(){
                     return "boxColor1"
                 },
                 OnButtonsClikHanler:function(e,$button){
-                    var command=$button.attr("command")||"uncommand";
-                    this.close(command);
+                    if(e.type=='keyup')
+                    {
+                        //ESC
+                        if(e.keyCode==27)
+                        {
+                            if(this.$BoxBaseButtons.find('a').length == 1)
+                                this.close('close');
+                            else
+                                this.$BoxBaseButtons.find('a:last').trigger('click.buttonsClikHanler');
+                        }
+                        //空格
+                        else if(e.keyCode==32)
+                            $button.trigger('click.buttonsClikHanler');
+                        e.stopPropagation();
+                    }
+                    else
+                    {
+                        var command=$button.attr("command")||"uncommand";
+                        this.close(command);
+                    }
                 },
                 show:function(setting){
                     this.setting.buttons=(setting||{buttons:[]}).buttons||[];
                     this.callParent.call(this, setting);
                     this.$BoxBaseContent.removeAttr("class");
                     this.$BoxBaseContent.addClass("comsys-box-content "+(setting.icon||"info"))
-
+                    this.$BoxBaseButtons.find('a:first').focus();
                     return this;
                 },
                 resize:function(height){

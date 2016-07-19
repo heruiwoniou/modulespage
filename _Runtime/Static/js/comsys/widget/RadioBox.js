@@ -37,14 +37,14 @@ define(
 
                     var $group = $("input[name=" + $this.attr("name") + "]");
 
-                    $(document).on("click.RadioBoxClickHandler"+id, "#" + id, function (e, state) {
+
+                    $this.off('click.RadioBoxClickHandler').on('click.RadioBoxClickHandler',function(e, state){
                         if (this.checked)
                             $($wrap).addClass("radiobox-checked");
                         else $($wrap).removeClass("radiobox-checked");
                         if (!state)
                             $group.not(this).trigger("radioChange");
                     })
-
                     $this.on("radioChange", function () {
                         if (this.checked)
                             $($wrap).addClass("radiobox-checked");

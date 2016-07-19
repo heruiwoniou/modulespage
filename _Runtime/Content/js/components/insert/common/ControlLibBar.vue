@@ -1,5 +1,5 @@
 <template>
-	<div :class="['control-small','control-libs',isSelected(majorkey) ? 'select' : '']" :data-type="type" :data-majorkey="majorkey">
+	<div :class="['control-small','control-libs',isSelected(majorkey) ? 'select' : '']" :data-type="type" :data-majorkey="majorkey" :data-main-id="mainId">
 		<div class="insert-control-title" @click="toggleSelect(majorkey)">{{title}}</div>
 		<b @click="toggleVisible($event)"></b>
 	</div>
@@ -26,6 +26,7 @@
 			type:{
 				type:String
 			},
+			mainId:String,
 			majorkey:{
 				type:String
 			},

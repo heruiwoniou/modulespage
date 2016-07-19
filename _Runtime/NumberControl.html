@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src='/Static/js/libs/jquery/dist/jquery.min.js'></script>
+    <script src='/Static/js/libs/vue/dist/vue.min.js'></script>
+</head>
+<body>
+    <span>五笔拼音</span>
+    <br>
+    <number-input></number-input>
+</body>
+<script type="text/template" id="template">
+    <input type="text" onfocus="foucs(this)" onkeydown="return keydown(this)" onkeyup="return keyup(this)"/>
+</script>
+<script>
+function foucs(self){
+	self.setAttribute('data-id', 'a123123123');
+	self.setAttribute('data-cursorpos', getCursortPosition(self));
+	self.setAttribute('data-ctrl', false);
+}
+function keyup(self)
+{
+	var lst = self.getAttribute('data-cursorpos');
+	if(/[^0-9]/.test(self.value))
+	{
+		self.value = self.value.replace(/[^0-9]/ig,'');
+		setCaretPosition(self, lst);
+	}
+	self.setAttribute('data-cursorpos', getCursortPosition(self));
+}
+function keydown(self){
+	var index = ~~self.getAttribute('data-cursorpos'), id = self.getAttribute('data-id'), ctrl = self.getAttribute('data-ctrl') ==='true', k = event.keyCode, arr = self.value.split(''), re;
+	if (k == 9 || k == 13
+			|| (k == 35)
+			|| (k == 36)
+			|| (k >= 112 && k <= 123)
+			|| (k >= 37 && k <= 40))
+			{
+				return true;
+			}
+			else if(ctrl)
+			{
+				if(k == 88 && k == 67)
+				{
+					return true;
+				}
+				return true;
+			}
+			else if(k == 17)
+			{
+				self.setAttribute('data-ctrl', true);
+				$(document).off('.numberCtrlUp' + id).on('keyup.numberCtrlUp' + id ,'input[data-id=' + id + ']', function(e){
+					if(e.keyCode == 17)
+					{
+
+						self.setAttribute('data-ctrl', false);
+					}
+				})
+			}
+			//BackSpace 键入
+			else if (k == 8)
+			{
+				arr.splice(index - 1, 1);
+				re = arr.join('');
+				if(re == '' || re === '0' ||/^[1-9]\d*$/.test(arr.join(''))) return true;
+				return false;
+			}
+			//Del 键入
+			else if (k == 46)
+			{
+				arr.splice(index, 1);
+				re = arr.join('');
+				if(re == '' || re === '0' || /^[1-9]\d*$/.test()) return true;
+				return false;
+			}
+			//数字 键入
+			else if ((k >= 48 && k <= 57) || (k >= 96 && k <= 105))
+			{
+				arr.splice(index, 0, getChar(k));
+				re = arr.join('');
+				if(/^[1-9]\d*$/.test(re) || re === '0') return true;
+				return false;
+			}
+			else
+				return false;
+}
+function getChar(keyCode)
+{
+	if( keyCode >= 96 && keyCode <= 105 )
+		return keyCode - 96;
+	else if( keyCode >= 48 && keyCode <= 57 )
+		return keyCode - 48;
+}
+
+function getCursortPosition (ctrl) {
+	//获取光标位置函数
+	var CaretPos = 0;
+	// IE Support
+	if (document.selection) {
+		ctrl.focus ();
+		var Sel = document.selection.createRange ();
+		Sel.moveStart ('character', -ctrl.value.length);
+		CaretPos = Sel.text.length;
+	} // Firefox support
+	else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+		CaretPos = ctrl.selectionStart;
+	return (CaretPos);
+}
+function setCaretPosition(ctrl, pos){
+	//设置光标位置函数
+	if(ctrl.setSelectionRange) {
+		ctrl.focus();
+		ctrl.setSelectionRange(pos,pos);
+	}
+	else if (ctrl.createTextRange) {
+		var range = ctrl.createTextRange();
+		range.collapse(true);
+		range.moveEnd('character', pos);
+		range.moveStart('character', pos);
+		range.select();
+	}
+}
+
+var u = /MSIE (\d*).0|Chrome|Firefox/i.exec(window.navigator.userAgent);
+
+var Client = {
+    Browser: function() {
+        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+        var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera || userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:') > -1; //判断是否IE浏览器
+        var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
+        var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1 && userAgent.indexOf('Edge') == -1; //判断是否Safari浏览器
+        var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf('Edge') == -1;
+        var isEdge = userAgent.indexOf('Edge') > -1;
+        if (isIE) {
+            /MSIE (\d+\.\d+);|rv:(\d+\.\d+)/.test(userAgent);
+            var IEVersion = parseInt(RegExp.$1 || RegExp.$2);
+            if (IEVersion) return 'IE' + IEVersion
+            else return ''
+        }
+        if (isFF)
+            return "FF";
+        if (isOpera)
+            return "Opera";
+        if (isSafari)
+            return "Safari";
+        if (isChrome)
+            return "Chrome";
+        if (isEdge)
+            return "Edge"
+    }
+};
+
+Vue.component('NumberInput', {
+    template: document.querySelector('#template').innerHTML,
+    data: function() {
+        return {
+        	id:'adfaf',
+            cursorPos:0
+        }
+    },
+    methods: {
+    	keydown:function(){
+    	},
+        keyup: function() {
+        	
+        }
+    }
+});
+
+
+var _Vm_ = new Vue({
+    el: 'body',
+    data: {}
+})
+</script>
+
+</html>

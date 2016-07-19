@@ -27,7 +27,6 @@ define(['./util'],function(util){
                     limitMaxEnd = item;
                 }
             });
-            console.log(limitStart , limitEnd , limitMaxEnd)
             this.$root.$emit( 'tofilter' , limitStart , limitEnd , limitMaxEnd );
         }
 	}
