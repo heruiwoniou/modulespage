@@ -1,0 +1,24 @@
+{
+  "name": "sl",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "heruiwoniou <heruiwoniou@qq.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0",
+    "jquery-ui": "~1.11.4",
+    "require-css": "^0.1.8",
+    "requirejs": "^2.2.0"
+  }
+}
