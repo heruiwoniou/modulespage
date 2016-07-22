@@ -1,0 +1,61 @@
+html
+body
+	height: 100%
+frame-base($headerHeight,$footerHeight)
+	.body
+		padding-top:$headerHeight
+		min-height: 100%
+		height: auto !important
+		box-sizing: border-box
+		margin-top:0 - $headerHeight
+		margin-bottom:0 - $footerHeight
+		&:after
+			content:""
+			display: block
+			width: 100%
+			height: $footerHeight +30px
+	.footer
+		height:$footerHeight
+		line-height $footerHeight
+
+container-base($screenWidthMax,$screenWidthMin)
+	.container
+		max-width:$screenWidthMax
+		min-width:$screenWidthMin
+		margin:0px auto
+		.container
+			max-width: inherit
+			min-width: auto;
+	.no-m-container
+		padding 10px;
+
+button-base($height,$minWidth)
+	.button
+		text-align center
+		display inline-block
+		box-sizing: content-box
+		min-width:$minWidth
+		height:$height
+		line-height: $height
+		outline none
+		cursor pointer
+		font-size 14px !important
+		&.larger
+			height:floor($height * 1.3)
+			line-height: floor($height * 1.3)
+			min-width:floor($minWidth * 1.3)
+			font-size 14px + 2px !important
+		&.smaller
+			height:floor($height * 0.7)
+			line-height: floor($height * 0.7)
+			min-width:floor($minWidth * 0.7)
+			font-size 14px - 2px !important
+		&:hover
+			text-decoration none
+	.IE8
+		.button
+			line-height: $height - 2px
+			&.larger
+				line-height: floor(($height - 2px) * 1.3)
+			&.smaller
+				line-height: floor(($height - 2px) * 0.7)
