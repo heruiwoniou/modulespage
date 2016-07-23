@@ -13,12 +13,16 @@ frame-base($headerHeight,$footerHeight)
 			content:""
 			display: block
 			width: 100%
-			height: $footerHeight +30px
+			height: $footerHeight
 	.footer
 		height:$footerHeight
 		line-height $footerHeight
 
 container-base($screenWidthMax,$screenWidthMin)
+	.header
+	.body
+	.footer
+		min-width:$screenWidthMin
 	.container
 		max-width:$screenWidthMax
 		min-width:$screenWidthMin

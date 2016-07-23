@@ -1,2 +1,195 @@
-html,body
-	background #ccc
+@import './../setting.styl';
+@import './../base/core/common.styl';
+
+@import './../common/control/search-control.styl';
+@import './../../../Static/style/font.styl';
+.header
+	.nav-transparent
+		opacity .57
+.banner
+	padding-top 1px
+	height 345px
+	/* @meta {"spritesheet": {"include": false}} */
+	background url('./../images/banner-index.jpg') no-repeat center center
+	background-position-y 0px
+	background-size cover
+	&>.container
+		&>.row
+			height 345px
+			.info
+				h1
+					font-size 24px
+					line-height 100px
+					color white
+				p
+					line-height 30px
+					color white
+			.control
+				text-align right
+				.search-bar
+					width 50%
+					display inline-block
+					line-height 164px
+					height 164px
+					search-control-white(35px)
+				.title
+					font-size 30px
+					height 50px
+					line-height 50px
+					color white
+				ul
+					margin-right -12px
+					display inline-block
+					height 130px
+					li
+						min-width 85px
+						display inline-block
+						height 130px
+						a
+							padding-top 1px
+							display block
+							text-align center
+							color white
+							.icon
+								transition all .2s
+								margin-top 12px
+								display inline-block
+								height 62px
+								width 62px
+								border-radius 100%
+								&.xnjzsp
+									background url('./../images/xnjzsp.png') no-repeat center center;
+								&.jsjy
+									background url('./../images/jsjy.png') no-repeat center center;
+								&.bszn
+									background url('./../images/bszn.png') no-repeat center center;
+								&.xyykt
+									background url('./../images/xyykt.png') no-repeat center center;
+								&.jzsp
+									background url('./../images/jzsp.png') no-repeat center center;
+							.text
+								font-size 14px
+								line-height 53px
+								display block
+								color white
+						&:hover
+							.icon
+								margin-top 0
+								margin-bottom 5px
+.body
+	/* @meta {"spritesheet": {"include": false}} */
+	background $indexbackcolor url('./../images/service-center.png') fixed
+	background-size cover
+	.small-nav-bar
+		height 60px
+		background white
+		.container
+			position relative
+			height 60px
+			.small-nav-menu
+				margin-right 40px
+				height 60px
+				overflow hidden
+				background white
+				position relative
+			.small-nav-button
+				position absolute
+				top 10px
+				right 0
+				width 40px
+				height 40px
+				line-height 40px
+				text-align center
+				border-radius 100%
+				&:hover
+					background $color1 + 50%
+					color white
+				&:before
+					font-size 18px
+					iconfont1();
+					content '3'
+			ul
+				position absolute
+				top 60px
+				width 100%
+				height 60px
+				transition top .2s
+				background white
+				&.current
+					top 0px
+					z-index 1
+				&.last
+					top -60px
+				li
+					height 60px
+					width 16%
+					display inline-block
+					line-height 60px
+					text-align center
+					a
+						display block
+						text-decoration none
+						font-size 16px
+					b
+						width 20px
+						height 20px
+						inlineBlock()
+						position relative
+						top -2px
+						margin-right 5px
+					&.shfw b
+						background url('./../images/shfw-icon.png') no-repeat center center
+					&.kyfw b
+						background url('./../images/kyfw-icon.png') no-repeat center center
+					&.rsfw b
+						background url('./../images/rsfw-icon.png') no-repeat center center
+					&.jwjx b
+						background url('./../images/jwjx-icon.png') no-repeat center center
+					&.xssw b
+						background url('./../images/xssw-icon.png') no-repeat center center
+					&.zcfw b
+						background url('./../images/zcfw-icon.png') no-repeat center center
+					&:hover
+					&.select
+						a
+							color $color1
+						&.shfw b
+							background url('./../images/shfw-icon-select.png') no-repeat center center
+						&.kyfw b
+							background url('./../images/kyfw-icon-select.png') no-repeat center center
+						&.rsfw b
+							background url('./../images/rsfw-icon-select.png') no-repeat center center
+						&.jwjx b
+							background url('./../images/jwjx-icon-select.png') no-repeat center center
+						&.xssw b
+							background url('./../images/xssw-icon-select.png') no-repeat center center
+						&.zcfw b
+							background url('./../images/zcfw-icon-select.png') no-repeat center center
+					&.select
+						border-bottom 2px solid $color1
+	.section-container
+		padding 20px 0
+		.section
+			.section-title
+				line-height 60px
+				border-bottom 1px solid #b4c0ca
+				h1
+					padding 0 15px
+					position relative
+					display inline-block
+					color $fontcolor2
+					font-size 20px
+					font-weight bold
+					&:after
+						left 0
+						position absolute
+						bottom -4px
+						display block
+						width 100%
+						height 4px
+						background #31485b
+						content ''
+			.section-content
+				padding 40px 0
+				.row
+					margin-bottom 24px

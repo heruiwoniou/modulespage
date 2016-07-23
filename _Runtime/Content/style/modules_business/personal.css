@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="Content/style/modules_base/personal.css">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-transparent"></div>
+        <div class="nav">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="javascript:;">服务大厅</a></li>
+                <li class="select"><a href="javascript:;">个人中心</a></li>
+            </ul>
+            <div class="person">
+                <a href="javascript:;" class="login"><i></i>登陆</a>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+    </div>
+    <div class="footer">
+        成都康赛科技有限公司版权所有 2004-2016 ICP证：蜀B2-20150087
+    </div>
+    <script data-main="Content/js/modules_base/personal" data-business="personal" src="Content/js/common/require.js"></script>
+</body>
+
+</html>
