@@ -13,7 +13,7 @@ require(['Static/js/application','Static/js/libs/jquery.stellar/jquery.stellar']
 			window.setTimeout(function(){
 				$next.addClass('current');
 				$current.removeClass('current').addClass('last');
-			},200);
+			},300);
 		}
 	});
 

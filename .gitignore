@@ -215,7 +215,6 @@ ModelManifest.xml
 .idea
 
 #Project
-_Runtime/Static/js/libs
 Runtime
 *.zip
 *.7z
