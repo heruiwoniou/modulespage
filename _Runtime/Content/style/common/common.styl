@@ -1,0 +1,32 @@
+@import './../setting.styl';
+
+@import "./../base/core/common.styl";
+@import "./../base/core/reset.styl";
+@import './../../../Static/style/font.styl';
+global-reset();
+nested-reset();
+reset-font();
+reset-box-model();
+reset-body();
+reset-table();
+reset-table-cell();
+reset-html5();
+
+$columns      =12;
+$percent      =true;
+$percent-step =2;
+@import "./../base/grid/grid.styl";
+
+@import "./../base/frame/index.styl";
+
+container-base(1269px,900px);
+button-base(25px,100px);
+
+@import './frame.styl';
+
+@import './control/column.styl';
+@import './control/panel.styl';
+@import './control/left-right-panel.styl';
+@import './control/list.styl';
+
+@import './icon.styl';

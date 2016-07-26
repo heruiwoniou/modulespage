@@ -1,0 +1,14 @@
+$srcnormal = './../images/icon-'
+$srcsmall = './../images/icon-s-'
+for index in 1..100
+	.column-icon-{index}
+		inlineBlock()
+		height 48px
+		width 48px
+		background url($srcnormal + index + '.png') no-repeat center center
+for index in 1..100
+	.column-icon-s-{index}
+		inlineBlock()
+		height 35px
+		width 35px
+		background url($srcsmall + index + '.png') no-repeat center center
