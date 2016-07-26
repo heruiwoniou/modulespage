@@ -15,6 +15,7 @@ require(['Static/js/application','Static/js/libs/jquery.stellar/jquery.stellar']
 				$current.removeClass('current').addClass('last');
 			},500);
 		}
+		alert(2);
 		alert(1);
 	});
 
