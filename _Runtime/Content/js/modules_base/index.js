@@ -1,7 +1,4 @@
-require(['vue','Static/js/application','Static/js/libs/jquery.stellar/jquery.stellar'],function(Vue,application){
+require(['Static/js/application','Static/js/libs/jquery.menu/jquery.menu'],function(application){
 	application.init();
-	new Vue({
-		el:'body',
-		data:{}
-	})
+	$(".menu-root").menuInit();
 })
