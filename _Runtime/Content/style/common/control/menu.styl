@@ -1,0 +1,57 @@
+$normal-src = './../images/menu-icon-';
+$hover-src = './../images/menu-icon-hover-';
+.menu-root
+	font-size 0
+	li
+	a
+		&[class*='menu-icon-']
+			&:before
+				content ''
+				inlineBlock()
+				width 17px
+				height 15px
+				position relative
+				top -1px
+				margin-right 10px
+		for index in 1..16
+			&.menu-icon-{index}
+				&:before
+					background url($normal-src + index + '.png') no-repeat center center
+		text-decoration none
+		font-size 16px
+		line-height 55px
+	&>li
+		background $left-menu-root-li-color
+	.menu-sub
+		.menu-sub
+			display none
+	li
+		position relative
+		cursor pointer
+		text-indent 20px
+		.menu-sub
+			display none
+			li
+				padding-left 10px
+				background $left-menu-background-color
+		&.sup
+			&:before
+				float right
+				margin-right 10px
+				content 'D'
+				iconfont()
+		&.open
+		&:hover
+			&.sup:before
+				color $color2
+			&>a
+				color $color2
+				for index in 1..16
+					&.menu-icon-{index}
+						&:before
+							background url($hover-src + index + '.png') no-repeat center center
+		&.open
+			&.sup:before
+				content 'C'
+			&>.menu-sub
+				display block

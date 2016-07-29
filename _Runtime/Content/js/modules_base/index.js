@@ -1,24 +1,7 @@
-require(['Static/js/application','Static/js/libs/jquery.stellar/jquery.stellar'],function(application){
+require(['vue','Static/js/application','Static/js/libs/jquery.stellar/jquery.stellar'],function(Vue,application){
 	application.init();
-	$(".small-nav-button").click(function(){
-		var $this = $(this);
-		var $parent = $this.parent();
-		var $uls = $parent.find('.small-nav-menu ul');
-		if( $uls.length > 1)
-		{
-			var $current = $uls.filter('.current').first();
-			var $next = $current.next();
-			if($next.length === 0) $next = $uls.first();
-			$next.removeClass('last')
-			window.setTimeout(function(){
-				$next.addClass('current');
-				$current.removeClass('current').addClass('last');
-			},500);
-
-		alert('12312');
-		alert(2);
-		alert(1);
-	});
-
-	$.stellar({ horizontalScrolling: false });
+	new Vue({
+		el:'body',
+		data:{}
+	})
 })

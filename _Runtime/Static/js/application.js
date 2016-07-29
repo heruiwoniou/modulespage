@@ -15,8 +15,8 @@ define([
         interface: function(action) {
             if (action) {
                 $.extend(WebApi, action);
-                if (WebApi.init() !== false) util.init();
-            } else util.init();
+                if (WebApi.init() !== false) util._init_();
+            } else util._init_();
         },
         init: function() {
             var scripts = document.getElementsByTagName("script"),
@@ -26,7 +26,7 @@ define([
                 if ((main = scripts[i].getAttribute("data-business"))) break;
             if (main)
                 require(["Content/js/modules_business/" + main], this.interface);
-            else util.init();
+            else util._init_();
         }
     }
 })

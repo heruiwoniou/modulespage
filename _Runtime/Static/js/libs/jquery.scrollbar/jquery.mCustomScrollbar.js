@@ -50,9 +50,9 @@ and dependencies (minified).
 	PLUGIN NAMESPACE, PREFIX, DEFAULT SELECTOR(S)
 	----------------------------------------
 	*/
-	var pluginNS="mCustomScrollbar",
+	var pluginNS="scrollBar",
 		pluginPfx="mCS",
-		defaultSelector=".mCustomScrollbar",
+		defaultSelector=".scroll-bar",
 	/*
 	----------------------------------------
 	DEFAULT OPTIONS
