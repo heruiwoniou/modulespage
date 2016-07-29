@@ -8,7 +8,8 @@ define([
 
     'css',
     'text',
-    'Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar'
+    'Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar',
+    'Static/js/libs/jquery.menu/jquery.menu'
 ], function($, util) {
     $.extend(WebApi, util);
     return {

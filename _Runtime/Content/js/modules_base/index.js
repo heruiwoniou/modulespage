@@ -1,4 +1,3 @@
-require(['Static/js/application','Static/js/libs/jquery.menu/jquery.menu'],function(application){
+require(['Static/js/application'],function(application){
 	application.init();
-	$(".menu-root").menuInit();
 })

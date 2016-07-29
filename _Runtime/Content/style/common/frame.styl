@@ -11,8 +11,57 @@ frame-base(80px,0px);
 		width 290px
 		height 80px
 		background $color2 url(./../images/logo.png) center center
+		float left
+	.control-panel
+		margin-right 40px
+		float right
+		line-height 80px
+		font-size 0
+		a
+			margin 0 10px
+		.user
+			display inline-block
+			vertical-align top
+			font-size 0
+			img
+				inlineBlock()
+				border-radius 100%
+				height 40px
+				width 40px
+			span
+				inlineBlock()
+				padding-left 10px
+			&:hover
+				span
+					color $color2
+		.mail
+			text-decoration none
+			height 32px
+			width 45px
+			font-size 0
+			inlineBlock()
+			line-height 32px
+			text-align center
+			&:before
+				font-size 28px
+				content ''
+				iconfont()
+				position relative
+				top -3px
+				color #5a5a5a
+			&:hover:before
+				color $color2
+		.close
+			font-size 0
+			inlineBlock()
+			height 25px
+			width 25px
+			background url('./../images/close-normal.png') no-repeat center center
+			&:hover
+				background url('./../images/close-hover.png') no-repeat center center
 .body
 	position relative
+	background $global-background-color
 	.main-menu-scroll-container
 		position absolute
 		height 100%
@@ -22,14 +71,7 @@ frame-base(80px,0px);
 		background $left-menu-background-color
 		overflow hidden
 	.main-content-scroll-container
-		position absolute
 		margin-left 290px
-		background $global-background-color
-		right 0
-		left 0
-		top 80px
-		bottom 0
-		overflow hidden
 		iframe
 			height 100%
 			width 100%
