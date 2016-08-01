@@ -18,8 +18,8 @@ $mcombox-icon="?";
 @import './mulcombox/index.styl';
 @import './combox/index.styl';
 
-$themeColor=white;
-$themeFontColor=$fontBaseColor;
+$themeColor= $themeColor is defined ? $themeColor : white;
+$themeFontColor = #333;
 
 $window-border=0px;
 $window-titleHeight=50px;

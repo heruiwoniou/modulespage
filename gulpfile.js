@@ -61,12 +61,17 @@ gulp.task('build-script', function() {
 
             "jquery": "Static/js/libs/jquery/dist/jquery.min",
             "jquery.ui": "Static/js/libs/jquery-ui",
+
             "Class": "Static/js/common/core/Class",
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",
+            "comsys": "Static/js/comsys",
+            "common": "Static/js/common",
+
             "vue": "Static/js/libs/vue/dist/vue"
         },
         exclude: ['Content/js/common/util']
