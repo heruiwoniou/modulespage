@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <title>index</title>
     <link rel="stylesheet" href="Content/style/modules_base/index.css">
+    <style>
+        .example-row{
+            margin-top:2px;margin-bottom:2px
+        }
+        .example-row div[class*=col-],.example-row div[class*=per-]{
+            line-height:20px;text-align:center
+        }
+    </style>
+    <script>
+        function runJS(target){
+            eval(target.value);
+        }
+    </script>
 </head>
 
 <body>
@@ -16,15 +29,15 @@
                 <span>管理员</span>
             </a>
             <a href="javascript:;" class="mail" onclick="WebApi.confirm('该项下含有子目录,是否继续删除?');"></a>
-            <a href="javascript:;" class="mail" onclick="WebApi.modal({src:'http://www.zhangxinxu.com/study/201209/transform-perspective-same-rotate.html',width:500,height:200});"></a>
-            <a href="javascript:;" class="close" onclick="WebApi.modal({content:'adfadfadf',title :'testets' ,width:800,height:600})"></a>
+            <a href="javascript:;" class="mail" onclick="WebApi.window({src:'http://www.zhangxinxu.com/study/201209/transform-perspective-same-rotate.html',width:500,height:200});"></a>
+            <a href="javascript:;" class="close" onclick="WebApi.window({content:'adfadfadf',title :'testets' ,width:800,height:600})"></a>
         </div>
 	</div>
     <div class="body">
     	<div class="main-menu-scroll-container scroll-bar" data-mcs-theme="light">
     		<ul class="menu-root">
     			<li class="select">
-    				<a class="menu-icon-0" href="javascript:;">首页</a>
+    				<a class="menu-icon-0" href="javascript:;">样式示例</a>
     			</li>
     			<li>
     				<a class="menu-icon-1" href="javascript:;">基础数据维护</a>
@@ -61,6 +74,200 @@
     		</ul>
     	</div>
     	<div class="main-content-scroll-container">
+            <div class="nav-bar">
+                <span>基础平台</span><i></i><span>样式示例</span>
+            </div>
+            <div class="main-container">
+                <div class="title-bar g">栅格</div>
+                <span>&nbsp;&nbsp;12分格:</span>
+                <br>
+                <br>
+                <div class="row example-row">
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                    <div class="col-1 color-white bcolor-1">col-1</div>
+                </div>
+                <div class="row example-row">
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                    <div class="col-2 color-white bcolor-2">col-2</div>
+                </div>
+                <div class="row example-row">
+                    <div class="col-3 color-white bcolor-3">col-3</div>
+                    <div class="col-3 color-white bcolor-3">col-3</div>
+                    <div class="col-3 color-white bcolor-3">col-3</div>
+                    <div class="col-3 color-white bcolor-3">col-3</div>
+                </div>
+                <div class="row example-row">
+                    <div class="offset-1 col-11 color-white bcolor-4">offset-1 col-11</div>
+                </div>
+                <div class="row example-row">
+                    <div class="offset-2 col-8 color-white bcolor-5">offset-2 col-8</div>
+                </div>
+                <div class="row example-row">
+                    <div class="offset-3 col-6 color-black bcolor-6">offset-3 col-6</div>
+                </div>
+                <br>
+                <br>
+                <span>&nbsp;&nbsp;百分比格:</span>
+                <i>(百分比步长为2%)</i>
+                <br>
+                <br>
+                <div class="row example-row">
+                    <div class="per-40 color-white bcolor-1">per-40</div>
+                    <div class="per-60 color-white bcolor-1">per-60</div>
+                </div>
+                <div class="row example-row">
+                    <div class="per-32 color-white bcolor-2">per-32</div>
+                    <div class="per-68 color-white bcolor-2">per-68</div>
+                </div>
+                <div class="row example-row">
+                    <div class="per-offset-32 per-68 color-white bcolor-3">per-68</div>
+                </div>
+                <div class="title-bar b">左右布局</div>
+                <div class="frame-left-right-ontrol">
+                    <div class="frame-left" style="width:400px">
+                        <div class="frame-container">
+                            <div class="title-bar y">弹窗样式</div>
+<textarea spellcheck="false" id="showmessage1" cols="30" rows="3">
+WebApi.alert("消息窗口").then(function(status){ alert(status); })
+</textarea>
+                            <br>
+                            <br>
+                            <button class="button g" onclick="runJS(showmessage1)">alert</button>
+                            <br>
+                            <br>
+<textarea spellcheck="false" id="showmessage2" cols="30" rows="3">
+WebApi.confirm("确认信息?").then(function(status){ alert(status); })
+</textarea>
+                            <br>
+                            <br>
+                            <button class="button g" onclick="runJS(showmessage2)">confirm</button>
+                            <br>
+                            <br>
+<textarea spellcheck="false" id="showmessage3" cols="30" rows="3">
+WebApi.error("错误信息").then(function(status){ alert(status); })
+</textarea>
+                            <br>
+                            <br>
+                            <button class="button g" onclick="runJS(showmessage3)">error</button>
+                            <br>
+                            <br>
+<textarea spellcheck="false" id="showmodal" cols="30" rows="36">
+//第一种弹内容
+//第一参数可以指定窗体变量名,亦可省略
+WebApi.modal("modal1",{
+    content:"测试内容",
+    width:650,
+    height:550,
+}).then(function(status){
+    alert("第一种关闭状态:"+ status);
+});
+//第一种弹HTML
+WebApi.modal({
+    content:$("#testmodal1"),
+    width:600,
+    height:500,
+}).then(function(status){
+    alert("第二种关闭状态:"+ status);
+});
+//第一种弹iframe
+WebApi.modal({
+    src:"index.html",
+    width:550,
+    height:450,
+}).then(function(status){
+    alert("第三种关闭状态:"+ status);
+});
+//会弹出四个弹框window添加了全屏与还原功能,其它参数与modal类似
+WebApi.window({
+    content:$("#testmodal2"),
+    width:500,
+    height:400,
+}).then(function(status){
+    alert("第四种关闭状态:"+status);
+});
+</textarea>
+                            <br>
+                            <br>
+                            <button class="button g" onclick="runJS(showmodal)">modal/window</button>
+                            <br>
+                            <br>
+                            <div class="title-bar">以下是本页面的内容 供上面弹窗使用</div>
+                            <span>以下是$("#testmodal1")内容:</span>
+                            <br>
+                            <br>
+                            <div id="testmodal1">
+                                <h1>测试内容</h1>
+                            </div>
+                            <br>
+                            <br>
+                            <span>以下是$("#testmodal2")内容:</span>
+                            <br>
+                            <br>
+                            <div id="testmodal2">
+                                <div class="main-container">
+<textarea spellcheck='false' id='closeitem' cols='30' rows='6'>//这里是关闭指定弹窗的js
+WebApi.close({
+    name:'modal1',
+    command:'我用Api关闭了窗口modal1'
+});
+</textarea>
+                                    <br>
+                                    <br>
+                                    <a href='javascript:;' class='button g p' onclick='runJS(closeitem)'>关闭指定窗口</a>
+                                    <br/>
+                                    <br/>
+<textarea spellcheck='false' id='closeall' cols='30' rows='5'>//这里是关闭所有弹窗的js
+WebApi.close({
+    command:'我用Api关闭了所有窗口'
+});</textarea>
+                                    <br><br>
+                                    <a href='javascript:;' class='button g r' onclick="runJS(closeall)">关闭所有窗口</a>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="frame-bar" style="left:400px"></div>
+                    <div class="frame-right" style="margin-left:410px">
+                        <div class="frame-container">
+                            <div class="title-bar r">按钮样式</div>
+                            <button class="button g larger">button g larger</button>
+                                    <button class="button b">button b</button>
+                                    <button class="button r smaller">button r smaller</button>
+                                    <br>
+                                    <br>
+                                    <button class="button y larger">button y larger</button>
+                                    <button class="button p">button p</button>
+                                    <button class="button disabled smaller">button disabled smaller</button>
+                                    <br>
+                                    <br>
+                                    <button class="button g larger empty">button y larger</button>
+                                    <button class="button b empty">button p</button>
+                                    <button class="button r smaller empty">button disabled smaller</button>
+                                    <br>
+                                    <br>
+                                    <button class="button y larger empty">button y larger</button>
+                                    <button class="button p empty">button p</button>
+                                    <button class="button disabled smaller empty">button disabled smaller</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     	</div>
     </div>
     <script data-main="Content/js/modules_base/index" data-business="index" src="Content/js/common/require.js"></script>

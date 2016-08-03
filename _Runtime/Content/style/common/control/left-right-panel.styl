@@ -1,0 +1,44 @@
+.frame-left-right-ontrol
+	position relative
+	background white
+	.frame-container
+		margin 10px
+	.frame-left
+		height 100%
+		floatLeft()
+		position relative
+		z-index 1
+		border-top 2px solid $color1
+	.frame-bar
+		background: $global-background-color
+		height 100%
+		width: 10px
+		position: absolute
+		bottom: 0
+		top: 0
+	.frame-right
+		height 100%
+		position relative
+		z-index 0
+		border-top 2px solid $color5
+	&:after
+		clear()
+	&.rtl
+		.frame-right
+			height 100%
+			floatRight()
+			position relative
+			z-index 1
+		.frameB-bar
+			background: white
+			height 100%
+			width: 10px
+			position: absolute
+			bottom: 0
+			top: 0
+		.frame-left
+			height 100%
+			float none;
+			overflow hidden
+			position relative
+			z-index 0

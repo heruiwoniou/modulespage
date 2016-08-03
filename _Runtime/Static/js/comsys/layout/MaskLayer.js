@@ -109,7 +109,7 @@ define(
                 this.status = true;
                 var me = this;
                 if(zindex !== undefined )
-                    me.options.zindex.push(zindex);
+                    me.options.zindex.push(me.options.zindex[0] + zindex);
                 me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1] - 1});
                 if (++me.layoutCount !== 1) return;
                 if (me.LowIE) {
@@ -276,10 +276,13 @@ define(
                 }
                 this.bind();
             },
-            hide: function(animate) {
+            hide: function(animate,zIndex) {
                 var me = this;
-                me.options.zindex.pop();
-                me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
+                if(zIndex!== undefined&&me.options.zindex[me.options.zindex.length-1]===me.options.zindex[0]+zIndex || zIndex === undefined)
+                {
+                    me.options.zindex.pop();
+                    me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
+                }
                 if (--me.layoutCount !== 0) return;
                 this.status = false;
                 if (animate)

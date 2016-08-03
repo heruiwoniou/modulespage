@@ -1,4 +1,8 @@
-
+@keyframes window-loading-rotate-animate
+    0%
+        transform rotate(0deg)
+    100%
+        transform rotate(360deg)
 //弹出窗体基本样式
 .comsys-box-base
     z-index:951
@@ -9,6 +13,26 @@
     .comsys-box-close
     .comsys-box-content
         box-sizing:border-box
+    &.box-moving
+    &.box-loading
+        &:after
+            position absolute
+            left 50%
+            top 50%
+            margin-left -40px
+            margin-top -18px
+            color $themeColor
+            iconfont()
+            line-height 1
+            font-size 80px;
+    &.box-loading
+        &:after
+            content ''
+            animation window-loading-rotate-animate 2s infinite linear
+    &.box-moving
+        &:after
+            content ''
+            animation none
     &.forward-animate
         opacity: 0;
         transform: perspective(0px) rotateY(90deg);
@@ -60,8 +84,8 @@
         width: 100%;
         padding: 2px;
         overflow: auto;
-        &>*
-            display block !important;
+        // &>*
+        //     display block !important;
 
 .comsys-box-dialog
     .comsys-box-head
@@ -74,20 +98,20 @@
         box-sizing: content-box;
         text-align: right;
         .comsys-box-button
-            margin-left:1px;
-            height: $window-titleHeight;
+            margin:4px 4px 4px 0px;
+            height: $window-titleHeight - 8px;
             max-width: 100px;
-            background:$themeColor + 5%;
+            background:$themeColor + 15%;
             display: inline-block;
             min-width: 100px;
-            line-height:$window-titleHeight;
+            line-height:$window-titleHeight - 8px;
             vertical-align: top;
             text-align: center;
             color:#fff;
             cursor: pointer;
             &:hover
-                background:$themeColor + 15%;
-                color:#fff;
+                background:$themeColor + 85%;
+                color:$themeColor;
 
     .comsys-box-content
         overflow: hidden;
@@ -126,10 +150,14 @@
             font-size: 1.5em;
             text-align: center;
             &:before
+                position relative
+                top 2px
                 font-family: "ElegantIcons";
                 line-height: $window-titleHeight - 0.5;
                 content: "V";
                 color:$themeColor - 15%;
+            &:hover:before
+                color white
         .comsys-box-normal
             display: none;
             position: absolute;
@@ -140,7 +168,11 @@
             font-size: 1.5em;
             text-align: center;
             &:before
+                position relative
+                top 2px
                 font-family: "ElegantIcons";
                 line-height: $window-titleHeight - 0.5;
                 content: "W";
                 color:$themeColor - 15%;
+            &:hover:before
+                color white

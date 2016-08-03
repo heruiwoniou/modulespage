@@ -16,19 +16,26 @@ $percent-step =2;
 @import "./../base/frame/index.styl";
 
 container-base(1269px,900px);
-button-base(25px,100px);
+button-base(30px,75px);
+@import "./control/button.styl";
 
 /**
  * controls
  */
-$themeColor = $color2
+$themeColor = $color1
 @import "./../../../Static/style/comsys/index.styl";
 
 @import "./overwrite-comsys.styl";
 
 @import './frame.styl';
 
+@import './control/left-right-panel.styl';
+
 @import './control/menu.styl';
+
+@import './control/title-bar.styl';
+
+@import './control/form.styl';
 
 
 

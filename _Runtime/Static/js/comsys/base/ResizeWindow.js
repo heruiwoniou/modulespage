@@ -47,9 +47,10 @@ define(
                 BindResize:function(){
                     var me=this;
                     $(window).on("resize.ResizeWindowResize",function(){
+                        me.hideContent('box-moving');
                         Bumper.trigger(function(){
                             me.WindowResizeHandler();
-                        },500);
+                        },200);
                     })
                 },
                 UnBindResize:function(){
@@ -69,6 +70,8 @@ define(
                     }
                 },
                 BoxBaseFullHandler:function(e,state/*no animate*/){
+                    var that = this;
+                    this.hideContent('box-moving')
                     var me=this;
                     if(!state) {
                         this.CachePosition =
@@ -83,12 +86,11 @@ define(
                     var $win = $(window);
                     var gh = $win.height();
 
-                    var ch = gh * 0.99 - this.setting.titleHeight;
-
+                    var ch = gh - this.setting.titleHeight;
                     if(state)
                     {
                         this.$BoxBaseEl.css({
-                            width: "99%",height: "99%",top: "0.5%",left: "0.5%"
+                            width: "100%",height: "100%",top:0,left:0
                         });
                         this.$BoxBaseFull.hide();
                         this.$BoxBaseNormal.show();
@@ -97,10 +99,11 @@ define(
                         if (this.windowLoadType == this.WindowLoadType.iframe) {
                             this.$BoxBaseFrame.css({height: ch});
                         }
-                        else this.$BoxBaseContent.css({height: ch});
+                        else this.$BoxBaseContent.css({height: ch , maxHeight: ch });
+                        that.showContent('box-moving');
                     }else {
                         this.$BoxBaseEl.animate({
-                            width: "99%",height: "99%",top: "0.5%",left: "0.5%"
+                            width: "100%",height: "100%",top: 0,left: 0
                         }, "fast", function () {
                             me.$BoxBaseFull.hide();
                             me.$BoxBaseNormal.show();
@@ -108,15 +111,20 @@ define(
                             me.windowState = me.WindowStatus.Full;
                         });
                         if (this.windowLoadType == this.WindowLoadType.iframe) {
-                            this.$BoxBaseFrame.animate({height: ch}, "fast");
+                            this.$BoxBaseFrame.animate({height: ch}, "fast", function(){
+                                that.showContent('box-moving');
+                            });
                         }
-                        else this.$BoxBaseContent.animate({height: ch}, "fast");
+                        else this.$BoxBaseContent.animate({height: ch , maxHeight: ch }, "fast", function(){
+                                that.showContent('box-moving');
+                            });
                     }
 
                     this.BindResize();
                 },
                 BoxBaseNormalHandler:function(){
                     var me=this;
+                    this.hideContent('box-moving')
                     var cache=this.CachePosition;
                     if(!cache)
                     {
@@ -141,6 +149,7 @@ define(
                         me.resize(me.fullsetting.height||600);
                         me.windowState=me.WindowStatus.Normal;
                         me.UnBindResize();
+                        me.showContent('box-moving');
                     })
                 },
                 show:function(setting){

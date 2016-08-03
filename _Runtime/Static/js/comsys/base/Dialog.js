@@ -38,8 +38,11 @@ define(
                     "<a href='javascript:;' class='comsys-box-button' command='<%=this[i].command%>'><%=this[i].text%></a>"+
                     "<%}%>"
                 },
-                getColor:function(){
-                    return "boxColor1"
+                hideContent:function(){
+                    return;
+                },
+                showContent:function(){
+                    return;
                 },
                 OnButtonsClikHanler:function(e,$button){
                     if(e.type=='keyup')

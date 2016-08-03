@@ -86,7 +86,7 @@ define([
          * @param  {[type]} setting [设置]
          */
         _window:function(){
-            return Win.show.apply(Win,concatArg(arguments,['window']));
+            return Win.show.apply(Win,concatArg(arguments,['resizewindow']));
         },
         window:function(){
             var parent=window.parent

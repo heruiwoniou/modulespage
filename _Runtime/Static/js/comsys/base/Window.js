@@ -59,35 +59,46 @@ define(
                             }
                         },
                         start:function(){
-                            switch (that.windowLoadType) {
-                                case that.WindowLoadType.ajax:
-                                case that.WindowLoadType.content:
-                                    that.$BoxBaseContent.css({opacity:0});
-                                    break;
-                                case that.WindowLoadType.iframe:
-                                    that.$BoxBaseFrame.css({opacity:0});
-                                    break;
-                                default:
-                                    // statements_def
-                                    break;
-                            }
+                            that.hideContent('box-moving');
                         },
                         stop:function(){
-                            switch (that.windowLoadType) {
-                                case that.WindowLoadType.ajax:
-                                case that.WindowLoadType.content:
-                                    that.$BoxBaseContent.css({opacity:1});
-                                    break;
-                                case that.WindowLoadType.iframe:
-                                    that.$BoxBaseFrame.css({opacity:1});
-                                    break;
-                                default:
-                                    // statements_def
-                                    break;
-                            }
-                            that.$BoxBaseEl.css({height:'auto'});
+                            that.showContent('box-moving');
                         }
                     };
+                },
+                hideContent:function(className){
+
+                    var that = this;
+                    that.$BoxBaseEl.addClass(className || 'box-loading');
+                    switch (that.windowLoadType) {
+                        case that.WindowLoadType.ajax:
+                        case that.WindowLoadType.content:
+                            that.$BoxBaseContent.css({opacity:0});
+                            break;
+                        case that.WindowLoadType.iframe:
+                            that.$BoxBaseFrame.css({opacity:0});
+                            break;
+                        default:
+                            // statements_def
+                            break;
+                    }
+                },
+                showContent:function(className){
+                    var that = this;
+                    that.$BoxBaseEl.removeClass(className || 'box-loading');
+                    switch (that.windowLoadType) {
+                        case that.WindowLoadType.ajax:
+                        case that.WindowLoadType.content:
+                            that.$BoxBaseContent.css({opacity:1});
+                            break;
+                        case that.WindowLoadType.iframe:
+                            that.$BoxBaseFrame.css({opacity:1});
+                            break;
+                        default:
+                            // statements_def
+                            break;
+                    }
+                    that.$BoxBaseEl.css({height:'auto'});
                 },
                 TPL: {
                     main: "<div id='<%=this.classids%>' class='comsys-box-base'>" +
@@ -166,7 +177,7 @@ define(
 
                     var top = (gh - setting.height) / 2 - ((gh - setting.height) / 2) * 2 / 5;
                     this.$BoxBaseEl.css({
-                        zIndex:950 + setting.zindex,
+                        zIndex:layer.options.zindex[0] + setting.zindex,
                         position: "fixed",
                         width: setting.width,
                         height: "auto",
@@ -213,13 +224,16 @@ define(
                     layer.mask(function(e){
                         me.$BoxBaseContent.stop().animate({scrollTop:me.$BoxBaseContent.scrollTop()  - 2 * e.wheelDelta})
                         return false;
-                    },950 + this.setting.zindex);
+                    },this.setting.zindex);
                     return this;
                 },
-                showByEffect:function(){
+                showByEffect:function(callback){
                     var effect = CommonSetting.Effect["window"];
                     var that = this;
-                    if(effect)
+                    that.hideContent();
+                    var ver = CommonSetting.Browser();
+                    var lowIE=/^IE[6789]$/.test(ver);
+                    if(effect&&!lowIE)
                     {
                         this.$BoxBaseEl.addClass(effect + "-animate").show();
                         window.setTimeout(function(){
@@ -227,19 +241,22 @@ define(
 
                             window.setTimeout(function(){
                                 that.$BoxBaseEl.removeClass(effect + "-animate " + effect + "-in");
+                                that.showContent();
                             }, 300);
                         });
                     }else
                     {
-                        this.$BoxBaseEl.fadeIn();
+                        this.$BoxBaseEl.fadeIn(function(){
+                            that.showContent();
+                        });
                     }
                 },
-                close: function (command) {
+                close: function (command,zindex) {
                     if(!this.status) return ;
                     this.$BoxBaseEl.hide();
                     var cmd = command;
                     this.$BoxBaseFrame.attr("src", "about:blank");
-                    layer.hide();
+                    layer.hide(false,zindex);
                     if(command instanceof Function){
                         this.then(function(){command.apply(null,arguments);});
                         cmd="close";
@@ -255,8 +272,8 @@ define(
                 setindex:function(zindex){
                     var me=this;
                     this.setting.zindex=zindex
-                     this.$BoxBaseEl.css({
-                        zIndex:950 + me.setting.zindex
+                    this.$BoxBaseEl.css({
+                        zIndex:layer.options.zindex[0] + me.setting.zindex
                     });
                 },
                 resize: function (height,maxHeight) {

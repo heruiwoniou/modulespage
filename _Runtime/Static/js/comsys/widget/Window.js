@@ -94,7 +94,7 @@ define(
                 var hasClose = false;
                 if (type === undefined) {
                     hasClose = this.closeItem(this.type.window, name, command);
-                    hasClose = hasClose || this.closeItem(this.type.resizewindow, name, command);
+                    hasClose = this.closeItem(this.type.resizewindow, name, command) || hasClose;
                 } else {
                     hasClose = this.closeItem(type, name, command);
                 }
@@ -105,11 +105,11 @@ define(
                 var _w = this[type];
                 $.each(_w, function() {
                     if (name === undefined) {
-                        this.window.close(command);
+                        this.window.close(command,this.window.setting.zindex);
                         hasItem = true;
                     } else {
                         if (this.name === name) {
-                            this.window.close(command);
+                            this.window.close(command,this.window.setting.zindex);
                             hasItem = true;
                         }
                     }

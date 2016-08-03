@@ -1,6 +1,19 @@
 html
 	*
 		color $fontcolor1
+.color-white
+	color white
+.color-black
+	color black
+.bcolor-white
+	background-color white
+.bcolor-black
+	background-color black
+for index in 1..6
+	.color-{index}
+		color $color+index
+	.bcolor-{index}
+		background-color $color+index
 frame-base(80px,0px);
 .header
 	position relative
@@ -10,7 +23,7 @@ frame-base(80px,0px);
 	.logo
 		width 290px
 		height 80px
-		background $color2 url(./../images/logo.png) center center
+		background $green-back-color url(./../images/logo.png) center center
 		float left
 	.control-panel
 		margin-right 40px
@@ -33,7 +46,7 @@ frame-base(80px,0px);
 				padding-left 10px
 			&:hover
 				span
-					color $color2
+					color $color1
 		.mail
 			text-decoration none
 			height 32px
@@ -50,7 +63,7 @@ frame-base(80px,0px);
 				top -3px
 				color #5a5a5a
 			&:hover:before
-				color $color2
+				color $color1
 		.close
 			font-size 0
 			inlineBlock()
@@ -71,10 +84,27 @@ frame-base(80px,0px);
 		background $left-menu-background-color
 		overflow hidden
 	.main-content-scroll-container
+		padding 1px
 		margin-left 290px
 		iframe
 			height 100%
 			width 100%
+		.nav-bar
+			&>*
+				vertical-align middle
+				font-size 14px
+			line-height 25px
+			margin 20px 30px
+			i
+				font-size 18px
+				font-style normal
+				&:before
+					position relative
+					top 1px
+					iconfont()
+					content '5'
+			span:last-child
+				color $color1
 	.main-menu-scroll-container
 		*
 			color white
@@ -87,3 +117,5 @@ frame-base(80px,0px);
 			width 6px
 		p
 			line-height 50px
+.main-container
+	margin 20px 30px

@@ -1,0 +1,68 @@
+/**
+ * buttons
+ */
+ $darken = 40%;
+gcolor($paramcolor)
+	background $paramcolor;
+	&:hover
+		border-color $paramcolor - $darken !important
+.button
+	border-radius 5px
+	padding 1px 23px
+	&.no-radius
+		border-radius 0px
+	color white
+	vertical-align middle
+	border 1px solid transparent;
+	font-weight normal
+	transition border-color .3s
+	&.g
+		gcolor($color1);
+	&.b
+		gcolor($color2);
+	&.r
+		gcolor($color3);
+	&.p
+		gcolor($color4);
+	&.y
+		gcolor($color5);
+	&.disabled
+		cursor default;
+		background #ccc
+		&:hover
+			color white
+			border-color #ccc
+	&.empty
+		&.g
+		&.b
+		&.r
+		&.p
+		&.y
+		&.disabled
+			background transparent
+		&.g
+			color $color1
+			border-color $color1
+		&.b
+			color $color2
+			border-color $color2
+		&.r
+			color $color3
+			border-color $color3
+		&.p
+			color $color4
+			border-color $color4
+		&.y
+			color $color5
+			border-color $color5
+		&.disabled
+			color #ccc
+			border-color #ccc
+			&:hover
+				color #ccc
+.button-panel
+	display inline-block;
+	vertical-align middle
+	font-size 0
+	&>*
+		margin 0 2px
