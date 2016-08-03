@@ -87,7 +87,7 @@ define(
                 return this.each(function () {
                     var setting = { buttontype: $(this).attr('data-buttontype') || '' ,isDocumentBind: $(this).attr('data-isdocumentbind') || false  }
                     new RadioBox({element: this , setting : setting}).initialize();
-                });
+                }).removeAttr('cs-control');
             }
         });
 

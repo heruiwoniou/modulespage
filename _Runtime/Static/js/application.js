@@ -12,7 +12,11 @@ define([
     'css',
     'text',
     'Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar',
-    'Static/js/libs/jquery.menu/jquery.menu'
+    'Static/js/libs/jquery.menu/jquery.menu',
+    'widget/CheckBox',
+    'widget/RadioBox',
+    'widget/SingleCombox',
+    'widget/ButtonTextBox'
 ], function($, util, MaskLayer, CommonSetting, Win) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }

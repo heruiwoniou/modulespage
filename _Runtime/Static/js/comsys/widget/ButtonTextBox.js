@@ -10,56 +10,48 @@ define(
         "jquery",
         'Class',
         "TPLEngine",
-        "./TipTextBox"
+        './baseClass/HiddenBase'
     ],
-    function ($,Class, TPLEngine, TipTextBox) {
+    function ($,Class, TPLEngine, HiddenBase) {
         var ClassName = "Control.ButtonTextBox";
 
         var ButtonTextBox=
             Class(ClassName, {
                 constructor: function (args) {
                     this.callParent(args);
-                    this.setting.ButtonClass = this.setting.ButtonClass || "comsys-ButtonTextBox-button-icon";
                     this.$ButtonTextBoxEl = $(args.element);
-                    this.ButtonTextBoxRightClickHandler = this.setting.ClickHandler || args.element.onclick || function () { };
-                    args.element.onclick = null;
+                    this.setting.ButtonClass = this.$ButtonTextBoxEl.attr('cs-button-type') || "";
+                    this.setting.location = this.$ButtonTextBoxEl.attr('cs-label-location') || "right";
                 },
                 initialize: function () {
-
-                    var $ElememControl=this.$ButtonTextBoxEl;
-                    var oData=this;
-                    if(this.$ButtonTextBoxEl.data('Control.TipTextBox')!= undefined||this.$ButtonTextBoxEl.data('Control.TextBox')!= undefined) {
-                        oData = this.$ButtonTextBoxEl.data('Control.TextBox')||this.$ButtonTextBoxEl.data('Control.TipTextBox');
-                        $ElememControl =
-                            oData.$TipTextBoxControl?oData.$TipTextBoxControl:(oData.$TextBoxControl?oData.$TextBoxControl:this.$ButtonTextBoxEl);
-                    }
-
-
+                    var that = this;
                     if (this.$ButtonTextBoxEl.data(ClassName) == undefined) {
                         this.$ButtonTextBoxController = $(TPLEngine.render(this.TPL.main, this));
-                        $ElememControl.parent().append(this.$ButtonTextBoxController);
-                        this.$ButtonTextBoxController.find(".comsys-ButtonTextBox-input").append(oData?$ElememControl:this.$ButtonTextBoxEl);
-                        this.$ButtonTextBoxController.find(".comsys-ButtonTextBox-button").off(".ButtonTextBoxRightClickHandler").on("click.ButtonTextBoxRightClickHandler", this.ButtonTextBoxRightClickHandler);
+                        this.$ButtonTextBoxEl.parent().append(this.$ButtonTextBoxController);
+                        this.$ButtonTextBoxController.find(".comsys-ButtonTextBox-input").append(this.$ButtonTextBoxEl);
+                        this.$ButtonTextBoxEl.on("focus",function(){
+                            that.$ButtonTextBoxController.addClass('focus-outerline')
+                        }).on("focusout",function(){
+                            that.$ButtonTextBoxController.removeClass('focus-outerline')
+                        })
                         this.$ButtonTextBoxEl.data(ClassName, this);
-                        this.$TipTextBoxEl = this.$ButtonTextBoxEl;
                         this.callParent();
-                        this.$ButtonTextBoxController.append(oData.$HiddenBaseElContainer);
+                        this.addPlaceHolder(this.$ButtonTextBoxController);
                     }
-
                     return this;
                 },
                 TPL: {
-                    layout: "<div class='comsys-base comsys-ButtonTextBox-layout' id='<%= this.classids%>'>@{layout}@</div>",
-                    main: "@{layout:this.TPL.layout,this}@<div class='comsys-ButtonTextBox-input'></div><div class='comsys-ButtonTextBox-button <%=this.setting.ButtonClass%>'></div>"
+                    layout: "<div class='comsys-base comsys-ButtonTextBox-layout<%=' ' + this.setting.ButtonClass + ' location-'+ this.setting.location%>' id='<%= this.classids%>'>@{layout}@</div>",
+                    main: "@{layout:this.TPL.layout,this}@<div class='comsys-ButtonTextBox-input'></div><div class='comsys-ButtonTextBox-button'></div>"
                 }
 
-            }, TipTextBox);
+            }, HiddenBase);
 
         $.fn.extend({
             ButtonTextBoxInit: function (setting) {
                 return this.each(function () {
                     new ButtonTextBox({ element: this, setting: setting }).initialize();
-                });
+                }).removeAttr('cs-control');
             }
         });
 

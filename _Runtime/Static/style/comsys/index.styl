@@ -1,17 +1,21 @@
+$imagepath = $imagepath is defined ? $imagepath : './images/';
+$borderradius = $borderradius is defined ? $borderradius : 0px;
+$inputoutlinecolor = $inputoutlinecolor is defined ? $inputoutlinecolor : transparent;
 @import './core/common.styl';
 
-$line-height=27px;
-$border-color=#e8e7e7;
+$line-height = $line-height is defined ?  $line-height : 27px;
+$border-color = #e8e7e7;
 $font-ico-size=14px;
 $font-size=14px;
 
 @import './core/base.styl';
 @import './protoupload/index.styl';
+
 @import './checkradio/index.styl';
 
 $tip-icon="r ";
-$combox-icon=";";
-@import './textbox/index.styl';
+$combox-icon = $combox-icon is defined ? $combox-icon : ";";
+@import './buttontextbox/index.styl';
 
 $disabled-color=#f4f4f4;
 $mcombox-icon="?";
@@ -28,6 +32,20 @@ $close="M";
 
 @import './load/index.styl';
 
+
+input
+textarea
+	vertical-align middle
+	padding 5px
+	border-radius $borderradius
+	transition box-shadow .1s ease , border .1s ease
+	&:focus
+		outerlineset($inputoutlinecolor)
+input
+	height $line-height
+	border 1px solid $border-color
+	display inline-block
+	width 100%
 textarea
 	border 1px solid $border-color
 	display inline-block

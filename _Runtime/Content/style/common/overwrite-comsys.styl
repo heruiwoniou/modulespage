@@ -19,3 +19,94 @@
 			color white
 		div[class*=comsys-box-]:hover:before
 			opacity 1
+.comsys-SingleCombox-layout
+	.comsys-SingleCombox-button
+		top: 5px;
+		bottom: 5px;
+		right: 2px;
+		height: auto;
+		line-height: 13px;
+		border-left: 1px solid $border-color;
+		&:before
+			color $inputoutlinecolor
+			position relative
+			top -1px
+			font-weight bold
+.comsys-SingleCombox-drop
+	border-color:$inputoutlinecolor - 20%
+	box-shadow: 0px 0px 5px 0px $inputoutlinecolor - 20%
+	div.comsys-SingleCombox-option
+		textHidden()
+		&:hover
+			background $inputoutlinecolor + 80%
+		&.selected
+			background $inputoutlinecolor
+			color white
+.comsys-ButtonTextBox-layout
+	&.timebutton
+		.comsys-ButtonTextBox-button
+			cursor default
+			&:before
+				position relative
+				top 1px
+				content ''
+				display inline-block
+				background url(./../images/time-button.png) no-repeat center center
+				height 15px
+				width 15px
+.comsys-ButtonTextBox-layout
+	&.searchbutton
+		border-color #d8f0fc
+		&.focus-outerline
+			border-color $color2
+			outline-color $color2
+		.comsys-ButtonTextBox-button
+			cursor default
+			&:before
+				position relative
+				top 3px
+				content ''
+				display inline-block
+				background url(./../images/search-button.png) no-repeat center center
+				height 17px
+				width 16px
+
+.comsys-ButtonTextBox-layout.userbutton
+.comsys-ButtonTextBox-layout.passwordbutton
+	height 55px
+	border-color transparent
+	border-width 2px
+	border-radius 0
+	line-height 57px;
+	input
+		font-size 16px;
+		text-indent 10px
+	input:-webkit-autofill
+		box-shadow: 0 0 0 35px white inset !important;
+		color $fontcolor1 !important;
+	.comsys-ButtonTextBox-button
+		width 45px
+		cursor default
+		&:before
+			position relative
+			top 3px
+			content ''
+			display inline-block
+			background url(./../images/user-button.png) no-repeat center center
+			height 24px
+			width 19px
+	&.focus-outerline
+		border-color $color1
+		outline-color transparent
+		.comsys-ButtonTextBox-button
+			&:before
+				background url(./../images/user-button-focus.png) no-repeat center center
+.comsys-ButtonTextBox-layout
+	&.passwordbutton
+		.comsys-ButtonTextBox-button
+			&:before
+				background url(./../images/password-button.png) no-repeat center center
+		&.focus-outerline
+			.comsys-ButtonTextBox-button
+				&:before
+					background url(./../images/password-button-focus.png) no-repeat center center

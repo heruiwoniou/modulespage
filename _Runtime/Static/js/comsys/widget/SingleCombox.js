@@ -10,9 +10,9 @@ define(
         "jquery",
         'Class',
         "TPLEngine",
-        "./TipTextBox"
+        "./baseClass/HiddenBase"
     ],
-    function ($,Class, TPLEngine, TipTextBox) {
+    function ($,Class, TPLEngine, HiddenBase) {
         var ClassName = "Control.SingleCombox";
 
         var SingleCombox=
@@ -26,7 +26,6 @@ define(
                         this.$element = $(element);
                         this.appendTo = args.appendTo || document.body;
                         this.setting = {
-                            lineHeight: this.setting.lineHeight || 27,
                             dropLength: this.setting.dropLength || 5
                         };
                         this.element.style.display = "none";
@@ -49,7 +48,7 @@ define(
                     },
                     TPL: {
                         layout: "<div class='comsys-base comsys-SingleCombox-layout' id='SingleCombox-<%= this.classids%>'>@{layout}@</div>",
-                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' readonly placeholder='<%=$(this.element).attr(\"tip-title\")?$(this.element).attr(\"tip-title\"):\"\"%>' value='<%=this.element.options.length==0 || this.element.selectedIndex == -1?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
+                        main: "@{layout:this.TPL.layout,this}@<div class='comsys-SingleCombox-input'><input type='text' readonly placeholder='<%=$(this.element).attr(\"placeholder\")?$(this.element).attr(\"placeholder\"):\"\"%>' value='<%=this.element.options.length==0 || this.element.selectedIndex == -1?'':this.element.options[this.element.selectedIndex].text%>'/></div><div class='comsys-SingleCombox-button'></div>@{section:this.TPL.drop,this}@",
                         drop: "<div class='comsys-combox-base comsys-SingleCombox-drop' id='SingleCombox-drop-<%= this.classids%>'><%for(var i=0;i<this.element.options.length;i++){%>@{section:this.TPL.option,this.element.options[i]}@<%}%></div>",
                         option: "<div class='comsys-base comsys-SingleCombox-option<%=this.selected?\' selected\':\'\'%>' data-index='<%=this.index%>'><%=this.text%></div>"
                     },
@@ -84,7 +83,12 @@ define(
                         THIS.$controller.on("click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
                         THIS.$controller.delegate(".comsys-SingleCombox-input input", "keydown", function () { return THIS.OnKeyDown.apply(THIS, arguments); });
                         THIS.$drop.get(0).onmousewheel = function (e) { return THIS.OnMouseWheel.call(THIS, e, THIS.$drop.get(0)); }
-                        THIS.$input.off(".SingleComboxFocusOut").on("focusout.SingleComboxFocusOut", function () { return THIS.OnFocusOut.apply(THIS, arguments); });
+                        THIS.$input.off(".SingleComboxFocus").on("focus.SingleComboxFocus",function(){
+                            THIS.$controller.addClass('focus-outerline');
+                        })
+                        THIS.$input.off(".SingleComboxFocusOut").on("focusout.SingleComboxFocusOut", function () { 
+                            THIS.$controller.removeClass('focus-outerline');
+                            return THIS.OnFocusOut.apply(THIS, arguments); });
                         THIS.$drop.delegate(".comsys-SingleCombox-option", "click", function () { return THIS.OnOptionClick.apply(THIS, [arguments[0], this]); });
                     },
                     //获取定位模式
@@ -112,7 +116,7 @@ define(
                     },
                     OnMouseWheel: function (e,scroller) {
                         var THIS = this;
-                        var k = e.wheelDelta ? e.wheelDelta / 120 * THIS.setting.lineHeight : -e.detail;
+                        var k = e.wheelDelta ? e.wheelDelta / 120 * THIS.$controller.outerHeight() : -e.detail;
                         scroller.scrollTop = scroller.scrollTop - k;
                         return false;
                     },
@@ -215,12 +219,12 @@ define(
                             if(THIS.element.options.length==0) return false;
                             THIS.$drop.css({
                                 left: -99999,
-                                maxHeight: THIS.setting.lineHeight * THIS.setting.dropLength
+                                maxHeight: THIS.$controller.outerHeight() * THIS.setting.dropLength
                             }).appendTo(document.body).show();
                             THIS.$drop.css({
-                                minWidth: THIS.$controller.width() + 2 - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
+                                minWidth: THIS.$controller.innerWidth() + 2 - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
                                 left: offset.left,
-                                top: offset.top + THIS.$controller.height() + 4
+                                top: offset.top + THIS.$controller.outerHeight() + 6
                             });
                             THIS.state = true;
                             $(document).off(".outerClickListener").on("mousedown.outerClickListener",function(){return THIS.OnOtherAreaClick.apply(THIS,arguments);});
@@ -338,7 +342,7 @@ define(
 
                         return re;
                     }
-                }, TipTextBox);
+                }, HiddenBase);
 
 
         $.fn.extend({

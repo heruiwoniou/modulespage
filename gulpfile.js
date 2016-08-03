@@ -98,7 +98,7 @@ gulp.task('build-script', function() {
 });
 
 gulp.task('build-images', function() {
-    gulp.src(['_Runtime/Content/style/images/**/*.jpg','_Runtime/Content/style/images/**/*.gif', '_Runtime/Content/style/images/service-center.png'])
+    gulp.src(['_Runtime/Content/style/images/**/*.jpg','_Runtime/Content/style/images/**/*.gif', '_Runtime/Content/style/images/service-center.png','_Runtime/Static/style/images/progress.png'])
         .pipe(gulp.dest('Runtime/Content/style/images/'));
 });
 

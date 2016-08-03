@@ -278,11 +278,32 @@ define(
             },
             hide: function(animate,zIndex) {
                 var me = this;
-                if(zIndex!== undefined&&me.options.zindex[me.options.zindex.length-1]===me.options.zindex[0]+zIndex || zIndex === undefined)
+                if(zIndex!== undefined)
                 {
-                    me.options.zindex.pop();
+                    if(me.options.zindex[me.options.zindex.length-1]===me.options.zindex[0]+zIndex)
+                    {
+                        if(me.options.zindex.length > 1)
+                            me.options.zindex.pop();
+                        me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
+                    }else
+                    {
+                        for(var i = me.options.zindex.length - 1; i >= 0 ; i--)
+                        {
+                            if(me.options.zindex[i]===me.options.zindex[0]+zIndex)
+                            {
+                                me.options.zindex.splice(i,1)
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if(me.options.zindex.length > 1)
+                        me.options.zindex.pop();
                     me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1]});
                 }
+
                 if (--me.layoutCount !== 0) return;
                 this.status = false;
                 if (animate)

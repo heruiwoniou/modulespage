@@ -79,10 +79,9 @@ define(
         $.fn.extend({
             CheckBoxInit: function() {
                 return this.each(function() {
-                    $(this).attr('data-button-type')
-                    var setting = { buttontype: $(this).attr('data-buttontype') || '' ,isDocumentBind: $(this).attr('data-isdocumentbind') === 'true' }
+                    var setting = { buttontype: $(this).attr('cs-button-type') || '' ,isDocumentBind: $(this).attr('cs-isdocumentbind') === 'true' }
                     new CheckBox({ element: this, setting: setting }).initialize();
-                });
+                }).removeAttr('cs-control');
             }
         });
 
