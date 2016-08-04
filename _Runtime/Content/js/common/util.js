@@ -17,13 +17,13 @@ define(function(){
         	$parent.find(':checkbox[cs-control]').CheckBoxInit();
         	$parent.find(':radio[cs-control]').RadioBoxInit();
         	$parent.find('select[cs-control]').SingleComboxInit();
-        	$parent.find('input[type*=text][cs-control],input[type*=password][cs-control]').ButtonTextBoxInit();
+        	$parent.find('input[type*=text][cs-control*=ButtonTextBox],input[type*=password][cs-control*=ButtonTextBox]').ButtonTextBoxInit();
+            $parent.find('input[type*=text][cs-control*=DataPicker]').DataPickerInit();
         },
         //这里是加载完所有js后执行的公用接口
 		_init_:function(){
 			//滚动条初始化
 			this.scrollReplace();
-			debugger;
 			//初始化控件
 			this.initControl();
 			//这里添加页面加载完成后公用的初始化功能

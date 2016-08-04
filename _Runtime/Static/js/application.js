@@ -16,7 +16,8 @@ define([
     'widget/CheckBox',
     'widget/RadioBox',
     'widget/SingleCombox',
-    'widget/ButtonTextBox'
+    'widget/ButtonTextBox',
+    'widget/DataPicker'
 ], function($, util, MaskLayer, CommonSetting, Win) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }

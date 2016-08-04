@@ -354,19 +354,19 @@ WebApi.close({
 									<tr>
 										<th>按钮文本控件(右):</th>
 										<td>
-											<input type="text" cs-control cs-button-type="timebutton">
+											<input type="text" cs-control="ButtonTextBox" cs-button-type="timebutton">
+										</td>
+									</tr>
+									<tr>
+										<th>时间控件(左):</th>
+										<td>
+											<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
 										</td>
 									</tr>
 									<tr>
 										<th>按钮文本控件(左):</th>
 										<td>
-											<input type="text" cs-control cs-button-type="timebutton" cs-label-location="left">
-										</td>
-									</tr>
-									<tr>
-										<th>按钮文本控件(左):</th>
-										<td>
-											<input type="text" placeholder="搜索" cs-control cs-button-type="searchbutton" cs-label-location="left">
+											<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton" cs-label-location="left">
 										</td>
 									</tr>
 								</table>
@@ -389,9 +389,9 @@ WebApi.close({
 										}
 									</style>
 									<table class="login-panel-table">
-										<tr><td><input type="text" placeholder="请输入用户名" cs-control cs-button-type="userbutton"></td></tr>
-										<tr><td><input type="password" placeholder="请输入密码" cs-control cs-button-type="passwordbutton"></td></tr>
-										<tr><td><button class="button g larger">登陆</button></td></tr>
+										<tr><td><input type="text" placeholder="请输入用户名" cs-control="ButtonTextBox" cs-button-type="userbutton"></td></tr>
+										<tr><td><input type="password" placeholder="请输入密码" cs-control="ButtonTextBox" cs-button-type="passwordbutton"></td></tr>
+										<tr><td><button class="button g larger">登录</button></td></tr>
 									</table>
 								</div>
 							</div>
