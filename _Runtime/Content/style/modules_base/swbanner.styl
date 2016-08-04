@@ -1,0 +1,135 @@
+html,body{
+	padding 0
+	margin 0
+	height 100%
+}
+.swbanner-control
+	height 100%
+	position relative
+	&.created
+		.swbanner-view
+		.swbanner-banner
+			display block
+	.swbanner-view
+		display none;
+		position absolute
+		left 0
+		top 0
+		right 0
+		bottom 220px
+		background #333333
+		overflow hidden
+		img
+			opacity 0
+			border 0
+			position absolute
+			transition all .1s ease
+			&.active
+				opacity 1
+			&.horizontal
+				height 100%
+				left 50%
+				width auto
+				top 0
+			&.vertical
+				height auto
+				left 0
+				width 100%
+				top 50%
+		.swbanner-message
+			transition padding-top .2s ease , padding-bottom .2s ease
+			position absolute
+			bottom 0
+			left 0
+			right 0
+			background rgba(0,0,0,.6)
+			color white
+			word-break break-all
+			text-indent 42px;
+			line-height: 21px
+			font-size 12px
+			&.display
+				padding 10px
+	.swbanner-banner
+		display none;
+		position absolute
+		bottom 0
+		left 0
+		right 0
+		height 220px
+		background #333333
+		text-align center
+		line-height 220px
+		font-size 0
+		.arrow-left
+		.arrow-right
+			display inline-block;
+			vertical-align middle
+			height 130px
+			width 40px
+			background transparent
+			line-height 130px
+			text-align center
+			cursor pointer
+			&:before
+				opacity .6
+				display inline
+				font-size 18px
+				color white
+			&:hover:before
+				opacity 1
+		.arrow-left:before
+			content "<"
+		.arrow-right:before
+			content ">"
+		.swbanner-shrunken-container
+			transition all .2s ease
+			display inline-block;
+			vertical-align middle
+			max-width 80%
+			height 130px
+			font-size 0
+			text-align left
+			line-height 130px
+			white-space nowrap
+			overflow hidden
+			.swbanner-shrunken-item
+				position relative
+				line-height 130px
+				display inline-block
+				width 180px
+				height 130px
+				margin-right 10px
+				background red
+				overflow hidden
+				cursor pointer
+				&:before
+					position absolute
+					left 0
+					right 0
+					bottom 0
+					top 0
+					background black
+					content ''
+					z-index 1
+					transition opacity .2s ease
+					opacity .5
+				&:hover:before
+					opacity .1
+				&.current:before
+					opacity 0
+				img
+					border 0
+					position absolute
+					&.horizontal
+						height 100%
+						left 50%
+						width auto
+						top 0
+					&.vertical
+						height auto
+						left 0
+						width 100%
+						top 50%
+			.swbanner-shrunken-item:last-child
+				margin-right 0

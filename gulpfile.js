@@ -29,7 +29,7 @@ var doingstylus = function(sm,dest,module){
                 'spriteSheet': 'Runtime/Content/style/images/' + sprite,
                 'pathToSpriteSheetFromCSS': '../images/' + sprite
             }))//.pipe(cleancss({processImport : false}));
-        if( module ) sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
+        //if( module ) sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
         if( isDevelop ) sm = sm.pipe(sourcemaps.write());
         sm.pipe(gulp.dest(dest));
     }
@@ -100,6 +100,8 @@ gulp.task('build-script', function() {
 gulp.task('build-images', function() {
     gulp.src(['_Runtime/Content/style/images/**/*.jpg','_Runtime/Content/style/images/**/*.gif', '_Runtime/Content/style/images/service-center.png','_Runtime/Static/style/images/progress.png'])
         .pipe(gulp.dest('Runtime/Content/style/images/'));
+
+    gulp.src('_Runtime/Content/style/upload/**.*').pipe(gulp.dest('Runtime/Content/style/upload/'))
 });
 
 gulp.task('build-html', function() {
