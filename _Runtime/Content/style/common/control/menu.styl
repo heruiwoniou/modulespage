@@ -4,22 +4,14 @@ $hover-src = './../images/menu-icon-hover-';
 	font-size 0
 	li
 	a
-		&[class*='menu-icon-']
-			&:before
-				content ''
-				inlineBlock()
-				width 17px
-				height 15px
-				position relative
-				top -1px
-				margin-right 10px
-		for index in 0..16
-			&.menu-icon-{index}
-				&:before
-					background url($normal-src + index + '.png') no-repeat center center
 		text-decoration none
 		font-size 16px
 		line-height 55px
+		i
+			&:before
+				position relative
+				top 2px
+				font-size 20px
 	&>li
 		background $left-menu-root-li-color
 	li
@@ -44,10 +36,8 @@ $hover-src = './../images/menu-icon-hover-';
 				color $color1
 			&>a
 				color $color1
-				for index in 0..16
-					&.menu-icon-{index}
-						&:before
-							background url($hover-src + index + '.png') no-repeat center center
+				i
+					color $color1
 		&.select
 		&.open
 			&.sup:before

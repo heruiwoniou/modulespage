@@ -222,7 +222,7 @@ define(
                                 maxHeight: THIS.$controller.outerHeight() * THIS.setting.dropLength
                             }).appendTo(document.body).show();
                             THIS.$drop.css({
-                                minWidth: THIS.$controller.innerWidth() + 2 - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
+                                minWidth: THIS.$controller.outerWidth(),// - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
                                 left: offset.left,
                                 top: offset.top + THIS.$controller.outerHeight() + 6
                             });

@@ -120,6 +120,9 @@ gulp.task('develop', ['clean'], function() {
     gulp.src('_Runtime/Static/style/fonts/*')
         .pipe(gulp.dest('Runtime/Content/style/fonts/'))
 
+    gulp.src('_Runtime/Content/style/fonts/*')
+        .pipe(gulp.dest('Runtime/Content/style/fonts/'))
+
     gulp.watch(['_Runtime/**/*.js'], function() {
         gulp.run('build-script');
     });

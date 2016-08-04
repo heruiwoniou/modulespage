@@ -3,6 +3,7 @@
 @import "./../base/core/common.styl";
 @import "./../base/core/reset.styl";
 @import './../../../Static/style/font.styl';
+@import './../fonts/font.styl';
 
 global-reset();
 nested-reset();
@@ -26,7 +27,7 @@ $line-height = 30px;
 $themeColor = $color1;
 $imagepath = './../images/';
 $borderradius = 2px;
-$inputoutlinecolor = $color1;
+$inputoutlinecolor = $color1 + 40%;
 $combox-icon = '3';
 @import "./../../../Static/style/comsys/index.styl";
 
@@ -41,6 +42,8 @@ $combox-icon = '3';
 @import './control/title-bar.styl';
 
 @import './control/form.styl';
+
+@import './control/list.styl';
 
 
 

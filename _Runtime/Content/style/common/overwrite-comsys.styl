@@ -46,31 +46,39 @@
 	&.timebutton
 		.comsys-ButtonTextBox-button
 			cursor default
+			font-size 0
+			@extend .icon-calendar
 			&:before
+				systemiconfont()
 				position relative
-				top 1px
-				content ''
-				display inline-block
-				background url(./../images/time-button.png) no-repeat center center
-				height 15px
-				width 15px
+				vertical-align middle
+				top -2px
+				color $border-color - 20%
+				font-size 19px
+		&.focus-outerline
+			.comsys-ButtonTextBox-button
+				&:before
+					color $inputoutlinecolor
 .comsys-ButtonTextBox-layout
 	&.searchbutton
 		border-color #d8f0fc
+		.comsys-ButtonTextBox-button
+			cursor default
+			font-size 0
+			@extend .icon-search
+			&:before
+				systemiconfont()
+				position relative
+				vertical-align middle
+				top -2px
+				color $color1
+				font-size 19px
 		&.focus-outerline
 			border-color $color2
 			outline-color $color2
-		.comsys-ButtonTextBox-button
-			cursor default
-			&:before
-				position relative
-				top 3px
-				content ''
-				display inline-block
-				background url(./../images/search-button.png) no-repeat center center
-				height 17px
-				width 16px
-
+			.comsys-ButtonTextBox-button
+				&:before
+					color $color1 - 20%
 .comsys-ButtonTextBox-layout.userbutton
 .comsys-ButtonTextBox-layout.passwordbutton
 	height 55px
@@ -84,29 +92,28 @@
 	input:-webkit-autofill
 		box-shadow: 0 0 0 35px white inset !important;
 		color $fontcolor1 !important;
+	.comsys-ButtonTextBox-input
+		margin-right 45px
 	.comsys-ButtonTextBox-button
 		width 45px
-		cursor default
+		font-size 0
 		&:before
+			systemiconfont()
 			position relative
-			top 3px
-			content ''
-			display inline-block
-			background url(./../images/user-button.png) no-repeat center center
-			height 24px
-			width 19px
+			vertical-align middle
+			top -2px
+			color $border-color
+			font-size 28px
 	&.focus-outerline
 		border-color $color1
-		outline-color transparent
 		.comsys-ButtonTextBox-button
 			&:before
-				background url(./../images/user-button-focus.png) no-repeat center center
+				color $color1
+.comsys-ButtonTextBox-layout
+	&.userbutton
+		.comsys-ButtonTextBox-button
+			@extend .icon-user
 .comsys-ButtonTextBox-layout
 	&.passwordbutton
 		.comsys-ButtonTextBox-button
-			&:before
-				background url(./../images/password-button.png) no-repeat center center
-		&.focus-outerline
-			.comsys-ButtonTextBox-button
-				&:before
-					background url(./../images/password-button-focus.png) no-repeat center center
+			@extend .icon-password

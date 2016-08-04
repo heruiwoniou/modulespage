@@ -65,13 +65,14 @@ frame-base(80px,0px);
 			&:hover:before
 				color $color1
 		.close
-			font-size 0
+			text-decoration none
 			inlineBlock()
-			height 25px
+			height 32px
 			width 25px
-			background url('./../images/close-normal.png') no-repeat center center
-			&:hover
-				background url('./../images/close-hover.png') no-repeat center center
+			&:before
+				font-size 31px;
+			&:hover:before
+				color $color1
 .body
 	position relative
 	background $global-background-color
@@ -90,27 +91,18 @@ frame-base(80px,0px);
 			height 100%
 			width 100%
 		.nav-bar
+			font-size 0
 			&>*
 				vertical-align middle
-				font-size 14px
 			line-height 25px
 			margin 20px 30px
-			i
-				font-size 18px
-				font-style normal
-				&:before
-					position relative
-					top 1px
-					iconfont()
-					content '5'
 			span:last-child
 				color $color1
-			&:before
-				margin-right 5px
 				font-size 14px
-				vertical-align middle
-				iconfont()
-				content '\e009'
+			i
+				display inline-block
+				&:before
+					font-size 16px
 	.main-menu-scroll-container
 		*
 			color white

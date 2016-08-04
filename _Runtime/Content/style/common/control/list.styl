@@ -1,0 +1,33 @@
+$listbackcolor = $color1 + 90%;
+glistcolor($color)
+	box-shadow 0 0 5px 0px $color - 10%
+	border 1px solid $color- 10%
+	th,td
+		border-right $color - 10% 1px solid
+	th
+		border-right $color - 10% 1px solid
+		background $color
+	tbody
+		tr:nth-child(2n + 2)
+			td
+				background $color
+.list
+	glistcolor($listbackcolor)
+	for index in 2..5
+		&.style-{index}
+			glistcolor($color + index + 90%)
+	table-layout fixed
+	width 100%
+	th,td
+		text-align center
+		line-height 45px
+	th
+		font-weight bold
+		&.left
+			text-align left
+		&.right
+			text-align right
+		&.center
+			text-align center
+	tr th:last-child,tr td:last-child
+		border-right-width 0
