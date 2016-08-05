@@ -20,7 +20,11 @@ glistcolor($color)
 	width 100%
 	th,td
 		text-align center
-		line-height 45px
+		line-height 20px
+		height 45px
+		word-break break-all
+		&.single
+			textHidden()
 	th
 		font-weight bold
 		&.left

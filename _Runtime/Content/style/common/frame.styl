@@ -3,8 +3,12 @@ html
 		color $fontcolor1
 .color-white
 	color white
+	&>i
+		color white
 .color-black
 	color black
+	&>i
+		color black
 .bcolor-white
 	background-color white
 .bcolor-black
@@ -12,6 +16,10 @@ html
 for index in 1..6
 	.color-{index}
 		color $color+index
+		&>i
+		&>span
+		&>a
+			color $color+index
 	.bcolor-{index}
 		background-color $color+index
 frame-base(80px,0px);

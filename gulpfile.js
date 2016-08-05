@@ -29,7 +29,7 @@ var doingstylus = function(sm,dest,module){
                 'spriteSheet': 'Runtime/Content/style/images/' + sprite,
                 'pathToSpriteSheetFromCSS': '../images/' + sprite
             }))//.pipe(cleancss({processImport : false}));
-        //if( module ) sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
+        if( module ) sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
         if( isDevelop ) sm = sm.pipe(sourcemaps.write());
         sm.pipe(gulp.dest(dest));
     }
@@ -44,6 +44,8 @@ gulp.task('build-css', function() {
         module = arr[i].substr(0, arr[i].lastIndexOf('.'));
         doingstylus(gulp.src('_Runtime/Content/style/modules_base/' + module + '.styl'),'Runtime/Content/style/modules_base', module);
     }
+
+    doingstylus(gulp.src('_Runtime/Content/style/common/datapicker/datapicker.styl'),'Runtime/Content/style/common/datapicker');
 
     gulp.src('_Runtime/Content/style/modules_business/**/*').pipe(cleancss({processImport : false})).pipe(gulp.dest('Runtime/Content/style/modules_business/'));
 

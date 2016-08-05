@@ -1,0 +1,22 @@
+.page-control
+	margin 10px 0
+	a
+		inlineBlock()
+		height 21px
+		width 21px
+		border 1px solid $border-color
+		text-align center
+		line-height 21px
+		&:before
+			color $border-color - 20%
+			systemiconfont()
+			margin 0
+		&.last
+			@extend .icon-arrow-left
+		&.next
+			@extend .icon-arrow-right
+	input
+		text-align center
+		width 30px
+		height 21px
+		inlineBlock()
