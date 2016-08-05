@@ -7,11 +7,10 @@
 
 define(
     [
-        "jquery",
         'Class',
         './baseClass/LabelBase'
     ],
-    function ($, Class, LabelBase) {
+    function (Class, LabelBase) {
         var ClassName = "Control.RadioBox";
 
         var RadioBox = Class(ClassName, {

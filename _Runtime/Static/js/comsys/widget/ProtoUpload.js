@@ -7,11 +7,10 @@
 
 define(
     [
-        "jquery",
         'Core',
         'Class',
         "comsys/base/Base"
-    ], function ($,Core, Class, Base) {
+    ], function (Core, Class, Base) {
         var ClassName = "Control.ProtoUpload";
 
         var ProtoUpload=Class(ClassName, {

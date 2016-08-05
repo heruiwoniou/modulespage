@@ -7,13 +7,12 @@
 
 define(
     [
-        "jquery",
         'Class',
         "TPLEngine",
         "./ButtonTextBox",
         "Static/js/libs/wdate.picker/WdatePicker"
     ],
-    function ($,Class, TPLEngine, ButtonTextBox) {
+    function (Class, TPLEngine, ButtonTextBox) {
         var ClassName = "Control.DataPicker";
 
         var DataPicker=

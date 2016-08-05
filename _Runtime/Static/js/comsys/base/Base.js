@@ -7,13 +7,11 @@
 
 define(
     [
-        'jquery',
         'Core',
         'Class',
         'Guid'
     ],
-    function ($,Core, Class,Guid) {
-
+    function (Core, Class,Guid) {
         var ClassName = "Controll.Base";
         return Class(ClassName, {
             constructor: function (args) {

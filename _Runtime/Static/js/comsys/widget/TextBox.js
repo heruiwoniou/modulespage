@@ -11,12 +11,11 @@
 
 define(
     [
-        "jquery",
         'Core',
         'Class',
         './baseClass/HiddenBase'
     ],
-    function ($,Core, Class, HiddenBase) {
+    function (Core, Class, HiddenBase) {
         var ClassName = "Control.TextBox";
 
         var TextBox=Class(ClassName, {

@@ -76,7 +76,7 @@ gulp.task('build-script', function() {
 
             "vue": "Static/js/libs/vue/dist/vue"
         },
-        exclude: ['Content/js/common/util']
+        exclude: ['jquery','Content/js/common/util']
     }
     for(i = 0 ; i < arr.length ; i++)
     {
@@ -95,6 +95,10 @@ gulp.task('build-script', function() {
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/requirejs/require.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/jquery/dist/jquery.js')
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 });

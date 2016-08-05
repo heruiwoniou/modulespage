@@ -32,8 +32,8 @@ and dependencies (minified).
 */
 (function(factory){
 	if (typeof define === "function" && define.amd) {
-		define([ "jquery",'Static/js/libs/jquery.mousewheel/jquery.mousewheel','css!Content/style/common/jquery.scrollbar/jquery.mCustomScrollbar' ], function($){
-			factory($)
+		define(['Static/js/libs/jquery.mousewheel/jquery.mousewheel','css!Content/style/common/jquery.scrollbar/jquery.mCustomScrollbar' ], function(){
+			factory()
 		});
 	}
 	else if(typeof module!=="undefined" && module.exports){
@@ -41,7 +41,7 @@ and dependencies (minified).
 	}else{
 		factory(jQuery,window,document);
 	}
-}(function($){
+}(function(){
 (function(init){
 	init();
 }(function(){

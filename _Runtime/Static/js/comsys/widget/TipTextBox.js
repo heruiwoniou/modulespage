@@ -7,12 +7,11 @@
 
 define(
     [
-        "jquery",
         'Core',
         'Class',
         './TextBox'
     ],
-    function ($,Core, Class, TextBox) {
+    function (Core, Class, TextBox) {
         var ClassName = "Control.TipTextBox";
 
         var TipTextBox =Class(ClassName, {

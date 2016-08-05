@@ -7,12 +7,11 @@
 
 define(
     [
-        "jquery",
         'Class',
         './baseClass/LabelBase',
         'common/setting'
     ],
-    function($, Class, LabelBase,Setting) {
+    function(Class, LabelBase,Setting) {
         var ClassName = "Control.CheckBox";
 
         var CheckBox = Class(ClassName, {

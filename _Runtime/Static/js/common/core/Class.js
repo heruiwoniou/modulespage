@@ -1,12 +1,4 @@
-﻿/**
- * Author:Herui;
- * CreateDate:2016-01-26
- *
- * Describe: comSysFrame core libary
- */
-
-
-define(
+﻿define(
     function () {
         var ClassLibrary={
             Classes:{},

@@ -7,11 +7,10 @@
 
 define(
     [
-        "jquery",
         'Class',
         './baseClass/WidgetBase'
     ],
-    function ($, Class, WidgetBase) {
+    function (Class, WidgetBase) {
         var ClassName = "Control.Tree";
 
         var Tree =

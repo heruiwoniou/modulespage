@@ -5,7 +5,6 @@
  * Describe:
  */
 define([
-    "jquery",
     'Class',
     './baseClass/HiddenBase',
     './baseClass/LabelBase',
@@ -13,7 +12,7 @@ define([
     'jquery.ui/ui/draggable',
     'common/setting'
 
-],function($,Class,HiddenBase,LabelBase,TPLEngine,Draggable,Setting){
+],function(Class,HiddenBase,LabelBase,TPLEngine,Draggable,Setting){
     var ClassName = "Controll.MulCombox";
     var MulCombox= Class(ClassName, {
         constructor: function (args) {

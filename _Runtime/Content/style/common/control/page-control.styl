@@ -1,9 +1,16 @@
 .page-control
+	&.left
+		text-align left
+	&.right
+		text-align right
 	margin 10px 0
+	span
+		margin 0 5px
 	a
 		inlineBlock()
+		padding 0 3px
 		height 21px
-		width 21px
+		min-width 21px
 		border 1px solid $border-color
 		text-align center
 		line-height 21px
@@ -15,7 +22,13 @@
 			@extend .icon-arrow-left
 		&.next
 			@extend .icon-arrow-right
+		&:hover
+			border-color $color1
+			background $color1 + 80%
+			&:before
+				color $color1
 	input
+		padding 0
 		text-align center
 		width 30px
 		height 21px

@@ -13,7 +13,6 @@
 
 		// AMD. Register as an anonymous module.
 		define([
-			"jquery",
 			"./core",
 			"./widget",
 			"./mouse",
@@ -24,7 +23,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}(function() {
 
 $.widget( "ui.droppable", {
 	version: "1.11.4",

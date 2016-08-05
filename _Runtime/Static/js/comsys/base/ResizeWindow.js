@@ -7,12 +7,11 @@
 
 define(
     [
-        'jquery',
         'Class',
         'common/client/Bumper',
         'comsys/base/Window'
     ],
-    function ($,Class,Bumper, Window) {
+    function (Class,Bumper, Window) {
         var ClassName = "Control.ResizeWindow";
         var ResizeWindow=
             Class(ClassName, {

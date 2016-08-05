@@ -13,7 +13,6 @@
 
 		// AMD. Register as an anonymous module.
 		define([
-			"jquery",
 			"./core",
 			"./mouse",
 			"./widget"
@@ -23,7 +22,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}(function() {
 
 $.widget("ui.draggable", $.ui.mouse, {
 	version: "1.11.4",

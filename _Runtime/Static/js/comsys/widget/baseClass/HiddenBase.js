@@ -7,10 +7,9 @@
 
 define(
     [
-        "jquery",
         'Class',
         './WidgetBase'
-    ],function($,Class,WidgetBase){
+    ],function(Class,WidgetBase){
         return Class("Control.HiddenBase",{
             constructor: function (args) {
                 this.callParent(args);

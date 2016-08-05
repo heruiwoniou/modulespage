@@ -13,7 +13,6 @@
 
 		// AMD. Register as an anonymous module.
 		define([
-			"jquery",
 			"./widget"
 		], factory );
 	} else {
@@ -21,7 +20,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}(function() {
 
 var mouseHandled = false;
 $( document ).mouseup( function() {

@@ -1,10 +1,10 @@
 ;(function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
+        define(factory);
     } else {
-        factory(root.jQuery || root.Zepto);
+        factory();
     }
-}(this, function($){
+}(this, function(){
     $.extend( $.easing,
     {
         def: 'easeOutQuad',

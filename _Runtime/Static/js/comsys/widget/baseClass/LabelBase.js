@@ -5,11 +5,10 @@
  * Describe:
  */
 define([
-    "jquery",
     "Class",
     "./WidgetBase",
     "common/setting"
-],function($,Class,WidgetBase,Setting){
+],function(Class,WidgetBase,Setting){
     var ClassName = "Control.LabelBase";
     return Class(ClassName,{
         constructor: function (args) {

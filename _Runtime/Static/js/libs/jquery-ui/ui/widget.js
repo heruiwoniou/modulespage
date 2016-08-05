@@ -12,13 +12,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery" ], factory );
+		define(factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-}(function( $ ) {
+}(function() {
 
 var widget_uuid = 0,
 	widget_slice = Array.prototype.slice;

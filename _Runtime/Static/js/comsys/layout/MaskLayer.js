@@ -8,11 +8,10 @@
 
 define(
     [
-        "jquery",
         "comsys/base/Base",
         "./TextCalulate"
     ],
-    function($, Base, TextCalulate) {
+    function(Base, TextCalulate) {
         var ClassName = "MaskLayer";
 
         var MaskLayer = function(opt, ft) {

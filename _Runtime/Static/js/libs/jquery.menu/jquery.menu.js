@@ -1,10 +1,10 @@
 ;(function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['jquery','Static/js/libs/jquery.easing/jquery.easing'], factory);
+        define(['Static/js/libs/jquery.easing/jquery.easing'], factory);
     } else {
-        factory(root.jQuery || root.Zepto);
+        factory();
     }
-}(this, function($){
+}(this, function(){
 
 	var supset = function($sup){
 		$sup.find('li').each(function(){

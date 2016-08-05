@@ -1,9 +1,11 @@
 require.config({
-    baseUrl: "./"
+    baseUrl: "./",
+    paths:{
+        jquery:"Content/js/common/jquery"
+    }
 });
 var WebApi = {};
 define([
-    'jquery',
     'Content/js/common/util',
     'comsys/layout/MaskLayer',
     'common/setting',
@@ -18,7 +20,7 @@ define([
     'widget/SingleCombox',
     'widget/ButtonTextBox',
     'widget/DataPicker'
-], function($, util, MaskLayer, CommonSetting, Win) {
+], function(util, MaskLayer, CommonSetting, Win) {
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
     $.extend(WebApi, {

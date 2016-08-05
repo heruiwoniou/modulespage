@@ -7,7 +7,6 @@
 
 define(
     [
-        'jquery',
         'Class',
         'TPLEngine',
         './Base',
@@ -15,7 +14,7 @@ define(
         'jquery.ui/ui/draggable',
         'common/setting'
     ],
-    function ($, Class, TPLEngine, Base, MaskLayer, draggable, CommonSetting) {
+    function (Class, TPLEngine, Base, MaskLayer, draggable, CommonSetting) {
         var ClassName = "Control.Window";
         var layer = new MaskLayer(CommonSetting.layerSetting);
         var Window =

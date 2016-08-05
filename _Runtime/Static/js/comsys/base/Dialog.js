@@ -7,12 +7,11 @@
 
 define(
     [
-        'jquery',
         'Class',
         'TPLEngine',
         'comsys/base/Window'
     ],
-    function ($,Class, TPLEngine,Window) {
+    function (Class, TPLEngine,Window) {
         var ClassName = "Control.Dialog";
         var Dialog=
             Class(ClassName, {

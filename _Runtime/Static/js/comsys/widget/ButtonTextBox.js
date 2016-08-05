@@ -7,12 +7,11 @@
 
 define(
     [
-        "jquery",
         'Class',
         "TPLEngine",
         './baseClass/HiddenBase'
     ],
-    function ($,Class, TPLEngine, HiddenBase) {
+    function (Class, TPLEngine, HiddenBase) {
         var ClassName = "Control.ButtonTextBox";
 
         var ButtonTextBox=

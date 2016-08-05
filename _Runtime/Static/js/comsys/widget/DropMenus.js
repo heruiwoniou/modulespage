@@ -7,12 +7,11 @@
 
 define(
     [
-        "jquery",
         'Class',
         "jquery.ui/ui/menu",
         "comsys/base/Base"
     ],
-    function($,Class,Menu,Base){
+    function(Class,Menu,Base){
         var ClassName = "Control.DropMenus";
 
         var DropMenus= Class(ClassName,{

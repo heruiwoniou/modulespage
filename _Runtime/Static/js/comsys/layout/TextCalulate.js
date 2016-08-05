@@ -6,7 +6,7 @@
 */
 
 
-define(["jquery"],
+define(
     function () {
         var TextCalulate = {
             init: function () {

@@ -7,10 +7,9 @@
 
 define(
     [
-        "jquery",
         'Class',
         'comsys/base/Base'
-    ],function($,Class,Base){
+    ],function(Class,Base){
         return Class("Control.WidgetBase",{
             constructor: function (args) {
                 this.callParent(args);
