@@ -1,4 +1,4 @@
-require(['Static/js/application'],function(application){
-	application.init(12123);
+require(['Static/js/application'],function(adfadfadf){
+	adfadfadf.init(12123);
 	alert(1);
 })
