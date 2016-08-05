@@ -1,3 +1,4 @@
 require(['Static/js/application'],function(application){
-	application.init();
+	application.init(12123);
+	alert(1);
 })
