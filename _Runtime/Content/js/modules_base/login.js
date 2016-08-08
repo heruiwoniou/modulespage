@@ -4,6 +4,7 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 
 	$window.resize(bumper.proxy(function(){
 		loader.load($window.width());
+		console.log(1);
 	}, this));
 
 	function ImageLoader( width ){
@@ -19,8 +20,15 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 				this.pool.push(i);
 		}
 		this.setNumber = function(w){
-			this.leftnumber = Math.ceil( width / 2 / 145 );
-			this.rightnumber = Math.ceil( (width / 2 - 488) / 145 );
+			if(w <= 1000)
+			{
+				this.rightnumber = this.leftnumber =Math.ceil( (w / 2 - 244) / 145 );
+			}
+			else
+			{
+				this.leftnumber = Math.ceil( w / 2 / 145 );
+				this.rightnumber = Math.ceil( (w / 2 - 488) / 145 );
+			}
 		}
 		this.getfrompool = function(){
 			var ret = 0;
@@ -35,7 +43,21 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 				this.lastIsEmpty = true
 			return ret;
 		}
+		this.validateload = function(w){
+			var l,r
+			if(w <= 1000)
+			{
+				l = r =Math.ceil( (w / 2 - 244) / 145 );
+			}
+			else
+			{
+				l = Math.ceil( w / 2 / 145 );
+				r = Math.ceil( (w / 2 - 488) / 145 );
+			}
+			return l <= this.leftnumber && r <= this.rightnumber;
+		}
 		this.load = function( _w_ ){
+			if(this.validateload(_w_)) return;
 			if( _w_ !== undefined )
 				this.setNumber( _w_ );
 			var fragment = document.createDocumentFragment()
@@ -59,7 +81,7 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 				if ( isRight ) right.appendChild(line);else left.appendChild(line);
 			}
 
-			$(".login-images").empty().append(fragment).hide().fadeIn('fast')
+			$(".login-images").empty().append(fragment).hide().fadeIn()
 		}
 
 		this.setNumber(width);
