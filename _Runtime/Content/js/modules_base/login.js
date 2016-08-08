@@ -1,0 +1,71 @@
+require(['Static/js/application', 'Static/js/common/client/Bumper'],function(application,bumper){
+	application.init();
+	var $window = $(window);
+
+	$window.resize(bumper.proxy(function(){
+		loader.load($window.width());
+	}, this));
+
+	function ImageLoader( width ){
+
+		this.leftnumber = 0;
+		this.rightnumber = 0;
+		this.pool = [];
+		this.lastIsEmpty = false;
+
+		this.initpool = function(){
+			this.pool = []
+			for(var i = 1 ; i < 22 ; i ++ )
+				this.pool.push(i);
+		}
+		this.setNumber = function(w){
+			this.leftnumber = Math.ceil( width / 2 / 145 );
+			this.rightnumber = Math.ceil( (width / 2 - 488) / 145 );
+		}
+		this.getfrompool = function(){
+			var ret = 0;
+			if(this.pool.length == 0)
+				this.initpool();
+			if(this.lastIsEmpty || Math.random() > 0.3)
+			{
+				this.lastIsEmpty = false;
+				ret = this.pool.splice(Math.floor(Math.random()*this.pool.length), 1)[0]
+			}
+			else
+				this.lastIsEmpty = true
+			return ret;
+		}
+		this.load = function( _w_ ){
+			if( _w_ !== undefined )
+				this.setNumber( _w_ );
+			var fragment = document.createDocumentFragment()
+			var left = document.createElement('div');
+			var right = document.createElement('div');
+			left.className="image-container-left";
+			right.className="image-container-right";
+			fragment.appendChild(left);
+			fragment.appendChild(right);
+			for(var i = 0 ; i < 6; i ++)
+			{
+				var isRight = (i >= 3);
+				var line = document.createElement('div');
+				line.className = "line";
+				for(var j = ( (isRight ? this.rightnumber : this.leftnumber ) - 1 ) ; j >= 0 ; j --)
+				{
+					var div = document.createElement('div')
+					div.className = 'img-' + this.getfrompool();
+					line.appendChild(div);
+				}
+				if ( isRight ) right.appendChild(line);else left.appendChild(line);
+			}
+
+			$(".login-images").empty().append(fragment).hide().fadeIn('fast')
+		}
+
+		this.setNumber(width);
+	}
+
+	var loader = new ImageLoader( $window.width() );
+
+	loader.load();
+})

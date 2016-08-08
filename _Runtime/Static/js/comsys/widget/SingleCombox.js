@@ -38,8 +38,8 @@ define(
                         if ($this.data(ClassName) == undefined) {
                             this.generate();
                             $(this.element).data(ClassName, this);
-                            this.$TipTextBoxEl = this.$input;
                             this.callParent();
+                            this.addPlaceHolder(this.$controller);
                         }else{
                             $(this.element).trigger("reload");
                         }

@@ -1,0 +1,91 @@
+@import './../setting.styl';
+@import './../base/core/common.styl';
+
+$imgpath = './../images/p';
+
+html,body
+	background-color $color1
+.login-body
+	height 100%
+	text-align center
+	font-size 0
+	&:before
+		content ' '
+		inlineBlock()
+		width 10px
+		margin-left -10px
+		height 100%
+	.login-container
+		inlineBlock()
+		height 450px
+		width 100%
+		background #60ae97
+		position relative
+		margin-top -100px
+		.login-images
+			.image-container-left
+			.image-container-right
+				position absolute
+				top 0
+				bottom 0
+			.image-container-left
+				left 0
+				right 50%
+				.line
+					text-align left
+					direction rtl
+			.image-container-right
+				left 50%
+				right 0
+				margin-left 488px
+			.line
+				height 150px
+				width 100%
+				text-align left
+				font-size 0
+				overflow hidden
+				white-space nowrap
+				[class*=img-]
+					display inline-block
+					vertical-align top
+					width 145px
+					height 150px
+				.img-0
+					background transparent
+				for index in 1...22
+					.img-{index}
+						background url($imgpath + index + '.jpg') no-repeat center center
+		.login-panel
+			position absolute
+			left 50%
+			top 0
+			width 488px
+			background #eaeaea
+			height 100%
+			.login-login
+				margin 26px 0
+				max-width 405px
+				height 90px
+				background url('./../images/login-logo.png') no-repeat left center
+			table
+				width 100%
+				table-layout fixed
+				th,td
+					line-height 80px
+					.button
+						height 48px
+						width 100%
+@media screen and (max-width: 1000px)
+	.login-body
+		.login-container
+			.login-panel
+				margin-left -244px
+			.login-images
+				.image-container-left
+					margin-right 244px
+				.image-container-right
+					margin-left 244px
+@media screen and (max-height: 540px)
+	.login-body
+		.login-container
+			margin-top 0px
