@@ -4,7 +4,6 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 
 	$window.resize(bumper.proxy(function(){
 		loader.load($window.width());
-		console.log(1);
 	}, this));
 
 	function ImageLoader( width ){
@@ -30,11 +29,12 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 				this.rightnumber = Math.ceil( (w / 2 - 488) / 145 );
 			}
 		}
-		this.getfrompool = function(){
+		this.getfrompool = function(even, i){
 			var ret = 0;
+
 			if(this.pool.length == 0)
 				this.initpool();
-			if(this.lastIsEmpty || Math.random() > 0.3)
+			if(this.lastIsEmpty || Math.random() > 0.5 || (even ? i % 2 ===0 : i % 2 !== 0))
 			{
 				this.lastIsEmpty = false;
 				ret = this.pool.splice(Math.floor(Math.random()*this.pool.length), 1)[0]
@@ -75,7 +75,7 @@ require(['Static/js/application', 'Static/js/common/client/Bumper'],function(app
 				for(var j = ( (isRight ? this.rightnumber : this.leftnumber ) - 1 ) ; j >= 0 ; j --)
 				{
 					var div = document.createElement('div')
-					div.className = 'img-' + this.getfrompool();
+					div.className = 'img-' + this.getfrompool( i % 2 === 0, j);
 					line.appendChild(div);
 				}
 				if ( isRight ) right.appendChild(line);else left.appendChild(line);
