@@ -142,10 +142,10 @@ define(
                     this.deferred.promise(this);
                     var me = this;
                     setting = setting || {};
-                    setting.title = setting.title || "";
+                    setting.title = (setting.title === false ? false : ( setting.title || "" ) )
                     setting.content = setting.content || "";
                     setting.src = setting.src || "";
-                    setting.ajax = typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false;
+                    setting.ajax = ( typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false );
                     setting.width = setting.width || 800;
                     setting.height = setting.height || 600;
                     setting.callback = setting.callback || function () {};
@@ -183,9 +183,15 @@ define(
                         left: (gw - setting.width) / 2,
                         top: top < 0 ? 0 : top
                     }).hide();
-
-                    this.resize(setting.height,setting.maxHeight);
-                    this.$BoxBaseTitle.html(setting.title);
+                    this.resize(setting.height,setting.maxHeight, setting.title === false);
+                    if(setting.title === false) {
+                        this.$BoxBaseTitle.empty();
+                        this.$BoxBaseHead.hide()
+                    }
+                    else{
+                        this.$BoxBaseTitle.show().html(setting.title.text);
+                        this.$BoxBaseHead.show()
+                    }
 
                     this.$BoxBaseContent.empty();
                     if (setting.content) {
@@ -275,12 +281,12 @@ define(
                         zIndex:layer.options.zindex[0] + me.setting.zindex
                     });
                 },
-                resize: function (height,maxHeight) {
+                resize: function (height,maxHeight,titlevisible) {
                     height = height || this.$BoxBaseEl.height();
-                    var ch = height - this.setting.titleHeight;
+                    var ch = height - ( titlevisible ? 0 : this.setting.titleHeight );
                     this.$BoxBaseContent.css({height:'auto',minHeight: ch+'px'});
-                    if(maxHeight&&maxHeight>=height)
-                        this.$BoxBaseContent.css({maxHeight: (maxHeight-this.setting.titleHeight)+'px'});
+                    if(maxHeight && maxHeight >= height)
+                        this.$BoxBaseContent.css({maxHeight: (maxHeight - ( titlevisible ? 0 : this.setting.titleHeight ))+'px'});
                     this.$BoxBaseFrame.css({height: ch});
                 },
                 destory:function(){
