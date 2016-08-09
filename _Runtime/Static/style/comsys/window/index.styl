@@ -33,6 +33,11 @@
         &:after
             content ''
             animation none
+    &.no-head
+        &.box-moving
+        &.box-loading
+            &:after
+                margin-top -40px
     &.forward-animate
         opacity: 0;
         transform: perspective(0px) rotateY(90deg);

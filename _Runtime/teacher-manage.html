@@ -67,9 +67,9 @@
 					<div class="frame-right">
 						<div class="section-container">
 							<div class="title-bar o">教职工管理
-								<div class="button-panel">
+								<div class="button-panel right">
 									<button class="button g">新增老师</button>
-									<button class="button y">接口导入</button>
+									<button class="button y" onclick="WebApi.modal({content:$('#uploaddata'),width:500,height:150,title:false})">接口导入</button>
 									<button class="button b">excel导出</button>
 								</div>
 							</div>
@@ -130,7 +130,6 @@
 									</tr>
 									</tbody>
 								</table>
-
 								<div class="page-control right">
 									<span>共999条</span>
 									<span>1/25页</span>
@@ -139,6 +138,10 @@
 									<span>跳转到</span>
 									<input type="text">
 									<a href="javascriptp:;">GO</a>
+								</div>
+								<div id="uploaddata" class="custom-upload">
+									<i class="icon-coffee color-5"></i>
+									导入数据可能需要几分钟,先喝杯咖啡
 								</div>
 							</div>
 						</div>

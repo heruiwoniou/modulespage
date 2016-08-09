@@ -185,10 +185,12 @@ define(
                     }).hide();
                     this.resize(setting.height,setting.maxHeight, setting.title === false);
                     if(setting.title === false) {
+                        this.$BoxBaseEl.addClass('no-head')
                         this.$BoxBaseTitle.empty();
                         this.$BoxBaseHead.hide()
                     }
                     else{
+                        this.$BoxBaseEl.removeClass('no-head')
                         this.$BoxBaseTitle.show().html(setting.title.text);
                         this.$BoxBaseHead.show()
                     }
@@ -200,7 +202,7 @@ define(
                         if(typeof setting.content !== 'string')
                         {
                             this.placeholder = $("<div id='placeholder"+ this.classids +"'></div>");
-                            $(setting.content).before(this.placeholder)
+                            $(setting.content).before(this.placeholder).show()
                         }
                         this.$BoxBaseFrame.hide();
                         this.$BoxBaseContent.append(setting.content).show();
@@ -268,7 +270,7 @@ define(
                     }
                     if(this.placeholder !== null)
                     {
-                        this.placeholder.replaceWith(this.$BoxBaseContent.children().first());
+                        this.placeholder.replaceWith(this.$BoxBaseContent.children().first().hide());
                         this.placeholder = null;
                     }
                     this.status=false;
