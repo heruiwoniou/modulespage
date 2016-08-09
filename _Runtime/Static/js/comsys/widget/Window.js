@@ -10,9 +10,10 @@ define(
         "comsys/base/Window",
         "comsys/base/Dialog",
         "comsys/base/ResizeWindow",
-        "common/client/Bumper"
+        "common/client/Bumper",
+        "comsys/layout/TextCalulate"
     ],
-    function(w, d, rw, Bumper) {
+    function(w, d, rw, Bumper,TextCalulate) {
         var bumper = Bumper.create();
         var Win = {
             type: {
@@ -21,14 +22,13 @@ define(
                 resizewindow: "resizewindow"
             },
             button: {
-                "OK": [{ text: "确认", command: "sure" }],
-                "OKANDCANCEL": [{ text: "确认", command: "sure" }, { text: "取消", command: "cancel" }]
+                "OK": [{ text: "确认", command: "sure", class:"button larger g" }],
+                "OKANDCANCEL": [{ text: "确认", command: "sure", class:"button larger g" }, { text: "取消", command: "cancel", class:"button larger r" }]
             },
             icon: {
                 info: "info",
                 error: "error",
-                question: "question",
-                talk: "talk"
+                question: "question"
             },
             _dialog: d,
             _window: w,
@@ -162,7 +162,8 @@ define(
                         setting.title = setting.title || "消息";
                         setting.content = setting.content || "";
                         setting.ajax = false;
-                        setting.width = setting.width || 300;
+                        var textWidth = TextCalulate.getWidth(setting.content,{fontSize:"16px","fontFamily":"Microsoft YaHei"});
+                        setting.width =( ( textWidth )> 430 ? 430 : ( textWidth < 200 ? 200 : textWidth ) ) + 70;
                         setting.height = setting.height || 130;
                         setting.callback = setting.callback;
                         setting.icon = setting.icon || this.icon.info;

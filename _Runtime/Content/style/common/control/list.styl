@@ -3,13 +3,14 @@ glistcolor($color)
 	box-shadow 0 0 5px 0px $color - 10%
 	border 1px solid $color- 10%
 	th,td
-		border-right $color - 10% 1px solid
+		border-right $color - 4% 1px solid
 	th
-		border-right $color - 10% 1px solid
+		border-right white 1px solid
 		background $color
 	tbody
 		tr:nth-child(2n + 2)
 			td
+				border-right-color white
 				background $color
 .list
 	glistcolor($listbackcolor)

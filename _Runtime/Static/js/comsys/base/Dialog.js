@@ -34,7 +34,7 @@ define(
                     button:
                     "<%if(this.length==0)return '';%>"+
                     "<%for(var i=0;i<this.length;i++){%>"+
-                    "<a href='javascript:;' class='comsys-box-button' command='<%=this[i].command%>'><%=this[i].text%></a>"+
+                    "<a href='javascript:;' class='<%=this[i].class? this[i].class : \"comsys-box-button\"%>' command='<%=this[i].command%>'><%=this[i].text%></a>"+
                     "<%}%>"
                 },
                 hideContent:function(){
