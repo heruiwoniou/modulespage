@@ -78,12 +78,10 @@ define(
                     var buttonString=TPLEngine.render(this.DialogTPL.button,this.setting.buttons);
                     if(buttonString)
                     {
-                        height-=(this.setting.titleHeight+this.setting.borderWidth);
+                        height -= ( this.setting.titleHeight + this.setting.borderWidth );
                         this.$BoxBaseButtons.html(buttonString).show();
                     }else
-                    {
                         this.$BoxBaseButtons.empty().hide();
-                    }
                     var ch = height - this.setting.titleHeight;
                     this.$BoxBaseContent.css({ minHeight: ch });
                     this.$BoxBaseFrame.css({ height: ch });

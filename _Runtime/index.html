@@ -144,7 +144,7 @@
 					<div class="per-offset-32 per-68 color-white bcolor-3">per-68</div>
 				</div>
 				<div class="title-bar b">左右布局</div>
-				<div class="frame-left-right-ontrol">
+				<div class="frame-left-right-control">
 					<div class="frame-left" style="width:400px">
 						<div class="section-container">
 							<div class="title-bar">加载状态条</div>
@@ -190,13 +190,14 @@ WebApi.error("错误信息").then(function(status){ alert(status); })
 							<button class="button g" onclick="runJS(showmessage3)">error</button>
 							<br>
 							<br>
-<textarea spellcheck="false" id="showmodal" cols="30" rows="36">
+<textarea spellcheck="false" id="showmodal" cols="30" rows="52">
 //弹内容
 //第一参数可以指定窗体变量名,亦可省略
 WebApi.modal("modal1",{
 	content:"测试内容",
 	width:650,
 	height:550,
+	title:"测试内容标题"
 }).then(function(status){
 	alert("弹内容关闭后回调信息:"+ status);
 });
@@ -205,6 +206,7 @@ WebApi.modal({
 	content:$("#testmodal1"),
 	width:600,
 	height:500,
+	title:"弹HTML"
 }).then(function(status){
 	alert("弹HTML关闭后回调信息:"+ status);
 });
@@ -213,6 +215,7 @@ WebApi.modal({
 	src:"index.html",
 	width:550,
 	height:450,
+	title:"弹iframe"
 }).then(function(status){
 	alert("弹iframe关闭后回调信息:"+ status);
 });
@@ -221,6 +224,17 @@ WebApi.window({
 	content:$("#testmodal2"),
 	width:500,
 	height:400,
+	title:"添加了全屏与还原功能,其它参数与modal类似"
+}).then(function(status){
+	alert("window关闭后回调信息:"+status);
+});
+
+//title属性的设置为false时,标题栏将隐藏
+WebApi.modal("self-window",{
+	content:"<div style='height:346px; text-align: center'><span style='display:inline-block;height:100%;vertical-align: middle;'></span><button class='button r' onclick='WebApi.close({name:\"self-window\"})'>关闭自己</button></div>",
+	width:450,
+	height:350,
+	title:false
 }).then(function(status){
 	alert("window关闭后回调信息:"+status);
 });

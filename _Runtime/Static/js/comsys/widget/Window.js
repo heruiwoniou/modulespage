@@ -173,7 +173,7 @@ define(
                         setting.full =
                             (typeof setting.full == "boolean" ? setting.full : false);
                     case this.type.window:
-                        setting.title = setting.title || "";
+                        setting.title = ( setting.title === false ? false : ( setting.title || "" ) );
                         setting.src = setting.src || "";
                         setting.ajax = typeof setting.ajax === 'boolean' && setting.ajax === true ? true : false;
                         setting.width = setting.width || maxwidth;
