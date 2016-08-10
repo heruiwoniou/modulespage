@@ -73,9 +73,7 @@ gulp.task('build-script', function() {
             "client": "Static/js/common/client",
             "comsys": "Static/js/comsys",
             "common": "Static/js/common",
-            "libs": "Static/js/libs",
-
-            "vue": "Static/js/libs/vue/dist/vue"
+            "libs": "Static/js/libs"
         },
         exclude: ['jquery','Content/js/common/util']
     }
