@@ -5,14 +5,14 @@ define(function(){
                 content:$("#testmodal1"),
                 width:850,
                 height:380,
-                title:"ÉèÖÃÈ¨ÏŞ"
+                title:"è®¾ç½®æƒé™"
             }).then(function(status){
-                alert("µ¯HTML¹Ø±Õºó»Øµ÷ĞÅÏ¢:"+ status);
+                alert("å¼¹HTMLå…³é—­åå›è°ƒä¿¡æ¯:"+ status);
             });
         },
         init:function(){
-            //³õÊ¼»¯Ò³ÃæÄÚÈİ
-            //·µ»ØÖµtrue/false¾ö¶¨ÊÇ·ñÖ´ĞĞutil.jsÏÂµÄ_init_·½·¨
+            //åˆå§‹åŒ–é¡µé¢å†…å®¹
+            //è¿”å›å€¼true/falseå†³å®šæ˜¯å¦æ‰§è¡Œutil.jsä¸‹çš„_init_æ–¹æ³•
         }
     }
 })
