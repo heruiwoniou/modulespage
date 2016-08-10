@@ -41,7 +41,7 @@
 ;(function (corefactory,excheckfactory,exeditfactory) {
 	if (typeof define === "function" && define.amd) {
 
-		define([ "jquery" , 'css!libs/ztree/style/zTreeStyle'], function($){
+		define(['css!Static/js/libs/ztree/style/zTreeStyle'], function(){
 
 			corefactory.call(window,$);
 			excheckfactory.call(window,$);

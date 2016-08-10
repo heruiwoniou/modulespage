@@ -1,7 +1,10 @@
 require.config({
     baseUrl: "./",
     paths:{
-        jquery:"Content/js/common/jquery"
+    	libs:"Static/js/libs",
+
+        jquery:"Content/js/common/jquery",
+        ztree:"Static/js/libs/ztree/jquery.ztree"
     }
 });
 require(['Static/js/base'],function(application){

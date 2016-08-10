@@ -11,7 +11,7 @@ define(
         'Class',
         "comsys/base/Base",
         "client/ComsysFileReader",
-        'libs/jquery.form/jquery.form'
+        'Static/js/libs/jquery.form/jquery.form'
     ], function (Core, Class, Base, FileReader) {
         var ClassName = "Control.ProtoUpload";
 

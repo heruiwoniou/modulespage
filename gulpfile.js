@@ -69,12 +69,12 @@ gulp.task('build-script', function() {
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+            "ztree": "libs/ztree/jquery.ztree",
 
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",
             "comsys": "Static/js/comsys",
-            "common": "Static/js/common",
-            "libs": "Static/js/libs"
+            "common": "Static/js/common"
         },
         exclude: ['jquery','Content/js/common/util']
     }
@@ -102,6 +102,9 @@ gulp.task('build-script', function() {
     gulp.src('_Runtime/Static/js/libs/jquery/dist/jquery.js')
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/ztree/**/*')
+        .pipe(gulp.dest('Runtime/Static/js/libs/ztree/'));
 });
 
 gulp.task('build-images', function() {
