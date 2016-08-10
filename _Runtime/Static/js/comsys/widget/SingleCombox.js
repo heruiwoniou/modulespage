@@ -9,7 +9,8 @@ define(
     [
         'Class',
         "TPLEngine",
-        "./baseClass/HiddenBase"
+        "./baseClass/HiddenBase",
+        'libs/jquery.mousewheel/jquery.mousewheel'
     ],
     function (Class, TPLEngine, HiddenBase) {
         var ClassName = "Control.SingleCombox";
@@ -32,6 +33,7 @@ define(
                         this.Timer = null;
                         var u = /MSIE (\d*).0|Chrome|Firefox/i.exec(window.navigator.userAgent);
                         this.LowIEOrNoIE = u != null && ~~u[1] < 8;
+                        this.isInnerMouseWheel = false;
                     },
                     initialize: function () {
                         var $this = $(this.element);
@@ -72,7 +74,8 @@ define(
                         THIS.$input = THIS.$controller.find("input");
                         if(this.fixed())
                             THIS.$drop.css({position:"fixed"});
-                        $(this.appendTo).append(THIS.$drop);
+                        //$(this.appendTo).append(THIS.$drop);
+                        $(this.element.parentNode).append(THIS.$drop);
 
                         $(this.element).on("rebind",function(){return THIS.ReBind.apply(THIS,arguments);})
                             .on("reload",function(){return THIS.ReLoad.apply(THIS,arguments);})
@@ -81,7 +84,7 @@ define(
                         //THIS.$controller.delegate(".comsys-SingleCombox-button", "click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
                         THIS.$controller.on("click", function () { return THIS.OnButtonClick.apply(THIS, arguments); });
                         THIS.$controller.delegate(".comsys-SingleCombox-input input", "keydown", function () { return THIS.OnKeyDown.apply(THIS, arguments); });
-                        THIS.$drop.get(0).onmousewheel = function (e) { return THIS.OnMouseWheel.call(THIS, e, THIS.$drop.get(0)); }
+                        THIS.$drop.get(0).onmousewheel = function (e) { return THIS.OnMouseWheel.call(THIS, e||window.event, THIS.$drop.get(0)); }
                         THIS.$input.off(".SingleComboxFocus").on("focus.SingleComboxFocus",function(){
                             THIS.$controller.addClass('focus-outerline');
                         })
@@ -115,6 +118,7 @@ define(
                     },
                     OnMouseWheel: function (e,scroller) {
                         var THIS = this;
+                        e.stopPropagation();
                         var k = e.wheelDelta ? e.wheelDelta / 120 * THIS.$controller.outerHeight() : -e.detail;
                         scroller.scrollTop = scroller.scrollTop - k;
                         return false;
@@ -162,7 +166,12 @@ define(
                         }
                         THIS.cancelFocusOut = false;
                         THIS.$input.trigger("focusout.TipChangeEvent");
-                        $(document).off(".outerClickListener")
+                        THIS.UnRuntimeBindScroll();
+                        if(this.placeholder !== null)
+                        {
+                            this.placeholder.replaceWith(this.$drop);
+                            this.placeholder = null;
+                        }
                     },
                     SelectedIndex: function () {
                         var THIS = this;
@@ -204,6 +213,32 @@ define(
                         }
                         THIS.cancelFocusOut=true;
                     },
+                    SetPosition:function(){
+                        var offset = this.Offset(this.$controller.get(0));//
+                        this.placeholder = $("<div id='placeholder"+ this.classids +"'></div>");
+                        this.$drop.before(this.placeholder)
+                        $(this.appendTo).append(this.$drop);
+                        this.$drop.css({
+                            left: -99999,
+                            maxHeight: this.$controller.outerHeight() * this.setting.dropLength
+                        }).appendTo(document.body).show();
+                        this.$drop.css({
+                            minWidth: this.$controller.outerWidth(),// - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
+                            left: offset.left,
+                            top: offset.top + this.$controller.outerHeight() + 6
+                        });
+                    },
+                    RuntimeBind:function(){
+                        var THIS = this;
+                        $(document).off(".dropmousewheelhide").on('mousewheel.dropmousewheelhide',function(){
+                           THIS.DropHide();
+                        })
+                        $(document).off(".outerClickListener").on("mousedown.outerClickListener",function(){return THIS.OnOtherAreaClick.apply(THIS,arguments);});
+                    },
+                    UnRuntimeBindScroll:function(){
+                        $(document).off(".dropmousewheelhide");
+                        $(document).off(".outerClickListener")
+                    },
                     OnButtonClick: function (e, isFilter, type, isRange) {
                         var THIS = this;
                         window.clearTimeout(THIS.Timer);
@@ -211,34 +246,25 @@ define(
                         if(this.element.disabled) return ;
                         if(this.options!=this.element.options.length) this.ReLoad();
 
-                        var offset = THIS.Offset(THIS.$controller.get(0));//THIS.$controller.offset();//
-                        if (!THIS.state) {
-                            THIS.$input.focus();
+                        if (!this.state) {
+                            this.$input.focus();
                             $("div.comsys-combox-base:visible").hide().trigger("otherhide");
-                            if(THIS.element.options.length==0) return false;
-                            THIS.$drop.css({
-                                left: -99999,
-                                maxHeight: THIS.$controller.outerHeight() * THIS.setting.dropLength
-                            }).appendTo(document.body).show();
-                            THIS.$drop.css({
-                                minWidth: THIS.$controller.outerWidth(),// - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
-                                left: offset.left,
-                                top: offset.top + THIS.$controller.outerHeight() + 6
-                            });
-                            THIS.state = true;
-                            $(document).off(".outerClickListener").on("mousedown.outerClickListener",function(){return THIS.OnOtherAreaClick.apply(THIS,arguments);});
+                            if(this.element.options.length==0) return false;
+                            this.SetPosition();
+                            this.state = true;
+                            this.RuntimeBind();
                         }
-                        else if(!isFilter&&THIS.state){
-                            THIS.DropHide();
+                        else if(!isFilter&&this.state){
+                            this.DropHide();
                         }
 
-                        if (THIS.element.selectedIndex !== -1) {
-                            THIS.$drop.find(".selected").removeClass("selected").end().find("div.comsys-SingleCombox-option:eq(" + THIS.element.selectedIndex + ")").addClass("selected");
+                        if (this.element.selectedIndex !== -1) {
+                            this.$drop.find(".selected").removeClass("selected").end().find("div.comsys-SingleCombox-option:eq(" + this.element.selectedIndex + ")").addClass("selected");
                         } else {
-                            THIS.$drop.find(".selected").removeClass("selected");
+                            this.$drop.find(".selected").removeClass("selected");
                         }
 
-                        THIS.OptionPosition(!isFilter&THIS.state ? THIS.keyCode.SHOW : type, isRange);
+                        this.OptionPosition(!isFilter&THIS.state ? this.keyCode.SHOW : type, isRange);
                     },
                     OptionPosition: function (type, isRange) {
                         var THIS = this;
@@ -323,22 +349,8 @@ define(
                         THIS.$controller.find(".comsys-SingleCombox-button").trigger("click", [true, THIS.keyCode.SHOW, false]);
                     },
                     Offset: function (obj) {
-                        var THIS = this,
-                            o = obj,
-                            re = { left: 0, top: 0 },
-                            pos, outer = false;
-
-                        do {
-                            re.left += o.offsetLeft;
-                            re.top += o.offsetTop;
-                            o = o.offsetParent;
-
-                            if (!o) break;
-                            outer = !outer ? THIS.appendTo === o : true;
-                            pos = $(o).css("position");
-                        } while ((outer && pos !== "absolute" && pos !== "relative") || outer === false);
-
-
+                        var $obj = $(obj);
+                        var re = $obj .offset();
                         return re;
                     }
                 }, HiddenBase);

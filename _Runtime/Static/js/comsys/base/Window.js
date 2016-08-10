@@ -152,6 +152,7 @@ define(
                     setting.maxHeight = setting.maxHeight ||null;
                     setting.headmousedown = setting.headmousedown || me.setting.headmousedown;
                     setting.zindex=setting.zindex||me.setting.zindex
+                    setting.success = setting.success || function(){}
 
                     //重新设置zindex
                     me.setting.headmousedown=setting.headmousedown;
@@ -214,6 +215,7 @@ define(
                                     url: setting.src,
                                     success: function (html) {
                                         me.$BoxBaseContent.append(html).show();
+                                        setting.success.apply(me,arguments);
                                     }
                                 });
                                 this.windowLoadType = this.WindowLoadType.ajax;

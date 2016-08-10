@@ -1,5 +1,6 @@
 define(function(){
-	//这里定义全局方法
+	//这里定义全局方法与属性
+    window.globalFileReaderUrl = '/server/uploadimages'
 	return {
 		//这里定义WebApi方法
 		scrollReplace: function(parent) {
@@ -12,6 +13,12 @@ define(function(){
                 scrollButtons:{enable:false}
             });
         },
+        showUploading:function(){
+            WebApi.modal('uploading',{content:'<div class="custom-uploading"><i class="icon-coffee color-5"></i>导入数据可能需要几分钟,先喝杯咖啡</div>',width:500,height:150,title:false})
+        },
+        closeUploading:function(){
+            WebApi.close({name:'uploading'});
+        },
         initControl: function(parent){
         	var $parent = parent && parent.length != 0 ? $(parent) : $(document);
         	$parent.find(':checkbox[cs-control]').CheckBoxInit();
@@ -19,6 +26,7 @@ define(function(){
         	$parent.find('select[cs-control]').SingleComboxInit();
         	$parent.find('input[type*=text][cs-control*=ButtonTextBox],input[type*=password][cs-control*=ButtonTextBox]').ButtonTextBoxInit();
             $parent.find('input[type*=text][cs-control*=DataPicker]').DataPickerInit();
+            $parent.find('input[cs-control][type*=file]').ProtoUploadInit();
         },
         //这里是加载完所有js后执行的公用接口
 		_init_:function(){
