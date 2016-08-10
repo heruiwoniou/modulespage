@@ -69,7 +69,7 @@
                 <div class="frame-left border-left-width">
                     <div class="section-container">
                         <div class="title-bar g">角色名称</div>
-                        <ul class="Plant-Names">
+                        <ul class="Plant-Names" id="Plant-Names">
                             <li class="Plant-Names-list Plant-Names-list1"><button class="button g">教务处老师</button></li>
                             <li class="Plant-Names-list">教务处老师
                                 <span class="compile-edit">
@@ -98,7 +98,7 @@
                         </ul>
                         <ul class="Plant-Names">
                             <li class="Plant-Names-list Plant-Names-list2">
-                                <span class="icon-add add-btn"></span>
+                                <span class="icon-add add-btn" onclick="WebApi.addList()"></span>
                             </li>
 
                         </ul>
@@ -109,10 +109,12 @@
                     <div class="section-container">
                         <div class="title-bar g">权限设置</div>
                         <div class="section-container">
-                            <div class="row">
-                                <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="学工系统"></div>
-                                <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="教务系统"></div>
-                                <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="宿管系统"></div>
+                            <div class="section-container">
+                                <div class="row">
+                                    <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="学工系统"></div>
+                                    <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="教务系统"></div>
+                                    <div class="col-3"><input type="checkbox" name="c1" cs-control cs-label="宿管系统"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
         </div>
     </div>
 </div>
-<script data-main="Content/js/modules_base/Account-management" data-business="Account-management" src="Content/js/common/require.js"></script>
+<script data-main="Content/js/modules_base/Role-authorization" data-business="Role-authorization" src="Content/js/common/require.js"></script>
 </body>
 
 </html>

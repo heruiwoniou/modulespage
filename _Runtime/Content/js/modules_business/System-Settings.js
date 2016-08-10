@@ -5,14 +5,14 @@ define(function(){
                 content:$("#testmodal1"),
                 width:850,
                 height:380,
-                title:"ÉèÖÃÈ¨ÏÞ"
+                title:"设置权限"
             }).then(function(status){
-                alert("µ¯HTML¹Ø±Õºó»Øµ÷ÐÅÏ¢:"+ status);
+                alert("弹HTML关闭后回调信息:"+ status);
             });
         },
         init:function(){
-            //³õÊ¼»¯Ò³ÃæÄÚÈÝ
-            //·µ»ØÖµtrue/false¾ö¶¨ÊÇ·ñÖ´ÐÐutil.jsÏÂµÄ_init_·½·¨
+            //初始化页面内容
+            //返回值true/false决定是否执行util.js下的_init_方法
         }
     }
 })
