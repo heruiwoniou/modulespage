@@ -10,7 +10,7 @@ define(
         'Class',
         "TPLEngine",
         "./baseClass/HiddenBase",
-        'libs/jquery.mousewheel/jquery.mousewheel'
+        'Static/js/libs/jquery.mousewheel/jquery.mousewheel'
     ],
     function (Class, TPLEngine, HiddenBase) {
         var ClassName = "Control.SingleCombox";

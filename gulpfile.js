@@ -54,7 +54,8 @@ gulp.task('build-css', function() {
 
 gulp.task('build-script', function() {
 
-    var arr = fs.readdirSync(path.join(__dirname, './_Runtime/Content/js/modules_base')).filter(o => o.indexOf('.js') > -1);
+    //var arr = fs.readdirSync(path.join(__dirname, './_Runtime/Content/js/modules_base')).filter(o => o.indexOf('.js') > -1);
+    var arr = [path.join(__dirname, './_Runtime/Static/js/application')]
     var i,module,option = {
         baseUrl:"_Runtime",
         paths:{
@@ -68,12 +69,12 @@ gulp.task('build-script', function() {
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+            "ztree": "libs/ztree/jquery.ztree",
 
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",
             "comsys": "Static/js/comsys",
-            "common": "Static/js/common",
-            "libs": "Static/js/libs"
+            "common": "Static/js/common"
         },
         exclude: ['jquery','Content/js/common/util']
     }
@@ -82,9 +83,10 @@ gulp.task('build-script', function() {
         module = arr[i];
         var sm = gulp.src('_Runtime/**/*.js');
         if(isDevelop) sm = sm.pipe(sourcemaps.init())
-        sm = sm.pipe(amdoptimize('Content/js/modules_base/' + module.split('.').shift(), option)).pipe(concat(module))//.pipe(uglify());
+        //sm = sm.pipe(amdoptimize('Content/js/modules_base/' + module.split('.').shift(), option)).pipe(concat(module))//.pipe(uglify());
+        sm = sm.pipe(amdoptimize('Static/js/application', option)).pipe(concat('application.js'))//.pipe(uglify());
         if(isDevelop) sm = sm.pipe(sourcemaps.write());
-        sm.pipe(gulp.dest("Runtime/Content/js/modules_base/"));
+        sm.pipe(gulp.dest("Runtime/Static/js/"));
     }
 
     gulp.src('_Runtime/Content/js/modules_business/**/*.js')
@@ -100,6 +102,9 @@ gulp.task('build-script', function() {
     gulp.src('_Runtime/Static/js/libs/jquery/dist/jquery.js')
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/ztree/**/*')
+        .pipe(gulp.dest('Runtime/Static/js/libs/ztree/'));
 });
 
 gulp.task('build-images', function() {

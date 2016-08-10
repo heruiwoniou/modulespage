@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="Content/style/modules_base/student-manage.css">
+    <title>用户角色设置</title>
+    <link rel="stylesheet" href="Content/style/modules_base/user-permissions.css">
     <script src="Content/js/common/jquery.js"></script>
 </head>
 
@@ -62,26 +62,58 @@
         </div>
         <div class="main-content-scroll-container">
             <div class="nav-bar">
-                <i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>用户管理</span><i class="icon-arrow-right"></i><span>学生管理</span>
+                <i class="icon-menu0"></i><span>系统设置</span><i class="icon-arrow-right"></i><span>角色权限设置</span>
             </div>
             <div class="main-container">
                 <div class="frame-left-right-control" id="mybody">
-                    <div class="frame-right">
-                        <div class="section-container">
-                            <div class="title-bar o">学生管理</div>
-                            <div class="section-container">
-                                该页面基本同教职工页面,请自行复制代码
-                                <div class="no-data-tip">
-                                    <h1>
-									<i class="icon-lose"></i>
-									<span>暂时没有教职工信息</span>
-									</h1> 请先
-                                    <button class="button g">新增</button>
-                                    或者
-                                    <button class="button y" onclick="WebApi.showUploading()">接口导入</button>
-                                    或者
-                                    <button class="button b">excel导入</button>
-                                </div>
+                    <div class="frame-left" style="width: 300px">
+                        <div class="section-30-container">
+                            <div class="top-btn">
+                                <button class="button g">按用户</button>
+                                <button class="button g empty">按角色</button>
+                            </div>
+                            <div class="section-container scroll-bar-x scroll-top">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-bar" style="left:300px;width:1px"></div>
+                    <div class="frame-right" style="margin-left:301px">
+                        <div class="section-container row">
+                            <div class="col-6 border-L middle-area col-6">
+                                <ul>
+                                    <li class="system-name">
+                                        <input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton" cs-label-location="left">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row section-container">
+                            <div class="col-6 border-L middle-area">
+                                <ul>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="学工系统">
+                                    </li>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="教务系统">
+                                    </li>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="宿管系统">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6 border-L">
+                                <ul>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="学工系统">
+                                    </li>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="教务系统">
+                                    </li>
+                                    <li class="system-name">
+                                        <input type="checkbox" name="c1" cs-control cs-label="宿管系统">
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -89,7 +121,7 @@
             </div>
         </div>
     </div>
-    <script data-main="Static/js/application" data-business="student-manage" src="Content/js/common/require.js"></script>
+    <script data-main="Static/js/application" data-business="user-permissions" src="Content/js/common/require.js"></script>
 </body>
 
 </html>

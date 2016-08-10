@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>角色权限设置</title>
+    <link rel="stylesheet" href="Content/style/modules_base/Role-authorization.css">
+    <script src="Content/js/common/jquery.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo"></div>
+        <div class="control-panel">
+            <a href="javascript:;" class="user">
+                <img src="Content/style/images/user-01.jpg" alt="">
+                <span>管理员</span>
+            </a>
+            <a href="javascript:;" class="mail"></a>
+            <a href="javascript:;" class="close icon-close"></a>
+        </div>
+    </div>
+    <div class="body">
+        <div class="main-menu-scroll-container scroll-bar" data-mcs-theme="light">
+            <ul class="menu-root">
+                <li class="select">
+                    <a href="index.html"><i class="icon-menu0"></i>样式示例</a>
+                </li>
+                <li>
+                    <a href="javascript:;"><i class="icon-menu1"></i>基础数据维护</a>
+                    <ul class="menu-sub">
+                        <li><a href="javascript:;"><i class="icon-menu2"></i>校历管理</a></li>
+                        <li><a href="level-manage.html"><i class="icon-menu3"></i>层次管理</a></li>
+                        <li><a href="javascript:;"><i class="icon-menu4"></i>组织架构管理</a></li>
+                        <li>
+                            <a href="javascript:;"><i class="icon-menu5"></i>用户管理</a>
+                            <ul class="menu-sub">
+                                <li><a href="teacher-manage.html"><i class="icon-menu6"></i>教职工管理</a></li>
+                                <li><a href="student-manage.html"><i class="icon-menu7"></i>学生管理</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="school-manage.html"><i class="icon-menu8"></i>校区管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;"><i class="icon-menu9"></i>应用系统管理</a>
+                    <ul class="menu-sub">
+                        <li><a href="System-Settings.html"><i class="icon-menu10"></i>系统管理</a></li>
+                        <li><a href="System-Settings.html"><i class="icon-menu11"></i>权限管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;"><i class="icon-menu12"></i>系统管理</a>
+                    <ul class="menu-sub">
+                        <li><a href="Role-authorization.html"><i class="icon-menu13"></i>角色权限设置</a></li>
+                        <li><a href="Role-authorization.html"><i class="icon-menu14"></i>系统权限设置</a></li>
+                        <li><a href="user-permissions.html"><i class="icon-menu15"></i>用户角色设置</a></li>
+                        <li><a href="Account-management.html"><i class="icon-menu16"></i>帐号管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content-scroll-container">
+            <div class="nav-bar">
+                <i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>层次管理</span>
+            </div>
+            <div class="main-container">
+                <div class="frame-left-right-control" id="mybody">
+                    <div class="frame-left border-left-width">
+                        <div class="section-container">
+                            <div class="title-bar g">层次</div>
+                            <ul class="Plant-Names" id="Plant-Names">
+                                <li class="Plant-Names-list select">
+                                    <a href="javascriptp:;">专科生</a>
+                                    <span class="compile-edit">
+                                    <a href="javascriptp:;"><i class="icon-delete color-2"></i></a>
+                                </span>
+                                </li>
+                                <li class="Plant-Names-list">
+                                    <a href="javascriptp:;">专科生</a>
+                                    <span class="compile-edit">
+                                    <a href="javascriptp:;"><i class="icon-delete color-2"></i></a>
+                                </span>
+                                </li>
+                                <li class="Plant-Names-list"><a href="javascriptp:;">研究生</a>
+                                    <span class="compile-edit">
+                                    <a href="javascriptp:;"><i class="icon-delete color-2"></i></a>
+                                </span>
+                                </li>
+                                <li class="Plant-Names-list"><a href="javascriptp:;">博士生</a>
+                                    <span class="compile-edit">
+                                    <a href="javascriptp:;"><i class="icon-delete color-2"></i></a>
+                                </span>
+                                </li>
+                            </ul>
+                            <ul class="Plant-Names">
+                                <li class="Plant-Names-list Plant-Names-list2">
+                                    <span class="icon-add add-btn" onclick="WebApi.addList()"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="frame-bar frame-bar-left1"></div>
+                    <div class="frame-right frame-right-margin-l">
+                        <div class="section-container">
+                            <div class="title-bar g">本校生
+                                <div class="button-panel right">
+                                    <button class="button r">新增</button>
+                                    <button class="button g">接口导入</button>
+                                    <button class="button b">excel导入</button>
+                                </div>
+                            </div>
+                            <div class="section-container">
+                                <table class="list style-5">
+                                    <thead>
+                                        <tr>
+                                            <th>学制名称</th>
+                                            <th>学制编号</th>
+                                            <th>学别类型</th>
+                                            <th>学制时长</th>
+                                            <th style="width:180px">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                            <td>
+                                                <input type="text">
+                                            </td>
+                                            <td>
+                                                <a href="javascriptp:;"><i class="color-3 icon-sure"></i></a>
+                                                <a href="javascript:;"><i class="color-2 icon-cancel"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                            <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                                            <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                                            <td></td>
+                                            <td>
+                                                <a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
+                                                <a href="javascript:;" onclick="WebApi.confirm('删除后,些条信息无法再在业务系统中使用及恢复,是否继续?')"><i class="color-2 icon-delete"></i>删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>字段31</td>
+                                            <td>字段32</td>
+                                            <td>字段33</td>
+                                            <td></td>
+                                            <td>
+                                                <a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
+                                                <a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>字段41</td>
+                                            <td>字段42</td>
+                                            <td>字段43</td>
+                                            <td></td>
+                                            <td>
+                                                <a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
+                                                <a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>字段51</td>
+                                            <td>字段52</td>
+                                            <td>字段53</td>
+                                            <td></td>
+                                            <td>
+                                                <a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
+                                                <a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="page-control right">
+                                    <span>共999条</span>
+                                    <span>1/25页</span>
+                                    <a href="javascript:;" class="last"></a>
+                                    <a href="javascript:;" class="next"></a>
+                                    <span>跳转到</span>
+                                    <input type="text">
+                                    <a href="javascriptp:;">GO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-main="Static/js/application" data-business="Role-authorization" src="Content/js/common/require.js"></script>
+</body>
+
+</html>

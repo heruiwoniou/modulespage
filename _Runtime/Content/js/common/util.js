@@ -1,4 +1,4 @@
-define(function(){
+define(function(Responder){
 	//这里定义全局方法与属性
     window.globalFileReaderUrl = '/server/uploadimages'
 	return {
@@ -7,6 +7,17 @@ define(function(){
             var $parent = parent && parent.length != 0 ? $(parent) : $(".scroll-bar");
             $parent.scrollBar({
                 theme: "dark",//"inset-dark"//"inset-2-dark",//minimal-dark//dark-3//"dark-2",
+                scrollInertia: 400,
+                advanced:{ autoScrollOnFocus: false },
+                autoHideScrollbar:true,
+                scrollButtons:{enable:false}
+            });
+        },
+        scrollXReplace: function(parent) {
+            var $parent = parent && parent.length != 0 ? $(parent) : $(".scroll-bar-x");
+            $parent.scrollBar({
+                theme: "dark",//"inset-dark"//"inset-2-dark",//minimal-dark//dark-3//"dark-2",
+                axis:'x',
                 scrollInertia: 400,
                 advanced:{ autoScrollOnFocus: false },
                 autoHideScrollbar:true,
@@ -32,6 +43,7 @@ define(function(){
 		_init_:function(){
 			//滚动条初始化
 			this.scrollReplace();
+            this.scrollXReplace();
 			//初始化控件
 			this.initControl();
 			//这里添加页面加载完成后公用的初始化功能
