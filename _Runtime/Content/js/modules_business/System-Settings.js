@@ -5,14 +5,14 @@ define(function(){
                 content:$("#testmodal1"),
                 width:850,
                 height:380,
-                title:"设置权限"
+                title:"脡猫脰脙脠篓脧脼"
             }).then(function(status){
-                alert("弹HTML关闭后回调信息:"+ status);
+                alert("碌炉HTML鹿脴卤脮潞贸禄脴碌梅脨脜脧垄:"+ status);
             });
         },
         init:function(){
-            //初始化页面内容
-            //返回值true/false决定是否执行util.js下的_init_方法
+            //鲁玫脢录禄炉脪鲁脙忙脛脷脠脻
+            //路碌禄脴脰碌true/false戮枚露篓脢脟路帽脰麓脨脨util.js脧脗碌脛_init_路陆路篓
         }
     }
 })
