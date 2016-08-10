@@ -36,7 +36,7 @@ define(function(){
 			this.initControl();
 			//这里添加页面加载完成后公用的初始化功能
 			//初始化左侧菜单
-			$(".menu-root").menuInit();
+			//$(".menu-root").menuInit();
 		}
 	}
 })

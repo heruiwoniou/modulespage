@@ -4,6 +4,7 @@ $hover-src = './../images/menu-icon-hover-';
 	font-size 0
 	li
 	a
+		display block
 		text-decoration none
 		font-size 16px
 		line-height 55px
@@ -19,11 +20,12 @@ $hover-src = './../images/menu-icon-hover-';
 		cursor pointer
 		text-indent 20px
 		.menu-sub
-			display none
 			li
 				padding-left 10px
 				background $left-menu-background-color
 		&.sup
+			.menu-sub
+				display none
 			&:before
 				float right
 				margin-right 10px
@@ -53,9 +55,9 @@ $hover-src = './../images/menu-icon-hover-';
 				width 4px
 				background $color1
 	.menu-sub
-		.menu-sub
-			display none
 		.sup
+			.menu-sub
+				display none
 			&:before
 				content '5'
 			&.open:before
