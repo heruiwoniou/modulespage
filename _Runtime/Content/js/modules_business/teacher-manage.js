@@ -5,7 +5,7 @@ define(function(){
 				src:"teacher-manage-add.html",
 				ajax:true,
 				width:600,
-				height:480,
+				height:580,
 				success:function(){
 					WebApi.initControl(this.$BoxBaseContent)
 				}

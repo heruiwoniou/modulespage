@@ -1,5 +1,6 @@
 define(function(){
-	//这里定义全局方法
+	//这里定义全局方法与属性
+    window.globalFileReaderUrl = '/server/uploadimages'
 	return {
 		//这里定义WebApi方法
 		scrollReplace: function(parent) {
@@ -19,6 +20,7 @@ define(function(){
         	$parent.find('select[cs-control]').SingleComboxInit();
         	$parent.find('input[type*=text][cs-control*=ButtonTextBox],input[type*=password][cs-control*=ButtonTextBox]').ButtonTextBoxInit();
             $parent.find('input[type*=text][cs-control*=DataPicker]').DataPickerInit();
+            $parent.find('input[cs-control][type*=file]').ProtoUploadInit();
         },
         //这里是加载完所有js后执行的公用接口
 		_init_:function(){
