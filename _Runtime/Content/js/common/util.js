@@ -13,6 +13,12 @@ define(function(){
                 scrollButtons:{enable:false}
             });
         },
+        showUploading:function(){
+            WebApi.modal('uploading',{content:'<div class="custom-uploading"><i class="icon-coffee color-5"></i>导入数据可能需要几分钟,先喝杯咖啡</div>',width:500,height:150,title:false})
+        },
+        closeUploading:function(){
+            WebApi.close({name:'uploading'});
+        },
         initControl: function(parent){
         	var $parent = parent && parent.length != 0 ? $(parent) : $(document);
         	$parent.find(':checkbox[cs-control]').CheckBoxInit();

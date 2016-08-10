@@ -13,6 +13,9 @@ define(function(){
 				console.log(cmd)
 			})
 		},
+		showUploadExcel:function(){
+			WebApi.modal('UploadExcel',{content:$('#uploadexcel'),width:500,height:185,title:false})
+		},
 		addPostInfo:function(){
 			var element = ['<tr>',
 							'<th class="center" style="width:26px">在</th>',
