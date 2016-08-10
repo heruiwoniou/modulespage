@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="Content/style/modules_base/index.css">
+    <script src="Content/js/common/jquery.js"></script>
+    <style>
+        .example-row{
+            margin-top:2px;margin-bottom:2px
+        }
+        .example-row div[class*=col-],.example-row div[class*=per-]{
+            line-height:20px;text-align:center
+        }
+        .icon-container .row [class*=icon-]{
+            font-size:26px;
+            vertical-align: middle
+        }
+        .icon-container .row [class*=per-] span{
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function runJS(target){
+            eval(target.value);
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="logo"></div>
+    <div class="control-panel">
+        <a href="javascript:;" class="user">
+            <img src="Content/style/images/user-01.jpg" alt="">
+            <span>管理员</span>
+        </a>
+        <a href="javascript:;" class="mail"></a>
+        <a href="javascript:;" class="close icon-close"></a>
+    </div>
+</div>
+<div class="body">
+    <div class="main-menu-scroll-container scroll-bar" data-mcs-theme="light">
+        <ul class="menu-root">
+            <li class="select">
+                <a href="javascript:;"><i class="icon-menu0"></i>样式示例</a>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu1"></i>基础数据维护</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu2"></i>校历管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu3"></i>层次管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu4"></i>组织架构管理</a></li>
+                    <li>
+                        <a href="javascript:;"><i class="icon-menu5"></i>用户管理</a>
+                        <ul class="menu-sub">
+                            <li><a href="javascript:;"><i class="icon-menu6"></i>教职工管理</a></li>
+                            <li><a href="javascript:;"><i class="icon-menu7"></i>学生管理</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;"><i class="icon-menu8"></i>校区管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu9"></i>应用系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu10"></i>系统管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu11"></i>权限管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu12"></i>系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu13"></i>角色权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu14"></i>系统权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu15"></i>用户角色设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu16"></i>帐号管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content-scroll-container">
+        <div class="nav-bar">
+            <i class="icon-menu0"></i><span>基础平台</span><i class="icon-arrow-right"></i><span>样式示例</span>
+        </div>
+        <div class="main-container" >
+            <div class="frame-left-right-control" id="mybody">
+                <div class="frame-left" style="width:300px">
+                    <div class="section-container">
+                        <div>
+                            <input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton" cs-label-location="left">
+                        </div>
+                        <div style="margin: 20px 0 0 0;">
+                            <button class="button g" style="margin-right: 20px;">按职能</button>
+                            <button class="button g empty">按校区</button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="frame-bar" style="left:300px"></div>
+                <div class="frame-right" style="margin-left:310px" >
+                    <div class="section-container">
+                        <div class="title-bar y" style="float: left;">教务处</div>
+                        <div style="float: right;margin: 10px 0;">
+                            <button class="button g">按职能</button>
+                            <button class="button r">按校区</button>
+                            <button class="button y">按职能</button>
+                            <button class="button b">按校区</button>
+                        </div>
+                    </div>
+                    <!--表格-->
+                    <div class="section-container" style="margin-top: 50px;">
+                        <table class="list">
+                            <thead>
+                            <tr>
+                                <th>标题一</th>
+                                <th>标题二</th>
+                                <th>标题三</th>
+                                <th>标题四</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                                <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                                <td>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>字段21</td>
+                                <td>字段22</td>
+                                <td>字段23</td>
+                                <td>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>字段31</td>
+                                <td>字段32</td>
+                                <td>字段33</td>
+                                <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>字段41</td>
+                                <td>字段42</td>
+                                <td>字段43</td>
+                                <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                            </tr>
+                            <tr>
+                                <td>字段51</td>
+                                <td>字段52</td>
+                                <td>字段53</td>
+                                <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="page-control" style="float: right;">
+                            <span>共999条</span>
+                            <span>1/25页</span>
+                            <a href="javascript:;" class="last"></a>
+                            <a href="javascript:;" class="next"></a>
+                            <span>跳转到</span>
+                            <input type="text">
+                            <a href="javascriptp:;">GO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script data-main="Content/js/modules_base/student-manage" data-business="DF_index" src="Content/js/common/require.js"></script>
+</html>
