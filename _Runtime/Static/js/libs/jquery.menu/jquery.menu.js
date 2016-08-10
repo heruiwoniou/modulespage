@@ -44,7 +44,7 @@
 			var $this = $(this);
 			clearselect($root);
 			$this.addClass('select');
-			return false;
+			//return false;
 		})
 	};
 
