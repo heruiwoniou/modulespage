@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>系统管理System-Settings</title>
+    <link rel="stylesheet" href="Content/style/modules_base/System-Settings.css">
+    <script src="Content/js/common/jquery.js"></script>
+</head>
+
+<body>
+<div class="header">
+    <div class="logo"></div>
+    <div class="control-panel">
+        <a href="javascript:;" class="user">
+            <img src="Content/style/images/user-01.jpg" alt="">
+            <span>管理员</span>
+        </a>
+        <a href="javascript:;" class="mail"></a>
+        <a href="javascript:;" class="close icon-close"></a>
+    </div>
+</div>
+<div class="body">
+    <div class="main-menu-scroll-container scroll-bar" data-mcs-theme="light">
+        <ul class="menu-root">
+            <li class="select">
+                <a href="javascript:;"><i class="icon-menu0"></i>样式示例</a>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu1"></i>基础数据维护</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu2"></i>校历管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu3"></i>层次管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu4"></i>组织架构管理</a></li>
+                    <li>
+                        <a href="javascript:;"><i class="icon-menu5"></i>用户管理</a>
+                        <ul class="menu-sub">
+                            <li><a href="javascript:;"><i class="icon-menu6"></i>教职工管理</a></li>
+                            <li><a href="javascript:;"><i class="icon-menu7"></i>学生管理</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;"><i class="icon-menu8"></i>校区管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu9"></i>应用系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu10"></i>系统管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu11"></i>权限管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu12"></i>系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu13"></i>角色权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu14"></i>系统权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu15"></i>用户角色设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu16"></i>帐号管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content-scroll-container">
+        <div class="nav-bar">
+            <i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>应用系统管理</span><i class="icon-arrow-right"></i><span>系统管理</span>
+        </div>
+        <div class="main-container">
+            <div class="frame-left-right-control" id="mybody">
+                <div class="frame-right">
+                    <div class="section-container">
+                        <div class="title-bar y">系统列表
+                            <span class="button-panel right">
+                                <button class="button g">启用</button>
+                                <button class="button y">停用</button>
+                            </span>
+                        </div>
+                        <div class="section-container">
+                            <ul class="content-list-box">
+                                <li class="list">
+                                    <div class="left-check-box">
+                                        <input type="checkbox" name="c1" cs-control cs-label="" class="check-box">
+                                    </div>
+                                    <div class="pic-box">
+                                        <div class="pic-icon1 icon-menu1 bcolor-1" onclick="WebApi.setPermission()"></div>
+                                        <div class="pic-icon2">已停用</div>
+                                        <h5>教务系统</h5>
+                                    </div>
+                                </li>
+                                <li class="list">
+                                    <div class="left-check-box">
+                                        <input type="checkbox" name="c1" cs-control cs-label="" class="check-box">
+                                    </div>
+                                    <div class="pic-box">
+                                        <div class="pic-icon1 icon-card bcolor-5" onclick="WebApi.setPermission()"></div>
+                                        <div class="pic-icon2  pic-icon3">已停用</div>
+                                        <h5>学工系统</h5>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="testmodal1" style="display: none">
+            <div class="modal-content">
+                <ul>
+                    <li class="modal-list">读取学生基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">读取教职工基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">读取组织架构基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">读取校历基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">读取层次基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">读取校区基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改学生基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改教职工基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改组织架构基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改校历基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改层次基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                    <li class="modal-list">修改校区基础数据<input type="checkbox" cs-control cs-button-type="slider" cs-label-on="" cs-label-off="" cs-label-location="left"/></li>
+                </ul>
+                <div class="btn-box">
+                    <button class="button r">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-main="Content/js/modules_base/System-Settings" data-business="System-Settings" src="Content/js/common/require.js"></script>
+</body>
+
+</html>

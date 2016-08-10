@@ -1,0 +1,131 @@
+<div class="section-container">
+    <table class="form">
+        <tr>
+            <th class="right must" style="width:76px">教职工姓名:</th>
+            <td>
+                <input type="text">
+            </td>
+            <th class="right must" style="width:70px">工号:</th>
+            <td>
+                <input type="text">
+            </td>
+            <th class="right must" style="width:70px">性别:</th>
+            <td>
+                <select cs-control>
+                    <option value="0">女</option>
+                    <option value="1">男</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th class="right must">出生日期:</th>
+            <td>
+                <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+            </td>
+            <th class="right">出生地:</th>
+            <td>
+                <input type="text">
+            </td>
+            <th class="right">籍贯:</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th class="right must">民族:</th>
+            <td>
+                <select cs-control>
+                    <option value="0">汉族</option>
+                    <option value="1">回族</option>
+                </select>
+            </td>
+            <th class="right must">国籍:</th>
+            <td>
+                <select cs-control>
+                    <option value="0">中国</option>
+                    <option value="1">美国</option>
+                </select>
+            </td>
+            <th class="right must">政治面貌:</th>
+            <td>
+                <select cs-control>
+                    <option value="0">党员</option>
+                    <option value="1">无党籍人士</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th class="right">健康状况:</th>
+            <td>
+                <input type="text">
+            </td>
+            <th class="right">宗教信仰:</th>
+            <td>
+                <input type="text">
+            </td>
+            <th class="right">血型:</th>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th class="right must">联系电话:</th>
+            <td colspan="5">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text">
+                        </td>
+                        <th class="right">毕业院校:</th>
+                        <td>
+                            <input type="text">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th class="right top must">照片:</th>
+            <td colspan="5">
+                <input type="file" name="file" cs-control cs-target = "fileName">
+                <input type="hidden" id="fileName">
+            </td>
+        </tr>
+        <tr>
+            <th class="right top must">任职信息:</th>
+            <td colspan="5">
+                <table>
+                    <tr>
+                        <th class="center" style="width:26px">在</th>
+                        <td>
+                            <select cs-control>
+                                <option value="0">研发</option>
+                                <option value="1">产品</option>
+                            </select>
+                        </td>
+                        <th class="right" style="width: 60px;">部门担任</th>
+                        <td>
+                            <select cs-control>
+                                <option value="0">开发</option>
+                                <option value="1">开发组长</option>
+                                <option value="2">开发经理</option>
+                                <option value="3">开发总监</option>
+                            </select>
+                        </td>
+                        <th class="right" style="width: 35px;">一职</th>
+                    </tr>
+                    <tr id="addRow">
+                        <td colspan="5">
+                            <button class="button g" onclick="WebApi.addPostInfo()">新增一条</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="center" colspan="6">
+                <button class="button r">保存</button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -73,8 +73,7 @@ gulp.task('build-script', function() {
             "client": "Static/js/common/client",
             "comsys": "Static/js/comsys",
             "common": "Static/js/common",
-
-            "vue": "Static/js/libs/vue/dist/vue"
+            "libs": "Static/js/libs"
         },
         exclude: ['jquery','Content/js/common/util']
     }
@@ -107,7 +106,7 @@ gulp.task('build-images', function() {
     gulp.src(['_Runtime/Content/style/images/**/*.jpg','_Runtime/Content/style/images/**/*.gif', '_Runtime/Content/style/images/service-center.png','_Runtime/Static/style/images/progress.png'])
         .pipe(gulp.dest('Runtime/Content/style/images/'));
 
-    gulp.src('_Runtime/Content/style/upload/**.*').pipe(gulp.dest('Runtime/Content/style/upload/'))
+    gulp.src('_Runtime/Upload/**.*').pipe(gulp.dest('Runtime/Content/Upload/'))
 });
 
 gulp.task('build-html', function() {

@@ -68,9 +68,9 @@
 						<div class="section-container">
 							<div class="title-bar o">教职工管理
 								<div class="button-panel right">
-									<button class="button g">新增老师</button>
-									<button class="button y" onclick="WebApi.modal({content:$('#uploaddata'),width:500,height:150,title:false})">接口导入</button>
-									<button class="button b">excel导出</button>
+									<button class="button g" onclick="WebApi.addNewTeacher()">新增老师</button>
+									<button class="button y" onclick="WebApi.showUploading()">接口导入</button>
+									<button class="button b" onclick="WebApi.showUploadExcel()">excel导出</button>
 								</div>
 							</div>
 							<div class="section-container">
@@ -89,9 +89,9 @@
 										<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
 										<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
 										<td>
-											<a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
-											<a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
-											<a href="javascript:;" class="color-1" onclick="WebApi.confirm('删除后,些条信息无法再在业务系统中使用及恢复,是否继续?')"><i class="icon-delete"></i>删除</a>
+											<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
+											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+											<a href="javascript:;" onclick="WebApi.confirm('删除后,些条信息无法再在业务系统中使用及恢复,是否继续?')"><i class="color-2 icon-delete"></i>删除</a>
 										</td>
 									</tr>
 									<tr>
@@ -99,34 +99,37 @@
 										<td>字段22</td>
 										<td>字段23</td>
 										<td>
-											<a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
-											<a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
-											<a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+											<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
+											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+											<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a>
 										</td>
 									</tr>
 									<tr>
 										<td>字段31</td>
 										<td>字段32</td>
 										<td>字段33</td>
-										<td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
-											<a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
-											<a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+										<td>
+										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									<tr>
 										<td>字段41</td>
 										<td>字段42</td>
 										<td>字段43</td>
-										<td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
-											<a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
-											<a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+										<td>
+										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									<tr>
 										<td>字段51</td>
 										<td>字段52</td>
 										<td>字段53</td>
-										<td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
-											<a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
-											<a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+										<td>
+										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									</tbody>
 								</table>
@@ -139,9 +142,9 @@
 									<input type="text">
 									<a href="javascriptp:;">GO</a>
 								</div>
-								<div id="uploaddata" class="custom-upload">
-									<i class="icon-coffee color-5"></i>
-									导入数据可能需要几分钟,先喝杯咖啡
+								<div id="uploadexcel" class="custom-upload-excel">
+									<a href="javascript:;"><i class="icon-upload color-2"></i>下载Excel模板</a>
+									<a href="javascript:;" onclick="WebApi.showUploading()"><i class="icon-download color-2"></i>上传Excel文件</a>
 								</div>
 							</div>
 						</div>
