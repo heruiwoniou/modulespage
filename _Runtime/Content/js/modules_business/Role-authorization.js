@@ -1,14 +1,11 @@
 define(function(){
     return {
-        addList:function(e){
-
+        addList:function(){
+            $("#Plant-Names").append("<li class='Plant-Names-list'>åç§°</li>")
         },
         init:function(){
-            //³õÊ¼»¯Ò³ÃæÄÚÈİ
-            //·µ»ØÖµtrue/false¾ö¶¨ÊÇ·ñÖ´ĞĞutil.jsÏÂµÄ_init_·½·¨
-            $(li).bind('click',this.addList)
-            WebApi.addList()
+            //åˆå§‹åŒ–é¡µé¢å†…å®¹
+            //è¿”å›å€¼true/falseå†³å®šæ˜¯å¦æ‰§è¡Œutil.jsä¸‹çš„_init_æ–¹æ³•
         }
     }
 });
-
