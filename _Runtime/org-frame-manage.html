@@ -102,10 +102,10 @@
                     <div class="section-container">
                         <div class="title-bar y" style="float: left;">教务处</div>
                         <div style="float: right;margin: 10px 0;">
-                            <button class="button g">按职能</button>
-                            <button class="button r">按校区</button>
-                            <button class="button y">按职能</button>
-                            <button class="button b">按校区</button>
+                            <button class="button g" onclick="WebApi.addNew()">新增</button>
+                            <button class="button r">导入</button>
+                            <button class="button y">借口导入</button>
+                            <button class="button b">excle导入</button>
                         </div>
                     </div>
                     <!--表格-->
@@ -183,5 +183,7 @@
     </div>
 </div>
 </body>
-<script data-main="Content/js/modules_base/student-manage" data-business="DF_index" src="Content/js/common/require.js"></script>
+<!--<script data-main="Content/js/modules_base/student-manage" data-business="DF_index" src="Content/js/common/require.js"></script>-->
+
+<script data-main="Content/js/modules_base/school-manage" data-business="school-manage" src="Content/js/common/require.js"></script>
 </html>

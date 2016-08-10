@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增学期</title>
+    <link rel="stylesheet" href="Content/style/modules_base/index.css">
+    <script src="Content/js/common/jquery.js"></script>
+    <style>
+        .example-row{
+            margin-top:2px;margin-bottom:2px
+        }
+        .example-row div[class*=col-],.example-row div[class*=per-]{
+            line-height:20px;text-align:center
+        }
+        .icon-container .row [class*=icon-]{
+            font-size:26px;
+            vertical-align: middle
+        }
+        .icon-container .row [class*=per-] span{
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function runJS(target){
+            eval(target.value);
+        }
+    </script>
+    <style>
+        .dateInp{width:70px;display: block;float: left;}
+        .dateSpan{width:20px;margin: 12px 10px;display: block;float: left;height: 2px;background: grey;}
+        .dateSelect{display: block;height: 30px;line-height: 30px;float: left;font-size: 15px;margin-left:10px;}
+        .nowYear{height:60px;line-height: 60px;font-size: 16px;color: #49be9b;padding-left: 20px;}
+        .nowYear span{color: #49be9b;font-size: 16px;}
+        .studentTitle{font-size: 16px;margin: 15px 0;font-weight: bold;}
+        .studentSec{padding-left: 20px;}
+        .hide{display: none;}
+        .show{display: block;}
+        .currentTerm{padding-left: 20px;height: 40px;line-height: 40px;margin: 10px 0;font-size: 16px;color: grey;}
+        .currentTerm:before{content: '';width: 10px;height:10px;background: #ffac00;display: inline-block;margin-right: 5px;}
+
+        .list tr td,span,a{font-size: 14px;}
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo"></div>
+    <div class="control-panel">
+        <a href="javascript:;" class="user">
+            <img src="Content/style/images/user-01.jpg" alt="">
+            <span>管理员</span>
+        </a>
+        <a href="javascript:;" class="mail"></a>
+        <a href="javascript:;" class="close icon-close"></a>
+    </div>
+</div>
+<div class="body">
+    <div class="main-menu-scroll-container scroll-bar" data-mcs-theme="light">
+        <ul class="menu-root">
+            <li class="select">
+                <a href="javascript:;"><i class="icon-menu0"></i>样式示例</a>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu1"></i>基础数据维护</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu2"></i>校历管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu3"></i>层次管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu4"></i>组织架构管理</a></li>
+                    <li>
+                        <a href="javascript:;"><i class="icon-menu5"></i>用户管理</a>
+                        <ul class="menu-sub">
+                            <li><a href="javascript:;"><i class="icon-menu6"></i>教职工管理</a></li>
+                            <li><a href="javascript:;"><i class="icon-menu7"></i>学生管理</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;"><i class="icon-menu8"></i>校区管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu9"></i>应用系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu10"></i>系统管理</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu11"></i>权限管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="icon-menu12"></i>系统管理</a>
+                <ul class="menu-sub">
+                    <li><a href="javascript:;"><i class="icon-menu13"></i>角色权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu14"></i>系统权限设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu15"></i>用户角色设置</a></li>
+                    <li><a href="javascript:;"><i class="icon-menu16"></i>帐号管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content-scroll-container">
+        <div class="nav-bar">
+            <i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>校历管理</span>
+        </div>
+        <div class="main-container" >
+            <div class="frame-left-right-control" id="mybody">
+                <div class="frame-left" style="width:300px;position: relative;">
+                    <div class="section-container">
+                        <div class="title-bar y" style="font-size: 17px;">设置系统起始学年</div>
+                        <div style="overflow: hidden;padding-left: 20px;">
+                            <input class="dateInp"  placeholder="" type="text">
+                            <span class="dateSpan"></span>
+                            <input class="dateInp" placeholder="" type="text">
+                            <a class="dateSelect" href="javascript:;"><i class="icon-edit"></i>修改</a>
+                        </div>
+                        <div>
+
+                        </div>
+                        <p class="nowYear">当前学年：<span>2015-2016学年</span></p>
+                        <div class="title-bar y" style="font-size: 17px;">设置学期起始结束日期</div>
+                        <div class="studentSec">
+                            <!--这里修改show，hide来修改显示与不显示-->
+                            <p class="studentTitle">秋季学期<i class="icon-edit"></i></p>
+                            <!--输入框与确定不确定-->
+                            <p  class="studentTitle hide">
+                                <input style="width:100px;" placeholder="" type="text">
+                                <a href="javascript:;"><i class="icon-sure"></i></a>
+                                <a href="javascript:;"><i class="icon-cancel"></i></a>
+                            </p>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="studentSec">
+                            <p class="studentTitle">秋季学期<i class="icon-edit"></i></p>
+                            <!--输入框与确定不确定-->
+                            <p  class="studentTitle hide">
+                                <input style="width:100px;" placeholder="" type="text">
+                                <a href="javascript:;"><i class="icon-sure"></i></a>
+                                <a href="javascript:;"><i class="icon-cancel"></i></a>
+                            </p>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="studentSec">
+                            <p class="studentTitle">秋季学期<i class="icon-edit"></i></p>
+                            <!--输入框与确定不确定-->
+                            <p  class="studentTitle hide">
+                                <input style="width:100px;" placeholder="" type="text">
+                                <a href="javascript:;"><i class="icon-sure"></i></a>
+                                <a href="javascript:;"><i class="icon-cancel"></i></a>
+                            </p>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                            <div style="height:30px;margin-bottom: 10px;">
+                                <span style="display: block;float: left;line-height: 30px;font-size: 13px;margin-right: 15px;">学期开始时间</span>
+                                <div style="width:150px;overflow: hidden;float: left;">
+                                    <input type="text" cs-control="DataPicker" cs-button-type="timebutton">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin: 20px 0 50px 0;padding-left: 20px;">
+                            <button class="button g" onclick="WebApi.modal({src:'addNewTerm.html',ajax:true,width:500,height:300,success:function(){WebApi.initControl()}})">新增学期</button>
+                        </div>
+                        <div style="position: absolute;bottom: 10px;height: 30px;width:100%;">
+                            <button style="display: block;width:100px;margin: 0 auto;" class="button b">保存</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame-bar" style="left:300px"></div>
+                <div class="frame-right" style="margin-left:310px" >
+                    <div class="section-container">
+                        <div class="title-bar y" style="float: left;">教务处</div>
+                        <div style="float: right;margin: 10px 0;">
+                            <span class="currentTerm">当前学期</span>
+                        </div>
+                    </div>
+                    <!--表格-->
+                    <div class="section-container" style="margin-top: 50px;">
+                        <table class="list">
+                            <thead>
+                            <tr>
+                                <th style="font-size: 16px;">学年</th>
+                                <th style="font-size: 16px;" colspan="2">学期</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                                <td>
+                                    <span>秋季学期</span>
+                                    <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                                    <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>修改</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="page-control" style="float: right;">
+                            <span>共999条</span>
+                            <span>1/25页</span>
+                            <a href="javascript:;" class="last"></a>
+                            <a href="javascript:;" class="next"></a>
+                            <span>跳转到</span>
+                            <input type="text">
+                            <a href="javascriptp:;">GO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script data-main="Content/js/modules_base/school-manage" data-business="school-manage" src="Content/js/common/require.js"></script>
+</html>
