@@ -211,7 +211,7 @@ define(
                         if(this.element.disabled) return ;
                         if(this.options!=this.element.options.length) this.ReLoad();
 
-                        var offset = THIS.Offset(THIS.$controller.get(0));//THIS.$controller.offset();//
+                        var offset = THIS.$controller.offset();//THIS.Offset(THIS.$controller.get(0));//
                         if (!THIS.state) {
                             THIS.$input.focus();
                             $("div.comsys-combox-base:visible").hide().trigger("otherhide");

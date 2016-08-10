@@ -182,6 +182,7 @@ define(
                         setting.content = setting.content || '';
                         setting.callback = setting.callback;
                         setting.maxHeight = setting.maxHeight || setting.height;
+                        setting.success = setting.success || function () {}
                         break;
                 }
                 _win = this.create(setting.type, name);

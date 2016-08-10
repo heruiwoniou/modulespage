@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="Content/style/modules_base/teacher-manage.css">
+	<link rel="stylesheet" href="Content/style/modules_base/school-manage.css">
 	<script src="Content/js/common/jquery.js"></script>
 </head>
 <body>
@@ -60,17 +60,15 @@
 		</div>
 		<div class="main-content-scroll-container">
 			<div class="nav-bar">
-				<i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>用户管理</span><i class="icon-arrow-right"></i><span>教职工管理</span>
+				<i class="icon-menu0"></i><span>基础数据维护</span><i class="icon-arrow-right"></i><span>校区管理</span>
 			</div>
 			<div class="main-container">
 				<div class="frame-left-right-control" id="mybody">
 					<div class="frame-right">
 						<div class="section-container">
-							<div class="title-bar o">教职工管理
+							<div class="title-bar o">校区管理
 								<div class="button-panel right">
-									<button class="button g" onclick="WebApi.addNewTeacher()">新增老师</button>
-									<button class="button y" onclick="WebApi.modal({content:$('#uploaddata'),width:500,height:150,title:false})">接口导入</button>
-									<button class="button b">excel导出</button>
+									<button class="button g">新增</button>
 								</div>
 							</div>
 							<div class="section-container">
@@ -89,8 +87,7 @@
 										<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
 										<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
 										<td>
-											<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
-											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
 											<a href="javascript:;" onclick="WebApi.confirm('删除后,些条信息无法再在业务系统中使用及恢复,是否继续?')"><i class="color-2 icon-delete"></i>删除</a>
 										</td>
 									</tr>
@@ -99,8 +96,7 @@
 										<td>字段22</td>
 										<td>字段23</td>
 										<td>
-											<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
-											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+											<a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
 											<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a>
 										</td>
 									</tr>
@@ -109,8 +105,7 @@
 										<td>字段32</td>
 										<td>字段33</td>
 										<td>
-										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
-										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
 										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									<tr>
@@ -118,8 +113,7 @@
 										<td>字段42</td>
 										<td>字段43</td>
 										<td>
-										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
-										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
 										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									<tr>
@@ -127,8 +121,7 @@
 										<td>字段52</td>
 										<td>字段53</td>
 										<td>
-										<a href="javascriptp:;"><i class="color-2 icon-view"></i>查看</a>
-										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>编辑</a>
+										<a href="javascriptp:;"><i class="color-3 icon-edit"></i>修改</a>
 										<a href="javascript:;"><i class="color-2 icon-delete"></i>删除</a></td>
 									</tr>
 									</tbody>
@@ -153,6 +146,6 @@
 			</div>
 		</div>
 	</div>
-	<script data-main="Content/js/modules_base/teacher-manage" data-business="teacher-manage" src="Content/js/common/require.js"></script>
+	<script data-main="Content/js/modules_base/school-manage" data-business="school-manage" src="Content/js/common/require.js"></script>
 </body>
 </html>
