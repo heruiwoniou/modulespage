@@ -1,4 +1,4 @@
-define(function(){
+define(function(Responder){
 	//这里定义全局方法与属性
     window.globalFileReaderUrl = '/server/uploadimages'
 	return {
@@ -28,6 +28,7 @@ define(function(){
             $parent.find('input[type*=text][cs-control*=DataPicker]').DataPickerInit();
             $parent.find('input[cs-control][type*=file]').ProtoUploadInit();
         },
+        
         //这里是加载完所有js后执行的公用接口
 		_init_:function(){
 			//滚动条初始化

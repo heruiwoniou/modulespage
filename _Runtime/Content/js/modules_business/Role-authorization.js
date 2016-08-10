@@ -1,7 +1,7 @@
 define(function(){
     return {
         addList:function(){
-            $("#Plant-Names").append("<li class='Plant-Names-list'><input type=\"text\">" +
+            $("#Plant-Names").append("<li class='Plant-Names-list Plant-Input'><input type=\"text\">" +
                 "<span class='compile-edit'>"+
                 "<a href='javascriptp:;'><i class='icon-sure color-3'></i></a>"+
                 "<a href='javascript:;' ><i class='icon-cancel color-2'></i></a>"+
@@ -11,10 +11,11 @@ define(function(){
         init:function(){
             //初始化页面内容
             //返回值true/false决定是否执行util.js下的_init_方法
-            $("#Plant-Names").on("click","li",function(){
+            WebApi.setMinHeight($('#mybody'));
+            $("#Plant-Names").on("click","li:not(.Plant-Input) a",function(){
                 $("#Plant-Names li.select").removeClass('select');
-                $(this).addClass('select');
-            })
+                $(this).closest('li').addClass('select');
+            });
         }
     }
 });
