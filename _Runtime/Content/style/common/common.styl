@@ -17,14 +17,14 @@ $percent      =true;
 $percent-step =2;
 @import "./../base/grid/grid.styl";
 
+/**
+ * base frame
+ */
 @import "./../base/frame/index.styl";
+frame-base(100px,35px);
+container-base(1025px,900px);
+@import "./frame.styl";
 
-container-base(1269px,900px);
-button-base(25px,100px);
-
-@import './frame.styl';
-
-@import './control/column.styl';
 @import './control/panel.styl';
-@import './control/left-right-panel.styl'
-@import './control/list.styl'
+
+

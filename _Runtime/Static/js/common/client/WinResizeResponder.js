@@ -1,4 +1,4 @@
-define(['jquery','./Bumper'],function($,Bumper){
+define(['./Bumper'],function(Bumper){
 	var bumper=Bumper.create(),
 	$win=$(window),
 	$doc=$(document);

@@ -19,7 +19,8 @@ var isDevelop = true,
     autoprefixer = require('autoprefixer-stylus'),
     spriter = require('gulp-css-spriter'),
     rename = require('gulp-rename'),
-    replace = require('gulp-replace');
+    replace = require('gulp-replace'),
+    convertEncoding = require('gulp-convert-encoding');
 
 var doingstylus = function(sm,dest,module){
         var sprite = (module ? 'sprite-' + module : 'sprite') + '.png';
@@ -48,6 +49,8 @@ gulp.task('build-css', function() {
     gulp.src('_Runtime/Content/style/modules_business/**/*').pipe(gulp.dest('Runtime/Content/style/modules_business/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery.scrollbar/style/**.*').pipe(gulp.dest('Runtime/Content/style/common/jquery.scrollbar'))
+    gulp.src('_Runtime/Static/js/libs/jquery-ui/themes/base/jquery-ui.min.css').pipe(gulp.dest('Runtime/Content/style/common/jquery-ui'))
+    gulp.src('_Runtime/Static/js/libs/jquery-ui/themes/base/images/**.*').pipe(gulp.dest('Runtime/Content/style/common/jquery-ui/images'))
 });
 
 gulp.task('build-script', function() {
@@ -56,18 +59,18 @@ gulp.task('build-script', function() {
     var i,module,option = {
         baseUrl:"_Runtime",
         paths:{
-            "css": 'Static/js/libs/require-css/css',
-            'text':'Static/js/libs/require-text/text',
-
-            "jquery": "Static/js/libs/jquery/dist/jquery.min",
             "jquery.ui": "Static/js/libs/jquery-ui",
+            "css": 'Static/js/libs/require-css/css',
+
             "Class": "Static/js/common/core/Class",
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",
-            "vue": "Static/js/libs/vue/dist/vue"
+            "comsys": "Static/js/comsys",
+            "common": "Static/js/common"
         },
         exclude: ['Content/js/common/util']
     }
@@ -78,7 +81,7 @@ gulp.task('build-script', function() {
         if(isDevelop) sm = sm.pipe(sourcemaps.init())
         sm = sm.pipe(amdoptimize('Content/js/modules_base/' + module.split('.').shift(), option)).pipe(concat(module))//.pipe(uglify());
         if(isDevelop) sm = sm.pipe(sourcemaps.write());
-        sm.pipe(gulp.dest("Runtime/Content/js/modules_base/"));
+        sm.pipe(convertEncoding({to: 'utf8'})).pipe(gulp.dest("Runtime/Content/js/modules_base/"));
     }
 
     gulp.src('_Runtime/Content/js/modules_business/**/*.js')
@@ -90,11 +93,32 @@ gulp.task('build-script', function() {
     gulp.src('_Runtime/Static/js/libs/requirejs/require.js')
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/jquery/dist/jquery.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+     gulp.src('_Runtime/Static/js/libs/jquery-ui/jquery-ui.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/jquery-ui/ui/i18n/datepicker-zh-CN.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
 });
 
 gulp.task('build-images', function() {
-    gulp.src(['_Runtime/Content/style/images/**/*.jpg','_Runtime/Content/style/images/**/*.gif', '_Runtime/Content/style/images/service-center.png'])
+    gulp.src([
+        '_Runtime/Content/style/images/**/*.jpg',
+        '_Runtime/Content/style/images/**/*.gif',
+        '_Runtime/Content/style/images/service-center.png',
+        '_Runtime/Content/style/images/datapicker_back.png',
+        '_Runtime/Content/style/images/link-center.png',
+        '_Runtime/Content/style/images/link-hover-center.png'
+        ])
         .pipe(gulp.dest('Runtime/Content/style/images/'));
+    gulp.src(['_Runtime/Content/style/icons/**/*'])
+        .pipe(gulp.dest('Runtime/Content/style/icons/'));
 });
 
 gulp.task('build-html', function() {

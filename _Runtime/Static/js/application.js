@@ -3,13 +3,10 @@ require.config({
 });
 var WebApi = {};
 define([
-    'jquery',
     'Content/js/common/util',
-
     'css',
-    'text',
-    'Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar'
-], function($, util) {
+    'Static/js/libs/jquery.easing/jquery.easing'
+], function(util) {
     $.extend(WebApi, util);
     return {
         interface: function(action) {

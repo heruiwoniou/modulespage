@@ -1,34 +1,10 @@
 .panel
-	boxShadow()
-	margin 10px
-	&.no-margin
-		margin 0
-	&.no-border
-		border 0
-	.panel-title
+	background rgba(255,255,255,.8)
+	margin-bottom 10px
 	.panel-content
-		background white
-		padding 10px
-		&.no-padding
-			padding 0
+		padding 15px
 	.panel-title
-		border-bottom 1px solid #e8e8e8
-		.panel-title-text
-			position relative
-			line-height 40px
-			text-indent 20px
-			font-size 18px
-			&:before
-				position absolute
-				left 0
-				top 50%
-				margin-top -5px
-				display block
-				content ''
-				height 10px
-				width 10px
-			for index in 1..10
-				&.color{index}:before
-					background $color + index
-		&.no-border
-			border 0
+		height 60px
+		line-height 60px
+		font-size 14px
+		text-indent 20px
