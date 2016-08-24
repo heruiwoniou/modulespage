@@ -101,7 +101,20 @@
                 this.edittitling = false;
             },
             //移除控件
-            removecontrol,
+            removecontrol(){
+                if(this.component.children.length != 0)
+                {
+                    WebApi.confirm('该段落子项将连同删除,是否继续删除?').then(
+                        cmd =>{
+                            if(cmd === 'sure'){
+                                removecontrol.apply(this,arguments);
+                            }
+                        })
+                }else
+                {
+                    removecontrol.apply(this,arguments);
+                }
+            },
             //设置是否当前选择项及取消编辑
             setindex: setindex(function() {
                 if (this.edittitling)

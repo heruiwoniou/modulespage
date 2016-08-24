@@ -94,7 +94,7 @@ define(
                 var hasClose = false;
                 if (type === undefined) {
                     hasClose = this.closeItem(this.type.window, name, command);
-                    hasClose = this.closeItem(this.type.resizewindow, name, command);
+                    hasClose = hasClose || this.closeItem(this.type.resizewindow, name, command);
                 } else {
                     hasClose = this.closeItem(type, name, command);
                 }
@@ -119,8 +119,11 @@ define(
             create: function(type, name) {
                 name = name || "unname";
                 var _w = this[type];
-                if (_w.length == 0 || _w.length != 0 && _w[0].window.status)
-                    _w.push({ name: name, window: new this['_' + type]().initialize() });
+                //下面是页面至少保留一个窗体的控制代码
+                // if (_w.length == 0 || _w.length != 0 && _w[0].window.status)
+                //     _w.push({ name: name, window: new this['_' + type]().initialize() });
+                //以下是直接创建新窗口
+                _w.push({ name: name, window: new this['_' + type]().initialize() })
                 return _w[_w.length - 1].window;
             },
             /**

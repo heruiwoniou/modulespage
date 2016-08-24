@@ -83,13 +83,21 @@ export default {
         },
         watch:{
             'itemstring':function(_new_,_old_){
+                var arr = _new_.split('\n');
                 if(_new_.indexOf('|') != -1)
                 {
                     this.itemstring = _new_.replace(/\|/g,'｜');
                     return;
                 }
-                if(_new_.split('\n').filter(o => o !== '').length > this.component.maxItems) {
+                if(arr.filter(o => o !== '').length > this.component.maxItems) {
                     this.itemstring = _old_ ;
+                    return;
+                }
+                var re ;
+                if((re = arr.filter(o => o!=='' && o.length > this.component.itemWordLength)).length > 0 || arr.length !== arr.filter(o => o !== '').length )
+                {
+                    var a = _new_.split('\n').filter(o => o!=='').map(o => o.substr(0, this.component.itemWordLength)).join('\n');
+                    this.itemstring = a;
                     return;
                 }
                 bumper.trigger(()=>{

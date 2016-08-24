@@ -29,13 +29,13 @@
 				<li :class="[islibs?'':'select']"><a href="javascript:;" @click="toggleTab(false)">模板库</a></li>
 			</ul>
 			<div class="insert-line-result">
-				共<i>{{ islibs ? subjects.length : tpls.length }}</i>个结果
+				共<i>{{ islibs ? subjects.length : tpls.length }}</i>个结果&nbsp;
+				<div v-show="islibs && subjects.length !== 0" class="inline-container" v-if="subjects.length !== 0">
+						<button :class='["button",select_array.length ===0 ? "gray" : "p","smaller"]' @click="addSelected">使用选中的题</button>
+				</div>
 			</div>
 			<div class="insert-content insert-mCustomScrollbar" v-show="islibs">
 				<div class="liblist">
-					<div class="inline-container" v-if="subjects.length !== 0">
-						<button :class='["button",select_array.length ===0 ? "gray" : "p","smaller"]' @click="addSelected">使用选中的题</button>
-					</div>
 					<component  v-for="sub in subjects"
 	                    :is="sub.type + 'Insert'"
 	                    :component="sub"
@@ -143,7 +143,7 @@
 			subjects:function(){
 				var arr = [];
 				this.quote.forEach(o=>recursion(o , o , arr));
-				return arr;
+				return arr.sort((a,b)=>b.used - a.used);
 			},
 			tpls:function(){
 				var arr = [];
@@ -194,6 +194,7 @@
 			toggleTab(state)
 			{
 				if(this.islibs === state) return ;
+				WebApi.InsertSearch(this.classify,this.search);
 				this.islibs = state;
 				this.tplSelectIndex = -1;
 				this.select_array = [];
@@ -225,7 +226,7 @@
 			},
 			searchMethod(){
 				WebApi.InsertSearch(this.classify,this.search);
-				this.islibs = true;
+				//this.islibs = true;
 				this.tplSelectIndex = -1;
 				this.select_array = [];
 			}

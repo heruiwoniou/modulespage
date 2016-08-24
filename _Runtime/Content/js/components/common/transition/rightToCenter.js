@@ -1,7 +1,7 @@
 define(['vue'], function(Vue) {
     Vue.transition('right-to-center', {
 		css: false,
-		enter (el, done) {
+		enter :function(el, done) {
 			// 元素已被插入 DOM
 			// 在动画结束后调用 done
 			var $el = $(el);
@@ -10,7 +10,7 @@ define(['vue'], function(Vue) {
 				.animate({ left : 0 }, 300, "easeOutExpo" , done);
 			$right.css({ left : 600 })
 		},
-		leave (el, done) {
+		leave :function (el, done) {
 			var $el = $(el);
 			var $right = $(this.$el).find('~.right')
 			// 与 enter 相同

@@ -1,5 +1,6 @@
 define(function(){
-	function ComsysFileReader(){
+	function ComsysFileReader(url){
+		this.url = url;
 	}
 	ComsysFileReader.prototype=
 	{
@@ -12,6 +13,11 @@ define(function(){
             var $file = $(file);
 
 			var $form = $file.closest('form');
+			if($form.length == 0 )
+			{
+				$form = $('<form enctype="multipart/form-data" method="POST"></form>')
+				$file.wrap($form);
+			}
 			if( file.files !== undefined && (file.files[0].size)/1024/1024>10){
 				that.deferred.reject("背景图片大小不超过10M!");
 				$file.val("");
@@ -19,7 +25,7 @@ define(function(){
 			}
 			$form.ajaxSubmit({
 				type:'POST',
-				url:'/server/uploadimages',
+				url: that.url,//'/server/uploadimages',
 				dataType:'text',
 				success:function(retData){
 					var ret = JSON.parse(retData);

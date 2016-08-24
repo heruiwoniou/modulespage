@@ -37,14 +37,26 @@ define(
 
                     var $group = $("input[name=" + $this.attr("name") + "]");
 
-
-                    $this.off('click.RadioBoxClickHandler').on('click.RadioBoxClickHandler',function(e, state){
-                        if (this.checked)
-                            $($wrap).addClass("radiobox-checked");
-                        else $($wrap).removeClass("radiobox-checked");
-                        if (!state)
-                            $group.not(this).trigger("radioChange");
-                    })
+                    if(this.setting.isDocumentBind)
+                    {
+                        $(document).on("click.RadioBoxClickHandler" + id, "#" + id, function (e, state) {
+                            if (this.checked)
+                                $($wrap).addClass("radiobox-checked");
+                            else $($wrap).removeClass("radiobox-checked");
+                            if (!state)
+                                $group.not(this).trigger("radioChange");
+                        });
+                    }
+                    else
+                    {
+                        $this.off('click.RadioBoxClickHandler').on('click.RadioBoxClickHandler',function(e, state){
+                            if (this.checked)
+                                $($wrap).addClass("radiobox-checked");
+                            else $($wrap).removeClass("radiobox-checked");
+                            if (!state)
+                                $group.not(this).trigger("radioChange");
+                        })
+                    }
                     $this.on("radioChange", function () {
                         if (this.checked)
                             $($wrap).addClass("radiobox-checked");
@@ -73,7 +85,7 @@ define(
         $.fn.extend({
             RadioBoxInit: function () {
                 return this.each(function () {
-                    var setting = { buttontype: $(this).attr('data-buttontype') || '' }
+                    var setting = { buttontype: $(this).attr('data-buttontype') || '' ,isDocumentBind: $(this).attr('data-isdocumentbind') || false  }
                     new RadioBox({element: this , setting : setting}).initialize();
                 });
             }

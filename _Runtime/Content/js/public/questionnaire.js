@@ -10,9 +10,7 @@ define(
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse',
         './../components/preview/GradeQuestion',
-        './../components/preview/MatrixChoiceQuestion',
-
-        'validator'
+        './../components/preview/MatrixChoiceQuestion'
     ],
     function(Vue) {
         var viewModel;//数据模型
@@ -47,14 +45,6 @@ define(
                     }()),
                     ready:function(){
                         this.$emit( 'tofilter' , this.questions[0], null, null);
-
-                        window.setTimeout(o=>{
-                            $(this.$els.form).validator({
-                                theme:'yellow_right_effect',
-                                stopOnError: true,
-                                timely: true,
-                            });
-                        }, 1000)
                     },
                     events:{
                         /**
@@ -149,7 +139,7 @@ define(
                     computed:{
                         exportStyle:function(){
                             return {
-                                background:"#ffffff url(" + this.header.src + ') repeat fixed'
+                                background: this.header && this.header.src ? "#ffffff url(" + this.header.src + ') repeat fixed' : "#fff"
                             }
                         },
                         questions:function(){
@@ -159,9 +149,24 @@ define(
                         }
                     },
                     methods:{
+                        validator:function(){
+                            var that = this;
+                            this.$broadcast('toValidator');
+                            var _promise_ = {};
+                            var deferred = new $.Deferred() ;
+                            deferred.promise(_promise_);
+                            this.$nextTick(function(){
+                                deferred.resolve($(that.$el).find('.msg-box').length == 0);
+                            });
+                            return deferred;
+                        },
                         save:function(){
                             var str = JSON.stringify(this.$data);
                             localStorage.data = str;
+                        },
+                        submit:function(){
+                            this.validator().then(function(status){
+                            });
                         }
                     }
                 })

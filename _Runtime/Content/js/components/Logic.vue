@@ -54,9 +54,7 @@
 				<td>
 					<select v-model="cache.from" v-el:from-control>
 						<option value=''>-请选择题目-</option>
-						<template v-for="item in fromquestions">
-							<option :value="item.id">Q{{item.qindex}}:{{item.title}}</option>
-						</template>
+						<option v-for="item in fromquestions" :value="item.id">Q{{item.qindex}}:{{item.title}}</option>
 					</select>
 				</td>
 				<td class="label-2" v-if="cache.choice">选择了</td>
@@ -64,23 +62,19 @@
 				<td>
 					<select v-model="cache.option" v-el:option-control>
 						<option value=''>-请选择选项-</option>
-						<template v-for="option in options">
-							<option :value="option.index">{{option.value}}</option>
-						</template>
+						<option v-for="option in options" :value="option.index">{{option.value}}</option>
 					</select>
 				</td>
 				<td class="label-3">则跳转到</td>
 				<td>
 					<select v-model="cache.to" v-el:to-control>
 						<option value=''>-请选择题目-</option>
-						<template v-for="item in toquestion">
-							<option :value="item.id">Q{{item.qindex}}:{{item.title}}</option>
-						</template>
+						<option v-for="item in toquestion" :value="item.id">Q{{item.qindex}}:{{item.title}}</option>
 					</select>
 				</td>
 				<td class="label-4" @click="removenew"><a href="javascript:;">&#x4f;</a></td>
 			</tr>
-			<tr class="addrow" v-else><td colspan="2" @click="addrow"><a href="javascriptp:;">&#x50;</a></td><td colspan="5"></td></tr>
+			<tr class="addrow" v-else><td colspan="2" @click="addrow"><a href="javascript:;">&#x50;</a></td><td colspan="5"></td></tr>
 		</table>
 	</div>
 </template>

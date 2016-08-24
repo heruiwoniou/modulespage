@@ -30,7 +30,7 @@ define(['vue', 'text!./viewTable.html' , './tableItem'], function(Vue, tpl) {
         },
         computed:{
         	pNode: function(){
-        		 return this.treeData.find(function(o){ return o.pId === undefined || o.pId ===''});
+        		 return this.treeData.find(function(o){ return o.pId === undefined || o.pId ==='' || o.pId === null ;});
         	},
         	deep : function(){
         		var that = this;

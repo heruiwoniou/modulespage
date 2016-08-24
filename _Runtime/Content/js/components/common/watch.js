@@ -1,6 +1,7 @@
 define(['./util'],function(util){
 	return {
 		'component.value':function(_new_,_old_){
+            if(!this.doing) return;
             var that = this;
             var ret ;
             var source = this.$root.logic.filter(function(o){ return o.from == that.component.id && o.option !== 999 });
@@ -28,6 +29,7 @@ define(['./util'],function(util){
                 }
             });
             this.$root.$emit( 'tofilter' , limitStart , limitEnd , limitMaxEnd );
+            this.$emit( 'toValidator' );
         }
 	}
 })

@@ -14,12 +14,10 @@
 
 <body class="public-preview mCustomScrollbar" :style="exportStyle">
     <div class="preview">
-        <form data-validator-option="{theme:'yellow_right_effect', stopOnError:false, timely:true}">
-            <component :is="header.type" :component="header"></component>
-            <component :is="tab.type" :component="tab"></component>
-            <component v-for="item in children" v-if="item!=null" :is="item.type" :component="item"></component>
-            <input type="submit" value="提交" class="button g">
-        </form>
+        <component :is="header.type" :component="header"></component>
+        <component :is="tab.type" :component="tab"></component>
+        <component v-for="item in children" v-if="item!=null" :is="item.type" :component="item"></component>
+        <input type="button" @click="submit" value="提交" class="button g">
     </div>
     <script data-main="Static/js/config" main="manage/preview" src="Static/js/libs/requirejs/require.js"></script>
 </body>

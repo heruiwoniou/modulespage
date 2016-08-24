@@ -35,10 +35,17 @@ define(
                     if ($parent.get(0).nodeName == "LABEL") {
                         $parent.addClass("comsys-checkbox-label").attr("for", id);
                     }
-
-                    $this.off('click.CheckBoxClickHandler').on('click.CheckBoxClickHandler',function(e, state){
-                        that.checkedChange(this);
-                    })
+                    if(this.setting.isDocumentBind)
+                    {
+                        $(document).on("click.CheckBoxClickHandler"+id,"#" + id,function(){
+                            that.checkedChange(this);
+                        })
+                    }else
+                    {
+                        $this.off('click.CheckBoxClickHandler').on('click.CheckBoxClickHandler',function(e, state){
+                            that.checkedChange(this);
+                        })
+                    }
                     $this.data(ClassName, this);
                 }else
                 {
@@ -73,7 +80,7 @@ define(
             CheckBoxInit: function() {
                 return this.each(function() {
                     $(this).attr('data-button-type')
-                    var setting = { buttontype: $(this).attr('data-buttontype') || '' }
+                    var setting = { buttontype: $(this).attr('data-buttontype') || '' ,isDocumentBind: $(this).attr('data-isdocumentbind') === 'true' }
                     new CheckBox({ element: this, setting: setting }).initialize();
                 });
             }

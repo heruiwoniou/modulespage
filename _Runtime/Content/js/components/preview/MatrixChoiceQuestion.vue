@@ -11,19 +11,19 @@
                     </th>
                     <th class="empty"></th>
                 </tr>
-                <tr v-for="index in component.rows.length">
+                <tr v-for="index in component.rows.length" @click="setCurrent(index)">
                     <th class="row">
                         <span>{{component.rows[index]}}</span>
                     </th>
                     <td v-for="i in component.cells.length">
                         <template v-if="i === 0">
-                            <input :type="component.single?'radio':'checkbox'" :data-rule="disabled||!component.must?'':'checked'" :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
+                            <input :type="component.single?'radio':'checkbox'" :data-rule="disabled||!component.must?'':'checked'" data-isdocumentbind='true' :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
                         </template>
                         <template v-else>
-                            <input :type="component.single?'radio':'checkbox'" :name="component.id + component.rows[index]" :value="component.cells[i]" v-model="component.value[index]">
+                            <input :type="component.single?'radio':'checkbox'" :name="component.id + component.rows[index]" data-isdocumentbind='true' :value="component.cells[i]" v-model="component.value[index]">
                         </template>
                     </td>
-                    <td class="empty"><span class="msg-box" :for="component.id + component.rows[index]"></span></td>
+                    <td class="empty"><msg-control :must="component.must"></msg-control></td>
                 </tr>
             </table>
             <input type="hidden" :name="component.id" :value="component.value | json">
@@ -36,12 +36,16 @@
 
 import props from './../common/props';
 import { styleExport } from './../common/computed';
-import { trigger } from './../common/events';
+import { trigger, toValidator } from './../common/events';
+import { start , stop } from './../common/methods';
 
 export default {
     data(){
         return {
             disabled: true,
+
+            doing: true,
+            current: -1
         }
     },
     props: props,
@@ -51,8 +55,22 @@ export default {
     ready(){
         this.disabled = false;
     },
+    watch:{
+        'component.value':function(...args){
+            if(!this.doing) return;
+            else
+            {
+                this.$emit( 'toValidator' , this.current);
+            }
+        }
+    },
     methods:{
-         behavior(e){
+        start,
+        stop,
+        setCurrent(index){
+            this.current = index;
+        },
+        behavior(e){
             if(this.disabled)
             {
                 e.stopPropagation();
@@ -65,6 +83,7 @@ export default {
         }
     },
     events:{
+        toValidator,
         trigger
     }
 }

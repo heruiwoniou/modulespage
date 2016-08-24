@@ -26,7 +26,7 @@
                 </div>
                 <h1 v-show="!editquestioning" :style="styleExport" @click.stop="editquestion"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || questiontip }}</h1>
                 <div v-show="editanswering" class="editanswer" @click.stop="">
-                    <input type="text" v-model="component.value" @focusout="closeanswer" v-el:answer-input />
+                    <input type="text" v-model="component.value" @focusout="closeanswer" maxlength="600" v-el:answer-input />
                 </div>
                 <p v-show="!editanswering" @click.stop="editanswer">{{ component.value || answertip }}</p>
             </div>

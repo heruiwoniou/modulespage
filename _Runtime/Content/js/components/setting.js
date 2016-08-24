@@ -1,6 +1,8 @@
 define(['Guid'],function(guid){
 	var color = '#2a2727';
 	var maxItems = 15;
+	var choiceItemWordLength = 50;
+	var wordlength = 6000;
 	var setting={
 		//外部公用
 		TabBar:function(){
@@ -140,7 +142,8 @@ define(['Guid'],function(guid){
 				color : data.color ,
 				must : data.must ,
 
-				maxItems : maxItems,
+				maxItems : data.maxItems,
+				itemWordLength:data.itemWordLength,
 
 				value: []
 			}
@@ -159,6 +162,7 @@ define(['Guid'],function(guid){
 				must : false,
 
 				maxItems : maxItems,
+				itemWordLength:choiceItemWordLength,
 
 				value: []
 			}
@@ -178,7 +182,8 @@ define(['Guid'],function(guid){
 				color : data.color ,
 				must : data.must ,
 
-				maxItems:maxItems,
+				maxItems:data.maxItems,
+				itemWordLength:data.itemWordLength,
 
 				value:[]
 			}
@@ -197,6 +202,7 @@ define(['Guid'],function(guid){
 				must : false,
 
 				maxItems:maxItems,
+				itemWordLength:choiceItemWordLength,
 
 				value:[]
 			}
@@ -215,6 +221,8 @@ define(['Guid'],function(guid){
 				color: data.color,
 				must : data.must,
 
+				wordlength:data.wordlength,
+
 				value:''
 			}
 			:
@@ -229,6 +237,8 @@ define(['Guid'],function(guid){
 				bold:false,
 				color: color,
 				must : false,
+
+				wordlength:wordlength,
 
 				value:''
 			}
@@ -249,8 +259,9 @@ define(['Guid'],function(guid){
 				color: data.color,
 				must : data.must,
 
-				maxRowItems:maxItems,
-				maxColItems:maxItems,
+				itemWordLength:data.cellNumber,
+				maxRowItems:data.maxRowItems,
+				maxColItems:data.maxColItems,
 
 				value:[]
 			}
@@ -269,6 +280,7 @@ define(['Guid'],function(guid){
 				color: color,
 				must : false,
 
+				itemWordLength:choiceItemWordLength,
 				maxRowItems:maxItems,
 				maxColItems:maxItems,
 

@@ -31,6 +31,7 @@ define([
     var layer = new MaskLayer(CommonSetting.layerSetting);
     var concatArg=function(arg,arr){ return [].splice.call(arg,0).concat(arr); }
     var self = {
+        _win_:Win,
         //图层控制
         progress:function(setting){
             layer.upload(setting);

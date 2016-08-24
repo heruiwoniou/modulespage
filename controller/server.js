@@ -1,7 +1,7 @@
 var fs = require('fs');
 var Guid = require('./../_Runtime/Static/js/common/core/Guid.js');
 var serverController = {
-	base64:function(querystring,form,files){
+	uploadimages:function(querystring,form,files){
 		var that = this;
 		fs.readFile(files.file[0].path, function (err, bitmap) {
 			if (err) throw err;
@@ -12,7 +12,7 @@ var serverController = {
 			that.response.end();
 		});
 	},
-	uploadimages:function(querystring,form,files){
+	uploadimage2s:function(querystring,form,files){
 		var that = this;
 		fs.readFile(files.file[0].path, function (err, bitmap) {
 			if (err) throw err;
@@ -22,7 +22,7 @@ var serverController = {
 			+ Guid.NewGuid().ToString("N") + '.' + files.file[0].path.split('.').pop();
 			fs.writeFile('Runtime/' + fullname, content, function (err) {
 				if (err) throw err;
-				that.response.writeHead(200, {'Content-Type': 'application/json'});
+				that.response.writeHead(200, {'Content-Type': 'text/plain'});
 				that.response.write(fullname);
 				that.response.end();
 			});

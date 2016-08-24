@@ -11,12 +11,18 @@ MatrixChoiceQuestion()
 			MatrixChoiceQuestionBase();
 
 MatrixChoiceQuestionBase()
+	.m-top
+		overflow-x auto
+		padding 10px 0 10px 5px
+		span.transparent
+			opacity 0
 	table
 		border-collapse collapse
 		th,td
 			text-align center
 			border 1px solid #ccc
 			line-height 25px
+			max-width 200px
 		th
 			background white - 1%
 			&:hover
@@ -28,6 +34,7 @@ MatrixChoiceQuestionBase()
 				padding 0 10px;
 				min-width 50px;
 				white-space: nowrap
+				textHidden()
 	.m-c
 		padding-top 10px
 	.addrow
@@ -42,11 +49,16 @@ MatrixChoiceQuestionBase()
 		position relative
 		cursor pointer
 		input
+			padding-left 10px
+			line-height 25px
+			border none
+			height 100%
 			position absolute
-			left 10px
-			top 1px
+			top 0
+			left 0
 			z-index 1
-			100%
+			width 100%
+			overflow-y hidden
 		b
 			iconfont()
 			position absolute
@@ -60,6 +72,7 @@ MatrixChoiceQuestionBase()
 			top -5px
 			line-height 12px
 			text-align center
+			z-index 2
 	.ctp
 		background transparent;
 		a

@@ -82,5 +82,11 @@ define(function(){
         temp.src = src;
         return deferred;
     }
+    prototype.start = function(){
+        this.doing = true;
+    }
+    prototype.stop = function(){
+        this.doing = false;
+    }
 	return new Methods();
 })

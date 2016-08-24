@@ -152,10 +152,10 @@ define(
                             THIS.element.options[THIS.element.selectedIndex].selected = true;
                         } else THIS.$input.val("");
                         THIS.cancelFocusOut = true;
-                        if (THIS.LastKey != THIS.$input.val()) {
+                        if (THIS.LastKey != THIS.element.value) {
                             THIS.OnOptionChange.apply(this.element);
                             $(THIS.element).trigger("vuechange");
-                            THIS.LastKey = THIS.$input.val();
+                            THIS.LastKey = THIS.element.value;
                         }
                         THIS.cancelFocusOut = false;
                         THIS.$input.trigger("focusout.TipChangeEvent");
@@ -299,9 +299,9 @@ define(
                                 return false;
                             default:
                                 THIS.FTimer = window.setTimeout(function () {
-                                    if (THIS.LastKey != THIS.$input.val()) {
+                                    if (THIS.LastKey != THIS.element.value) {
                                         THIS.Search(THIS.$input.val());
-                                        THIS.LastKey = THIS.$input.val();
+                                        THIS.LastKey = THIS.element.value;
                                     }
                                 });
                                 break;

@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="SectionGroup">
         <h1 :style="styleExport">{{ component.title }}</h1>
@@ -15,6 +13,11 @@
         props: props,
         computed: {
             styleExport
+        },
+        events:{
+            toValidator(){
+                return true;
+            }
         }
     }
 </script>

@@ -26,14 +26,15 @@
                 </div>
                 <h1 v-show="!edittitling" :style="styleExport" @click.stop="edittitle"><span class="qindex">Q{{component.qindex}}:</span>{{ component.title || titletip }}</h1>
                 <div class='m-c'>
-                    <div class="m-top">
+                    <div class="m-top" style="overflow-x:auto">
+                        {{ component.value | json }}
                         <table>
                             <tr>
                                 <th class="nh">&nbsp;&nbsp;&nbsp;</th>
                                 <th class="cell" v-for="index in component.cells.length">
                                     <b @click.stop="deletecell(index)" v-show="editcelling && index == editcellindex">&#x4d;</b>
-                                    <input v-show="editcelling && index == editcellindex" type="text" v-model="component.cells[index]" @click.stop="" @keydown.enter.tab="validatecell($event,$index)" @focusout="closeeditcell" lazy>
-                                    <span @click.stop="editcell($event,index)">{{component.cells[index]}}</span>
+                                    <input v-show="editcelling && index == editcellindex" type="text" v-model="component.cells[index]" @click.stop="" @keydown.enter.tab="validatecell($event,$index)" @focusout="closeeditcell" :maxlength="component.itemWordLength" lazy>
+                                    <span @click.stop="editcell($event,index)" :class="[editcelling && index == editcellindex?'transparent':'']" :title="component.cells[index]">{{component.cells[index]}}</span>
                                 </th>
                                 <th class="nh ctp ctp-cell">
                                     <a v-if="component.maxColItems > component.cells.length" href="javascript:;" class="addcell" @click.stop="addcell">&#x50;</a>
@@ -42,8 +43,8 @@
                             <tr v-for="index in component.rows.length">
                                 <th class="row">
                                     <b @click.stop="deleterow(index)" v-show="editrowing && index == editrowindex">&#x4d;</b>
-                                    <input v-show="editrowing && index == editrowindex" type="text" v-model="component.rows[index]" @click.stop="" @keydown.enter.tab="validaterow($event,$index)" @focusout="closeeditrow" lazy>
-                                    <span @click.stop="editrow($event,index)">{{component.rows[index]}}</span>
+                                    <input v-show="editrowing && index == editrowindex" type="text" v-model="component.rows[index]" @click.stop="" @keydown.enter.tab="validaterow($event,$index)" @focusout="closeeditrow" :maxlength="component.itemWordLength" lazy>
+                                    <span @click.stop="editrow($event,index)" :title="component.rows[index]">{{component.rows[index]}}</span>
                                 </th>
                                 <td v-for="i in component.cells.length"><input :type="component.single?'radio':'checkbox'" :name="component.rows[index]"></td>
                             </tr>
@@ -215,6 +216,7 @@ export default {
                     if(this.component.rows.slice( 0 , i ).concat(this.component.rows.slice(i + 1)).indexOf(this.component.rows[i]) !== -1  || this.component.rows[i] == '')
                     {
                         this.component.rows.splice( i , 1 );
+                        this.component.value.splice( i , 1 )
                         if(this.editrowindex != -1)
                         {
                             this.editrowindex --;

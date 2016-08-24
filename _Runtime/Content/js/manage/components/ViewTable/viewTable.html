@@ -9,7 +9,7 @@
 		<tr>
 			<th :style="{'width': deepWidth + 'px'}" v-for="index in deep"><div class="text-wrap">{{gIndex($index)}}级</div></th>
 			<template v-for="rate in rateData">
-				<th :style="{'width': rateWidth + 'px'}"><div class="text-wrap">{{rate.text}}</div></th>
+				<th :style="{'width': rateWidth + 'px'}" :title="rate.text" ><div class="text-wrap" :style="{'width': rateWidth + 'px'}">{{rate.text}}</div></th>
 			</template>
 		</tr>
 		<tr v-for="node in gChildren()">

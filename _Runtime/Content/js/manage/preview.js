@@ -11,9 +11,7 @@ define(
         './../components/preview/UnmixedText',
         './../components/preview/QuestionResponse',
         './../components/preview/GradeQuestion',
-        './../components/preview/MatrixChoiceQuestion',
-
-        'validator'
+        './../components/preview/MatrixChoiceQuestion'
     ],
     function(Vue,Request) {
         var viewModel;//数据模型
@@ -138,13 +136,35 @@ define(
                     computed:{
                         exportStyle:function(){
                             return {
-                                background:this.header&&this.header.src?"#ffffff url(" + this.header.src + ') repeat fixed' : "#fff"
+                                background:this.header && this.header.src?"#ffffff url(" + this.header.src + ') repeat fixed' : "#fff"
                             }
                         },
                         questions:function(){
                             var arr = [];
                             find(this,arr);
                             return arr;
+                        }
+                    },
+                    methods:{
+                        validator:function(){
+                            var that = this;
+                            this.$broadcast('toValidator');
+                            var _promise_ = {};
+                            var deferred = new $.Deferred() ;
+                            deferred.promise(_promise_);
+                            this.$nextTick(function(){
+                                deferred.resolve($(that.$el).find('.msg-box').length == 0);
+                            });
+                            return _promise_;
+                        },
+                        save:function(){
+                            var str = JSON.stringify(this.$data);
+                            localStorage.data = str;
+                        },
+                        submit:function(){
+                            this.validator().then(function(status){
+                                console.log(status);
+                            });
                         }
                     }
                 })

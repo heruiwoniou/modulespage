@@ -1,6 +1,8 @@
 <template>
     <div :class="['GradeQuestion',disabled?'gray':'']">
-        <h1 :style="styleExport" ><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}<span class="msg-box" :for="component.id"></span></h1>
+        <h1 :style="styleExport" ><span class="qindex">Q{{component.qindex}}:</span>{{ component.title }}
+            <msg-control v-ref:msg :must="component.must"></msg-control>
+        </h1>
         <div class="operate star-panel" v-if="component.xtype==0">
             <span :class="[select == 4 || component.value == 5 ? 'select':'']" @click="setStar(4)"></span>
             <span :class="[select == 3 || component.value == 4 ? 'select':'']" @click="setStar(3)"></span>
@@ -37,16 +39,17 @@
                 <span :class="[select === n || component.value === n ? 'select' : '']" @click="setChoose(n)">{{n}}</span>
             </template>
         </div>
-        <div class="operate input-panel" v-if="component.xtype==5">
-            <number-control v-ref:self-input :maxlength="component.range.charlength" @click.stop="" :value.sync="numberValue"></number-control>
+        <div class="operate input-panel" v-if="component.xtype == 5">
+            <input type="text" :maxlength="component.range.charlength" v-model="component.value" :placeholder="component.range.min + '~' + component.range.max">
         </div>
-        <input v-el:hidden-input type="hidden" :id="component.id" :name="component.id" :data-rule="disabled || !component.must ? '' : 'required'" :value="component.value">
+        <input v-el:hidden-input type="hidden" :id="component.id" :name="component.id" :value="component.value">
     </div>
 </template>
 <script>
     import props from './../common/props';
     import { styleExport } from './../common/computed';
-    import { trigger } from './../common/events';
+    import { trigger, toValidator } from './../common/events';
+    import { start , stop } from './../common/methods';
     import './../edit/common/NumberControl'
     export default {
         data() {
@@ -54,6 +57,7 @@
                 disabled : true,
 
                 select : -1,
+                doing:true
             }
         },
         props: props,
@@ -106,51 +110,52 @@
             {
                 if(this.component.value === '')
                 {
-                    this.component.value = 0;
-                    this.$refs.selfInput.setValue(0);
+                    //this.component.value = 0;
+                    //this.$refs.selfInput.setValue(0);
                 }
-                this.$watch("component.value",(_new_, _old_) => {
-                    if(_new_ > this.component.range.max || _new_<this.component.range.min ) this.component.value = _old_;
-                })
             }
             this.disabled = false;
         },
+        watch:{
+            'component.value':function(_new_,_old_){
+                if(!this.doing) return;
+                // if(_new_ < this.component.range.min || _new_ > this.component.range.max)
+                // {
+                //     var value = (_new_ < this.component.range.min ? this.component.range.min : this.component.range.max) ;
+                //     this.component.value = value;
+                //     //this.$refs.selfInput.setValue( value );
+                //     return
+                // }
+                this.$emit( 'toValidator' );
+            }
+        },
         methods:{
+            start,
+            stop,
             setStar(index){
                 if(this.disabled) return;
                 this.select = index;
                 this.component.value = (index + 1);
-                this.$nextTick(()=>{
-                    $(this.$els.hiddenInput).trigger('validate');
-                });
             },
             setLetter(index,letter){
                 if(this.disabled) return;
                 this.select = index;
                 this.component.value = letter;
-                this.$nextTick(()=>{
-                    $(this.$els.hiddenInput).trigger('validate');
-                });
             },
             setChar(index,char){
                 if(this.disabled) return;
                 this.select = index;
-                this.component.value = char
-                this.$nextTick(()=>{
-                    $(this.$els.hiddenInput).trigger('validate');
-                });
+                this.component.value = char;
             },
             setChoose(index)
             {
                 if(this.disabled) return;
                 this.select = index;
                 this.component.value = index;
-                this.$nextTick(()=>{
-                    $(this.$els.hiddenInput).trigger('validate');
-                });
             }
         },
         events:{
+            toValidator,
             trigger
         }
     }

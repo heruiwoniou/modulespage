@@ -11,21 +11,30 @@ MatrixChoiceQuestionPreview()
 			padding-left 35px
 		.m-c
 			margin-left 35px
+			.m-top
+				overflow-x auto
+				padding-bottom 10px
 		table
 			border-collapse collapse
 			th,td
 				text-align center
 				border 1px solid #ccc
 				line-height 25px
+				max-width 200px
+				min-width 100px
 			th
 				background white - 1%
 				&.nh
 					background white - 1%
 				span
-					white-space nowrap
 					display block
 					padding 0 10px
 					min-width 50px
+					word-break break-all
 			td.empty
 			th.empty
 				border-width 0 0 0 1px
+				min-width inherit
+				max-width inherit
+				.msg-box
+					margin-top 0px
