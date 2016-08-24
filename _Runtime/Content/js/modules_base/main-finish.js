@@ -56,7 +56,7 @@
 			if ( initialized === false && first === true )
 			{
 				$(".scroll-bar").scrollBar({
-					theme: "dark",//"inset-dark"//"inset-2-dark",//minimal-dark//dark-3//"dark-2",
+					//theme: "dark",//"inset-dark"//"inset-2-dark",//minimal-dark//dark-3//"dark-2",
 					scrollInertia: 400,
 					advanced:{ autoScrollOnFocus: false },
 					autoHideScrollbar:true,
