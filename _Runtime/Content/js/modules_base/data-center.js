@@ -1,5 +1,6 @@
 require([
-	'Static/js/application'
+	'Static/js/application',
+    'Static/js/libs/jquery.scrollbar/jquery.mCustomScrollbar'
 	],function(application){
 	application.init();
 	/**
