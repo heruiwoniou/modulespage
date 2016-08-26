@@ -43,13 +43,31 @@ body
 		fr()
 		width 670px
 .frame-2
-	clearfix()
+	&:after
+		clear()
 	.frame-left
 		fl()
 		width 900px
+		.panel-content
+			&:after
+				clear()
+		.panel-left
+			fl()
+			width 590px
+		.panel-right
+			fr()
+			width 270px
 	.frame-right
 		fr()
 		width 440px
+		.shopping
+			clearfix()
+		.panel-left
+			fl()
+			width 200px
+		.panel-right
+			fr()
+			width 200px
 
 .finder
 .appeal
@@ -59,6 +77,8 @@ body
 .gps
 .shopping
 	height 320px
+	.panel-content
+		height 100%
 
 listCreate($color,$path)
 	li
@@ -95,6 +115,100 @@ listCreate($color,$path)
 				text-align left
 				width 80px
 				font-style normal
+.shopping
+	.panel
+		background white
+		margin-bottom 0px
+		.panel-title
+			text-indent 0
+			height 30px
+			line-height 30px
+			.img-container
+				margin-left 10px
+				ib()
+				line-height 25px
+				height 25px
+				width 25px
+			span
+			i
+				ib()
+				padding 0 5px
+			i
+				color #333 + 20%
+	.panel-left
+	.panel-right
+		.panel-content
+			padding 20px 0 0 0
+			.img-container
+				line-height 190px
+				width 180px
+				height 190px
+				margin 0 auto
+			h1
+				line-height 50px
+				height 50px
+				text-align center
+				font-size 16px
+				color #9361a2
+				span
+					color #ccc
+.gps
+	.panel
+		margin-bottom 0px
+	.panel-left
+		.map-container
+			width 590px
+			height 290px
+			padding 5px
+			.img-container
+				text-align center
+				overflow-y hidden
+				height 280px
+				width 580px
+				line-height 280px
+	.panel-right
+		.panel-title
+			height 50px
+			line-height 50px
+			background $c4
+			&:before
+				content ''
+				ib()
+				width 30px
+				height 22px
+				margin-right 50px
+				background url('./../images/map-icon.png') no-repeat center center
+		ul.time-table
+			li
+				line-height 60px
+				height 60px
+				table
+					margin 0 10px
+					table-layout fixed
+					border-collapse collapse
+					width 250px
+					th
+					td
+						&.center
+							text-align center
+						height 30px
+						line-height 30px
+						th()
+						.icon-arrow-to
+							&:before
+								ib()
+								content ''
+								width 26px
+								height 8px
+								position relative
+								top -4px
+								background url('./../images/arrow-to.png') no-repeat center center
+					th
+						color black
+					td
+						color #333 + 20%
+			li:nth-child(2n+2)
+				background white
 .appeal
 	table
 		width 100%
@@ -167,3 +281,53 @@ listCreate($color,$path)
 		listCreate($c1,'./../images/l-icon.png')
 	ul.findout-list
 		listCreate($c2,'./../images/f-icon.png')
+@media screen and (max-width 1425px)
+	.section
+		.section-body
+			max-width 1020px
+			width 1020px
+	.frame-1
+		.frame-left
+			width 100%
+			.panel-left
+			.panel-right
+				width 490px
+		.frame-right
+			fl()
+			width 570px
+	.frame-2
+		position relative
+		.frame-left
+			width 100%
+			.panel-right
+				width 390px
+		.frame-right
+			position absolute
+			top -450px
+			right 0
+			width 440px
+			.shopping
+				clearfix()
+			.panel-left
+				fl()
+				width 200px
+			.panel-right
+				fr()
+				width 200px
+	.gps
+		.panel-right
+			ul.time-table
+				li
+					table
+						width 370px
+	.shopping
+		height 380px
+		.panel
+			.panel-title
+				height 60px
+				line-height 60px
+		.panel-right
+		.panel-left
+			.panel-content
+				h1
+					margin-bottom 30px
