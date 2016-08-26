@@ -1,0 +1,22 @@
+@import './../setting.styl';
+
+@import "./../base/core/common.styl";
+@import "./../base/core/reset.styl";
+@import './../../../Static/style/font.styl';
+global-reset();
+nested-reset();
+
+$columns      =12;
+$percent      =true;
+$percent-step =2;
+@import "./../base/grid/grid.styl";
+
+/**
+ * base frame
+ */
+@import "./../base/frame/index.styl";
+frame-base(100px,35px);
+container-base(1025px,900px);
+@import "./frame.styl";
+
+
