@@ -1,0 +1,50 @@
+@import './data-center.styl';
+@import './Personnel-information.styl';
+
+html
+body
+  height 100%
+  background transparent
+  .tableList
+    width 374px
+    height auto
+    float left
+    margin-right 10px
+    margin-bottom 20px
+    overflow hidden
+    .tableTitle
+      height 30px
+      width 100%
+      padding 0 10px 0 17px
+      font-size 14px
+      color #2b2626
+      line-height 30px
+      background white
+      span
+        float right
+        font-size 12px
+        color #999999
+
+  .bottomIcon
+    margin-top 15px
+    span
+      display inline-block
+      float right
+      padding-left 15px
+      margin-left 15px
+    span:before
+      width: 15px
+      height 15px
+      content:" "
+      float left
+      display inline-block
+    .yellowIcon:before
+      background url("../icons/small-yellow-bac.png") no-repeat;
+    .redIcon:before
+      background url("../icons/small-red-bac.png") no-repeat;
+    .greenIcon:before
+      background url("../icons/small-green-bac.png") no-repeat;
+    .blueIcon:before
+      background url("../icons/small-blue-bac.png") no-repeat;
+
+
