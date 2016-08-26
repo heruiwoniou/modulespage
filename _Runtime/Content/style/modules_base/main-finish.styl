@@ -647,9 +647,8 @@ body
 								color $color + ( index + 1 )
 .meeting
 	height 335px
-	table
+	&>table
 		table-layout fixed
-		border-collapse collapse
 		width 100%
 		height 100%
 		th
@@ -659,8 +658,8 @@ body
 				text-align left
 			&.right
 				text-align right
-		thead
-			th
+		&>thead
+			&>tr>th
 				height 40px
 				background #9a6daa
 				line-height 40px
@@ -687,18 +686,36 @@ body
 					font-size 14px
 					color white
 				textHidden()
-		tbody
-			th,td
+		&>tbody
+			&>tr>th
+			&>tr>td
 				border-right 1px solid white
 				padding 0 5px
 				position relative
-			th
+				line-height 36px
+				height 36px
+				box-sizing border-box
+			&>tr>th
 				font-weight bold
-				background #dcd3df
+				background #eee6f6
 				color black
-			td
+				padding 0
+				a
+					color #333
+					&:hover
+						text-decoration none
+						background white - 5%
+					&.select
+						background white
+					display block
+			&>tr:first-child>th
+				background #dcd3df
+				padding 0 5px
+			&>tr:first-child>th:last-child
+				border-right-width 0px
+			&>tr>td
 				textHidden()
-			tr:nth-child(2n)
+			&>tr:nth-child(2n)
 				background white
 			.arrow
 				width 7px
@@ -707,6 +724,22 @@ body
 				bottom 2px
 				right 2px
 				background url('./../images/arrow.png') no-repeat center center
+	.meeting-content-body
+		padding 0 !important
+		.scroll-bar
+			height 259px
+			width 705px
+			table
+				width 100%
+				table-layout fixed
+				td
+					line-height 37px
+					height 37px
+					padding 0 5px
+					textHidden()
+					position relative
+				tr:last-child td
+					border-bottom-width 0px
 .calendar
 	height 200px
 	.datapicker-panel
@@ -931,3 +964,7 @@ body
 						height 150px
 						.scroll-bar
 							height 100px
+			.meeting
+				.meeting-content-body
+					.scroll-bar
+						width 595px
