@@ -1,3 +1,11 @@
+@import './../setting.styl';
+@import './../base/core/common.styl';
+
+$c1 = #eb6877;
+$c2 = #77b3d4;
+$c3 = #76c2af;
+$c4 = #fbd641;
+
 html
 body
 	height 100%
@@ -27,9 +35,135 @@ body
 		color white
 		white-space nowrap
 .frame-1
+	clearfix()
 	.frame-left
-		float left
+		fl()
 		width 670px
 	.frame-right
-		float right
+		fr()
 		width 670px
+.frame-2
+	clearfix()
+	.frame-left
+		fl()
+		width 900px
+	.frame-right
+		fr()
+		width 440px
+
+.finder
+.appeal
+	height 380px
+	.panel-content
+		height 100%
+.gps
+.shopping
+	height 320px
+
+listCreate($color,$path)
+	li
+		line-height 31px
+		&:nth-child(2n+2)
+			background white
+		&:hover
+			a
+				background $color + 90%
+		a
+			text-indent 20px
+			clearfix()
+			span
+				&:before
+					ib()
+					content ''
+					width 16px
+					height 17px
+					position relative
+					top -1px
+					margin-right 10px
+					background url($path) no-repeat center center
+			color #333333
+			display block
+			.txt
+				fl()
+				width 230px
+				th()
+				b
+					color $color
+			i
+				fr()
+				text-indent 0
+				text-align left
+				width 80px
+				font-style normal
+.appeal
+	table
+		width 100%
+		border-layout fixed
+		border-collapse collapse
+		thead
+			th
+				padding 0 10px
+				font-size 0
+				height 40px
+				line-height 40px
+				background $c3
+				a.filter
+				a.choose
+					ib()
+					fl()
+					color white
+				a.choose
+					height 30px
+					line-height 30px
+					padding 0 10px
+					border-radius 15px
+					background $c3 - 20%
+					margin-top 5px
+				a.filter
+					fr()
+					&:after
+						ib()
+						position relative
+						top -2px
+						content ''
+						width 58px
+						height 30px
+						margin-left 5px
+						background url('./../images/filter-off.png') no-repeat center center
+					&.on:after
+						background url('./../images/filter-on.png') no-repeat center center
+					&:hover
+						text-decoration none
+		tbody
+			td
+				.img-container
+					height 50px
+					line-height 50px
+					width 50px
+					fl()
+					margin 6px 5px 0 6px
+				height 62px
+				line-height 62px
+				&.gray
+					color #ccc - 20%
+			tr:nth-child(2n+1)
+				background white
+.finder
+	.panel-left
+	.panel-right
+		fl()
+		width 315px
+		.panel-title
+			background $c1
+	.panel-right
+		fr()
+		.panel-title
+			background $c2
+	.panel-title
+		color white
+		height 40px
+		line-height 40px
+	ul.finder-list
+		listCreate($c1,'./../images/l-icon.png')
+	ul.findout-list
+		listCreate($c2,'./../images/f-icon.png')
