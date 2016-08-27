@@ -21,7 +21,6 @@
 
 		// AMD. Register as an anonymous module.
 		define( [
-			"jquery",
 			"../escape-selector",
 			"../keycode",
 			"../safe-active-element",
@@ -34,7 +33,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 $.widget( "ui.tabs", {
 	version: "1.12.0",

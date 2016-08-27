@@ -1,28 +1,45 @@
+input[type*=checkbox][cs-control]
+input[type*=radio][cs-control]
+	width 18px
 .comsys-checkbox
 .comsys-radiobox
-    position relative
-    top -1px
-    width: 16px
-    height: 16px
-    background: url(images/checkbox.png) no-repeat center
-    display: inline-block
-    vertical-align middle
-    margin-right 3px
-    input[type=checkbox]
-        opacity 0
-        display: block !important
+	position relative
+	top -1px
+	width: 14px
+	height: 14px
+	background: url($imagepath + 'checkbox.png') no-repeat center
+	display: inline-block
+	vertical-align middle
+	input[type=checkbox]
+		opacity 0
+		display: block !important
+		height 100%
+		width 100%
+.comsys-checkbox
+	width: 14px;
+	height: 14px;
 .comsys-radiobox
-    background: url(images/radio.png) no-repeat center
-    input[type=radio]
-        opacity 0
-        display block !important
+	background: url($imagepath + 'checkbox.png') no-repeat center
+	input[type=radio]
+		opacity 0
+		display block !important
 
 .checkbox-checked
-    background: url(images/checkbox-checked.png) no-repeat center
+	background: url($imagepath + 'checkbox-checked.png') no-repeat center
 .radiobox-checked
-    background: url(images/radio-checked.png) no-repeat center
-
+	background: url($imagepath + 'checkbox-checked.png') no-repeat center
 .comsys-checkbox-label
 .comsys-radiobox-label
-    vertical-align middle
-    font-size $font-size !important
+	&.location-left
+		.comsys-checkbox
+		.comsys-radiobox
+			margin-left 3px
+	&.location-right
+		.comsys-checkbox
+		.comsys-radiobox
+			margin-right 3px
+	display inline-block
+	&>*
+		vertical-align middle
+	line-height 14px
+@import './slider.styl';

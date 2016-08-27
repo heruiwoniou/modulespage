@@ -17,7 +17,6 @@
 
 		// AMD. Register as an anonymous module.
 		define( [
-			"jquery",
 			"./form",
 			"./version"
 		], factory );
@@ -26,7 +25,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 return $.ui.formResetMixin = {
 	_formResetHandler: function() {

@@ -19,13 +19,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "./version" ], factory );
+		define( [ "./version" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 var dataSpace = "ui-effects-",
 	dataSpaceStyle = "ui-effects-style",

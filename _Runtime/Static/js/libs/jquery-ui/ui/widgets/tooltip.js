@@ -21,7 +21,6 @@
 
 		// AMD. Register as an anonymous module.
 		define( [
-			"jquery",
 			"../keycode",
 			"../position",
 			"../unique-id",
@@ -33,7 +32,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 $.widget( "ui.tooltip", {
 	version: "1.12.0",

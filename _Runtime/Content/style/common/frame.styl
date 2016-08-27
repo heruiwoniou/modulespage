@@ -1,0 +1,76 @@
+html
+	body
+		/* @meta {"spritesheet": {"include": false}} */
+		background-image url('./../images/background.jpg')
+		background-color black + 20%
+		background-repeat no-repeat
+		background-position center center
+		background-attachment fixed
+		background-size cover
+		*
+			color #c9f1ff
+.header
+	height 80px
+	background rgba(255, 255, 255, .05)
+	.logo
+		width 120px
+		height 80px
+		ib()
+		background url('./../images/logo.png') no-repeat center center
+	.menus
+		ib()
+		margin-left 50px
+		ul
+			height 80px
+			line-height 80px
+			font-size 0
+			li
+				ib()
+				text-align center
+				margin-right 20px
+				height 80px
+				min-width 150px
+				font-size 0
+				border-bottom 4px solid transparent
+				a
+					text-align center
+					line-height 80px
+					ib()
+					span
+					i
+						color white
+						display block
+						line-height 1
+					span
+						line-height 1.4
+						font-size 16px
+					i
+						font-size 10px
+						font-style normal
+					&:hover
+						text-decoration none
+				&:hover
+				&.active
+					text-shadow 0 0 5px white
+					border-color $color
+	.info
+		ib()
+		fr()
+		height 80px
+		line-height 80px
+		a
+			padding 0 5px
+			color white
+			text-align center
+			ib()
+			&:hover
+				text-decoration none
+				color $color
+			i.icon-logout
+				font-size 24px
+				ib()
+				position relative
+				top -2px
+.footer
+	color white
+	background-color rgba(56, 56, 56, .6)

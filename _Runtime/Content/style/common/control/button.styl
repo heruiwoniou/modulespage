@@ -1,0 +1,46 @@
+/**
+ * buttons
+ */
+ $lighten = 60%;
+ $darken = 40%;
+.btn
+	border-radius 5px
+	padding 1px 23px
+	&.no-radius
+		border-radius 0px
+	color rgba(255, 255, 255, .8)
+	vertical-align middle
+	border 1px solid transparent;
+	font-weight normal
+	transition border-color .3s ease , color .3s ease
+	&.b
+		border-color rgba(255,255,255,.3)
+		background rgba(0,168,255,.3);
+		&:hover
+			border-color $color + $lighten !important
+			color white
+	&.db
+		color #c9f1ff
+		background $color;
+		&:hover
+			border-color $color - $lighten !important
+	&.w
+		color #333
+		background #e3edf2;
+		&:hover
+			border-color #e3edf2 - $lighten !important
+	&.empty
+		&.b
+			background transparent
+			color #c9f1ff
+			border-color rgba(255,255,255,.3)
+			&:hover
+				color white
+.btn-panel
+	display inline-block;
+	vertical-align middle
+	font-size 0
+	&>*
+		margin 0 2px
+	&.right
+		float right

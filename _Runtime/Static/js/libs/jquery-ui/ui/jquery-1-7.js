@@ -16,13 +16,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "./version" ], factory );
+		define( [ "./version" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 // Support: jQuery 1.7 only
 // Not a great way to check versions, but since we only support 1.7+ and only

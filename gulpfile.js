@@ -45,6 +45,7 @@ gulp.task('build-css', function() {
         module = arr[i].substr(0, arr[i].lastIndexOf('.'));
         doingstylus(gulp.src('_Runtime/Content/style/modules_base/' + module + '.styl'),'Runtime/Content/style/modules_base', module);
     }
+    doingstylus(gulp.src('_Runtime/Content/style/common/datapicker/datapicker.styl'),'Runtime/Content/style/common/datapicker');
 
     gulp.src('_Runtime/Content/style/modules_business/**/*').pipe(gulp.dest('Runtime/Content/style/modules_business/'));
 

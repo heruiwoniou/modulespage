@@ -16,13 +16,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "./version", "./escape-selector" ], factory );
+		define( [ "./version", "./escape-selector" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-} ( function( $ ) {
+} ( function() {
 
 return $.fn.labels = function() {
 	var ancestor, selector, id, labels, ancestors;

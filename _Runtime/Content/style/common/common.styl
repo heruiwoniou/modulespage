@@ -15,8 +15,26 @@ $percent-step =2;
  * base frame
  */
 @import "./../base/frame/index.styl";
-frame-base(100px,35px);
-container-base(1025px,900px);
+frame-base(80px,40px);
+container-base(1270px,900px);
+button-base(32px,80px)
+
+
+$baseBackColor = rgba(0,168,255,.3)
+
+$line-height = 32px;
+$themeColor = $color;
+$imagepath = './../images/';
+$borderradius = 2px;
+$inputoutlinecolor = $color + 40%;
+$combox-icon = '3';
+$border-color = rgba(255,255,255,0.3)
+@import "./../../../Static/style/comsys/index.styl";
+
 @import "./frame.styl";
+@import './control/button.styl';
+@import './control/form.styl';
+
+@import './overwrite-comsys.styl';
 
 

@@ -11,7 +11,7 @@ define(
         'TPLEngine',
         './Base',
         'comsys/layout/MaskLayer',
-        'jquery.ui/ui/draggable',
+        'jquery.ui/ui/widgets/draggable',
         'common/setting'
     ],
     function (Class, TPLEngine, Base, MaskLayer, draggable, CommonSetting) {

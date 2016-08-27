@@ -1,25 +1,31 @@
+$imagepath = $imagepath is defined ? $imagepath : './images/';
+$borderradius = $borderradius is defined ? $borderradius : 0px;
+$inputoutlinecolor = $inputoutlinecolor is defined ? $inputoutlinecolor : transparent;
 @import './core/common.styl';
 
-$line-height=27px;
-$border-color=#e8e7e7;
+$baseBackColor = $baseBackColor is defined ? $baseBackColor : #fff;
+
+$line-height = $line-height is defined ?  $line-height : 27px;
+$border-color = $border-color is defined ? $border-color : #e8e7e7;
 $font-ico-size=14px;
 $font-size=14px;
 
 @import './core/base.styl';
 @import './protoupload/index.styl';
+
 @import './checkradio/index.styl';
 
 $tip-icon="r ";
-$combox-icon=";";
-@import './textbox/index.styl';
+$combox-icon = $combox-icon is defined ? $combox-icon : ";";
+@import './buttontextbox/index.styl';
 
 $disabled-color=#f4f4f4;
 $mcombox-icon="?";
 @import './mulcombox/index.styl';
 @import './combox/index.styl';
 
-$themeColor=white;
-$themeFontColor=$fontBaseColor;
+$themeColor= $themeColor is defined ? $themeColor : white;
+$themeFontColor = #333;
 
 $window-border=0px;
 $window-titleHeight=50px;
@@ -28,10 +34,25 @@ $close="M";
 
 @import './load/index.styl';
 
+
+input
 textarea
+	background $baseBackColor
+	vertical-align middle
+	padding 5px
+	border-radius $borderradius
+	transition box-shadow .1s ease , border .1s ease
+	&:focus
+		outerlineset($inputoutlinecolor)
+input
+	height $line-height
 	border 1px solid $border-color
 	display inline-block
-	vertical-align middle
-	outline none;
+	width 100%
+textarea
+	margin-top 10px
+	margin-bottom 8px
+	border 1px solid $border-color
+	display inline-block
 	width 100%
 	resize none;

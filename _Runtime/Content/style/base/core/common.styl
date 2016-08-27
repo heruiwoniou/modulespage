@@ -1,39 +1,25 @@
-clear()
-	display: block
-	visibility: hidden
-	content:""
-	width: 0px
-	height:0px
-	line-height: 0px
-	font-size:0px
-	clear:both
-	zoom:1
-clearfix()
+c()
+	&:after
+		display: block
+		visibility: hidden
+		content:""
+		width: 0px
+		height:0px
+		line-height: 0px
+		font-size:0px
+		clear:both
+		zoom:1
+cf()
 	overflow auto
 	zoom 1
 th()
 	overflow hidden
 	text-overflow ellipsis
 	white-space nowrap
-textHidden()
-	overflow hidden
-	text-overflow ellipsis
-	white-space nowrap
-setIcoFont()
-	font-family: "ElegantIcons"
-	line-height: 1.5
-	position relative
 fr()
 	float right
 fl()
 	float left
-inlineBlock()
-	display inline-block
-	vertical-align middle
 ib()
 	display inline-block
 	vertical-align middle
-boxShadow()
-	box-shadow 0 0 5px 0 #a7a7a7
-disabled()
-	filter: grayscale(100%);

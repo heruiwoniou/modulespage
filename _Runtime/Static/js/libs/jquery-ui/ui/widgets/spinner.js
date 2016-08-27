@@ -21,7 +21,6 @@
 
 		// AMD. Register as an anonymous module.
 		define( [
-			"jquery",
 			"./button",
 			"../version",
 			"../keycode",
@@ -33,7 +32,7 @@
 		// Browser globals
 		factory( jQuery );
 	}
-}( function( $ ) {
+}( function() {
 
 function spinnerModifer( fn ) {
 	return function() {

@@ -16,13 +16,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "./version", "./focusable" ], factory );
+		define( [ "./version", "./focusable" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-} ( function( $ ) {
+} ( function() {
 
 return $.extend( $.expr[ ":" ], {
 	tabbable: function( element ) {

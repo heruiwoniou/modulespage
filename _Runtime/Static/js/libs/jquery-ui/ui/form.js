@@ -2,13 +2,13 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "./version" ], factory );
+		define( [ "./version" ], factory );
 	} else {
 
 		// Browser globals
 		factory( jQuery );
 	}
-} ( function( $ ) {
+} ( function() {
 
 // Support: IE8 Only
 // IE8 does not support the form attribute and when it is supplied. It overwrites the form prop
