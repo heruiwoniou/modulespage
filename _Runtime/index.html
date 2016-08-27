@@ -381,7 +381,6 @@ WebApi.error("错误信息").then(function(status){ alert(status); })
                         <button class="btn g" onclick="runJS(showmessage3)">error</button>
                         <br>
                         <br>
-                        
                     </div>
 					</div>
 					<div class="frame-right" style="margin-left:405px">
@@ -389,7 +388,7 @@ WebApi.error("错误信息").then(function(status){ alert(status); })
 							<div class="title-bar">
 								测试二
 							</div>
-							<textarea spellcheck="false" id="showmodal" cols="30" rows="52">
+							<textarea spellcheck="false" id="showmodal" cols="30" rows="11">
 //弹内容
 //第一参数可以指定窗体变量名,亦可省略
 WebApi.modal("modal1",{
@@ -400,6 +399,13 @@ WebApi.modal("modal1",{
 }).then(function(status){
     alert("弹内容关闭后回调信息:"+ status);
 });
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmodal)">弹自宝义内容</button>
+                        <br>
+                        <br>
+                        <textarea spellcheck="false" id="showmodal1" cols="30" rows="10">
 //弹HTML
 WebApi.modal({
     content:$("#testmodal1"),
@@ -409,15 +415,29 @@ WebApi.modal({
 }).then(function(status){
     alert("弹HTML关闭后回调信息:"+ status);
 });
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmodal1)">弹指定的本页Html</button>
+                        <br>
+                        <br>
+                      <textarea spellcheck="false" id="showmodal2" cols="30" rows="10">
 //弹iframe
 WebApi.modal({
-    src:"index.html",
+    src:"popcontent.html",
     width:550,
     height:450,
     title:"弹iframe"
 }).then(function(status){
     alert("弹iframe关闭后回调信息:"+ status);
 });
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmodal2)">弹iframe内容</button>
+                        <br>
+                        <br>
+<textarea spellcheck="false" id="showmodal3" cols="30" rows="10">
 //添加了全屏与还原功能,其它参数与modal类似
 WebApi.window({
     content:$("#testmodal2"),
@@ -427,10 +447,16 @@ WebApi.window({
 }).then(function(status){
     alert("window关闭后回调信息:"+status);
 });
-
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmodal3)">使用可缩放功能的弹窗</button>
+                        <br>
+                        <br>
+<textarea spellcheck="false" id="showmodal4" cols="30" rows="11">
 //title属性的设置为false时,标题栏将隐藏
 WebApi.modal("self-window",{
-    content:"<div style='height:346px; text-align: center'><span style='display:inline-block;height:100%;vertical-align: middle;'></span><button class='button r' onclick='WebApi.close({name:\"self-window\"})'>关闭自己</button></div>",
+    content:"<div style='height:346px; text-align: center'><span style='display:inline-block;height:100%;vertical-align: middle;'></span><button class='btn db' onclick='WebApi.close({name:\"self-window\"})'>关闭自己</button></div>",
     width:450,
     height:350,
     title:false
@@ -440,7 +466,7 @@ WebApi.modal("self-window",{
 </textarea>
                         <br>
                         <br>
-                        <button class="btn g" onclick="runJS(showmodal)">modal/window</button>
+                        <button class="btn g" onclick="runJS(showmodal4)">通过自定义内容关闭窗体</button>
                         <br>
                         <br>
                         <div class="title-bar">以下是本页面的内容 供上面弹窗使用</div>
@@ -465,7 +491,7 @@ WebApi.close({
 </textarea>
                                 <br>
                                 <br>
-                                <a href='javascript:;' class='btn g' onclick='runJS(closeitem)'>关闭指定窗口</a>
+                                <a href='javascript:;' class='btn w' onclick='runJS(closeitem)'>关闭指定窗口</a>
                                 <br/>
                                 <br/>
                                 <textarea spellcheck='false' id='closeall' cols='30' rows='5'>//这里是关闭所有弹窗的js
