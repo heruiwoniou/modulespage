@@ -25,6 +25,13 @@ glistcolor($color)
 		word-break break-all
 		&.single
 			textHidden()
+		a[class*=icon-]
+			opacity .8
+			font-size 22px
+			vertical-align middle
+			&:hover
+				opacity 1
+				text-decoration none
 	th
 		font-weight bold
 		&.left
