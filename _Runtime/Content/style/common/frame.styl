@@ -100,3 +100,39 @@ html
 	color $basefontcolor - 40%
 :-ms-input-placeholder
 	color $basefontcolor - 40%
+
+$basefontcolor = #ccc;
+$baseBackColor = white
+
+$line-height = 32px;
+$themeColor = $color;
+$imagepath = './../images/';
+$borderradius = 2px;
+$inputoutlinecolor = $color + 40%;
+$combox-icon = '3';
+$border-color = #ccc;
+.comsys-box-window
+	.comsys-box-content
+		*
+			color #333
+		input
+		textarea
+			background $baseBackColor
+			vertical-align middle
+			padding 5px
+			border-radius $borderradius
+			transition box-shadow .1s ease , border .1s ease
+			&:focus
+				outerlineset($inputoutlinecolor)
+		input
+			height $line-height
+			border 1px solid $border-color
+			display inline-block
+			width 100%
+		textarea
+			margin-top 10px
+			margin-bottom 6px
+			border 1px solid $border-color
+			display inline-block
+			width 100%
+			resize none;

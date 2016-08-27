@@ -30,7 +30,7 @@ var doingstylus = function(sm,dest,module){
                 'spriteSheet': 'Runtime/Content/style/images/' + sprite,
                 'pathToSpriteSheetFromCSS': '../images/' + sprite
             }))//.pipe(cleancss({processImport : false}));
-        if( module ) sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
+        if( module && module !== 'pop-overwrite-comsys') sm = sm.pipe(replace(/^([\s\S]*)$/g,"@import url('./../common/common.css');\n@import url('./../modules_business/" + module + ".css');\n$1;"))
         if( isDevelop ) sm = sm.pipe(sourcemaps.write());
         sm.pipe(gulp.dest(dest));
     }
@@ -40,6 +40,7 @@ gulp.task('build-css', function() {
     var i,module;
 
     doingstylus(gulp.src('_Runtime/Content/style/common/common.styl'),'Runtime/Content/style/common');
+    doingstylus(gulp.src('_Runtime/Content/style/common/pop-overwrite-comsys.styl'),'Runtime/Content/style/common','pop-overwrite-comsys');
     for(i = 0 ; i < arr.length ; i++)
     {
         module = arr[i].substr(0, arr[i].lastIndexOf('.'));

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>popcontent</title>
+	<link rel="stylesheet" href="Content/style/modules_base/popcontent.css">
+	<link rel="stylesheet" href="Content/style/common/pop-overwrite-comsys.css">
+    <script src="Content/js/common/jquery.js"></script>
+</head>
+<body>
+<div class="section-container">
+	<div class="title-bar">
+		表单
+	</div>
+	<table class="form">
+		<tr>
+			<th style="width:120px">多选:</th>
+			<td>
+				<input type="checkbox" name="c1" cs-control cs-label="多选按钮1">
+				<input type="checkbox" name="c1" cs-control cs-label="多选按钮2">
+				<input type="checkbox" name="c1" cs-control cs-label="多选按钮3">
+			</td>
+		</tr>
+		<tr>
+			<th>单选:</th>
+			<td>
+				<input type="radio" name="r1" cs-control cs-label="单选按钮1">
+				<input type="radio" name="r1" cs-control cs-label="单选按钮2">
+				<input type="radio" name="r1" cs-control cs-label="单选按钮3">
+			</td>
+		</tr>
+		<tr>
+			<th>文本框:</th>
+			<td>
+				<input placeholder="这里是个文本框的提示内容" type="text">
+			</td>
+		</tr>
+		<tr>
+			<th class="top">多行文本框:</th>
+			<td><textarea cols="30" rows="5"></textarea></td>
+		</tr>
+		<tr>
+			<th>文本框:</th>
+			<td>
+				<input type="text">
+			</td>
+		</tr>
+		<tr>
+			<th>下拉框:</th>
+			<td>
+				<select placeholder="这里是个下拉框的提示内容" cs-control>
+					<option value="0"></option>
+					<option value="1">选项一</option>
+					<option value="2">选项二</option>
+					<option value="3">选项三</option>
+					<option value="4">选项四</option>
+					<option value="5">选项五</option>
+					<option value="6">选项六</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>按钮文本控件(右):</th>
+			<td>
+				<input type="text" cs-control="ButtonTextBox" cs-button-type="timebutton">
+			</td>
+		</tr>
+		<tr>
+			<th>时间控件(左):</th>
+			<td>
+				<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
+			</td>
+		</tr>
+		<tr>
+			<th>按钮文本控件(左):</th>
+			<td>
+				<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton">
+			</td>
+		</tr>
+	</table>
+</div>
+<script data-main="Content/js/modules_base/index" src="Content/js/common/require.js"></script>
+</body>
+</html>
