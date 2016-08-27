@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>index</title>
-	<link rel="stylesheet" href="Content/style/modules_base/index.css">
-	<script src="Content/js/common/jquery.js"></script>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="Content/style/modules_base/index.css">
+    <script src="Content/js/common/jquery.js"></script>
+    <style>
+    .row {
+        margin-top: 2px;
+        margin-bottom: 2px
+    }
+    .row div[class*=col-],
+    .row div[class*=per-] {
+        line-height: 20px;
+        background: rgba(0, 168, 255, .3)
+    }
+    .icon-container .row [class*=icon-] {
+        font-size: 26px;
+        vertical-align: middle
+    }
+    .icon-container .row [class*=per-] span {
+        vertical-align: middle;
+    }
+    </style>
+     <script>
+        function runJS(target) {
+            eval(target.value);
+        }
+    </script>
 </head>
+
 <body>
-	<div class="header">
-		<div class="container">
-			<div class="logo">
-			</div>
-			<div class="menus">
-				<ul>
-					<li class="active">
-						<a href="javascript:;">
-							<span>数据接收地管理</span>
-							<i>Data receiving management</i>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<span>实时监控</span>
-							<i>Real time monitoring</i>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<span>分发规则管理</span>
-							<i>Distribution rule management</i>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="info">
-				<a href="javascript:;"><i class="icon-user"></i>管理员</a
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+            </div>
+            <div class="menus">
+                <ul>
+                    <li class="active">
+                        <a href="javascript:;">
+                            <span>数据接收地管理</span>
+                            <i>Data receiving management</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span>实时监控</span>
+                            <i>Real time monitoring</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span>分发规则管理</span>
+                            <i>Distribution rule management</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="info">
+                <a href="javascript:;"><i class="icon-user"></i>管理员</a
 				>
 				<a href="javascript:;"><i class="icon-lock"></i></a
 				>
@@ -47,100 +72,473 @@
 	</div>
 	<div class="body">
 		<div class="container">
-			<div class="title-bar">
-				按钮
+			<div class="section-container">
+				<div class="title-bar">栅格</div>
+				<span>&nbsp;&nbsp;12分格:</span>
+				<br>
+				<br>
+				<div class="row">
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+					<div class="col-1">col-1</div>
+				</div>
+				<div class="row">
+					<div class="col-2">col-2</div>
+					<div class="col-2">col-2</div>
+					<div class="col-2">col-2</div>
+					<div class="col-2">col-2</div>
+					<div class="col-2">col-2</div>
+					<div class="col-2">col-2</div>
+				</div>
+				<div class="row">
+					<div class="col-3">col-3</div>
+					<div class="col-3">col-3</div>
+					<div class="col-3">col-3</div>
+					<div class="col-3">col-3</div>
+				</div>
+				<div class="row">
+					<div class="offset-1 col-11">offset-1 col-11</div>
+				</div>
+				<div class="row">
+					<div class="offset-2 col-8">offset-2 col-8</div>
+				</div>
+				<div class="row">
+					<div class="offset-3 col-6">offset-3 col-6</div>
+				</div>
+				<br>
+				<br>
+				<span>&nbsp;&nbsp;百分比格:</span>
+				<i>(百分比步长为2%)</i>
+				<br>
+				<br>
+				<div class="row">
+					<div class="per-40">per-40</div>
+					<div class="per-60">per-60</div>
+				</div>
+				<div class="row">
+					<div class="per-32">per-32</div>
+					<div class="per-68">per-68</div>
+				</div>
+				<div class="row">
+					<div class="per-offset-32 per-68">per-68</div>
+				</div>
 			</div>
-				<button class="btn b empty smaller">查询</button>
-				<button class="btn b empty">搜索</button>
-				<button class="btn b empty larger">开通接收地</button>
-				<br>
-				<br>
-				<button class="btn b smaller">查询</button>
-				<button class="btn b">搜索</button>
-				<button class="btn b larger">开通接收地</button>
-				<br>
-				<br>
-				<button class="btn db smaller">查询</button>
-				<button class="btn db">搜索</button>
-				<button class="btn db larger">开通接收地</button>
-				<br>
-				<br>
-				<button class="btn w smaller">查询</button>
-				<button class="btn w">搜索</button>
-				<button class="btn w larger">开通接收地</button>
-			<br>
-			<table class="form">
-				<tr>
-					<th style="width:120px">多选:</th>
-					<td>
-						<input type="checkbox" name="c1" cs-control cs-label="多选按钮1">
-						<input type="checkbox" name="c1" cs-control cs-label="多选按钮2">
-						<input type="checkbox" name="c1" cs-control cs-label="多选按钮3">
-					</td>
-				</tr>
-				<tr>
-					<th>单选:</th>
-					<td>
-						<input type="radio" name="r1" cs-control cs-label="单选按钮1">
-						<input type="radio" name="r1" cs-control cs-label="单选按钮2">
-						<input type="radio" name="r1" cs-control cs-label="单选按钮3">
-					</td>
-				</tr>
-				<tr>
-					<th>文本框:</th>
-					<td>
-						<input placeholder="这里是个文本框的提示内容" type="text">
-					</td>
-				</tr>
-				<tr>
-					<th class="top">多行文本框:</th>
-					<td><textarea cols="30" rows="5"></textarea></td>
-				</tr>
-				<tr>
-					<th>文本框:</th>
-					<td>
-						<input type="text">
-					</td>
-				</tr>
-				<tr>
-					<th>下拉框:</th>
-					<td>
-						<select placeholder="这里是个下拉框的提示内容" cs-control>
-							<option value="0"></option>
-							<option value="1">选项一</option>
-							<option value="2">选项二</option>
-							<option value="3">选项三</option>
-							<option value="4">选项四</option>
-							<option value="5">选项五</option>
-							<option value="6">选项六</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>按钮文本控件(右):</th>
-					<td>
-						<input type="text" cs-control="ButtonTextBox" cs-button-type="timebutton">
-					</td>
-				</tr>
-				<tr>
-					<th>时间控件(左):</th>
-					<td>
-						<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
-					</td>
-				</tr>
-				<tr>
-					<th>按钮文本控件(左):</th>
-					<td>
-						<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton" cs-label-location="left">
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div class="footer">
-		Copyright©2005-2016 Tenpay All Rights Reserved 成都康赛科技信息技术有限公司    版权所有
-	</div>
-	<script data-main="Content/js/modules_base/index" data-business="index" src="Content/js/common/require.js"></script>
+			<div class="section-container">
+				<div class="row">
+					<div class="per-40">
+						<div class="section-container">
+							<div class="title-bar">
+								按钮
+							</div>
+							<button class="btn b empty smaller">查询</button>
+							<button class="btn b empty">搜索</button>
+							<button class="btn b empty larger">开通接收地</button>
+							<br>
+							<br>
+							<button class="btn b smaller">查询</button>
+							<button class="btn b">搜索</button>
+							<button class="btn b larger">开通接收地</button>
+							<br>
+							<br>
+							<button class="btn g smaller">查询</button>
+							<button class="btn g">搜索</button>
+							<button class="btn g larger">开通接收地</button>
+							<br>
+							<br>
+							<button class="btn y smaller">查询</button>
+							<button class="btn y">搜索</button>
+							<button class="btn y larger">开通接收地</button>
+							<br>
+							<br>
+							<button class="btn db smaller">查询</button>
+							<button class="btn db">搜索</button>
+							<button class="btn db larger">开通接收地</button>
+							<br>
+							<br>
+							<button class="btn w smaller">查询</button>
+							<button class="btn w">搜索</button>
+							<button class="btn w larger">开通接收地</button>
+						</div>
+					</div>
+					<div class="per-60">
+						<div class="section-container">
+							<div class="title-bar">
+								表单
+							</div>
+							<table class="form">
+								<tr>
+									<th style="width:120px">多选:</th>
+									<td>
+										<input type="checkbox" name="c1" cs-control cs-label="多选按钮1">
+										<input type="checkbox" name="c1" cs-control cs-label="多选按钮2">
+										<input type="checkbox" name="c1" cs-control cs-label="多选按钮3">
+									</td>
+								</tr>
+								<tr>
+									<th>单选:</th>
+									<td>
+										<input type="radio" name="r1" cs-control cs-label="单选按钮1">
+										<input type="radio" name="r1" cs-control cs-label="单选按钮2">
+										<input type="radio" name="r1" cs-control cs-label="单选按钮3">
+									</td>
+								</tr>
+								<tr>
+									<th>文本框:</th>
+									<td>
+										<input placeholder="这里是个文本框的提示内容" type="text">
+									</td>
+								</tr>
+								<tr>
+									<th class="top">多行文本框:</th>
+									<td><textarea cols="30" rows="5"></textarea></td>
+								</tr>
+								<tr>
+									<th>文本框:</th>
+									<td>
+										<input type="text">
+									</td>
+								</tr>
+								<tr>
+									<th>下拉框:</th>
+									<td>
+										<select placeholder="这里是个下拉框的提示内容" cs-control>
+											<option value="0"></option>
+											<option value="1">选项一</option>
+											<option value="2">选项二</option>
+											<option value="3">选项三</option>
+											<option value="4">选项四</option>
+											<option value="5">选项五</option>
+											<option value="6">选项六</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>按钮文本控件(右):</th>
+									<td>
+										<input type="text" cs-control="ButtonTextBox" cs-button-type="timebutton">
+									</td>
+								</tr>
+								<tr>
+									<th>时间控件(左):</th>
+									<td>
+										<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
+									</td>
+								</tr>
+								<tr>
+									<th>按钮文本控件(左):</th>
+									<td>
+										<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section-container">
+				<div class="frame-left-right-control">
+					<div class="frame-left" style="width:400px">
+						<div class="section-container">
+                        <div class="title-bar">加载状态条</div>
+                        <textarea spellcheck="false" id="loding" cols="30" rows="5">
+WebApi.showlayer('正在加载,请耐心等待');//参数可省略
+window.setTimeout(function(){
+    WebApi.hidelayer();
+},2000)
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn y" onclick="runJS(loding)">run</button>
+                        <br>
+                        <br>
+                        <textarea spellcheck="false" id="progress" cols="30" rows="1">WebApi.progress();</textarea>
+                        <br>
+                        <br>
+                        <button class="btn b" onclick="runJS(progress)">run</button>
+                        <br>
+                        <br>
+                        <div class="title-bar y">弹窗样式</div>
+                        <textarea spellcheck="false" id="showmessage1" cols="30" rows="3">
+WebApi.alert("消息窗口").then(function(status){ alert(status); })
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmessage1)">alert</button>
+                        <br>
+                        <br>
+                        <textarea spellcheck="false" id="showmessage2" cols="30" rows="3">
+WebApi.confirm("确认信息?").then(function(status){ alert(status); })
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmessage2)">confirm</button>
+                        <br>
+                        <br>
+                        <textarea spellcheck="false" id="showmessage3" cols="30" rows="3">
+WebApi.error("错误信息").then(function(status){ alert(status); })
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmessage3)">error</button>
+                        <br>
+                        <br>
+                        
+                    </div>
+					</div>
+					<div class="frame-right" style="margin-left:405px">
+						<div class="section-container">
+							<div class="title-bar">
+								测试二
+							</div>
+							<textarea spellcheck="false" id="showmodal" cols="30" rows="52">
+//弹内容
+//第一参数可以指定窗体变量名,亦可省略
+WebApi.modal("modal1",{
+    content:"测试内容",
+    width:650,
+    height:550,
+    title:"测试内容标题"
+}).then(function(status){
+    alert("弹内容关闭后回调信息:"+ status);
+});
+//弹HTML
+WebApi.modal({
+    content:$("#testmodal1"),
+    width:600,
+    height:500,
+    title:"弹HTML"
+}).then(function(status){
+    alert("弹HTML关闭后回调信息:"+ status);
+});
+//弹iframe
+WebApi.modal({
+    src:"index.html",
+    width:550,
+    height:450,
+    title:"弹iframe"
+}).then(function(status){
+    alert("弹iframe关闭后回调信息:"+ status);
+});
+//添加了全屏与还原功能,其它参数与modal类似
+WebApi.window({
+    content:$("#testmodal2"),
+    width:500,
+    height:400,
+    title:"添加了全屏与还原功能,其它参数与modal类似"
+}).then(function(status){
+    alert("window关闭后回调信息:"+status);
+});
+
+//title属性的设置为false时,标题栏将隐藏
+WebApi.modal("self-window",{
+    content:"<div style='height:346px; text-align: center'><span style='display:inline-block;height:100%;vertical-align: middle;'></span><button class='button r' onclick='WebApi.close({name:\"self-window\"})'>关闭自己</button></div>",
+    width:450,
+    height:350,
+    title:false
+}).then(function(status){
+    alert("window关闭后回调信息:"+status);
+});
+</textarea>
+                        <br>
+                        <br>
+                        <button class="btn g" onclick="runJS(showmodal)">modal/window</button>
+                        <br>
+                        <br>
+                        <div class="title-bar">以下是本页面的内容 供上面弹窗使用</div>
+                        <span>以下是$("#testmodal1")内容:</span>
+                        <br>
+                        <br>
+                        <div id="testmodal1">
+                            <h1>测试内容</h1>
+                        </div>
+                        <br>
+                        <br>
+                        <span>以下是$("#testmodal2")内容:</span>
+                        <br>
+                        <br>
+                        <div id="testmodal2">
+                            <div class="main-container">
+<textarea spellcheck='false' id='closeitem' cols='30' rows='6'>//这里是关闭指定弹窗的js
+WebApi.close({
+    name:'modal1',
+    command:'我用Api关闭了窗口modal1'
+});
+</textarea>
+                                <br>
+                                <br>
+                                <a href='javascript:;' class='btn g' onclick='runJS(closeitem)'>关闭指定窗口</a>
+                                <br/>
+                                <br/>
+                                <textarea spellcheck='false' id='closeall' cols='30' rows='5'>//这里是关闭所有弹窗的js
+WebApi.close({
+    command:'我用Api关闭了所有窗口'
+});</textarea>
+                                <br><br>
+                                <a href='javascript:;' class='btn db' onclick="runJS(closeall)">关闭所有窗口</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="section-container">
+				<div class="title-bar">
+					表格一
+				</div>
+				<table class="list">
+					<thead>
+						<tr>
+							<th>标题一</th>
+							<th>标题二</th>
+							<th>标题三</th>
+							<th>标题四</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+						<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+						<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+						<td>
+							<a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                </td>
+                </tr>
+                <tr>
+                    <td>字段21</td>
+                    <td>字段22</td>
+                    <td>字段23</td>
+                    <td>
+                        <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段31</td>
+                    <td>字段32</td>
+                    <td>字段33</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                <tr>
+                    <td>字段41</td>
+                    <td>字段42</td>
+                    <td>字段43</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                <tr>
+                    <td>字段51</td>
+                    <td>字段52</td>
+                    <td>字段53</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                </tbody>
+                </table>
+                <div class="page-control">
+                    <span>共999条</span>
+                    <span>1/25页</span>
+                    <a href="javascript:;" class="last"></a>
+                    <a href="javascript:;" class="next"></a>
+                    <span>跳转到</span>
+                    <input type="text">
+                    <a href="javascriptp:;">GO</a>
+                </div>
+            </div>
+            <div class="section-container">
+				<div class="title-bar">
+					表格二
+				</div>
+				<table class="list empty">
+					<thead>
+						<tr>
+							<th>标题一</th>
+							<th>标题二</th>
+							<th>标题三</th>
+							<th>标题四</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+						<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+						<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+						<td>
+							<a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                </td>
+                </tr>
+                <tr>
+                    <td>字段21</td>
+                    <td>字段22</td>
+                    <td>字段23</td>
+                    <td>
+                        <a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段31</td>
+                    <td>字段32</td>
+                    <td>字段33</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                <tr>
+                    <td>字段41</td>
+                    <td>字段42</td>
+                    <td>字段43</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                <tr>
+                    <td>字段51</td>
+                    <td>字段52</td>
+                    <td>字段53</td>
+                    <td><a href="javascriptp:;" class="color-3"><i class="icon-edit"></i>编辑</a>
+                        <a href="javascriptp:;" class="color-2"><i class="icon-view"></i>查看</a>
+                        <a href="javascript:;" class="color-1"><i class="icon-delete"></i>删除</a></td>
+                </tr>
+                </tbody>
+                </table>
+                <div class="page-control">
+                    <span>共999条</span>
+                    <span>1/25页</span>
+                    <a href="javascript:;" class="last"></a>
+                    <a href="javascript:;" class="next"></a>
+                    <span>跳转到</span>
+                    <input type="text">
+                    <a href="javascriptp:;">GO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Copyright©2005-2016 Tenpay All Rights Reserved 成都康赛科技信息技术有限公司 版权所有
+    </div>
+    <script data-main="Content/js/modules_base/index" data-business="index" src="Content/js/common/require.js"></script>
 </body>
 
 </html>

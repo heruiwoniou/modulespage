@@ -1,0 +1,40 @@
+.frame-left-right-control
+	position relative
+	c()
+	.frame-left
+		height 100%
+		fl()
+		position relative
+		z-index 1
+		background rgba(0,168,255,.3)
+	.frame-bar
+		background transparent
+		height 100%
+		width: 5px
+		position: absolute
+		bottom: 0
+		top: 0
+	.frame-right
+		height 100%
+		position relative
+		z-index 0
+		background rgba(0,168,255,.3)
+	&.rtl
+		.frame-right
+			height 100%
+			fr()
+			position relative
+			z-index 1
+		.frameB-bar
+			background: white
+			height 100%
+			width: 10px
+			position: absolute
+			bottom: 0
+			top: 0
+		.frame-left
+			height 100%
+			float none;
+			overflow hidden
+			position relative
+			z-index 0

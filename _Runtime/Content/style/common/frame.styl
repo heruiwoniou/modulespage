@@ -1,3 +1,6 @@
+$basefontcolor = #c9f1ff;
+.bcolor
+	background rgba(0,168,255,.3)
 html
 	body
 		/* @meta {"spritesheet": {"include": false}} */
@@ -8,7 +11,7 @@ html
 		background-attachment fixed
 		background-size cover
 		*
-			color #c9f1ff
+			color $basefontcolor - 20%
 .header
 	height 80px
 	background rgba(255, 255, 255, .05)
@@ -78,3 +81,22 @@ html
 .footer
 	color white
 	background-color rgba(56, 56, 56, .6)
+.section-5-container
+	padding 5px
+.section-container
+	padding 10px
+.section-20-container
+	padding 20px
+.section-30-container
+	padding 30px
+.section-40-container
+	padding 40px
+
+::-webkit-input-placeholder
+	color $basefontcolor - 40%
+:-moz-placeholder
+	color $basefontcolor - 40%
+::-moz-placeholder
+	color $basefontcolor - 40%
+:-ms-input-placeholder
+	color $basefontcolor - 40%

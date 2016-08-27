@@ -1,0 +1,45 @@
+$listbackcolor = $color + 90%;
+glistcolor($color)
+	border 1px solid rgba(255,255,255,.1)
+	th,td
+		color white
+		border-right rgba(255,255,255,.1) 1px solid
+	td
+		border-bottom rgba(255,255,255,.1) 1px solid
+		background rgba(0,168,255,.3)
+	th
+		border-right rgba(255,255,255,.1) 1px solid
+		background rgba(8,10,24,.35)
+	tr:last-child
+		td
+			border-bottom-width 0
+.list
+	glistcolor($listbackcolor)
+	table-layout fixed
+	width 100%
+	th,td
+		text-align center
+		line-height 20px
+		height 45px
+		padding 0 5px
+		word-break break-all
+		&.single
+			textHidden()
+	th
+		font-weight bold
+		&.left
+			text-align left
+		&.right
+			text-align right
+		&.center
+			text-align center
+	td
+		input
+			width 80%
+	tr th:last-child,tr td:last-child
+		border-right-width 0
+	&.empty
+		th,td
+			background transparent
+		th
+			border-bottom rgba(255,255,255,.1) 1px solid
