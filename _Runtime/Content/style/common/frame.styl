@@ -63,9 +63,13 @@ html
 			color white
 			text-align center
 			ib()
+			i[class*='icon-']:before
+				color white
 			&:hover
 				text-decoration none
-				color $color
+				color $color !important
+				i[class*='icon-']:before
+					color $color !important
 			i.icon-logout
 				font-size 24px
 				ib()
