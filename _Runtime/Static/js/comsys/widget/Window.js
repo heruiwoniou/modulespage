@@ -22,8 +22,8 @@ define(
                 resizewindow: "resizewindow"
             },
             button: {
-                "OK": [{ text: "确认", command: "sure", class:"btn larger db" }],
-                "OKANDCANCEL": [{ text: "确认", command: "sure", class:"btn larger db" }, { text: "取消", command: "cancel", class:"btn larger y" }]
+                "OK": [{ text: "确认", command: "sure", class:"btn larger b" }],
+                "OKANDCANCEL": [{ text: "确认", command: "sure", class:"btn larger b" }, { text: "取消", command: "cancel", class:"btn larger y" }]
             },
             icon: {
                 info: "info",

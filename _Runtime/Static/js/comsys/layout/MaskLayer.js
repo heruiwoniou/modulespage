@@ -69,7 +69,7 @@ define(
                     me.l = $('<div class="progress"><span class="green bar" style="width: 0%;"><span class="txt">0%</span></span></div>').css({ position: "absolute", left: "50%", top: "40%" });
                     me.bar = me.l.find('.bar');
                     me.txt = me.l.find('.txt');
-                    me.b.css({ position: "absolute", left: "50%", top: "40%", marginTop: -5, background: "white", borderRadius: "4px", boxShadow: "1px 1px 3px black", filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, color=black)" });
+                    me.b.css({ position: "absolute", left: "50%", top: "40%", marginTop: -5, background: "rgba(0,168,255,.3)", borderRadius: "4px", boxShadow: "1px 1px 3px black", filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, color=black)" });
                     if (me.LowIE)
                         me.c.css({ width: "100%", height: "100%", display: "none", position: "absolute", left: 0, top: 0, zIndex: 950 });
                     else
