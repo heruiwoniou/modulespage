@@ -1,0 +1,36 @@
+.page-control
+	&.left
+		text-align left
+	&.right
+		text-align right
+	margin 10px 0
+	span
+		margin 0 5px
+	a
+		ib()
+		padding 0 3px
+		height 21px
+		min-width 21px
+		border 1px solid $border-color
+		text-align center
+		line-height 19px
+		background rgba(0,168,255,0.3)
+		&:before
+			color $border-color - 20%
+			setFontSystem()
+			margin 0
+		&.last
+			@extend .icon-arrow-left
+		&.next
+			@extend .icon-arrow-right
+		&:hover
+			border-color $color
+			text-decoration none
+			&:before
+				color $color
+	input
+		padding 0
+		text-align center
+		width 30px
+		height 21px
+		inlineBlock()
