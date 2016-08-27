@@ -29,6 +29,7 @@ define(
                     this.$BoxBaseClose = this.$BoxBaseEl.find(".comsys-box-close");
                     this.$BoxBaseContent = this.$BoxBaseEl.find(".comsys-box-content");
                     this.$BoxBaseFrame = this.$BoxBaseEl.find("iframe");
+                    this.$FocusTarge = this.$BoxBaseEl.find(".focus-targe");
 
                     this.setting.titleHeight = 50;
                     this.setting.borderWidth = 0;
@@ -89,9 +90,15 @@ define(
                         case that.WindowLoadType.ajax:
                         case that.WindowLoadType.content:
                             that.$BoxBaseContent.css({opacity:1});
+                            var $focus = this.$BoxBaseContent.find('a,input,textarea,button').first();
+                            if($focus.length == 0)
+                                this.$FocusTarge.focus()
+                            else
+                                $focus.focus()
                             break;
                         case that.WindowLoadType.iframe:
                             that.$BoxBaseFrame.css({opacity:1});
+                            that.$BoxBaseFrame.focus()
                             break;
                         default:
                             // statements_def
@@ -107,6 +114,7 @@ define(
                     "</div>" +
                     "<iframe src='about:blank' width='100%' height='100%' marginheight='0' marginwidth='0' scrolling='auto' frameborder='0' style='width: 100%; height: 100%; border: 0px;'></iframe>" +
                     "<div class='comsys-box-content'></div>" +
+                    "<button class='focus-targe'></button>" +
                     "</div>"
                 },
                 initialize: function () {
@@ -272,7 +280,7 @@ define(
                     }
                     if(this.placeholder !== null)
                     {
-                        this.placeholder.replaceWith(this.$BoxBaseContent.children().first().hide());
+                        this.placeholder.replaceWith(this.$BoxBaseContent.children().first());
                         this.placeholder = null;
                     }
                     this.status=false;

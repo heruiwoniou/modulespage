@@ -25,9 +25,8 @@ define(
                     this.$BoxBaseEl.addClass("comsys-box-dialog");
                     this.$BoxBaseButtons=$("<div class='comsys-box-buttons'></div>");
                     this.$BoxBaseEl.append(this.$BoxBaseButtons)
-
-
-                    this.$BoxBaseButtons.on("click.buttonsClikHanler keyup.buttonsKeyUpHanler","a", function(e){return me.OnButtonsClikHanler.apply(me,Array.prototype.slice.call(arguments,0).concat($(this)));})
+                    this.$BoxBaseButtons.on("click.buttonsClikHanler","a", function(e){return me.OnButtonsClikHanler.apply(me,Array.prototype.slice.call(arguments,0).concat($(this)));})
+                    this.$FocusTarge.on('keyup.buttonsKeyUpHanler',function(e){return me.OnButtonsClikHanler.apply(me,arguments);})
                     return this;
                 },
                 DialogTPL:{
@@ -41,6 +40,7 @@ define(
                     return;
                 },
                 showContent:function(){
+                    this.$BoxBaseEl.find('.focus-targe').focus()
                     return;
                 },
                 OnButtonsClikHanler:function(e,$button){
@@ -56,7 +56,7 @@ define(
                         }
                         //空格
                         else if(e.keyCode==32)
-                            $button.trigger('click.buttonsClikHanler');
+                            this.$BoxBaseButtons.find('a:first').trigger('click.buttonsClikHanler');
                         e.stopPropagation();
                     }
                     else
