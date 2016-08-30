@@ -1,18 +1,16 @@
 @import 'DF-common.styl';
 @import 'student-center.styl';
 
-//@import 'data-center.styl';
-//@import 'Personnel-information.styl';
-
 
 .DF-table-section
   float left
+  margin-bottom 20px
 /*带图的样式规整，一行两个的样式*/
 .DF-table-1
   width 100%
 .DF-table-2
   width 49%
-.DF-table-2:nth-child(odd)
+.DF-table-2:nth-child(2n)
   margin-right 2%
 .DF-table-3
   width 32%
@@ -20,7 +18,15 @@
 .DF-table-3:nth-child(3n)
   margin-right 0
 
-
+@media screen and (max-width: 1425px)
+  .DF-table-3
+    width 49%
+    margin-right 2%
+  .DF-table-3:nth-child(2n)
+    margin-right 0
+  .DF-table-2
+    width 100%
+    margin-right 0
 
 
 .information-section
@@ -146,7 +152,7 @@
       line-height 30px
       background #794986
 
-@media screen and (max-width : 1510px)
+@media screen and (max-width : 1425px)
   html
   body
     .information

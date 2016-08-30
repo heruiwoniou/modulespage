@@ -1,0 +1,148 @@
+@import 'DF-common.styl';
+@import 'student-center.styl';
+
+html
+body
+  .information-section
+    width 100%
+    height auto
+    margin-bottom 40px
+    overflow hidden
+    p.title
+      height 30px
+      line-height 30px
+      color #2b2626
+      font-size 16px
+      text-indent 10px
+      margin-bottom 10px
+      background url("../icons/DF-title-bac.png") no-repeat
+    .search
+      float right
+      width 250px
+      height 30px
+      overflow hidden
+      input.search-input
+        width: 220px
+        height 30px
+        border none
+        background white
+        padding-left 5px
+        display block
+        float left
+      a.sublime
+        width: 30px
+        height: 30px
+        display block
+        float right
+        background url("../icons/search-background.png") no-repeat;
+    .book-list
+      width 100%
+      .book
+        position relative
+        background #fff
+        padding 10px
+        width 18.5%
+        height 300px
+        margin-right 1.7%
+        float left
+        margin-bottom 20px
+        .book-img
+          width 100%
+          height 200px
+          margin-bottom 20px
+        .peopleNumber
+          position absolute
+          height 30px
+          font-size 12px
+          right 10px
+          top 180px
+          color #fff
+          padding 0 15px
+          background rgba(255,255,255,.4)
+          line-height 30px
+        .repaid
+          position absolute
+          top -7px
+          right -7px
+        .bookName
+          font-size 16px
+          color #333
+          margin-bottom 10px
+        .author
+          img
+            width 30px
+            height 30px
+            display block
+            float left
+            margin-right 15px
+          span
+            display block
+            float left
+            font-size 12px
+            line-height 30px
+            color #4a4a4a
+      .book:nth-child(5n)
+        margin-right 0
+
+.pageJump
+  width:100%
+  height: 25px
+  overflow hidden
+  position: relative;
+  .jumpBtn
+    position relative
+    float left
+    left 50%
+    height:25px
+    .sublimeBtn
+      position: relative;
+      left: -100%;
+      top 8px
+      height 25px
+      a
+        padding 2px 8px
+        border 1px solid #999
+        color #999
+        height 25px
+      a.btnActive
+        color #fff
+        background #4f2659
+
+  .text
+    float left
+    color #4f2659
+    font-size 12px
+    display block
+    line-height 25px
+  .jumps
+    float right
+    input
+      width: 25px
+      height: 23px
+      background white
+      border 1px solid #eee
+    .jump
+      display inline-block
+      height:25px
+      color #fff
+      font-size 14px
+      padding 0 10px
+      line-height 25px
+      background #794986
+
+
+@media screen and (max-width : 1425px)
+  html
+  body
+    .information-section
+      .book-list
+        .book
+          width 24%
+          margin-right 1.1%
+        .book:nth-child(4n)
+          margin-right 0
+        .book:nth-child(5n)
+          margin-right 1.1%
+
+
+
