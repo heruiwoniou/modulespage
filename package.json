@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "ss-server run -r runtime",
-    "watch": "gulp"
+    "watch": "gulp pack"
   },
   "author": "",
   "license": "ISC",
