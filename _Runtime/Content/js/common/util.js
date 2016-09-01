@@ -170,4 +170,15 @@ define(function(){
 			this.initControl();
 		}
 	}
+
+	/*颜色调用函数*/
+	try{
+		$("#current_style").html(parent.getBestColor());
+	}catch(e){
+
+	}
+
+	window.setBestColor =  function (str){
+		$("#current_style").html(str);
+	}
 })
