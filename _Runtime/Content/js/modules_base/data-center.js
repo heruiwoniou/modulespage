@@ -24,14 +24,4 @@ require([
 	});
 
 
-	try{
-		$("#current_style").html(parent.getBestColor());
-	}catch(e){
-
-	}
-
-	window.setBestColor =  function (str){
-		$("#current_style").html(str);
-	}
-
 })

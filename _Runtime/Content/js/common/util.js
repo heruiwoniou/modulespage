@@ -160,4 +160,15 @@ define(function(){
 			//这里添加页面加载完成后公用的初始化功能
 		}
 	}
+
+	/*颜色调用函数*/
+	try{
+		$("#current_style").html(parent.getBestColor());
+	}catch(e){
+
+	}
+
+	window.setBestColor =  function (str){
+		$("#current_style").html(str);
+	}
 })
