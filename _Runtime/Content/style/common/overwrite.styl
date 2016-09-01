@@ -1,0 +1,59 @@
+.comsys-SingleCombox-layout
+	.comsys-SingleCombox-button
+		top: 5px;
+		bottom: 5px;
+		right: 2px;
+		height: auto;
+		line-height: 13px;
+		&:before
+			color $inputoutlinecolor
+			position relative
+			top -1px
+			font-weight bold
+.comsys-SingleCombox-drop
+	border-color:$inputoutlinecolor - 20%
+	box-shadow: 0px 0px 5px 0px $inputoutlinecolor - 20%
+	div.comsys-SingleCombox-option
+		textHidden()
+		&:hover
+			background $inputoutlinecolor + 80%
+		&.selected
+			background $inputoutlinecolor
+			color white
+.comsys-ButtonTextBox-layout
+	&.timebutton
+		.comsys-ButtonTextBox-button
+			cursor default
+			font-size 0
+			//@extend .icon-calendar
+			&:before
+				systemiconfont()
+				position relative
+				vertical-align middle
+				top -2px
+				color $border-color - 20%
+				font-size 19px
+		&.focus-outerline
+			.comsys-ButtonTextBox-button
+				&:before
+					color $inputoutlinecolor
+.comsys-ButtonTextBox-layout
+	&.searchbutton
+		border-color #d8f0fc
+		.comsys-ButtonTextBox-button
+			cursor default
+			font-size 0
+			//@extend .icon-search
+			&:before
+				systemiconfont()
+				position relative
+				vertical-align middle
+				top -2px
+				color $color1
+				font-size 19px
+		&.focus-outerline
+			border-color $color2
+			outline-color $color2
+			.comsys-ButtonTextBox-button
+				&:before
+					color $color1 - 20%

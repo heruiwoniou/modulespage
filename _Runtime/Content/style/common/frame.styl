@@ -1,6 +1,8 @@
 for index in 1..5
 	.bcolor{index}
 		background $color + index
+	.color-{index}
+		color $color + index
 .header
 	height 100px
 	background white
@@ -56,3 +58,15 @@ for index in 1..5
 	&.loaded
 		img
 			opacity 1
+
+.section-container
+	padding 10px
+for index in 1..6
+	.section-container-{10 + index * 5}
+		padding 10px + index * 5px
+		&.lr
+			padding-top 0
+			padding-bottom 0
+		&.tb
+			padding-left 0
+			padding-right 0

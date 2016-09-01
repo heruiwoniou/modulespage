@@ -1,0 +1,31 @@
+table.form
+	table-layout fixed
+	border-collapse collapse
+	width 100%
+	th,td
+		line-height 50px
+		&.top
+			vertical-align top
+		&.left
+			text-align left
+		&.right
+			text-align right
+		&.center
+			text-align center
+	th
+		color #502659
+		padding 0 10px 0 20px
+		text-align left
+		font-weight bold
+		&.must
+			position relative
+			&:before
+				position absolute
+				color red
+				left 10px
+				content '*'
+	tr.empty
+		th,td
+			height 20px
+			min-height 20px
+			line-height 20px

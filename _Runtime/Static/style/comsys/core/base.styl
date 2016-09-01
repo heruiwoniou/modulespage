@@ -1,11 +1,23 @@
+*[cs-control]
+	opacity 0
 .comsys-base
 	background #fff
+	display inline-block
+	vertical-align middle
 	.comsys-base
 		background transparent
 		height 100% !important
 		line-height 1.7
 	height $line-height
 	line-height $line-height
+	input[type=text]
+	textarea
+		&:focus
+			box-shadow none
+	input:-webkit-autofill
+	textarea:-webkit-autofill
+	select:-webkit-autofill
+		box-shadow: 0 0 0 35px white inset !important;
 	input[type=text]
 	input[type=password]
 	input[type=number]

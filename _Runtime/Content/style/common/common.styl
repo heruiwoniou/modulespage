@@ -16,9 +16,29 @@ $percent-step =2;
 @import "./../base/frame/index.styl";
 frame-base(100px,35px);
 container-base(1025px,900px);
+button-base(30px,75px);
 @import "./frame.styl";
 
+/**
+ * controls
+ */
+$line-height = 30px;
+$themeColor = #ccc;
+$imagepath = './../images/';
+$borderradius = 0px;
+$inputoutlinecolor = $color3 + 40%;
+$border-color = #ccc
+$combox-icon = '3';
+@import "./../../../Static/style/comsys/index.styl";
+
 @import './control/panel.styl';
+@import './control/form.styl';
+@import './control/button.styl';
+@import './control/list.styl';
+@import './control/page-control.styl';
+
+@import './overwrite.styl';
+
 
 
 /*  公用颜色配置CSS*/
