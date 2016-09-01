@@ -1,7 +1,10 @@
-.textHidden
+textHidden()
 	overflow: hidden
 	text-overflow: ellipsis
 	white-space: nowrap
-.iconSetting
+iconfont()
 	font-family: "ElegantIcons"
-	line-height: 1.5
+outerlineset($c)
+	if $c != transparent
+		border-color $c - 20%
+		box-shadow: 0px 0px 5px 0px $c - 20%

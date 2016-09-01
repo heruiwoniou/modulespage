@@ -114,7 +114,8 @@ gulp.task('build-images', function() {
         '_Runtime/Content/style/images/service-center.png',
         '_Runtime/Content/style/images/datapicker_back.png',
         '_Runtime/Content/style/images/link-center.png',
-        '_Runtime/Content/style/images/link-hover-center.png'
+        '_Runtime/Content/style/images/link-hover-center.png',
+        '_Runtime/Content/style/images/tip-panel-img.png'
         ])
         .pipe(gulp.dest('Runtime/Content/style/images/'));
     gulp.src(['_Runtime/Content/style/icons/**/*'])

@@ -1,0 +1,98 @@
+@import './../setting.styl';
+@import './../base/core/common.styl';
+
+$c1 = #eb6877;
+$c2 = #77b3d4;
+$c3 = #76c2af;
+$c4 = #fbd641;
+
+html
+body
+	height 100%
+	background transparent
+	position relative
+	.main
+		position absolute
+		height 100%
+		left 0
+		right 0
+.panel-title
+	background white
+.section
+	font-size 0
+	padding-bottom 85px
+	.section-body
+		min-height 770px
+		max-width 1350px
+		width 100%
+		overflow hidden
+	.section-top
+		text-align right
+		line-height 85px
+		height 85px
+		max-width 1320px
+		display block
+		color white
+		white-space nowrap
+.frame-container
+	c()
+	.frame-left
+		width 200px
+		background white
+		margin-top 5px
+		min-height 695px
+		fl()
+	.frame-right
+		margin-left 210px
+.menu-min
+	margin 0 20px
+	width 160px
+	li
+		opacity .8
+		height 30px
+		line-height 30px
+		text-indent 20px
+		margin-top 20px
+		border-radius 5px
+		a
+			font-size 16px
+			display block
+			color #333
+			i
+				margin-right 10px
+		&:hover
+		&.select
+			opacity 1
+			background #eeeeee
+			a
+				text-decoration none
+		ul
+			margin 0 20px
+			width 120px
+.tip-panel
+	background #f2f2f2 url('./../images/tip-panel-img.png?exclude') no-repeat right bottom
+	line-height 30px
+	opacity .9
+
+.top-header
+	line-height 60px
+	text-align center
+	font-size 18px
+	color #502659
+	&:before
+	&:after
+		content ''
+		ib()
+		width 80px
+		height 1px
+		background #e3e3e3 - 20%
+		margin 0 50px
+
+@media screen and (max-width 1425px)
+	.section
+		.section-body
+			max-width 1020px
+			&>.panel
+				width 1020px
+		.section-top
+			max-width 1020px

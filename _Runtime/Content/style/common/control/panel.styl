@@ -7,4 +7,22 @@
 		height 60px
 		line-height 60px
 		font-size 14px
+		font-weight bold
 		text-indent 20px
+		a.close
+			cursor pointer
+			margin-right 20px
+			fr()
+			text-indent 0
+			font-size 18px
+			opacity .6
+			width 20px
+			height 20px
+			margin-top 20px
+			line-height 20px
+			&:hover
+				opacity 1
+				text-decoration none
+			&:before
+				setFontDefault()
+				content 'M'

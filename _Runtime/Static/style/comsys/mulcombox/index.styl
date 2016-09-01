@@ -37,7 +37,7 @@
                     cursor: pointer
                     text-align: center
                     &:before
-                        @extend .iconSetting
+                        iconfont()
                         content: "\4d"
                         position: relative
                         top: 1px
@@ -58,7 +58,7 @@
         text-align: center
         font-size:$font-ico-size
         &:before
-            @extend .iconSetting
+            iconfont()
             content: $mcombox-icon
 
 .comsys-MulCombox-drop
@@ -79,7 +79,7 @@
     div.comsys-MulCombox-option
         cursor: default
         box-sizing:border-box
-        @extend .textHidden
+        textHidden()
         border-bottom:1px solid #fff
         position: relative
         padding-left:8px
@@ -95,7 +95,7 @@
             width 16px
             height 16px
             content:""
-            background: url(images/checkbox.png) no-repeat center
+            background: url($imagepath + 'checkbox.png') no-repeat center
             vertical-align: middle
             margin-top -2px
     div.selected
@@ -103,6 +103,6 @@
         border-bottom:1px solid #fff
         div.before
             content:""
-            background: url(images/checkbox-checked.png) no-repeat center
+            background: url($imagepath + 'checkbox-checked.png') no-repeat center
             vertical-align: middle
             color:limegreen
