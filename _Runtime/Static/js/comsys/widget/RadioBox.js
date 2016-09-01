@@ -17,15 +17,17 @@ define(
             constructor: function (args) {
                 this.callParent(args);
                 this.$RadioBoxEl = $(args.element);
+                this.$group = $("input[name=" + this.$RadioBoxEl.attr("name") + "]");
             },
             initialize: function () {
+                var that = this;
                 var $this = this.$RadioBoxEl;
                 if ($this.data(ClassName) == undefined) {
 
                     this.callParent();
                     var id=$this.attr("id");
 
-                    this.$RadioBoxControl = $('<div class="comsys-radiobox' + ($this.get(0).checked ? " radiobox-checked" : "") + '"></div>');
+                    this.$RadioBoxControl = $('<div class="comsys-radiobox' + ($this.get(0).checked ? " radiobox-checked" : "") + ( $this.is(":disabled") ? ' disabled' : '') + '"></div>');
                     var $wrap = this.$RadioBoxControl;
                     $this.before($wrap).appendTo($wrap);
 
@@ -43,7 +45,7 @@ define(
                                 $($wrap).addClass("radiobox-checked");
                             else $($wrap).removeClass("radiobox-checked");
                             if (!state)
-                                $group.not(this).trigger("radioChange");
+                                that.$group.not(this).trigger("radioChange");
                         });
                     }
                     else
@@ -53,7 +55,7 @@ define(
                                 $($wrap).addClass("radiobox-checked");
                             else $($wrap).removeClass("radiobox-checked");
                             if (!state)
-                                $group.not(this).trigger("radioChange");
+                                that.$group.not(this).trigger("radioChange");
                         })
                     }
                     $this.on("radioChange", function () {
@@ -72,6 +74,30 @@ define(
                         that.$RadioBoxControl.removeClass("radiobox-checked");
                 }
                 return this;
+            },
+            SetDisabled:function(status){
+                if(status)
+                {
+                    this.$BaseEl.attr("disabled",true);
+                    this.$CheckBoxControl.addClass('disabled');
+                }
+                else{
+                    this.$BaseEl.removeAttr('disabled');
+                    this.$CheckBoxControl.removeClass('disabled');
+                }
+            },
+            SetCheck:function(status){
+                if(status)
+                {
+                    this.$BaseEl.get(0).checked = true;
+                    this.$RadioBoxControl.removeClass('radiobox-checked').addClass("radiobox-checked");
+                }
+                else
+                {
+                    this.$BaseEl.get(0).checked = false;
+                    this.$RadioBoxControl.removeClass("radiobox-checked");
+                }
+                this.$group.not(this.$BaseEl).trigger("radioChange");
             },
             destory:function(){
                 $(document).off(".RadioBoxClickHandler"+this.$RadioBoxEl.attr("id"));

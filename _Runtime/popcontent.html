@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>popcontent</title>
-	<link rel="stylesheet" href="Content/style/modules_base/popcontent.css">
-	<link rel="stylesheet" href="Content/style/common/pop-overwrite-comsys.css">
-    <script src="Content/js/common/jquery.js"></script>
+	<link rel="stylesheet" href="/base/style/modules_base/popcontent.css">
+	<link rel="stylesheet" href="/base/style/common/pop-overwrite-comsys.css">
+    <script src="/base/js/common/jquery.js"></script>
 </head>
 <body>
 <div class="section-container">
 	<div class="title-bar">
-		表单
+		表单(该页面为弹出页面，必须引用样式Content/style/common/pop-overwrite-comsys.css)
 	</div>
 	<table class="form">
 		<tr>
@@ -68,7 +68,7 @@
 		<tr>
 			<th>时间控件(左):</th>
 			<td>
-				<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
+				<input type="text" cs-control="DataPicker"  cs-button-type="timebutton" cs-label-location="left">
 			</td>
 		</tr>
 		<tr>
@@ -79,6 +79,158 @@
 		</tr>
 	</table>
 </div>
-<script data-main="Content/js/modules_base/common" src="Content/js/common/require.js"></script>
+<div class="section-container">
+    <div class="title-bar">
+        表格一
+    </div>
+    <table class="list">
+        <thead>
+            <tr>
+                <th>标题一</th>
+                <th>标题二</th>
+                <th>标题三</th>
+                <th>标题四</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段21</td>
+                <td>字段22</td>
+                <td>字段23</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段31</td>
+                <td>字段32</td>
+                <td>字段33</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段41</td>
+                <td>字段42</td>
+                <td>字段43</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段51</td>
+                <td>字段52</td>
+                <td>字段53</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="page-control">
+        <span>共999条</span>
+        <span>1/25页</span>
+        <a href="javascript:;" class="last"></a>
+        <a href="javascript:;" class="next"></a>
+        <span>跳转到</span>
+        <input type="text">
+        <a href="javascriptp:;">GO</a>
+    </div>
+</div>
+<div class="section-container">
+    <div class="title-bar">
+        表格二
+    </div>
+    <table class="list empty">
+        <thead>
+            <tr>
+                <th>标题一</th>
+                <th>标题二</th>
+                <th>标题三</th>
+                <th>标题四</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段21</td>
+                <td>字段22</td>
+                <td>字段23</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段31</td>
+                <td>字段32</td>
+                <td>字段33</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段41</td>
+                <td>字段42</td>
+                <td>字段43</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>字段51</td>
+                <td>字段52</td>
+                <td>字段53</td>
+                <td>
+                    <a href="javascriptp:;" class="icon-edit color-3"></a>
+                    <a href="javascriptp:;" class="icon-view color-2"></a>
+                    <a href="javascript:;" class="icon-delete color-1"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="page-control">
+        <span>共999条</span>
+        <span>1/25页</span>
+        <a href="javascript:;" class="last"></a>
+        <a href="javascript:;" class="next"></a>
+        <span>跳转到</span>
+        <input type="text">
+        <a href="javascriptp:;">GO</a>
+    </div>
+</div>
+<script data-main="/base/js/modules_base/common" src="/base/js/common/require.js"></script>
 </body>
 </html>

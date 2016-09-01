@@ -4,30 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>default</title>
-    <link rel="stylesheet" href="Content/style/modules_base/default.css">
-    <script src="Content/js/common/jquery.js"></script>
+    <link rel="stylesheet" href="/base/style/modules_base/default.css">
+    <script src="/base/js/common/jquery.js"></script>
     <style>
     .row {
         margin-top: 2px;
         margin-bottom: 2px
     }
+    
     .row div[class*=col-],
     .row div[class*=per-] {
         line-height: 20px;
         background: rgba(0, 168, 255, .3)
     }
+    
     .icon-container .row [class*=icon-] {
         font-size: 26px;
         vertical-align: middle
     }
+    
     .icon-container .row [class*=per-] span {
         vertical-align: middle;
     }
     </style>
-     <script>
-        function runJS(target) {
-            eval(target.value);
-        }
+    <script>
+    function runJS(target) {
+        eval(target.value);
+    }
     </script>
 </head>
 
@@ -72,6 +75,8 @@
 	</div>
 	<div class="body">
 		<div class="container">
+			<div class="big-title-bar"><i class="icon-edit"></i>规则编辑　<a href="javascript:;" class="color-1">[成都市高新区]</a></div>
+			<div class="section-30-container lr">
 			<div class="section-container">
 				<div class="title-bar">栅格</div>
 				<span>&nbsp;&nbsp;12分格:</span>
@@ -139,36 +144,40 @@
 							<div class="title-bar">
 								按钮
 							</div>
+							<button class="btn b smaller">查询</button>
+							<button class="btn b">搜索</button>
+							<button class="btn b disabled larger">开通接收地</button>
+							<br>
+							<br>
 							<button class="btn b empty smaller">查询</button>
 							<button class="btn b empty">搜索</button>
-							<button class="btn b empty larger">开通接收地</button>
+							<button class="btn b empty disabled larger">开通接收地</button>
 							<br>
 							<br>
 							<button class="btn b smaller">查询</button>
 							<button class="btn b">搜索</button>
-							<button class="btn b larger">开通接收地</button>
+							<button class="btn b disabled larger">开通接收地</button>
 							<br>
 							<br>
 							<button class="btn g smaller">查询</button>
 							<button class="btn g">搜索</button>
-							<button class="btn g larger">开通接收地</button>
+							<button class="btn g disabled larger">开通接收地</button>
 							<br>
 							<br>
 							<button class="btn y smaller">查询</button>
 							<button class="btn y">搜索</button>
-							<button class="btn y larger">开通接收地</button>
+							<button class="btn y disabled larger">开通接收地</button>
 							<br>
 							<br>
 							<button class="btn db smaller">查询</button>
 							<button class="btn db">搜索</button>
-							<button class="btn db larger">开通接收地</button>
+							<button class="btn db disabled larger">开通接收地</button>
 							<br>
 							<br>
 							<button class="btn w smaller">查询</button>
 							<button class="btn w">搜索</button>
-							<button class="btn w larger">开通接收地</button>
+							<button class="btn w disabled larger">开通接收地</button>
 						</div>
-						
 					</div>
 					<div class="per-60">
 						<div class="section-container">
@@ -179,7 +188,7 @@
 								<tr>
 									<th style="width:120px">多选:</th>
 									<td>
-										<input type="checkbox" name="c1" cs-control cs-label="多选按钮1">
+										<input disabled type="checkbox" name="c1" cs-control cs-label="多选按钮1">
 										<input type="checkbox" name="c1" cs-control cs-label="多选按钮2">
 										<input type="checkbox" name="c1" cs-control cs-label="多选按钮3">
 									</td>
@@ -187,7 +196,7 @@
 								<tr>
 									<th>单选:</th>
 									<td>
-										<input type="radio" name="r1" cs-control cs-label="单选按钮1">
+										<input disabled type="radio" name="r1" cs-control cs-label="单选按钮1">
 										<input type="radio" name="r1" cs-control cs-label="单选按钮2">
 										<input type="radio" name="r1" cs-control cs-label="单选按钮3">
 									</td>
@@ -231,11 +240,17 @@
 								<tr>
 									<th>时间控件(左):</th>
 									<td>
-										<input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="left">
+										<input type="text" cs-control="DataPicker" cs-options="{dateFmt:'H:mm:ss'}"  cs-button-type="timebutton" cs-label-location="left">
 									</td>
 								</tr>
 								<tr>
 									<th>按钮文本控件(左):</th>
+									<td>
+										<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton" cs-label-location="left">
+									</td>
+								</tr>
+								<tr>
+									<th>按钮文本控件(右):</th>
 									<td>
 										<input type="text" placeholder="搜索" cs-control="ButtonTextBox" cs-button-type="searchbutton">
 									</td>
@@ -425,8 +440,8 @@ WebApi.modal({
 //弹iframe
 WebApi.modal({
     src:"popcontent.html",
-    width:550,
-    height:450,
+    width:1400,
+    height:800,
     title:"弹iframe"
 }).then(function(status){
     alert("弹iframe关闭后回调信息:"+ status);
@@ -441,8 +456,8 @@ WebApi.modal({
 //添加了全屏与还原功能,其它参数与modal类似
 WebApi.window({
     content:$("#testmodal2"),
-    width:500,
-    height:400,
+    width:1240,
+    height:800,
     title:"添加了全屏与还原功能,其它参数与modal类似"
 }).then(function(status){
     alert("window关闭后回调信息:"+status);
@@ -482,7 +497,7 @@ WebApi.modal("self-window",{
                         <br>
                         <br>
                         <div id="testmodal2">
-                            <div class="main-container">
+                            <div class="section-container">
 <textarea spellcheck='false' id='closeitem' cols='30' rows='6'>//这里是关闭指定弹窗的js
 WebApi.close({
     name:'modal1',
@@ -492,83 +507,80 @@ WebApi.close({
                                 <br>
                                 <br>
                                 <a href='javascript:;' class='btn w' onclick='runJS(closeitem)'>关闭指定窗口</a>
-                                <br/>
-                                <br/>
-                                <textarea spellcheck='false' id='closeall' cols='30' rows='5'>//这里是关闭所有弹窗的js
-WebApi.close({
-    command:'我用Api关闭了所有窗口'
-});</textarea>
-                                <br><br>
-                                <a href='javascript:;' class='btn db' onclick="runJS(closeall)">关闭所有窗口</a>
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<div class="section-container">
-				<div class="title-bar">
-					表格一
-				</div>
-				<table class="list">
-					<thead>
-						<tr>
-							<th>标题一</th>
-							<th>标题二</th>
-							<th>标题三</th>
-							<th>标题四</th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
-						<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
-						<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
-						<td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段21</td>
-                    <td>字段22</td>
-                    <td>字段23</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段31</td>
-                    <td>字段32</td>
-                    <td>字段33</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段41</td>
-                    <td>字段42</td>
-                    <td>字段43</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段51</td>
-                    <td>字段52</td>
-                    <td>字段53</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                </tbody>
+                <br/>
+                <br/>
+                <textarea spellcheck='false' id='closeall' cols='30' rows='5'>//这里是关闭所有弹窗的js
+WebApi.close({ command:'我用Api关闭了所有窗口' });
+                </textarea>
+                <br>
+                <br>
+                <a href='javascript:;' class='btn db' onclick="runJS(closeall)">关闭所有窗口</a>
+            </div>
+            <div class="section-container">
+                <div class="title-bar">
+                    表格一
+                </div>
+                <table class="list">
+                    <thead>
+                        <tr>
+                            <th>标题一</th>
+                            <th>标题二</th>
+                            <th>标题三</th>
+                            <th>标题四</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                            <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                            <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段21</td>
+                            <td>字段22</td>
+                            <td>字段23</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段31</td>
+                            <td>字段32</td>
+                            <td>字段33</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段41</td>
+                            <td>字段42</td>
+                            <td>字段43</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段51</td>
+                            <td>字段52</td>
+                            <td>字段53</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="page-control">
                     <span>共999条</span>
@@ -581,65 +593,70 @@ WebApi.close({
                 </div>
             </div>
             <div class="section-container">
-				<div class="title-bar">
-					表格二
-				</div>
-				<table class="list empty">
-					<thead>
-						<tr>
-							<th>标题一</th>
-							<th>标题二</th>
-							<th>标题三</th>
-							<th>标题四</th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
-						<td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
-						<td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
-						<td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段21</td>
-                    <td>字段22</td>
-                    <td>字段23</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段31</td>
-                    <td>字段32</td>
-                    <td>字段33</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段41</td>
-                    <td>字段42</td>
-                    <td>字段43</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                <tr>
-                    <td>字段51</td>
-                    <td>字段52</td>
-                    <td>字段53</td>
-                    <td>
-                    	<a href="javascriptp:;" class="icon-edit color-3"></a>
-                        <a href="javascriptp:;" class="icon-view color-2"></a>
-                        <a href="javascript:;" class="icon-delete color-1"></a></td>
-                </tr>
-                </tbody>
+                <div class="title-bar">
+                    表格二
+                </div>
+                <table class="list empty">
+                    <thead>
+                        <tr>
+                            <th>标题一</th>
+                            <th>标题二</th>
+                            <th>标题三</th>
+                            <th>标题四</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                            <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                            <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段21</td>
+                            <td>字段22</td>
+                            <td>字段23</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段31</td>
+                            <td>字段32</td>
+                            <td>字段33</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段41</td>
+                            <td>字段42</td>
+                            <td>字段43</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字段51</td>
+                            <td>字段52</td>
+                            <td>字段53</td>
+                            <td>
+                                <a href="javascriptp:;" class="icon-edit color-3"></a>
+                                <a href="javascriptp:;" class="icon-view color-2"></a>
+                                <a href="javascript:;" class="icon-delete color-1"></a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="page-control">
                     <span>共999条</span>
@@ -652,11 +669,171 @@ WebApi.close({
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="section-container">
+        <div class="title-bar">
+            表格一
+        </div>
+        <table class="list">
+            <thead>
+                <tr>
+                    <th>标题一</th>
+                    <th>标题二</th>
+                    <th>标题三</th>
+                    <th>标题四</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                    <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                    <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段21</td>
+                    <td>字段22</td>
+                    <td>字段23</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段31</td>
+                    <td>字段32</td>
+                    <td>字段33</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段41</td>
+                    <td>字段42</td>
+                    <td>字段43</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段51</td>
+                    <td>字段52</td>
+                    <td>字段53</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page-control">
+            <span>共999条</span>
+            <span>1/25页</span>
+            <a href="javascript:;" class="last"></a>
+            <a href="javascript:;" class="next"></a>
+            <span>跳转到</span>
+            <input type="text">
+            <a href="javascriptp:;">GO</a>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="title-bar">
+            表格二
+        </div>
+        <table class="list empty">
+            <thead>
+                <tr>
+                    <th>标题一</th>
+                    <th>标题二</th>
+                    <th>标题三</th>
+                    <th>标题四</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="single">设置TD class为single将会只显示单行文本,多于的会进行省略</td>
+                    <td>该字段并未设置样式single,多余文字将进行换行,多余文字将进行换行,多余文字将进行换行</td>
+                    <td>123123123123123123123123123123123123123123123123123123123123123123123123</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段21</td>
+                    <td>字段22</td>
+                    <td>字段23</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段31</td>
+                    <td>字段32</td>
+                    <td>字段33</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段41</td>
+                    <td>字段42</td>
+                    <td>字段43</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>字段51</td>
+                    <td>字段52</td>
+                    <td>字段53</td>
+                    <td>
+                        <a href="javascriptp:;" class="icon-edit color-3"></a>
+                        <a href="javascriptp:;" class="icon-view color-2"></a>
+                        <a href="javascript:;" class="icon-delete color-1"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="page-control">
+            <span>共999条</span>
+            <span>1/25页</span>
+            <a href="javascript:;" class="last"></a>
+            <a href="javascript:;" class="next"></a>
+            <span>跳转到</span>
+            <input type="text">
+            <a href="javascriptp:;">GO</a>
+        </div>
+    </div>
+    </div>
+    </div>
     </div>
     <div class="footer">
         Copyright©2005-2016 Tenpay All Rights Reserved 成都康赛科技信息技术有限公司 版权所有
     </div>
-    <script data-main="Content/js/modules_base/common" data-business="default" src="Content/js/common/require.js"></script>
+    <script data-main="/base/js/modules_base/common" data-business="default" src="/base/js/common/require.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,108 @@
+/**
+ * buttons
+ */
+ $lighten = 60%;
+ $darken = 40%;
+.btn
+	border-radius 5px
+	padding 1px 23px
+	&.no-radius
+		border-radius 0px
+	color rgba(255, 255, 255, .8)
+	vertical-align middle
+	border 1px solid rgba(255,255,255,.3);
+	font-weight normal
+	transition border-color .3s ease , color .3s ease
+	&.b
+		background rgba(0,168,255,.3);
+		&:hover
+			border-color $color + $lighten !important
+			color white
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color rgba(255, 255, 255, .8)
+				border-color rgba(255,255,255,.3) !important
+	&.db
+		color #c9f1ff
+		background $color;
+		&:hover
+			border-color $color - $lighten !important
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color #c9f1ff
+				border-color rgba(255,255,255,.3) !important
+	&.w
+		color #333
+		background #e3edf2;
+		&:hover
+			border-color #e3edf2 - $lighten !important
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color #333
+				border-color rgba(255,255,255,.3) !important
+	&.g
+		color #c9f1ff
+		background rgba(2,255,153,.3)
+		&:hover
+			border-color rgb(2,255,153) + $lighten !important
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color #c9f1ff
+				border-color rgba(255,255,255,.3) !important
+	&.y
+		color #c9f1ff
+		background rgba(255,168,0,.3)
+		&:hover
+			border-color rgb(255,168,0) + $lighten !important
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color #c9f1ff
+				border-color rgba(255,255,255,.3) !important
+	&.dy
+		color #c9f1ff
+		background #ffb135
+		&:hover
+			border-color #ffb135 - $lighten !important
+		&.disabled
+			cursor default
+			opacity .4
+			filter Gray
+			filter grayscale(100%)
+			&:hover
+				color #c9f1ff
+				border-color rgba(255,255,255,.3) !important
+	&.empty
+		&.b
+			background transparent
+			color #c9f1ff
+			border-color rgba(255,255,255,.3)
+			&:hover
+				color white
+.btn-panel
+	display inline-block;
+	vertical-align middle
+	font-size 0
+	&>*
+		margin 0 2px
+	&.right
+		float right

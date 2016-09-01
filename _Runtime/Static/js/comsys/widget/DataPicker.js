@@ -24,9 +24,16 @@ define(
                     var that = this;
                     this.callParent();
                     this.$BaseEl.on("focus",function(){
-                        WdatePicker({position:{top:4}});
+                        WdatePicker($.extend({position:{top:4}},that.setting));
+                        that.RuntimeBind();
                     });
                     return this;
+                },
+                RuntimeBind:function(){
+                    var THIS = this;
+                    $(document).off(".wdatepickermousewheelhide").on('mousewheel.wdatepickermousewheelhide',function(){
+                        $dp.hide()
+                    })
                 }
 
             }, ButtonTextBox);
@@ -34,7 +41,13 @@ define(
         $.fn.extend({
             DataPickerInit: function (setting) {
                 return this.each(function () {
-                    new DataPicker({ element: this, setting: setting }).initialize();
+                    var oset = $(this).attr('cs-options');
+                    var clone= $.extend({},setting);
+                    if(oset)
+                    {
+                        clone = $.extend(clone,eval("(" + oset + ")"));
+                    }
+                    new DataPicker({ element: this, setting: clone }).initialize();
                 }).removeAttr('cs-control');
             }
         });

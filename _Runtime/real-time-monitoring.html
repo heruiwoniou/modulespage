@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>实时监控</title>
-    <link rel="stylesheet" href="Content/style/modules_base/real-time-monitoring.css">
-    <script src="Content/js/common/jquery.js"></script>
+    <link rel="stylesheet" href="/base/style/modules_base/real-time-monitoring.css">
+    <script src="/base/js/common/jquery.js"></script>
 </head>
 <body>
     <div class="header">
@@ -47,7 +47,7 @@
     </div>
     <div class="body">
         <div class="container">
-            <div class="real-title-bar"><i class="icon-edit"></i>规则编辑</div>
+            <div class="big-title-bar"><i class="icon-edit"></i>规则编辑</div>
             <div class="section-40-container lr">
                 <div class="title-bar">规则基本信息</div>
                 <table class="list">
@@ -100,7 +100,7 @@
                         </td>
                         <th>开始时间</th>
                         <td>
-                            <input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-label-location="right">
+                            <input type="text" cs-control="DataPicker" cs-button-type="timebutton" cs-options="{dateFmt:'H:mm'}" cs-label-location="right">
                         </td>
                         <th>规则描述</th>
                         <td rowspan="2">
@@ -319,6 +319,6 @@
     <div class="footer">
         Copyright©2005-2016 Tenpay All Rights Reserved 成都康赛科技信息技术有限公司    版权所有
     </div>
-    <script data-main="Content/js/modules_base/common" data-business="real-time-monitoring" src="Content/js/common/require.js"></script>
+    <script data-main="/base/js/modules_base/common" data-business="real-time-monitoring" src="/base/js/common/require.js"></script>
 </body>
 </html>

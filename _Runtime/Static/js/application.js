@@ -1,9 +1,9 @@
 require.config({
-    baseUrl: "./"
+    baseUrl: "/"
 });
 var WebApi = {};
 define([
-    'Content/js/common/util',
+    'base/js/common/util',
     'comsys/layout/MaskLayer',
     'common/setting',
     'widget/Window',
@@ -154,7 +154,7 @@ define([
             for (var i = 0; i < l; i++)
                 if ((main = scripts[i].getAttribute("data-business"))) break;
             if (main)
-                require(["Content/js/modules_business/" + main], this.interface);
+                require(["base/js/modules_business/" + main], this.interface);
             else util._init_();
         }
     }

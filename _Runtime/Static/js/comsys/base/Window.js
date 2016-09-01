@@ -200,7 +200,7 @@ define(
                     }
                     else{
                         this.$BoxBaseEl.removeClass('no-head')
-                        this.$BoxBaseTitle.show().html(setting.title.text);
+                        this.$BoxBaseTitle.show().html(setting.title.text || setting.title);
                         this.$BoxBaseHead.show()
                     }
 
