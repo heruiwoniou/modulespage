@@ -3,7 +3,15 @@ table.form
 	border-collapse collapse
 	width 100%
 	th,td
-		line-height 55px
+		line-height 50px
+		&.top
+			vertical-align top
+		&.left
+			text-align left
+		&.right
+			text-align right
+		&.center
+			text-align center
 	th
 		color #502659
 		padding 0 10px 0 20px
@@ -16,8 +24,8 @@ table.form
 				color red
 				left 10px
 				content '*'
-		&.top
-			vertical-align top
 	tr.empty
 		th,td
-			line-height 30px
+			height 20px
+			min-height 20px
+			line-height 20px

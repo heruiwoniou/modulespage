@@ -16,6 +16,7 @@ body
 		height 100%
 		left 0
 		right 0
+		display none
 .panel-title
 	background white
 .section
@@ -40,7 +41,7 @@ body
 		width 200px
 		background white
 		margin-top 5px
-		min-height 695px
+		min-height 687px
 		fl()
 	.frame-right
 		margin-left 210px
@@ -54,6 +55,7 @@ body
 		text-indent 20px
 		margin-top 20px
 		border-radius 5px
+		transition background .2s ease-in, color .2s ease-in
 		a
 			font-size 16px
 			display block
@@ -63,30 +65,16 @@ body
 		&:hover
 		&.select
 			opacity 1
-			background #eeeeee
-			a
+			background #724383 + 20%
+			&>a
+				color white
 				text-decoration none
+		&.select
+			background #724383
 		ul
 			margin 0 20px
 			width 120px
-.tip-panel
-	background #f2f2f2 url('./../images/tip-panel-img.png?exclude') no-repeat right bottom
-	line-height 30px
-	opacity .9
 
-.top-header
-	line-height 60px
-	text-align center
-	font-size 18px
-	color #502659
-	&:before
-	&:after
-		content ''
-		ib()
-		width 80px
-		height 1px
-		background #e3e3e3 - 20%
-		margin 0 50px
 
 @media screen and (max-width 1425px)
 	.section

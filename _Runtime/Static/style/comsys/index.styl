@@ -33,7 +33,8 @@ $close="M";
 @import './load/index.styl';
 
 
-input
+input[type='text']
+input[type='password']
 textarea
 	vertical-align middle
 	padding 5px
@@ -41,12 +42,14 @@ textarea
 	transition box-shadow .1s ease , border .1s ease
 	&:focus
 		outerlineset($inputoutlinecolor)
-input
+input[type='text']
+input[type='password']
 	height $line-height
 	border 1px solid $border-color
 	display inline-block
 	width 100%
 textarea
+	margin 12px 0 8px 0
 	border 1px solid $border-color
 	display inline-block
 	width 100%
