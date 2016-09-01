@@ -107,5 +107,76 @@ body
 					display block
 
 
+.information-section
+	width 100%
+	height auto
+	margin-bottom 40px
+	overflow hidden
+	p.title
+		height 30px
+		line-height 30px
+		color #2b2626
+		font-size 16px
+		text-indent 10px
+		margin-bottom 10px
+		background url("../icons/DF-title-bac.png") no-repeat
+	.search
+		float right
+		width 250px
+		height 30px
+		overflow hidden
+		input.search-input
+			width: 220px
+			height 30px
+			border none
+			background white
+			padding-left 5px
+			display block
+			float left
+		a.sublime
+			width: 30px
+			height: 30px
+			display block
+			float right
+			background url("../icons/search-background.png") no-repeat;
+	table
+		width 100%
+		height auto
+		background white
+		tr
+			td
+				height: 30px
+				line-height 30px
+				border-right 1px solid #d4d4d4
+				border-bottom 1px solid #d4d4d4
+			td:last-child
+				border-right none
 
+		tr:last-child
+			border-bottom none
+			td
+				border-bottom none
+
+
+	/*左边是高亮颜色的表格*/
+	table.left-background
+		tr
+			td
+				padding-left 10px
+			td:nth-child(odd)
+				background #ede9ef
+
+
+	/*高亮在头顶的表单*/
+	.topWeight
+		tr:first-child
+			background #97709c
+			font-weight bold
+			td
+				color #fff
+		tr
+			td
+				text-align center
+		tr:nth-child(even)
+			background #e8eae6
 
