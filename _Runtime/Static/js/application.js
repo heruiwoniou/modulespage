@@ -5,7 +5,13 @@ var WebApi = {};
 define([
     'Content/js/common/util',
     'css',
-    'Static/js/libs/jquery.easing/jquery.easing'
+    'Static/js/libs/jquery.easing/jquery.easing',
+    'widget/CheckBox',
+    'widget/RadioBox',
+    'widget/SingleCombox',
+    'widget/ButtonTextBox',
+    'widget/DataPicker',
+    'widget/ProtoUpload'
 ], function(util) {
     $.extend(WebApi, util);
     return {

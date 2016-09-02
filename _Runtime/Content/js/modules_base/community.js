@@ -4,22 +4,18 @@ require([
 	],function(application){
 	application.init();
 	var $window = $(window);
+	var $main = $('.main');
 	var resizeTimer = null;
 
 	var initialized = false;
 	var initialize = function(first){
+		$main.hide()
 		var timeout = function(){
 			//第一次加载
+			$main.fadeIn()
 			if ( initialized === false && first === true )
 			{
 				$(".scroll-bar").scrollBar({
-					//theme:
-					//"dark",
-					//"inset-dark"
-					//"inset-2-dark",
-					//minimal-dark
-					//dark-3
-					//"dark-2",
 					scrollInertia: 400,
 					advanced:{ autoScrollOnFocus: false },
 					autoHideScrollbar:true,
