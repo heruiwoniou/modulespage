@@ -1,0 +1,60 @@
+.page-control
+	clearfix()
+	.page-left
+		fl()
+	.page-right
+		fr()
+	line-height 30px
+	margin 10px 0
+	span
+		margin 0 5px
+	a
+		ib()
+		border-radius 5px
+		padding 0 3px
+		color #333
+		height 30px
+		min-width 30px
+		border 1px solid transparent
+		text-align center
+		line-height 28px
+		background white
+		&.num
+		&.go
+			&:hover
+				color white
+				background #794986
+		&:before
+			font-size 18px
+			color $border-color - 20%
+			setFontSystem()
+			margin 0
+			ib()
+		&.last
+		&.next
+			font-size 0px
+			background #dfdfdf
+			box-shadow 0 0 5px 0 #ccc
+			&:hover
+				background white
+				color #333
+		&.last
+			&:before
+				setFontDefault()
+				content '4'
+		&.next
+			&:before
+				setFontDefault()
+				content '5'
+		&:hover
+			border-color $color
+			text-decoration none
+			&:before
+				color $color
+	input
+		padding 0
+		text-align center
+		width 30px
+		height 30px
+		line-height 30px
+		inlineBlock()

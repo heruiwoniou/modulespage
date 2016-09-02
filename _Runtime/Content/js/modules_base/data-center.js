@@ -22,4 +22,6 @@ require([
 		scrollButtons:{enable:false},
 		advanced:{ updateOnImageLoad: false }
 	});
+
+
 })

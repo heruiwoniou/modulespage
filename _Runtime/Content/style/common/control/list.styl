@@ -1,0 +1,21 @@
+table.list
+	table-layout fixed
+	width 100%
+	tr
+		td,th
+			line-height 40px
+			height 40px
+			color #6b6b6b
+			text-align center
+			&.left
+				text-align left
+			&.right
+				text-align right
+			&.single
+				th()
+		th
+			background #e5e5e6
+			font-weight bold
+	tbody
+		tr:nth-child(2n + 2)
+			background #f9f9f9
