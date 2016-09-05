@@ -1,0 +1,66 @@
+@import './appeal-base.styl'
+
+.frame-right
+	.section-container
+		p.info
+		p.status
+			line-height 45px
+			text-align right
+		p.status
+			color #999999
+			padding-right 10px
+			b
+				font-size 14px
+				color #502659
+		p.info
+			color $color4
+		.form-detail
+			table-layout fixed
+			border-collapse collapse
+			width 100%
+			.img-container
+				display inline-block
+				width 100px
+				height 100px
+			td,th
+				line-height 45px
+				height 45px
+				padding 0 5px
+				th()
+				&.top
+					vertical-align top
+				&.left
+					text-align left
+				&.right
+					text-align right
+				&.center
+					text-align center
+				textarea
+				p.info
+					width 90%
+					margin-bottom 0px
+			td.mul
+				overflow inherit
+				text-overflow inherit
+				white-space normal
+				p
+					width 90%
+					text-align left
+					margin 10px 0 10px 0
+					line-height 25px
+			th
+				text-align left
+				font-weight bold
+				color #502659
+				padding 0 10px 0 20px
+			tr.color-white
+				td,th
+					background #f9f9f9
+				td[rowspan]
+					background transparent
+			tr.empty
+				th,td
+					height 5px
+					min-height 5px
+					line-height 5px
+					font-size 0px

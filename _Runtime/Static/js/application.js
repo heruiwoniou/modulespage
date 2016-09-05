@@ -4,6 +4,7 @@ require.config({
 var WebApi = {};
 define([
     'Content/js/common/util',
+    'Static/js/common/client/Request',
     'css',
     'Static/js/libs/jquery.easing/jquery.easing',
     'widget/CheckBox',

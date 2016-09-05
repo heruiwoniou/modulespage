@@ -1,4 +1,4 @@
-define(['./appeal-list-base'],function(){
+define(function(){
 	//code here
 	return {
 		//mothod here
@@ -8,4 +8,3 @@ define(['./appeal-list-base'],function(){
 		}
 	}
 })
-
