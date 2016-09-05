@@ -26,7 +26,7 @@ define(
                     this.callParent();
                     var id = $this.attr("id");
                     var buttontype=(this.setting.buttontype? " " + this.setting.buttontype + " ":"")
-                    this.$CheckBoxControl = $('<div class="comsys-checkbox' + buttontype + ($this.get(0).checked ? " checkbox-checked" : "") + '"></div>');
+                    this.$CheckBoxControl = $('<div class="comsys-checkbox' + buttontype + ($this.get(0).checked ? " checkbox-checked" : "") + ( $this.is(":disabled") ? ' disabled' : '') + '"></div>');
                     var $wrap = this.$CheckBoxControl;
                     $this.before($wrap).appendTo($wrap);
 
@@ -52,6 +52,29 @@ define(
                     this.checkedChange.apply(that,$this);
                 }
                 return this;
+            },
+            SetDisabled:function(status){
+                if(status)
+                {
+                    this.$BaseEl.attr("disabled",true);
+                    this.$CheckBoxControl.addClass('disabled');
+                }
+                else{
+                    this.$BaseEl.removeAttr('disabled');
+                    this.$CheckBoxControl.removeClass('disabled');
+                }
+            },
+            SetCheck:function(status){
+                if(status)
+                {
+                    this.$BaseEl.get(0).checked = true;
+                    this.$CheckBoxControl.removeClass('checkbox-checked').addClass("checkbox-checked");
+                }
+                else
+                {
+                    this.$BaseEl.get(0).checked = false;
+                    this.$CheckBoxControl.removeClass("checkbox-checked");
+                }
             },
             checkedChange:function(el){
                 var that=this;

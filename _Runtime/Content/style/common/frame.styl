@@ -3,6 +3,8 @@ for index in 1..5
 		background $color + index
 	.color-{index}
 		color $color + index
+a
+	color #3cb1e7
 .header
 	height 100px
 	background white
@@ -61,6 +63,12 @@ for index in 1..5
 
 .section-container
 	padding 10px
+	&.lr
+		padding-top 0
+		padding-bottom 0
+	&.tb
+		padding-left 0
+		padding-right 0
 for index in 1..6
 	.section-container-{10 + index * 5}
 		padding 10px + index * 5px
