@@ -153,6 +153,57 @@ table.left-background
       line-height 25px
 /*上下翻页，与页面统计end*/
 
+  .bottomIcon
+    span
+      display inline-block
+      float right
+      padding-left 15px
+      margin-left 15px
+    span:before
+      width: 15px
+      height 15px
+      content:" "
+      float left
+      display inline-block
+    .yellowIcon:before
+      background url("../icons/small-yellow-bac.png") no-repeat;
+    .redIcon:before
+      background url("../icons/small-red-bac.png") no-repeat;
+    .greenIcon:before
+      background url("../icons/small-green-bac.png") no-repeat;
+    .blueIcon:before
+      background url("../icons/small-blue-bac.png") no-repeat;
+
+
+ /*标题的一杠背景颜色*/
+.information-section
+  width 100%
+  height auto
+  margin-bottom 40px
+  overflow hidden
+  p.title
+    height 30px
+    line-height 30px
+    color #2b2626
+    font-size 16px
+    text-indent 10px
+    margin-bottom 10px
+
+  //background url("../icons/DF-title-bac.png") no-repeat
+  .title
+    .colorBox
+      width 4px
+      height 28px
+      display inline-block
+      float left
+
+.center-nav
+  li
+    //a:visited{ color:red}
+    //a:hover{ color:blue}
+    a:active{ color:#000}
+
+
 
 
 

@@ -24,7 +24,7 @@
                 <a href="student-reading-information.html">读书信息</a>
             </li>
             <li>
-                <a href="student-center.html">我的缺勤</a>
+                <a href="student-course.html">我的缺勤</a>
             </li>
             <li>
                 <a href="student-local.html">爱去的地方</a>
@@ -52,7 +52,7 @@
                         <p class="DF-fr DF-small-size DF-color-gray" style="line-height: 30px;">单位：元</p>
                     </div>
                     <div class="DF-image-content">
-                        <img src="Content/style/icons/student-big-table-img2.png" alt="">
+                        <img src="Content/style/icons/6.png" alt="">
                     </div>
                 </section>
 
@@ -63,17 +63,17 @@
                         <p class="DF-fr DF-small-size DF-color-gray" style="line-height: 30px;">单位：天</p>
                     </div>
                     <div class="DF-image-content">
-                        <img src="Content/style/icons/student-big-table-img3.png" alt="">
+                        <img src="Content/style/icons/4.png" alt="">
                     </div>
                 </section>
 
                 <!--缺勤信息-->
                 <section class="information-section">
                     <div style="overflow: hidden;">
-                        <p class="title" style="float: left;">缺勤信息</p>
+                        <p class="title" style="float: left;"><span class="colorBox bestBgColor bestTextColor"></span>缺勤信息</p>
                     </div>
                     <table class="topWeight" style="margin-bottom:10px;">
-                        <tr>
+                        <tr class="bestBgColor bestTextColor">
                             <td>时间</td>
                             <td>地点</td>
                             <td>金额</td>
@@ -114,23 +114,22 @@
                             <td>998</td>
                         </tr>
                     </table>
-                    <div class="pageJump">
-                        <p class="text">
-                            <span>共<span>3</span>页，<span>25</span>条数据</span>
-                        </p>
-
-                        <p class="jumps">
-                            跳转到：<input type="text">
-                            <a class="jump" href="javascript:;">跳转</a>
-                        </p>
-                        <div class="jumpBtn">
-                            <div class="sublimeBtn">
-                                <a class="btnActive" href="javascript:;">上一页</a>
-                                <a href="javascript:;">1</a>
-                                <a href="javascript:;">2</a>
-                                <a href="javascript:;">3</a>
-                                <a href="javascript:;">下一页</a>
-                            </div>
+                    <div class="page-control">
+                        <div class="page-left">
+                            <span>第1/25页</span>
+                            <span>共999条</span>
+                        </div>
+                        <div class="page-right">
+                            <a href="javascript:;" class="last"></a>
+                            <a href="javascript:;" class="num">1</a>
+                            <a href="javascript:;" class="num">2</a>
+                            <span>. . .</span>
+                            <a href="javascript:;" class="num">99</a>
+                            <a href="javascript:;" class="num">100</a>
+                            <a href="javascript:;" class="next"></a>
+                            <span>跳转到</span>
+                            <input type="text">
+                            <a href="javascript:;" class="go">GO</a>
                         </div>
                     </div>
                 </section>
