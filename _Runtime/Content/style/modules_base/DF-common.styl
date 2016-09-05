@@ -77,12 +77,6 @@
   .green-background-box:before
     background url("../icons/student-green-background-box.png") no-repeat
 
-
-
-
-
-
-
 .DF-container
   width 100%
   background #f7f4f6
@@ -90,11 +84,126 @@
 .DF-title
   background #fff
 
-
 .DF-whiteBac
   background #fff!important
 .DF-opacity-8
   background rgba(255,255,255,.6)!important
+
+/*表单的头部高亮颜色显示start*/
+/*左边高亮*/
+table.left-background
+  tr
+    td
+      padding-left 10px
+    td:nth-child(odd)
+      background #ede9ef
+/*头顶高亮*/
+.topWeight
+  tr:first-child
+    font-weight bold
+    td
+      text-align center
+  tr
+    td
+      text-align center
+  tr:nth-child(even)
+    background #e8eae6
+/*表单的头部高亮颜色显示end*/
+
+/*上下翻页，与页面统计start*/
+.pageJump
+  width:100%
+  height: 25px
+  overflow hidden
+  position: relative;
+  .jumpBtn
+    position relative
+    float left
+    left 50%
+    height:25px
+    .sublimeBtn
+      position: relative;
+      left: -100%;
+      top 8px
+      height 25px
+      a
+        padding 2px 8px
+        border 1px solid #999
+        color #999
+        height 25px
+
+  .text
+    float left
+    font-size 12px
+    display block
+    line-height 25px
+  .jumps
+    float right
+    input
+      width: 25px
+      height: 23px
+      background white
+      border 1px solid #eee
+    .jump
+      display inline-block
+      height:25px
+      color #fff
+      font-size 14px
+      padding 0 10px
+      line-height 25px
+/*上下翻页，与页面统计end*/
+
+  .bottomIcon
+    span
+      display inline-block
+      float right
+      padding-left 15px
+      margin-left 15px
+    span:before
+      width: 15px
+      height 15px
+      content:" "
+      float left
+      display inline-block
+    .yellowIcon:before
+      background url("../icons/small-yellow-bac.png") no-repeat;
+    .redIcon:before
+      background url("../icons/small-red-bac.png") no-repeat;
+    .greenIcon:before
+      background url("../icons/small-green-bac.png") no-repeat;
+    .blueIcon:before
+      background url("../icons/small-blue-bac.png") no-repeat;
+
+
+ /*标题的一杠背景颜色*/
+.information-section
+  width 100%
+  height auto
+  margin-bottom 40px
+  overflow hidden
+  p.title
+    height 30px
+    line-height 30px
+    color #2b2626
+    font-size 16px
+    text-indent 10px
+    margin-bottom 10px
+
+  //background url("../icons/DF-title-bac.png") no-repeat
+  .title
+    .colorBox
+      width 4px
+      height 28px
+      display inline-block
+      float left
+
+.center-nav
+  li
+    //a:visited{ color:red}
+    //a:hover{ color:blue}
+    a:active{ color:#000}
+
+
 
 
 

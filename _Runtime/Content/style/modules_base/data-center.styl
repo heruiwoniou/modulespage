@@ -1,3 +1,5 @@
+@import "DF-common.css";
+
 html
 body
 	height 100%
@@ -8,6 +10,7 @@ body
 		height 100%
 		left 0
 		right 0
+		overflow hidden
 	.data-center
 		margin-top 85px
 		width 100%
@@ -32,18 +35,19 @@ body
 			li.last
 				border-right none!important
 
-@media screen and (min-width:1510px)
+@media screen and (min-width:1390px)
 	.center-section
-		width 1354px
+		width 1263px
 		height auto
 		overflow hidden
 		.center-table
-			width 440px
+			position relative
+			width 410px
 			height 350px
 			float left
 			margin-right 10px
 			background white
-			margin-top 10px
+			margin-bottom 10px
 			.center-title
 				height 60px
 				line-height 60px
@@ -57,7 +61,7 @@ body
 					float right
 			.table-img
 				width:100%
-				height 290px
+				height 270px
 				background #f6f3f6
 				overflow hidden
 				img
@@ -66,12 +70,13 @@ body
 					margin 40px auto 0
 					display block
 
-@media screen and (max-width:1510px)
+@media screen and (max-width:1390px)
 	.center-section
 		width 904px
 		height auto
 		overflow hidden
 		.center-table
+			position relative
 			width 440px
 			height 350px
 			float left
@@ -91,7 +96,7 @@ body
 					float right
 			.table-img
 				width:100%
-				height 290px
+				height 270px
 				background #f6f3f6
 				overflow hidden
 				img
@@ -102,24 +107,6 @@ body
 
 
 .information-section
-	width 100%
-	height auto
-	margin-bottom 40px
-	overflow hidden
-	p.title
-		height 30px
-		line-height 30px
-		color #2b2626
-		font-size 16px
-		text-indent 10px
-		margin-bottom 10px
-		//background url("../icons/DF-title-bac.png") no-repeat
-	.title
-		.colorBox
-			width 4px
-			height 28px
-			display inline-block
-			float left
 	.search
 		float right
 		width 250px
@@ -166,25 +153,5 @@ body
 				border-bottom none
 
 
-	/*左边是高亮颜色的表格*/
-	table.left-background
-		tr
-			td
-				padding-left 10px
-			td:nth-child(odd)
-				background #ede9ef
 
-
-	/*高亮在头顶的表单*/
-	.topWeight
-		tr:first-child
-			//background #97709c
-			font-weight bold
-			td
-				//color #fff
-		tr
-			td
-				text-align center
-		tr:nth-child(even)
-			background #e8eae6
 
