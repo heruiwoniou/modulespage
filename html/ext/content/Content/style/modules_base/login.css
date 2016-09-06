@@ -1,0 +1,746 @@
+@import url('./../common/common.css');
+@import url('./../modules_business/login.css');
+body {
+	display: none;
+}
+
+.body .swbanner {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+.body .swbanner .container {
+	position: relative;
+	height: 100%;
+}
+
+.body .swbanner .login-panel {
+	overflow: hidden;
+	position: absolute;
+	width: 325px;
+	height: 375px;
+	background: rgba(0,0,0,0.5);
+	z-index: 1;
+	top: 50%;
+	right: 0;
+	margin-top: -187px;
+	opacity: 0;
+	transform: perspective(600px) rotateY(90deg);
+	transition: transform 0.3s, opacity 0.3s cubic-bezier(0, 2, 0, 2) 0s;
+}
+
+.body .swbanner .login-panel.forward-in {
+	transform: perspective(600px) rotateY(0deg);
+	opacity: 1;
+}
+
+.body .swbanner .login-panel.forward-out {
+	transform: perspective(600px) rotateY(-90deg);
+}
+
+.body .swbanner .login-panel .toggle {
+	cursor: pointer;
+	width: 84px;
+	height: 84px;
+	background: #bcb5c9;
+	position: absolute;
+	right: -42px;
+	top: -42px;
+	z-index: 1;
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	overflow: hidden;
+}
+
+.body .swbanner .login-panel h1 {
+	text-align: center;
+	line-height: 90px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.body .swbanner .login-panel h1 span {
+	padding-left: 10px;
+	font-size: 14px;
+	color: #c7b7ce;
+}
+
+.body .swbanner .login-panel.form-barcode .row {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.body .swbanner .login-panel.form-barcode .row>div {
+	line-height: 60px;
+	height: 60px;
+	position: relative;
+	font-size: 0;
+}
+
+.body .swbanner .login-panel.form-barcode .row>div .input {
+	cursor: text;
+	width: 100%;
+	background: #fff;
+	position: absolute;
+	height: 40px;
+	line-height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	padding: 13px 10px 0px 50px;
+}
+
+.body .swbanner .login-panel.form-barcode .row>div .input input {
+	border: 0;
+	background: transparent;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.body .swbanner .login-panel.form-barcode .row>div input:-webkit-autofill {
+	box-shadow: 0 0 0 35px #fff inset !important;
+	color: #333 !important;
+}
+
+.body .swbanner .login-panel.form-barcode .row>div .login {
+	padding: 0;
+	line-height: 40px;
+	cursor: pointer;
+	height: 40px;
+	background: #a57fea;
+	color: #fff;
+	width: 100%;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.body .swbanner .login-panel.form-barcode .row .user:before,
+.body .swbanner .login-panel.form-barcode .row .pass:before,
+.body .swbanner .login-panel.form-barcode .row .auth:before {
+	position: absolute;
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	height: 40px;
+	width: 40px;
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -66px -230px;
+	top: 50%;
+	margin-top: -20px;
+	z-index: 1;
+}
+
+.body .swbanner .login-panel.form-barcode .row .user:before {
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -106px -230px;
+}
+
+.body .swbanner .login-panel.form-barcode .row .validate {
+	overflow: hidden;
+	text-align: right;
+}
+
+.body .swbanner .login-panel.form-barcode .row .validate img {
+	cursor: pointer;
+	height: 40px;
+	width: 100px;
+	position: absolute;
+	left: 1px;
+	top: 50%;
+	margin-top: -20px;
+}
+
+.body .swbanner .login-panel.form-barcode .toggle:before {
+	position: absolute;
+	top: 58px;
+	left: 25px;
+	display: block;
+	content: '';
+	width: 35px;
+	height: 36px;
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -0px -230px;
+}
+
+.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+	margin: 0 auto;
+	height: 195px;
+	width: 195px;
+	line-height: 195px;
+}
+
+.body .swbanner .login-panel.two-dimensional-barcode p {
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	margin-top: 35px;
+}
+
+.body .swbanner .login-panel.two-dimensional-barcode .toggle:before {
+	position: absolute;
+	top: 58px;
+	left: 25px;
+	display: block;
+	content: '';
+	width: 35px;
+	height: 36px;
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -146px -230px;
+}
+
+.body .swbanner .aphorism {
+	width: 429px;
+	height: 115px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -439px;
+	margin-top: -57px;
+	z-index: 1;
+}
+
+.body .swbanner .aphorism.aphorism-1 {
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -0px -0px;
+}
+
+.body .swbanner .aphorism.aphorism-2 {
+	background: url("../images/sprite-login.png") no-repeat center center;
+	background-position: -0px -115px;
+}
+
+.body .swbanner .swbanner-left,
+.body .swbanner .swbanner-right {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	background: rgba(0,0,0,0.5);
+	z-index: 3;
+	top: 50%;
+	margin-top: -30px;
+	color: #fff;
+	line-height: 60px;
+	text-align: center;
+	font-size: 0;
+	cursor: pointer;
+	opacity: 0.4;
+	transition: opacity 0.2 ease;
+}
+
+.body .swbanner .swbanner-left i,
+.body .swbanner .swbanner-right i {
+	opacity: 0.5;
+	transition: margin-left 0.2s ease, margin-right 0.2s ease, opacity 0.2s ease;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 40px;
+}
+
+.body .swbanner .swbanner-left:hover,
+.body .swbanner .swbanner-right:hover {
+	opacity: 1;
+}
+
+.body .swbanner .swbanner-left:hover i,
+.body .swbanner .swbanner-right:hover i {
+	opacity: 1;
+}
+
+.body .swbanner .swbanner-left {
+	left: 0;
+}
+
+.body .swbanner .swbanner-left:hover i {
+	margin-left: -10px;
+}
+
+.body .swbanner .swbanner-right {
+	right: 0;
+}
+
+.body .swbanner .swbanner-right:hover i {
+	margin-right: -10px;
+}
+
+.body .swbanner .swbanner-control {
+	font-size: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	height: 40px;
+}
+
+.body .swbanner .swbanner-control a {
+	display: inline-block;
+	vertical-align: middle;
+	width: 10px;
+	height: 10px;
+	background: #9b9a9b;
+	margin: 0 8px;
+	border-radius: 100%;
+}
+
+.body .swbanner .swbanner-control a.current {
+	background: #fff;
+}
+
+.body .swbanner>img {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.body .nav {
+	height: 200px;
+}
+
+.body .nav .col-4 {
+	text-align: center;
+}
+
+.body .nav .col-4:first-child {
+	text-align: left;
+}
+
+.body .nav .col-4:last-child {
+	text-align: right;
+}
+
+.body .nav .column-container {
+	height: 200px;
+	line-height: 200px;
+}
+
+.body .nav .column {
+	padding-top: 1px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+}
+
+.body .nav .column .img-container {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 82px;
+	height: 82px;
+	line-height: 82px;
+	transition: margin 0.2s ease;
+}
+
+.body .nav .column .img-container:hover {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.body .nav .column h1 {
+	line-height: 1.5;
+	font-size: 16px;
+	color: #1f1d20;
+}
+
+.body .nav .column p {
+	color: #807f81;
+}
+
+.body .nav .column p a {
+	color: #807f81;
+}
+
+.body .nav .column p span {
+	padding: 0 5px;
+}
+
+@media screen and (max-height: 768px) {
+	.body .swbanner .login-panel {
+		width: 320px;
+		height: 365px;
+		margin-top: -182.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 86.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 59.2px;
+		height: 59.2px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 191px;
+		width: 191px;
+		line-height: 191px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 33.5px;
+	}
+}
+
+@media screen and (max-height: 758px) {
+	.body .swbanner .login-panel {
+		width: 315px;
+		height: 355px;
+		margin-top: -177.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 83px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 58.4px;
+		height: 58.4px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 187px;
+		width: 187px;
+		line-height: 187px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 32px;
+	}
+}
+
+@media screen and (max-height: 748px) {
+	.body .swbanner .login-panel {
+		width: 310px;
+		height: 345px;
+		margin-top: -172.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 79.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 57.6px;
+		height: 57.6px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 183px;
+		width: 183px;
+		line-height: 183px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 30.5px;
+	}
+}
+
+@media screen and (max-height: 738px) {
+	.body .swbanner .login-panel {
+		width: 305px;
+		height: 335px;
+		margin-top: -167.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 76px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 56.8px;
+		height: 56.8px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 179px;
+		width: 179px;
+		line-height: 179px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 29px;
+	}
+}
+
+@media screen and (max-height: 728px) {
+	.body .swbanner .login-panel {
+		width: 300px;
+		height: 325px;
+		margin-top: -162.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 72.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 56px;
+		height: 56px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 175px;
+		width: 175px;
+		line-height: 175px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 27.5px;
+	}
+}
+
+@media screen and (max-height: 718px) {
+	.body .swbanner .login-panel {
+		width: 295px;
+		height: 315px;
+		margin-top: -157.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 69px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 55.2px;
+		height: 55.2px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 171px;
+		width: 171px;
+		line-height: 171px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 26px;
+	}
+}
+
+@media screen and (max-height: 708px) {
+	.body .swbanner .login-panel {
+		width: 290px;
+		height: 305px;
+		margin-top: -152.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 65.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 54.4px;
+		height: 54.4px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 167px;
+		width: 167px;
+		line-height: 167px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 24.5px;
+	}
+}
+
+@media screen and (max-height: 698px) {
+	.body .swbanner .login-panel {
+		width: 285px;
+		height: 295px;
+		margin-top: -147.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 62px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 53.6px;
+		height: 53.6px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 163px;
+		width: 163px;
+		line-height: 163px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 23px;
+	}
+}
+
+@media screen and (max-height: 688px) {
+	.body .swbanner .login-panel {
+		width: 280px;
+		height: 285px;
+		margin-top: -142.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 58.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 52.8px;
+		height: 52.8px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 159px;
+		width: 159px;
+		line-height: 159px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 21.5px;
+	}
+}
+
+@media screen and (max-height: 678px) {
+	.body .swbanner .login-panel {
+		width: 275px;
+		height: 275px;
+		margin-top: -137.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 55px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 52px;
+		height: 52px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 155px;
+		width: 155px;
+		line-height: 155px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-height: 668px) {
+	.body .swbanner .login-panel {
+		width: 270px;
+		height: 265px;
+		margin-top: -132.5px;
+	}
+
+	.body .swbanner .login-panel h1 {
+		line-height: 51.5px;
+	}
+
+	.body .swbanner .login-panel.form-barcode .row>div {
+		line-height: 51.2px;
+		height: 51.2px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode .img-container {
+		margin: 0 auto;
+		height: 151px;
+		width: 151px;
+		line-height: 151px;
+	}
+
+	.body .swbanner .login-panel.two-dimensional-barcode p {
+		margin-top: 18.5px;
+	}
+}
+
+@media screen and (max-height: 620px) {
+	.body {
+		padding-top: 70px;
+		margin-top: -70px;
+	}
+
+	.header {
+		height: 70px;
+	}
+
+	.header .header-left {
+		line-height: 70px;
+	}
+
+	.header .header-right {
+		height: 70px;
+		line-height: 70px;
+	}
+}
+
+@media screen and (max-height: 590px) {
+	.body .nav {
+		height: 190px;
+	}
+
+	.body .nav .column-container {
+		height: 190px;
+		line-height: 190px;
+	}
+}
+
+@media screen and (max-height: 580px) {
+	.body .nav {
+		height: 180px;
+	}
+
+	.body .nav .column-container {
+		height: 180px;
+		line-height: 180px;
+	}
+}
+
+@media screen and (max-height: 570px) {
+	.body .nav {
+		height: 170px;
+	}
+
+	.body .nav .column-container {
+		height: 170px;
+		line-height: 170px;
+	}
+}
+
+@media screen and (max-height: 560px) {
+	.body .nav {
+		height: 160px;
+	}
+
+	.body .nav .column-container {
+		height: 160px;
+		line-height: 160px;
+	}
+}
+
+@media screen and (max-height: 550px) {
+	.body .nav {
+		height: 150px;
+	}
+
+	.body .nav .column-container {
+		height: 150px;
+		line-height: 150px;
+	}
+};

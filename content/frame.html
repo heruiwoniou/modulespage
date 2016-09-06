@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="Content/style/modules_base/my-research.css">
+	<script src="Content/js/common/jquery.js"></script>
+	<style>
+		html,body{
+			margin:0;
+			padding:0;
+			height:100%;
+		}
+		body{
+			position: relative;
+		}
+		.left{
+			position: absolute;
+			left:0px;
+			top:0px;
+			bottom:0px;
+			width:215px;
+		}
+		.right{
+			position: absolute;
+			top:0px;
+			bottom:0px;
+			left:215px;
+			right:0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="left"></div>
+	<div class="right">
+		<iframe src="data-center.html" width="100%" height="100%" scrolling="yes" frameborder="0"></iframe>
+	</div>
+</body>
+<script data-main="Content/js/modules_base/index" data-business="index" src="Content/js/common/require.js"></script>
+</html>

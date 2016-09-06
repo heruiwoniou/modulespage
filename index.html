@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=0.7,user-scalable=0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>智慧建大</title>
+<link href="/html/ext/css/metro-icons.css" rel="stylesheet" type="text/css" />
+<link href="/html/ext/css/global_index.css" rel="stylesheet" type="text/css" />
+<link href="/html/ext/iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<style id="current_style"></style>
+	<div class="blurbg">
+		<img id="bgimg"/>
+		<canvas id="bgsvg"></canvas>
+	</div>
+	<div class="nav">
+		<div class="logo">
+		     <img src="/html/ext/images/logox155.png"/>
+		</div>
+		<div class="line bestBgColor focus bestDarkTextColor" onclick="openPage(this,'/html/ext/content/main.html',false)">
+			<div class="zh">首页</div>
+			<div class="en">Home Page</div>	
+		</div>
+		<div class="line bestBgColor bestTextColor" onclick="openPage(this,'/html/ext/hall/portal.html',true)">
+			<div class="zh">服务大厅</div>
+			<div class="en">Service Hall</div>	
+		</div>
+		<div class="line bestBgColor bestTextColor"  onclick="openPage(this,'/content/community.html',false)">
+			<div class="zh">爱生社区</div>
+			<div class="en">iStudent Community</div>
+		</div>
+		<div class="line bestBgColor bestTextColor"  onclick="openPage(this,'/content/data-center.html',false)">
+			<div class="zh">我的数据</div>
+			<div class="en">My Data</div>
+		</div>
+		<div class="more">
+		<div class="ico">
+			menu
+		</div>
+		</div>
+	</div>
+		
+	<iframe id="main_frame" max="0" src="" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+	<div class="sidebar-bg"></div>
+	<div class="sidebar bestDarkBgColor bestDarkTextColor">
+		<div class="min">
+			<img src="/html/ext/images/head.jpg" class="head" />
+			<div class="more iconfont icon-menu"></div>
+			<div class="menu">
+				<div class="btn iconfont icon-message"></div>
+				<div class="btn iconfont icon-beauty" onclick="beautyOpen()" title="个性化"></div>
+				<div class="btn iconfont icon-apps" onclick="openAppHome()" title="应用中心"></div>
+				<div class="btn iconfont icon-config" onclick="openApp(-1)" title="系统管理"></div>
+				<div class="btn iconfont icon-logout" title="注销"></div>
+			</div>
+		</div>
+		<div class="normal">
+			<div class="top">
+				<img src="/html/ext/images/head.jpg" class="head" />
+				<div class="username">智慧建大</div>
+				<div class="role">教授</div>
+				<div class="dep">信息科学与技术学院</div>
+			</div>
+			<div class="msg-center">
+				<div class="title">暂无消息</div>
+			</div>
+			<div class="quick">
+				<div class="btn">
+					<div class="m iconfont icon-message"></div>
+					<div class="name">我的消息</div>
+				</div>
+				<div class="btn" onclick="beautyOpen()">
+					<div class="m iconfont icon-beauty"></div>
+					<div class="name">个性化</div>
+				</div>
+				<div class="btn" onclick="openAppHome()">
+					<div class="m iconfont icon-apps"></div>
+					<div class="name">应用中心</div>
+				</div>
+	
+				<div class="btn" onclick="openApp(-2)">
+					<div class="m iconfont icon-config"></div>
+					<div class="name">控制台</div>
+				</div>
+		
+	
+				<div class="btn">
+					<div class="m iconfont icon-logout"></div>
+					<div class="name">注销登录</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="app-home">
+		<div class="top">
+			<div class="back iconfont icon-close" onclick="closeAppHome()"></div>
+			<div class="search">
+				<input placeholder="搜索"/>
+			</div>
+		</div>	
+		<div class="content"></div>
+		<div class="dots"></div>
+		<div class="dock_bg"></div>
+		<div id="dock"></div>
+		<div class="app_title"></div>
+	</div>
+	<div class="beauty-bg"></div>
+	<div class="beauty bestBorder">
+		<div class="title">
+			<span>个性化</span>
+			<div class="app-exit iconfont icon-close" onclick="beautyClose()"></div>
+		</div>
+		<div class="main mCustomScrollbar">
+			<div class="h1">设置您的背景和主题色</div>
+			<div class="image">
+				<img src="/html/ext/images/b0.jpg"/>
+			</div>
+			<div class="line">选择图片（将自动根据图片变换颜色）</div>
+			<div class="image_select">
+				<div>
+					<img src="/html/ext/images/sb0.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb1.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb3.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb4.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb5.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb6.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb7.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb8.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb9.jpg"/>
+				</div>
+				<div>
+					<img src="/html/ext/images/sb10.jpg"/>
+				</div>
+		
+				<!--<div class="user_upload"><img src=""/></div>-->
+			</div>
+		<!--<div class="btn bestBgColor bestTextColor">浏览</div><input type="file" class="head-file" id="file-upload" data-url="/u/userhead"/>-->
+			<div class="line">主题色</div>
+			<div class="select-color">
+				<div class="currentColor" style="background-color:rgb(108, 57, 127);"></div>
+				<div style="background-color:rgb(108,57,127)"></div><div class="bg-lime"></div><div class="bg-green"></div><div class="bg-emerald"></div><div class="bg-teal"></div><div class="bg-blue"></div><div class="bg-cyan"></div><div class="bg-cobalt"></div><div class="bg-indigo"></div><div class="bg-violet"></div><div class="bg-pink"></div><div class="bg-magenta"></div><div class="bg-crimson"></div><div class="bg-red"></div><div class="bg-orange"></div><div class="bg-amber"></div><div class="bg-yellow"></div><div class="bg-brown"></div><div class="bg-olive"></div><div class="bg-steel"></div><div class="bg-mauve"></div><div class="bg-taupe"></div><div class="bg-gray"></div><div class="bg-dark"></div><div class="bg-darkBrown"></div><div class="bg-darkCrimson"></div><div class="bg-darkMagenta"></div><div class="bg-darkIndigo"></div><div class="bg-darkCyan"></div><div class="bg-darkCobalt"></div><div class="bg-darkTeal"></div><div class="bg-darkEmerald"></div><div class="bg-darkGreen"></div><div class="bg-darkOrange"></div><div class="bg-darkRed"></div><div class="bg-darkPink"></div><div class="bg-darkViolet"></div><div class="bg-darkBlue"></div><div class="bg-lightBlue"></div><div class="bg-lightRed"></div><div class="bg-lightGreen"></div><div class="bg-lighterBlue"></div><div class="bg-lightTeal"></div><div class="bg-lightOlive"></div><div class="bg-lightOrange"></div><div class="bg-lightPink"></div>
+				<div style="clear:both"></div>
+			</div>
+			<div class="line"></div>
+		</div>
+	</div>
+<script type="text/javascript" src="/html/ext/js/jquery.js"></script>
+<script type="text/javascript" src="/html/ext/js/Vibrant.js"></script>
+<script type="text/javascript" src="/html/ext/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/html/ext/js/velocity.min.js"></script>
+<script type="text/javascript" src="/html/ext/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/html/ext/js/global.js"></script>
+<script type="text/javascript" src="/html/ext/js/StackBlur.js"></script>
+<script type="text/javascript" src="/html/ext/js/frame.js"></script>
+<script type="text/javascript">
+		
+	
+
+	//用户已定义的图片，路径需标准化
+	var userBgImage=getCookie("ub");
+	userBgImage=userBgImage==null?"/html/ext/images/b0.jpg":userBgImage;
+	//用户自定义的颜色
+	var userColor=getCookie("uc");
+	userColor=userColor==null?"108,57,127":userColor;
+	var reSizeTimeout = null;
+	var animating=false;
+	var mouseTimeput=null;
+	var searchTimeout=null;
+	var switchTimeout=null;
+	var app_pad=0;
+	var scal_rate = 84;
+	
+	//需要加载的全部APP列表（带顺序）;
+	var apps={};
+	
+	var IEor = navigator.userAgent.indexOf("MSIE 9") >= 0|| navigator.userAgent.indexOf("MSIE 8") >=0
+	
+	//用户选择的APP，将显示在首页
+	var cus_apps=[];
+	
+	//当前的APP列表（排序用）
+	var current_sort=[];
+	var cx=9999;
+
+	$(function(){
+		if (IEor) {
+			$("#bgsvg").remove();
+		} else {
+			$("#bgimg").remove();
+		}
+		/**try{
+			var WshShell = new ActiveXObject('WScript.Shell');
+			WshShell.SendKeys('{F11}');
+		}catch(e){
+		}
+		
+		$(window).mousemove(function(){
+		
+			if (document.documentElement.requestFullScreen) { 
+           document.documentElement.requestFullScreen(); 
+			 }  
+			 if (document.documentElement.mozRequestFullScreen) { 
+			   document.documentElement.mozRequestFullScreen(); 
+			 }
+			if (document.documentElement.msRequestFullScreen) { 
+			   document.documentElement.msRequestFullScreen(); 
+			 } 		 
+			 if (document.documentElement.webkitRequestFullScreen) { 
+			   document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); 
+			 }  
+		})**/
+		//$("body").click();
+		loadBackground(userBgImage.replace("/b","/sb"));
+	
+		updateColorSet(userColor);
+	});
+	//主入口，请在此添加自定义的函数。
+	jQuery.docReady(function() {
+		LoadAppHomePadData();
+		globalBindings();
+		doStartAnimate();
+		//initDock();
+		//defineColor($(".beauty .main .image img")[0]);
+	
+	});
+
+	//获取用户应用的相关数据（异步，请考虑获取完成后才能点击应用中心）
+	function LoadAppHomePadData(){
+		//jQuery.post获取数据
+		//假数据
+		var icons = new Array("p1.png","p10.png","p100.png","p101.png","p102.png","p103.png","p104.png","p105.png","p106.png","p107.png","p108.png","p109.png","p11.png","p110.png","p111.png","p112.png","p113.png","p114.png","p115.png","p116.png","p117.png","p118.png","p119.png","p12.png","p120.png","p121.png","p122.png","p123.png","p124.png","p125.png","p126.png","p127.png","p128.png","p129.png","p13.png","p130.png","p131.png","p132.png","p133.png","p134.png","p135.png","p136.png","p137.png","p138.png","p139.png","p14.png","p140.png","p141.png","p142.png","p143.png","p144.png","p145.png","p146.png","p147.png","p148.png","p149.png","p15.png","p150.png","p151.png","p152.png","p153.png","p154.png","p155.png","p156.png","p157.png","p158.png","p159.png","p16.png","p160.png","p161.png","p162.png","p163.png","p164.png","p165.png","p166.png","p167.png","p168.png","p169.png","p17.png","p170.png","p171.png","p172.png","p173.png","p174.png","p175.png","p176.png","p177.png","p178.png","p179.png","p18.png","p180.png","p181.png","p182.png","p183.png","p184.png","p185.png","p186.png","p187.png","p188.png","p189.png","p19.png","p190.png","p191.png","p192.png","p2.png","p20.png","p21.png","p22.png","p23.png","p24.png","p25.png","p26.png","p27.png","p28.png","p29.png","p3.png","p30.png","p31.png","p32.png","p33.png","p34.png","p35.png","p36.png","p37.png","p38.png","p39.png","p4.png","p40.png","p41.png","p42.png","p43.png","p44.png","p45.png","p46.png","p47.png","p48.png","p49.png","p5.png","p50.png","p51.png","p52.png","p53.png","p54.png","p55.png","p56.png","p57.png","p58.png","p59.png","p6.png","p60.png","p61.png","p62.png","p63.png","p64.png","p65.png","p66.png","p67.png","p68.png","p69.png","p7.png","p70.png","p71.png","p72.png","p73.png","p74.png","p75.png","p76.png","p77.png","p78.png","p79.png","p8.png","p80.png","p81.png","p82.png","p83.png","p84.png","p85.png","p86.png","p87.png","p88.png","p89.png","p9.png","p90.png","p91.png","p92.png","p93.png","p94.png","p95.png","p96.png","p97.png","p98.png","p99.png");
+		cus_apps=[81,82,83];
+		
+		for(var i=0;i<81;i++){
+			current_sort[i]=i;
+		}
+		
+		for(var its = 0;its<84;its++){
+			var k = {appid:its,appname:("实例应用"+its),logo:"/html/ext/images/"+icons[its],url:"http://www.baidu.com"};
+			apps[its]=k;
+		}
+
+		//内置APP，不参与排序
+		apps[-1]= {appid:-1,appname:"页面管理",logo:"/html/ext/images/browser.png",url:"about:blank"};
+		apps[-2]= {appid:-2,appname:"控制面板",logo:"/html/ext/images/browser.png",url:"about:blank"};
+
+	}
+
+	
+	
+	
+	
+	
+	
+</script>
+</body>
+</html>

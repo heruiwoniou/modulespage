@@ -1,0 +1,149 @@
+@import url('./../common/common.css');
+@import url('./../modules_business/DF-common.css');
+/*padding*/
+
+.DF-padding-10 {
+	padding: 10px;
+}
+
+.DF-padding-10.lr {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+.DF-padding-10.tb {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.DF-padding-20 {
+	padding: 20px;
+}
+
+.DF-padding-20.lr {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+.DF-padding-20.tb {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.DF-padding-30 {
+	padding: 30px;
+}
+
+.DF-padding-30.lr {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+.DF-padding-30.tb {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*浮动*/
+
+.DF-fl {
+	float: left;
+}
+
+.DF-fr {
+	float: right;
+}
+
+/*字体大小*/
+
+.DF-big-size {
+	font-size: 20px;
+}
+
+.DF-middle-size {
+	font-size: 16px;
+}
+
+.DF-small-size {
+	font-size: 12px;
+}
+
+/*字体颜色*/
+
+/*黑色*/
+
+.DF-color-b {
+	color: #2b2626;
+}
+
+/*红色*/
+
+.DF-color-r {
+	color: #eb6877;
+}
+
+.DF-color-gray {
+	color: #999;
+}
+
+/*图像容器*/
+
+.DF-image-content {
+	width: 100%;
+	overflow: hidden;
+}
+
+.DF-image-content img {
+	width: 100%;
+	min-height: 240px;
+}
+
+.text-speak {
+	height: 16px;
+	margin-top: 14px;
+	margin-bottom: 15px;
+}
+
+.text-speak span {
+	margin-left: 30px;
+	height: 16px;
+	line-height: 16px;
+	display: inline-block;
+}
+
+.text-speak span:before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	display: inline-block;
+	float: left;
+}
+
+.text-speak .red-background-box:before {
+	background: url("../images/sprite-DF-common.png") no-repeat;
+	background-position: -0px -0px;
+}
+
+.text-speak .green-background-box:before {
+	background: url("../images/sprite-DF-common.png") no-repeat;
+	background-position: -16px -0px;
+}
+
+.DF-container {
+	width: 100%;
+	background: #f7f4f6;
+	overflow: hidden;
+}
+
+.DF-title {
+	background: #fff;
+}
+
+.DF-whiteBac {
+	background: #fff !important;
+}
+
+.DF-opacity-8 {
+	background: rgba(255,255,255,0.6) !important;
+};

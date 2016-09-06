@@ -1,0 +1,313 @@
+:focus {
+    outline: 0;
+}
+::-ms-clear{display: none;}
+::-ms-reveal{display: none;}
+html{
+	-ms-content-zooming:none;
+	-ms-touch-action: none; 
+/*	width: 100%;
+	height: 100%;*/
+}
+body{
+		-ms-content-zooming:none;
+		-ms-touch-action: none; 
+		background-color: #fff;
+	/*	width: 100%;
+		height: 100%;*/
+		padding: 0;
+		top:0;
+		margin: 0;
+		font-family: "Microsoft Yahei";
+		color:#000;
+		min-width:1024px;
+		min-height:768px;
+		overflow: hidden;
+		border-collapse: collapse;
+		box-sizing:border-box;
+	}
+.ui-effects-transfer{
+	border:solid 1px #ccc;
+	background-color:rgba(0,0,0,0.1);
+}
+.frame-nav{
+	width: 100%;
+	background-color: #202020;
+	box-shadow:0px 3px 8px #666;
+	height:48px;
+	position: absolute;
+	z-index:999;
+}
+.frame-logo{
+	float: left;
+	height: 48px;
+	width: 200px;
+	line-height:48px;
+}
+.frame-logo img{
+	height:40px;
+	width:165px;
+	display: block;
+	margin-top:4px;
+	margin-left:5px;
+}
+.frame-search{
+	float: left;
+	height: 48px;
+	width: 250px;
+	line-height:48px;
+	background-color: #444;
+	overflow: hidden;
+	position:relative;
+}
+.frame-search input{
+	border:solid 1px #444;
+	height:46px;
+	width:200px;
+	text-indent:10px;
+	font-size:14px;
+	color:#999;
+	background-color:#444;
+	padding:0;
+	display:block;
+	margin-top:0px;
+	float:left;
+	-moz-transition: all .1s ease-out;
+	-ms-transition: all .1s ease-out;
+	-o-transition: all .1s ease-out;
+	transition: all .1s ease-out;
+	-webkit-transition: all .1s ease-out;
+}
+.frame-search input:focus{
+	background-color:#ccc;
+	color:#6c397f;
+	border:solid 1px #ccc;
+}
+input:-ms-input-placeholder{
+	font-family:"Microsoft Yahei";
+	color:#ccc;
+}
+input::-webkit-input-placeholder{
+	font-family:"Microsoft Yahei";
+	color:#ccc;
+}
+input::-moz-placeholder{
+	font-family:"Microsoft Yahei";
+	color:#ccc;
+}
+.frame-search .mif-search{
+	color:#ccc;
+	position:absolute;
+	right:0px;
+	height:48px;
+	width:48px;
+	line-height: 48px;
+	font-size:20px;
+	text-align: center;
+}
+
+.frame-app-mini{
+	float: left;
+	height:48px;
+	line-height:48px;
+	overflow: hidden;
+	position:relative;
+}
+.frame-app-mini-title{
+	color:#fff;
+	font-size:14px;
+}
+.frame-app-stack{
+	width:60px;
+}
+.frame-app-queue{
+	min-width:100px;
+	padding-right:20px;
+	background-color:#333;
+	cursor: default;
+}
+.frame-app-queue.focus{
+	background-color:#199ed8;
+	color:white !important;
+}
+
+.frame-app-mini-icon{
+	float: left;
+	width:60px;
+	height:48px;
+	line-height:48px;
+	font-size:25px;
+	color:#999;
+	text-align: center;
+	-moz-transition: all .1s ease-out;
+	-ms-transition: all .1s ease-out;
+	-o-transition: all .1s ease-out;
+	transition: all .1s ease-out;
+	-webkit-transition: all .1s ease-out;
+	cursor: pointer;
+}
+.frame-app-stack .frame-app-mini-icon:hover{
+	background-color:#555;
+	color:#eee !important;
+	
+}
+.frame-app-queue.focus .frame-app-mini-icon{
+	color:white !important;
+}
+
+.frame-app-close{
+	position:absolute;
+	width:20px;
+	height:15px;
+	top:0px;
+	right:0px;
+	line-height:15px;
+	text-align: center;
+}
+.frame-app-close{
+	position:absolute;
+	width:15px;
+	height:15px;
+	top:0px;
+	right:0px;
+	cursor: pointer;
+	color:white;
+	display: none;
+	background-color: rgba(0,0,0,0.1);
+}
+.frame-app-queue.focus .frame-app-mini-icon,.frame-home .frame-app-mini-icon{
+	color:white;
+}
+.frame-main{
+	position: absolute;
+	top:48px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+}
+.frame-main iframe{
+	width:100%;
+	height:100%;
+	overflow:auto;
+}
+
+
+.frame-window {
+	position: absolute;
+	border: solid 1px rgba(255, 255, 255, 0.6);
+	width: 1100px;
+	height: 640px;
+	background-color: white;
+	box-shadow: 0px 0px 10px #444;
+	overflow: hidden;
+}
+
+.frame-window.max {
+	position: absolute;
+	border: none;
+	background-color: white;
+	box-shadow: none;
+	height:auto !important;
+	width:auto !important;
+	left: 0;
+	top: 48px !important;
+	right:0px !important;
+	bottom:0;
+	margin-left: 0;
+	margin-top: 0;
+}
+
+.frame-window .frame-title {
+	position: absolute;
+	height: 35px;
+	line-height: 35px;
+	background-color: #fff;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	color: #333;
+	display: none;
+}
+
+.frame-title div {
+	width: 45px;
+	font-size: 13px;
+	line-height: 35px;
+	text-align: center;
+	cursor: default;
+	color: #333;
+}
+.frame-title span{
+	padding-left:10px;
+	font-size:12px;
+}
+.frame-title div:hover {
+	background-color: #efefef;
+	color: #333;
+}
+
+.frame-title .icon-close:hover {
+	background-color: rgb(192, 0, 37);
+	color: #fff;
+}
+
+.frame-window iframe {
+	position: absolute;
+	display: none;
+	top: 35px;
+	left: 0;
+	border: none;
+	width: 100%;
+	height: 605px;
+	background-color: white;
+	overflow: hidden;
+}
+
+.frame-window.max iframe {
+	top: 0;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.frame-window .frame-logo {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	font-size: 150px;
+	left: 50%;
+	margin-left: -75px;
+	margin-top: -75px;
+	color: white;
+	text-align: center;
+	line-height: 150px;
+	top: 50%;
+}
+
+.frame-window .frame-max {
+	position: absolute;
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+	border-radius:25px;
+	right: 5px;
+	top: 5px;
+	z-index: 100;
+	display: none;
+	color: #fff;
+	text-align: center;
+	font-size: 20px;
+	cursor: default;
+}
+
+.frame-window.max .frame-max {
+	background-color: rgba(0,0,0,0.9);
+}
+
+.frame-window.max .frame-max:hover {
+	background-color: #ddd;
+	color: #666;
+}
+
+iframe{
+	background-color:white;	
+}

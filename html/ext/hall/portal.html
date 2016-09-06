@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0,user-scalable=0"/>
+<script type="text/javascript" src="/html/ext/js/jquery.js"></script>
+<script type="text/javascript" src="/html/ext/js/global.js"></script>
+<script type="text/javascript" src="/html/ext/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/html/ext/js/jsrender.min.js"></script>
+<link href="./css/metro-icons.css" rel="stylesheet" type="text/css" />
+<link href="./css/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="/html/ext/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="./css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+var logger = {};
+var topz =null;
+var app_caches={};
+var timeout_key;
+var queue={};
+var stacks={};
+var desktop_url="./Runtime/index.html";
+$.templates({
+	app_stack: "<div id=\"appmin_{{:appid}}\" data-id=\"{{:appid}}\" class=\"frame-app-mini frame-app-stack\" title=\"{{:appname}}\"><div class=\"frame-app-mini-icon {{:icon}}\" style=\"color:{{:color}}\"></div><div class=\"frame-app-mini-title\">{{:appname}}</div><div class=\"frame-app-close\">x</div></div>",
+	app_queue: "<div id=\"appmin_{{:appid}}\" data-id=\"{{:appid}}\" class=\"frame-app-mini frame-app-queue\"><div class=\"frame-app-mini-icon {{:icon}}\" style=\"color:{{:color}}\"></div><div class=\"frame-app-mini-title\">{{:appname}}</div><div class=\"frame-app-close\">x</div></div>",
+	app_frame:"<div id=\"app_{{:appid}}\" class=\"frame-window\" style=\"z-index:100;border-color:#333;background-color:{{:color}}\">"
+	+"<div class=\"frame-max iconfont icon-max\" onclick=\"appNormal('{{:appid}}',true)\"></div>"
+	+"<div class=\"frame-title\">"
+	+"<span>{{:appname}}</span>"
+	+"<div class=\"app-exit iconfont icon-close place-right\" onclick=\"appClose('{{:appid}}')\"></div>"
+	+"<div class=\"app-exit iconfont icon-square place-right\"  onclick=\"appMax('{{:appid}}')\"></div>"
+	+"<div class=\"app-exit iconfont icon-move place-right\"  onclick=\"appMin('{{:appid}}')\"></div>"
+	+"</div><div class=\"frame-logo {{:icon}}\" style=\"background-color{{:color}}\"></div><iframe frameborder=no border=0 src=\"\"></iframe></div>"
+});
+
+function appClose(appid){
+	$("#app_"+appid+" iframe").hide().empty().remove();
+	$("#app_"+appid+" .frame-title").hide();
+	delete queue[appid];
+	if(doWinJS){
+		setTimeout(function(){
+			WinJS.UI.Animation.turnstileBackwardOut($("#app_"+appid)[0], null).done(function(){afterAppCloseAnimate(appid);});
+		},200);
+	}else{
+		$("#app_"+appid).hide("puff",{percent:10,direction:"both"},500,function(){afterAppCloseAnimate(appid);});
+	}
+}
+
+function afterAppCloseAnimate(appid){
+	delete logger[appid];
+	$("#app_"+appid).remove();
+	
+	if(!isStack(appid)){
+		$("#appmin_"+appid).hide().remove();
+	}else{
+		$("#appmin_"+appid).removeClass("frame-app-queue").removeClass("focus").addClass("frame-app-stack");
+		bindStack(appid);
+	}
+	
+	if(isAllMin()){
+		$(".frame-main iframe").fadeIn(300);
+		$(".frame-home").addClass("focus");
+	}
+}
+
+function appMax(appid){
+	logger[appid] = $("#app_"+appid).css("top")+","+$("#app_"+appid).css("left");
+	$("#app_"+appid).css("top","0").css("left","0").show();
+	$("#app_"+appid+" .frame-title").hide();
+	$("#app_"+appid+" iframe").hide();
+	if(doWinJS){
+		WinJS.UI.Animation.continuumForwardIn($("#app_"+appid)[0]).done(function(){
+			$("#app_"+appid+" iframe").show();
+			$("#app_"+appid+".max .frame-max").show();
+		});
+	}else{
+		$("#app_"+appid+" iframe").fadeIn(200);
+	}
+	$("#app_"+appid).addClass("max");
+	$("#app_"+appid).draggable("disable");
+	
+	$(".frame-app-queue").removeClass("focus");
+	$("#appmin_"+appid).addClass("focus");
+	$(".frame-home").removeClass("focus");
+	$(".frame-main iframe").fadeOut(300);
+}
+
+function appMin(appid){
+	recordAppPosition(appid);
+	$("#app_"+appid).hide();
+	$("#app_"+appid).effect("transfer",{"to":$("#appmin_"+appid)},100);
+	$("#app_"+appid).draggable("disable");
+	$("#appmin_"+appid).removeClass("focus");
+	if(isAllMin()){
+		$(".frame-main iframe").fadeIn(300);
+		$(".frame-home").addClass("focus");
+	}
+}
+
+function isAllMin(){
+	var f = true;
+	$(".frame-window").each(function(index,obj){
+		if($(obj).css("display")=="block"){
+			f = false;
+	}
+	});
+	return f;
+}
+
+function appNormal(appid,d){
+	topz=appid;
+	$(".frame-app-queue").removeClass("focus");
+	$("#appmin_"+appid).addClass("focus");
+	$(".frame-home").removeClass("focus");
+	$(".frame-main iframe").fadeOut(300);
+	
+	$("#app_"+appid+" .frame-max").hide();
+	$(".frame-window").css("z-index","1");
+	$("#app_"+appid).css("z-index","100").css("top",logger[appid].split(",")[0]).css("left",logger[appid].split(",")[1]);
+	$("#app_"+appid+" iframe").fadeOut(1);
+	//d=true 表示是最大化缩小，否则是最小化放大
+	if(d){
+		//是否支持普通状态
+		if($(window).height()<900){
+			appClose(appid);
+		}else{
+			if(doWinJS){
+				WinJS.UI.Animation.continuumBackwardIn($("#app_"+appid)[0]).done(function(){
+					$("#app_"+appid+" .frame-title").show();
+				});
+			}else{
+				$("#app_"+appid+" iframe").fadeIn(200);
+				$("#app_"+appid+" .frame-title").show();
+			}
+		}
+	}else{
+		$("#app_"+appid).fadeTo(1,0.01);
+		$("#appmin_"+appid).effect("transfer",{"to":$("#app_"+appid)},200,function(){
+			$("#app_"+appid).fadeTo(1,1);
+			$("#app_"+appid+" iframe").show();
+		});
+	}
+	$("#app_"+appid).draggable("enable");
+	$("#app_"+appid+" .frame-title").show();
+	$("#app_"+appid).removeClass("max");
+}
+
+function recordAppPosition(appid){
+	logger[appid] = $("#app_"+appid).css("top")+","+$("#app_"+appid).css("left");
+}
+
+function resumeApp(appid,params){
+	
+	if(params!=null){
+		if(queue[appid].url.indexOf("?")!=-1){
+			$("#app_"+appid+" iframe").attr("src",queue[appid].url+"&amp;__qt="+params);
+		}else{
+			$("#app_"+appid+" iframe").attr("src",queue[appid].url+"?__qt="+params);
+		}
+	}
+	if($("#app_"+appid).css("display")!="block"){
+		if(!$("#app_"+appid).hasClass("max")){
+			appNormal(appid,false);
+		}else{
+			for(var k in queue){
+				if(k!=appid)
+					appMin(k);
+			}
+			appMax(appid,false);
+		}
+	}else{
+		$(".frame-window").css("z-index","1");
+		$("#app_"+appid).css("z-index","100");
+		$(".frame-app-queue").removeClass("focus");
+		$("#appmin_"+appid).addClass("focus");
+		$(".frame-home").removeClass("focus");
+	}
+}
+
+function openApp(appid,params){
+	//记录最前方的appid;
+	topz = appid;
+	$(".frame-main iframe").fadeOut(300);
+	//在队列中
+	if(queue[appid]){
+		resumeApp(appid,params);
+	}else{
+		//获取APPid
+		if(isStack(appid)){
+			queue[appid]=stacks[appid];
+			initAppFrame(appid);
+			doOpenAnimate(appid,params);
+		}else{
+			//$.post 获取APP信息，需要定义接口，传入参数为appid。返回格式如下：
+			var data1 =  {"appid":"50","max":"0","appname":"远程app","icon":"mif-earth","url":"http://www.baidu.com","color":"#808000","width":1024,"height":768}
+			queue[data1.appid]=data1;
+			$(".frame-nav").append($.templates.app_queue.render(queue[appid]));
+			initAppFrame(appid);
+			doOpenAnimate(appid,params);
+		}
+	
+	}
+}
+
+
+function doOpenAnimate(appid,params){
+	//展开
+	$(".frame-home").removeClass("focus");
+	$(".frame-app-queue").removeClass("focus");
+	$("#appmin_"+appid).addClass("focus").show("fold",{horizFirst:true},"fast");
+	//动画
+	if($(window).height()<900||queue[appid].max=="1"){
+		setTimeout(function(){
+			if(params!=null){
+				if(queue[appid].url.indexOf("?")!=-1){
+					$("#app_"+appid+" iframe").attr("src",queue[appid].url+"&amp;__qt="+params);
+				}else{
+					$("#app_"+appid+" iframe").attr("src",queue[appid].url+"?__qt="+params);
+				}
+			}else{
+				$("#app_"+appid+" iframe").attr("src",queue[appid].url);
+			}
+		},300);
+		appMax(appid);
+		for(var k in queue){
+			if(k!=appid)
+			appMin(k);
+		}
+	}else{
+		for(var k in queue){
+			if(k!=appid){
+				if($("#app_"+k).hasClass("max")){
+					$("#app_"+k+" .frame-max").hide();
+					$("#app_"+k).css("z-index","1").css("top",logger[k].split(",")[0]).css("left",logger[k].split(",")[1]);
+					$("#app_"+k+" .frame-title").show();
+					$("#app_"+k).draggable("enable");
+					$("#app_"+k).removeClass("max");
+				}
+			}
+		}
+		
+		if(doWinJS){
+			WinJS.UI.Animation.turnstileForwardIn($("#app_"+appid)[0], null).done(
+				function(){
+					setTimeout(function(){
+						if(params!=null){
+							if(queue[appid].url.indexOf("?")!=-1){
+								$("#app_"+appid+" iframe").attr("src",queue[appid].url+"&amp;__qt="+params);
+							}else{
+								$("#app_"+appid+" iframe").attr("src",queue[appid].url+"?__qt="+params);
+							}
+						}else{
+							$("#app_"+appid+" iframe").attr("src",queue[appid].url);
+						}
+					},300);
+					$("#app_"+appid).children(".frame-title").show();
+				}
+			);
+		}else{
+			$("#app_"+appid).show("puff",{percent:10,direction:"both"},200,function(){
+				setTimeout(function(){
+					if(params!=null){
+						if(queue[appid].url.indexOf("?")!=-1){
+							$("#app_"+appid+" iframe").attr("src",queue[appid].url+"&amp;__qt="+params);
+						}else{
+							$("#app_"+appid+" iframe").attr("src",queue[appid].url+"?__qt="+params);
+						}
+					}else{
+						$("#app_"+appid+" iframe").attr("src",queue[appid].url); 
+					}
+				},300);
+				$("#app_"+appid).children(".frame-title").show();
+			});
+		}
+	}
+	
+}
+
+function isStack(appid){
+	if(stacks[appid]){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function initAppFrame(appid){
+	$("body").append($.templates.app_frame.render(queue[appid]));
+	$(".frame-window").css("z-index","1");
+	$("#app_"+appid).css({
+		"top":($(window).height()-640)/2+(new Date().getSeconds()%10*10),
+		"left":($(window).width()-960)/2+(new Date().getSeconds()%10*10),
+		"z-index":100
+		}).draggable({
+			stack: ".frame-window",
+			scroll: false,
+			start:function(event,ui){
+				$(".frame-window iframe").fadeOut(300);
+				topz = appid;
+				$(".frame-app-queue").removeClass("focus");
+				$("#appmin_"+appid).addClass("focus");
+			},
+			stop:function(event,ui){
+				$(".frame-window iframe").fadeIn(300);
+			}
+		}).resizable({
+			alsoResize: "#app_"+appid+" iframe",
+			start:function(event,ui){
+				$(".frame-window iframe").fadeOut(300);
+				topz = appid;
+				$(".frame-window").not("#app_"+appid).resizable("disable");
+				$(".frame-app-queue").removeClass("focus");
+				$("#appmin_"+appid).addClass("focus");
+			},
+			stop:function(event,ui){
+				$(".frame-window").not("#app_"+appid).resizable("enable");
+				$(".frame-window iframe").show("fade",function(){
+					$("#app_"+appid).css("z-index","100");
+				});
+			}
+		});
+		$("#appmin_"+appid).unbind("click").click(function(){
+				if($(this).hasClass("focus")){
+					appMin($(this).attr("data-id"));
+				}else{
+					resumeApp($(this).attr("data-id"), null);
+				}
+		});
+		$("#app_"+appid+" iframe").load(function() { 
+			if($(this).attr("src")!=""){
+				$(this).fadeIn(500);
+			}
+		}); 
+		recordAppPosition(appid);
+}
+	
+
+	$.docReady(function(){
+		$(".frame-main iframe").attr("src",desktop_url)
+		$(".frame-main").css("background-image","url('./blur.jpg')").css("background-position","top center");
+		stacks["0"]= {"appid":"0","max":"1","appname":"个人中心","icon":"mif-user","url":"./Runtime/personal.html","color":"#199ed8"},
+		stacks["1"]= {"appid":"1","max":"1","appname":"服务列表","icon":"mif-chrome","url":"./Runtime/service-center.html","color":"#199ed8"},
+		getRecentFav();
+		setUpBackHome();
+		setUpStacks();
+		$(".frame-search input").keyup(function(){
+			clearTimeout(timeout_key);
+			var s = $(".frame-search input").val();
+			if(s!=""&&s!=null){
+				timeout_key=setTimeout(function(){
+					$("#appmin_1").addClass("frame-app-queue focus").removeClass("frame-app-stack");
+					openApp("1",encodeURI(s));
+				},500);
+			}
+		}).blur(function(){
+			clearTimeout(timeout_key);
+			$(".frame-search input").val("");
+		});
+	})
+	
+	function getRecentFav(){
+		//$.post()从接口获取数据，数据格式如下：
+		var data=[
+		  // {"appid":"10","max":"0","appname":"请假申请","icon":"mif-earth","url":"http://www.baidu.com","color":"#008000"},
+		  // {"appid":"11","max":"0","appname":"请假申请1","icon":"mif-earth","url":"http://www.baidu.com","color":"#808000"}
+		];
+		for(var d in data){
+			stacks[data[d].appid]=data[d];
+		}
+		for(var k in stacks){
+			$(".frame-nav").append($.templates.app_stack.render(stacks[k]));
+		}
+		
+	}
+	function setUpBackHome(){
+		$(".frame-home").click(function(){
+				for(var appid in queue){
+					recordAppPosition(appid);
+					$("#app_"+appid+" iframe").hide();
+					$("#app_"+appid+" .frame-title").hide();
+					$("#app_"+appid).hide();	
+					$("#app_"+appid).effect("transfer",{"to":$("#appmin_"+appid)},100);
+					$("#app_"+appid).draggable("disable");
+					$("#appmin_"+appid).removeClass("focus");
+				}
+			
+			$(".frame-home").addClass("focus")
+			$(".frame-main iframe").fadeIn(300);
+		});
+	}
+	function setUpStacks(){
+		$(".frame-app-mini").not(".frame-home").click(function(){
+			$(this).addClass("frame-app-queue").removeClass("frame-app-stack");
+			var s = $(this).attr("data-id");
+			openApp(s,null);
+		});
+	}
+	function bindStack(appid){
+		$("#appmin_"+appid).unbind("click").click(function(){
+			$(this).addClass("frame-app-queue").removeClass("frame-app-stack");
+			var s = $(this).attr("data-id");
+			openApp(s,null);
+		});
+	}
+	
+</script>
+</head>
+<body style="background-color:#ddd">
+<!-- 顶部栏目 ，48像素-->
+<div class="frame-nav">
+	<!-- 学校logo -->
+	<div class="frame-logo">
+		<img src="./images/2.png" />
+	</div>
+	<!-- 搜索 ,个人中心以及收藏夹中按照最近使用的次序排列的前3个栏位-->
+	<div class="frame-search">
+		<input placeholder="在找服务？"/>
+		<div class="mif-search"></div>
+	</div>
+	<div class="frame-app-mini frame-app-queue focus frame-home">
+		<div class="frame-app-mini-icon mif-display" title="首页"></div>
+		<div class="frame-app-mini-title">首页</div>
+	</div>
+</div>
+<div class="frame-main">
+<iframe frameborder=no border=0 src=""></iframe>
+</div>
+</body>
+</html>

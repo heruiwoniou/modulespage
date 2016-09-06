@@ -1,0 +1,563 @@
+@import url('./../common/common.css');
+@import url('./../modules_business/community.css');
+html,
+body {
+	height: 100%;
+	background: transparent;
+	position: relative;
+}
+
+html .main,
+body .main {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+}
+
+.panel-title {
+	background: #fff;
+}
+
+.section {
+	font-size: 0;
+	padding-bottom: 85px;
+}
+
+.section .section-body {
+	min-height: 770px;
+	max-width: 1350px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.section .section-top {
+	text-align: right;
+	line-height: 85px;
+	height: 85px;
+	max-width: 1320px;
+	display: block;
+	color: #fff;
+	white-space: nowrap;
+}
+
+.frame-1 {
+	overflow: auto;
+	zoom: 1;
+}
+
+.frame-1 .frame-left {
+	float: left;
+	width: 670px;
+}
+
+.frame-1 .frame-right {
+	float: right;
+	width: 670px;
+}
+
+.frame-2:after {
+	display: block;
+	visibility: hidden;
+	content: "";
+	width: 0px;
+	height: 0px;
+	line-height: 0px;
+	font-size: 0px;
+	clear: both;
+	zoom: 1;
+}
+
+.frame-2 .frame-left {
+	float: left;
+	width: 900px;
+}
+
+.frame-2 .frame-left .panel-content:after {
+	display: block;
+	visibility: hidden;
+	content: "";
+	width: 0px;
+	height: 0px;
+	line-height: 0px;
+	font-size: 0px;
+	clear: both;
+	zoom: 1;
+}
+
+.frame-2 .frame-left .panel-left {
+	float: left;
+	width: 590px;
+}
+
+.frame-2 .frame-left .panel-right {
+	float: right;
+	width: 270px;
+}
+
+.frame-2 .frame-right {
+	float: right;
+	width: 440px;
+}
+
+.frame-2 .frame-right .shopping {
+	overflow: auto;
+	zoom: 1;
+}
+
+.frame-2 .frame-right .panel-left {
+	float: left;
+	width: 200px;
+}
+
+.frame-2 .frame-right .panel-right {
+	float: right;
+	width: 200px;
+}
+
+.finder,
+.appeal {
+	height: 380px;
+}
+
+.finder .panel-content,
+.appeal .panel-content {
+	height: 100%;
+}
+
+.gps,
+.shopping {
+	height: 320px;
+}
+
+.gps .panel-content,
+.shopping .panel-content {
+	height: 100%;
+}
+
+.shopping .panel {
+	background: #fff;
+	margin-bottom: 0px;
+}
+
+.shopping .panel .panel-title {
+	text-indent: 0;
+	height: 30px;
+	line-height: 30px;
+}
+
+.shopping .panel .panel-title .img-container {
+	margin-left: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 25px;
+	height: 25px;
+	width: 25px;
+}
+
+.shopping .panel .panel-title span,
+.shopping .panel .panel-title i {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 5px;
+}
+
+.shopping .panel .panel-title i {
+	color: #5c5c5c;
+}
+
+.shopping .panel-left .panel-content,
+.shopping .panel-right .panel-content {
+	padding: 20px 0 0 0;
+}
+
+.shopping .panel-left .panel-content .img-container,
+.shopping .panel-right .panel-content .img-container {
+	line-height: 190px;
+	width: 180px;
+	height: 190px;
+	margin: 0 auto;
+}
+
+.shopping .panel-left .panel-content h1,
+.shopping .panel-right .panel-content h1 {
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	font-size: 16px;
+	color: #9361a2;
+}
+
+.shopping .panel-left .panel-content h1 span,
+.shopping .panel-right .panel-content h1 span {
+	color: #ccc;
+}
+
+.gps .panel {
+	margin-bottom: 0px;
+}
+
+.gps .panel-left .map-container {
+	width: 590px;
+	height: 290px;
+	padding: 5px;
+}
+
+.gps .panel-left .map-container .img-container {
+	text-align: center;
+	overflow-y: hidden;
+	height: 280px;
+	width: 580px;
+	line-height: 280px;
+}
+
+.gps .panel-right .panel-title {
+	height: 50px;
+	line-height: 50px;
+	background: #fbd641;
+}
+
+.gps .panel-right .panel-title:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 22px;
+	margin-right: 50px;
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -0px -30px;
+}
+
+.gps .panel-right ul.time-table li {
+	line-height: 60px;
+	height: 60px;
+}
+
+.gps .panel-right ul.time-table li table {
+	margin: 0 10px;
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 250px;
+}
+
+.gps .panel-right ul.time-table li table th,
+.gps .panel-right ul.time-table li table td {
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.gps .panel-right ul.time-table li table th.center,
+.gps .panel-right ul.time-table li table td.center {
+	text-align: center;
+}
+
+.gps .panel-right ul.time-table li table th .icon-arrow-to:before,
+.gps .panel-right ul.time-table li table td .icon-arrow-to:before {
+	display: inline-block;
+	vertical-align: middle;
+	content: '';
+	width: 26px;
+	height: 8px;
+	position: relative;
+	top: -4px;
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -63px -30px;
+}
+
+.gps .panel-right ul.time-table li table th {
+	color: #000;
+}
+
+.gps .panel-right ul.time-table li table td {
+	color: #5c5c5c;
+}
+
+.gps .panel-right ul.time-table li:nth-child(2n+2) {
+	background: #fff;
+}
+
+.appeal table {
+	width: 100%;
+	border-layout: fixed;
+	border-collapse: collapse;
+}
+
+.appeal table thead th {
+	padding: 0 10px;
+	font-size: 0;
+	height: 40px;
+	line-height: 40px;
+	background: #76c2af;
+}
+
+.appeal table thead th a.filter,
+.appeal table thead th a.choose {
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	color: #fff;
+}
+
+.appeal table thead th a.choose {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	border-radius: 15px;
+	background: #4dad95;
+	margin-top: 5px;
+}
+
+.appeal table thead th a.filter {
+	float: right;
+}
+
+.appeal table thead th a.filter:after {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	top: -2px;
+	content: '';
+	width: 58px;
+	height: 30px;
+	margin-left: 5px;
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -0px -0px;
+}
+
+.appeal table thead th a.filter.on:after {
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -58px -0px;
+}
+
+.appeal table thead th a.filter:hover {
+	text-decoration: none;
+}
+
+.appeal table tbody td {
+	height: 62px;
+	line-height: 62px;
+}
+
+.appeal table tbody td .img-container {
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+	float: left;
+	margin: 6px 5px 0 6px;
+}
+
+.appeal table tbody td.gray {
+	color: #a3a3a3;
+}
+
+.appeal table tbody tr:nth-child(2n+1) {
+	background: #fff;
+}
+
+.finder .panel-left,
+.finder .panel-right {
+	float: left;
+	width: 315px;
+}
+
+.finder .panel-left .panel-title,
+.finder .panel-right .panel-title {
+	background: #eb6877;
+}
+
+.finder .panel-right {
+	float: right;
+}
+
+.finder .panel-right .panel-title {
+	background: #77b3d4;
+}
+
+.finder .panel-title {
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+}
+
+.finder ul.finder-list li {
+	line-height: 31px;
+}
+
+.finder ul.finder-list li:nth-child(2n+2) {
+	background: #fff;
+}
+
+.finder ul.finder-list li:hover a {
+	background: #fdf0f1;
+}
+
+.finder ul.finder-list li a {
+	text-indent: 20px;
+	overflow: auto;
+	zoom: 1;
+	color: #333;
+	display: block;
+}
+
+.finder ul.finder-list li a span:before {
+	display: inline-block;
+	vertical-align: middle;
+	content: '';
+	width: 16px;
+	height: 17px;
+	position: relative;
+	top: -1px;
+	margin-right: 10px;
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -47px -30px;
+}
+
+.finder ul.finder-list li a .txt {
+	float: left;
+	width: 230px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.finder ul.finder-list li a .txt b {
+	color: #eb6877;
+}
+
+.finder ul.finder-list li a i {
+	float: right;
+	text-indent: 0;
+	text-align: left;
+	width: 80px;
+	font-style: normal;
+}
+
+.finder ul.findout-list li {
+	line-height: 31px;
+}
+
+.finder ul.findout-list li:nth-child(2n+2) {
+	background: #fff;
+}
+
+.finder ul.findout-list li:hover a {
+	background: #f1f7fb;
+}
+
+.finder ul.findout-list li a {
+	text-indent: 20px;
+	overflow: auto;
+	zoom: 1;
+	color: #333;
+	display: block;
+}
+
+.finder ul.findout-list li a span:before {
+	display: inline-block;
+	vertical-align: middle;
+	content: '';
+	width: 16px;
+	height: 17px;
+	position: relative;
+	top: -1px;
+	margin-right: 10px;
+	background: url("../images/sprite-community.png") no-repeat center center;
+	background-position: -30px -30px;
+}
+
+.finder ul.findout-list li a .txt {
+	float: left;
+	width: 230px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.finder ul.findout-list li a .txt b {
+	color: #77b3d4;
+}
+
+.finder ul.findout-list li a i {
+	float: right;
+	text-indent: 0;
+	text-align: left;
+	width: 80px;
+	font-style: normal;
+}
+
+@media screen and (max-width: 1425px) {
+	.section .section-body {
+		max-width: 1020px;
+		width: 1020px;
+	}
+
+	.frame-1 .frame-left {
+		width: 100%;
+	}
+
+	.frame-1 .frame-left .panel-left,
+	.frame-1 .frame-left .panel-right {
+		width: 490px;
+	}
+
+	.frame-1 .frame-right {
+		float: left;
+		width: 570px;
+	}
+
+	.frame-2 {
+		position: relative;
+	}
+
+	.frame-2 .frame-left {
+		width: 100%;
+	}
+
+	.frame-2 .frame-left .panel-right {
+		width: 390px;
+	}
+
+	.frame-2 .frame-right {
+		position: absolute;
+		top: -450px;
+		right: 0;
+		width: 440px;
+	}
+
+	.frame-2 .frame-right .shopping {
+		overflow: auto;
+		zoom: 1;
+	}
+
+	.frame-2 .frame-right .panel-left {
+		float: left;
+		width: 200px;
+	}
+
+	.frame-2 .frame-right .panel-right {
+		float: right;
+		width: 200px;
+	}
+
+	.gps .panel-right ul.time-table li table {
+		width: 370px;
+	}
+
+	.shopping {
+		height: 380px;
+	}
+
+	.shopping .panel .panel-title {
+		height: 60px;
+		line-height: 60px;
+	}
+
+	.shopping .panel-right .panel-content h1,
+	.shopping .panel-left .panel-content h1 {
+		margin-bottom: 30px;
+	}
+};
