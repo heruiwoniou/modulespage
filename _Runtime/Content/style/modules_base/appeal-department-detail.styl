@@ -1,0 +1,107 @@
+@import './appeal-base.styl'
+.button-panel
+	line-height 74px
+	text-align center
+	.btn
+		margin 0 10px
+.col-2
+	text-align center
+	line-height 550px
+	.button-panel
+		height 120px;
+		display inline-block
+		vertical-align middle
+		line-height 60px
+		.btn
+			opacity .5
+			&.arrow-left
+			&.arrow-right
+				&:before
+					ib()
+					setFontDefault()
+			&.arrow-left
+				&:before
+					content '8'
+			&.arrow-right
+				&:before
+					content '9'
+.row
+	.panel
+		.panel-title
+			height 30px
+			line-height 30px
+		height 550px
+.col-5
+	.panel
+		margin-left 1px
+.row-full
+	.panel
+		position relative
+		.panel-default
+			position absolute
+			top 30px
+			left 0
+			right 0
+			bottom 0
+			p
+				height 40px
+.col-7 .panel-content
+	padding 5px !important
+	a:hover
+		text-decoration none
+	*
+		color #333
+	&>ul
+		&>li
+			line-height 30px
+			position relative
+			&:hover
+			&.select
+				&:before
+					height 30px
+					width 5px
+					position absolute
+					left -5px
+					top 0
+					background #724383 + 40%
+					content ''
+					display block
+			&.select
+				&:before
+					background #724383
+				&>ul
+					display block
+				&:after
+					content '3'
+			&>a
+				th()
+				display block
+				padding 0 20px 0 5px
+				font-size 14px
+				color #724383
+				&:hover
+					background #724383 + 90%
+			&:after
+				position absolute
+				setFontDefault()
+				ib()
+				top 8px
+				right 5px
+				content '4'
+			&>ul
+				display none
+				padding-left 20px
+				a
+					padding 2px 5px
+					border-radius 3px
+					transition background .2s ease-in, color .2s ease-in
+				li
+					cursor pointer
+					&:hover a
+						color white
+						background #724383 + 50%
+.col-5 .panel-content
+	label
+		padding-left 5px
+		display block
+		line-height 30px

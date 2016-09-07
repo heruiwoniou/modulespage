@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="Content/style/modules_base/appeal-type-detail.css">
+	<script src="Content/js/common/jquery.js"></script>
+</head>
+
+<body>
+	<div class="main scroll-bar" data-mcs-theme="light">
+		<div class="section">
+			<div class="section-top"></div>
+			<div class="section-body">
+				<div class="panel">
+					<div class="panel-title">
+						其它配置-类型
+						<a href="community.html" class="close"></a>
+					</div>
+					<div class="panel-default frame-container">
+						<div class="frame-left">
+							<ul class="menu-min">
+								<li>
+									<a href="appeal-form.html">
+										<i class="icon-13"></i> 填写诉求
+									</a>
+								</li>
+								<li>
+									<a href="appeal-mine.html">
+										<i class="icon-14"></i> 我的诉求
+									</a>
+								</li>
+								<li>
+									<a href="appeal-all.html">
+										<i class="icon-15"></i> 诉求信件
+									</a>
+								</li>
+								<li>
+									<a href="appeal-public.html">
+										<i class="icon-16"></i> 公开诉求
+									</a>
+								</li>
+								<li class="select">
+									<a href="javascript:;">
+										<i class="icon-17"></i> 其它配置
+										<ul>
+											<li>
+												<a href="appeal-department.html">
+													<i class="icon-18"></i> 部门
+												</a>
+											</li>
+											<li class="select">
+												<a href="javascript:;">
+													<i class="icon-18"></i> 类型
+												</a>
+											</li>
+											<li>
+												<a href="appeal-other.html">
+													<i class="icon-18"></i> 其它
+												</a>
+											</li>
+										</ul>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="frame-right">
+							<div class="panel">
+								<div class="panel-title">
+									诉求类型　> 添加类型
+									<a href="javascript:;" class="close" onclick="history.back()"></a>
+								</div>
+							</div>
+							<div class="section-container lr">
+								<table class="form">
+									<colgroup>
+										<col style="width:100px">
+										<col>
+									</colgroup>
+									<tr>
+										<th>类型名称：</th>
+										<td>
+											<input type="text">
+										</td>
+									</tr>
+									<tr>
+										<th>匿名设置：</th>
+										<td>
+											<input type="radio" name="anonymous" cs-control cs-label="允许匿名">
+											<input type="radio" name="anonymous" cs-control cs-label="禁止匿名">
+										</td>
+									</tr>
+									<tr>
+                                        <td colspan="2" class="center">
+                                            <input type="button" class="btn p" value="提交">
+                                            <input type="button" class="btn gray" value="取消">
+                                        </td>
+                                    </tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script data-main="Content/js/modules_base/community" data-business="appeal-type-detail" src="Content/js/common/require.js"></script>
+</body>
+
+</html>

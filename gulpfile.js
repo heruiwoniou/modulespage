@@ -105,6 +105,10 @@ gulp.task('build-script', function() {
     gulp.src('_Runtime/Static/js/libs/jquery-ui/ui/i18n/datepicker-zh-CN.js')
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/vue/dist/vue.min.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
 });
 
 gulp.task('build-images', function() {
