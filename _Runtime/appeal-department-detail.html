@@ -83,11 +83,11 @@
 														<div class="panel-content">
 															<ul v-cloak>
 																<template  v-for="outer in from" track-by="id">
-																	<li @click="toggle($event, outer)">
-																		<a href="javascript:;">{{ outer.name }}</a>
+																	<li>
+																		<a @click="toggle($event, 0, outer)" href="javascript:;">{{ outer.name }}</a>
 																		<ul v-if="outer.children.length != 0">
 																			<template v-for="inner in outer.children">
-																				<li><a href="javascript:;">{{ inner.name }}</a></li>
+																				<li @click="view($event, 1, outer, inner)"><a href="javascript:;">{{ inner.name }}</a></li>
 																			</template>
 																		</ul>
 																	</li>
@@ -101,8 +101,10 @@
 												<div class="panel">
 													<div class="panel-title">人员</div>
 													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
-														<div class="panel-content">
-															<input type="checkbox" cs-control cs-label="张老师">
+														<div class="panel-content" v-el:stay-teachers>
+															<label v-for="teacher in teachers" track-by="id">
+																<input type="checkbox" cs-control v-model="teacher.stay">{{ teacher.name }}
+															</label>
 														</div>
 													</div>
 												</div>

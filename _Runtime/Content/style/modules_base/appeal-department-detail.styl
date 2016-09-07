@@ -13,6 +13,7 @@
 		vertical-align middle
 		line-height 60px
 		.btn
+			transition opacity .2s ease-in
 			opacity .5
 			&.arrow-left
 			&.arrow-right
@@ -25,6 +26,8 @@
 			&.arrow-right
 				&:before
 					content '9'
+			&:hover
+				opacity .7
 .row
 	.panel
 		.panel-title
@@ -97,9 +100,12 @@
 					transition background .2s ease-in, color .2s ease-in
 				li
 					cursor pointer
+					&.select a
 					&:hover a
 						color white
 						background #724383 + 50%
+					&.select a
+						background #724383 + 20%
 .col-5 .panel-content
 	label
 		padding-left 5px

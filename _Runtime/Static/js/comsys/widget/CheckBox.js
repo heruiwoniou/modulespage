@@ -91,6 +91,7 @@ define(
             },
             destory: function() {
                 $(document).off(".CheckBoxClickHandler" + this.$CheckBoxEl.attr("id"));
+                this.$BaseEl.off('click.CheckBoxClickHandler');
                 this.$CheckBoxControl.parent().removeAttr("style");
                 this.$CheckBoxControl.after(this.$CheckBoxEl);
                 this.$CheckBoxControl.remove();

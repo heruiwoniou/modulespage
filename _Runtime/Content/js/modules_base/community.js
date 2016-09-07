@@ -15,13 +15,13 @@ require([
 			$main.fadeIn()
 			if ( initialized === false && first === true )
 			{
-				// $(".scroll-bar").scrollBar({
-				// 	scrollInertia: 400,
-				// 	advanced:{ autoScrollOnFocus: false },
-				// 	autoHideScrollbar:true,
-				// 	scrollButtons:{enable:false},
-				// 	advanced:{ updateOnImageLoad: false }
-				// });
+				$(".scroll-bar").scrollBar({
+					scrollInertia: 400,
+					advanced:{ autoScrollOnFocus: false },
+					autoHideScrollbar:true,
+					scrollButtons:{enable:false},
+					advanced:{ updateOnImageLoad: false }
+				});
 				/**
 				 * [图片加载]
 				 */
