@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="Content/style/modules_base/appeal-department-detail.css">
+	<script src="Content/js/common/jquery.js"></script>
+	<script src="Content/js/common/vue.min.js"></script>
+</head>
+
+<body>
+	<div class="main scroll-bar" data-mcs-theme="light">
+		<div class="section">
+			<div class="section-top"></div>
+			<div class="section-body">
+				<div class="panel">
+					<div class="panel-title">
+						其它配置-部门
+						<a href="community.html" class="close"></a>
+					</div>
+					<div class="panel-default frame-container">
+						<div class="frame-left">
+							<ul class="menu-min">
+								<li>
+									<a href="appeal-form.html">
+										<i class="icon-13"></i> 填写诉求
+									</a>
+								</li>
+								<li>
+									<a href="appeal-mine.html">
+										<i class="icon-14"></i> 我的诉求
+									</a>
+								</li>
+								<li>
+									<a href="appeal-all.html">
+										<i class="icon-15"></i> 诉求信件
+									</a>
+								</li>
+								<li>
+									<a href="appeal-public.html">
+										<i class="icon-16"></i> 公开诉求
+									</a>
+								</li>
+								<li class="select">
+									<a href="javascript:;">
+										<i class="icon-17"></i> 其它配置
+										<ul>
+											<li class="select">
+												<a href="javascript:;">
+													<i class="icon-18"></i> 部门
+												</a>
+											</li>
+											<li>
+												<a href="appeal-type.html">
+													<i class="icon-18"></i> 类型
+												</a>
+											</li>
+											<li>
+												<a href="appeal-other.html">
+													<i class="icon-18"></i> 其它
+												</a>
+											</li>
+										</ul>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="frame-right">
+							<div class="panel">
+								<div class="panel-title">
+									诉求部门 > 设置
+								</div>
+							</div>
+							<div class="section-container lr tb" id="department-control">
+								<div class="row">
+									<div class="col-5">
+										<div class="row-full">
+											<div class="col-7">
+												<div class="panel">
+													<div class="panel-title">部门</div>
+													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
+														<div class="panel-content">
+															<ul v-cloak>
+																<template  v-for="outer in from" track-by="id">
+																	<li>
+																		<a @click="toggle($event, 0, outer)" href="javascript:;">{{ outer.name }}</a>
+																		<ul v-if="outer.children.length != 0">
+																			<template v-for="inner in outer.children">
+																				<li @click="view($event, 1, outer, inner)"><a href="javascript:;">{{ inner.name }}</a></li>
+																			</template>
+																		</ul>
+																	</li>
+																</template>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-5">
+												<div class="panel">
+													<div class="panel-title">人员</div>
+													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
+														<div class="panel-content" v-el:stay-teachers>
+															<label v-for="teacher in teachers" track-by="id">
+																<input type="checkbox" cs-control v-model="teacher.stay">{{ teacher.name }}
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="button-panel">
+											<a href="javascript:;" class="btn p radius arrow-left"></a>
+											<a href="javascript:;" class="btn p radius arrow-right"></a>
+										</div>
+									</div>
+									<div class="col-5">
+										<div class="row-full">
+											<div class="col-7">
+												<div class="panel">
+													<div class="panel-title">已选部门</div>
+													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
+														<div class="panel-content">
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+															<p>1</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-5">
+												<div class="panel">
+													<div class="panel-title">已选人员</div>
+													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
+														<div class="panel-content"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="button-panel">
+								<input type="button" class="btn p" value="保存">
+								<input type="button" class="btn gray" value="取消">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script data-main="Content/js/modules_base/community" data-business="appeal-department-detail" src="Content/js/common/require.js"></script>
+</body>
+
+</html>

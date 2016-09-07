@@ -18,6 +18,7 @@ body
     background #f6f2f5
     padding 30px
     margin-bottom 80px
+    position relative
     pageJump
       table
         width 100%
@@ -42,6 +43,94 @@ body
   body
     .information
       width 850px
+
+
+
+
+
+.fixed
+  position fixed
+  top 145px
+  z-index 10
+  .fixed_auto
+    width 1250px
+    margin 0 auto
+    min-height 100px
+    .information_nav:before
+      content ''
+      width 16px
+      height 16px
+      border-radius 50%
+      border 1px solid #fff
+      display inline-block
+    .information_nav
+      position absolute
+      width 200px
+      top 0
+      right -230px
+      ul
+        width 192px
+        margin-left 9px
+        border-left 1px solid #fff
+        margin-bottom 20px
+        li:last-child
+          height 20px
+        li
+          height 36px
+          a
+            display black
+            height 36px
+            line-height 36px
+            color #fff
+            font-size 14px
+            padding-left 20px
+        li:before
+          display inline-block
+          content ''
+          height 12px
+          width 12px
+          background #fff
+          border-radius 50%
+          margin-left -7px
+          margin-top 2px
+        .active:before
+          background rgb(108,57,127)
+      .menu_btn:hover
+        background rgb(108,57,127)
+        text-decoration none
+      .menu_btn
+        display block
+        width 36px
+        height 36px
+        border 1px solid #fff
+        text-align center
+        margin-top 10px
+        margin-bottom 5px
+      .menu:before
+        setIcoFont()
+        content: "d"
+        width 100%
+        height 100%
+        font-size 22px
+        color #fff
+      .up_btn:hover
+        background rgb(108,57,127)
+        text-decoration none
+      .up_btn
+        display block
+        width 36px
+        height 36px
+        border 1px solid #fff
+        text-align center
+        .arrow_carrot-up:before
+          setIcoFont()
+          content: "2"
+          width 100%
+          height 100%
+          font-size 22px
+          color #fff
+
+
 
 
 
