@@ -106,9 +106,15 @@ gulp.task('build-script', function() {
         .pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
+
     gulp.src('_Runtime/Static/js/libs/vue/dist/vue.js')
         .pipe(rename('vue.min.js'))
         .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+    gulp.src('_Runtime/Static/js/libs/jquery.masonry/jquery.masonry.min.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
+
 });
 
 gulp.task('build-images', function() {
