@@ -60,7 +60,6 @@ $colorBD= #d3d3d3
 			border 0
 			color white
 			cursor pointer
-			text-decoration none
 .release1
 	background #eb6876
 .release2
@@ -135,6 +134,21 @@ $colorBD= #d3d3d3
 			margin-left 30px
 .right-content2
 	border-top 0
+.pageBtn
+	margin-top 20px
+	text-align center
+	button
+		padding 4px 10px
+		border 1px #cccccc solid
+		color #999999
+		cursor pointer
+		margin 0 5px
+		&:hover
+			background $colorB
+			color white
+	.active
+		background $colorB
+		color white
 @media screen and (max-width 1425px)
 	.right-content
 		width 780px
