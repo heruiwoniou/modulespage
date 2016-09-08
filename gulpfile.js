@@ -61,11 +61,13 @@ gulp.task('build-script', function() {
         paths:{
             "jquery.ui": "Static/js/libs/jquery-ui",
             "css": 'Static/js/libs/require-css/css',
+            'text':'Static/js/libs/require-text/text',
 
             "Class": "Static/js/common/core/Class",
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+
 
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",

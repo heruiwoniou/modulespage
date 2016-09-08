@@ -81,19 +81,8 @@
 												<div class="panel">
 													<div class="panel-title">部门</div>
 													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
-														<div class="panel-content">
-															<ul v-cloak>
-																<template  v-for="outer in from" track-by="id">
-																	<li>
-																		<a @click="toggle($event, 0, outer)" href="javascript:;">{{ outer.name }}</a>
-																		<ul v-if="outer.children.length != 0">
-																			<template v-for="inner in outer.children">
-																				<li @click="view($event, 1, outer, inner)"><a href="javascript:;">{{ inner.name }}</a></li>
-																			</template>
-																		</ul>
-																	</li>
-																</template>
-															</ul>
+														<div class="panel-content" v-el:stay-tree-node>
+															<tree-node v-ref:stay-tree :node="from"></tree-node>
 														</div>
 													</div>
 												</div>
@@ -102,8 +91,8 @@
 												<div class="panel">
 													<div class="panel-title">人员</div>
 													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
-														<div class="panel-content" v-el:stay-teachers>
-															<label v-for="teacher in teachers" track-by="id">
+														<div class="panel-content" v-el:stay-teachers-el v-cloak>
+															<label v-for="teacher in stayTeachers" track-by="id">
 																<input type="checkbox" cs-control v-model="teacher.stay">{{ teacher.name }}
 															</label>
 														</div>
@@ -114,8 +103,8 @@
 									</div>
 									<div class="col-2">
 										<div class="button-panel">
-											<a href="javascript:;" class="btn p radius arrow-left"></a>
-											<a href="javascript:;" class="btn p radius arrow-right"></a>
+											<a href="javascript:;" @click="moveto" class="btn p radius arrow-right"></a>
+											<a href="javascript:;" @click="movefrom" class="btn p radius arrow-left"></a>
 										</div>
 									</div>
 									<div class="col-5">
@@ -124,39 +113,8 @@
 												<div class="panel">
 													<div class="panel-title">已选部门</div>
 													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
-														<div class="panel-content">
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
-															<p>1</p>
+														<div class="panel-content" v-el:selecetd-tree-node>
+															<tree-node v-ref:selected-tree :node="to"></tree-node>
 														</div>
 													</div>
 												</div>
@@ -165,7 +123,11 @@
 												<div class="panel">
 													<div class="panel-title">已选人员</div>
 													<div class="panel-default scroll-bar" data-mcs-theme="minimal-dark">
-														<div class="panel-content"></div>
+														<div class="panel-content" v-el:selected-teachers-el v-cloak>
+															<label v-for="teacher in selectedTeachers" track-by="id">
+																<input type="checkbox" cs-control v-model="teacher.stay">{{ teacher.name }}
+															</label>
+														</div>
 													</div>
 												</div>
 											</div>

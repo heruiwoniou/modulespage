@@ -1,0 +1,8 @@
+<ul>
+	<template v-for="item in rootNode.children" track-by="id">
+		<li v-if="!item.invisible" @click.stop="toggle($event, item)">
+			<a href="javascript:;"><i v-if="!view(item)"></i>{{ item.name }}</a>
+			<tree-node v-if="!view(item)" :node="item"></tree-node>
+		</li>
+	</template>
+</ul>
