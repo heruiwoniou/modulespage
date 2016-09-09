@@ -1,248 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="initial-scale=1.0,user-scalable=0"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>智慧建大</title>
-<script type="text/javascript" src="/html/ext/js/jquery.js"></script>
-<script type="text/javascript" src="/html/ext/js/velocity.min.js"></script>
-<script type="text/javascript" src="/html/ext/js/velocity.ui.js"></script>
-<script type="text/javascript" src="/html/ext/js/global.js"></script>
-<script type="text/javascript" src="/html/ext/js/StackBlur.js"></script>
-<link href="./iconfont/iconfont.css" rel="stylesheet" type="text/css" />
-<link href="./css/login.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-var words = new Array("帮助别人减轻三分烦恼，自己就会享受七分快乐。",
-"每个人都有潜在的能量，只是很容易被习惯所掩盖，被时间所迷离，被惰性所消磨。",
-"有理想在的地方，地狱就是天堂。有希望在的地方，痛苦也成欢乐。",
-"不要对挫折叹气，姑且把这一切看成是在你成大事之前，必须经受的准备工作。",
-"河流之所以能够到达目的地，是因为它懂得怎样避开障碍。",
-"一个成功的竞争者应该经得起风雨，应该具有抗挫折的能力。",
-"不要让对失败的恐惧，绊住你尝试新事物的脚步。",
-"学会理解，因为只有理解别人，才会被别人理解。",
-"学会忘记，因为只有忘记已经失去的才能立足当前，展望未来。",
-"学会快乐，因为只有开心度过每一天，活得才精彩。",
-"心宽阔了，才能明白没有一个人是孤岛，才能欣赏到对岸的风景，才能懂得如何接纳他人。",
-"当困难来临时，用微笑去面对，用智慧去解决。",
-"没有人富有的可以不用别人的帮助，也没有人穷的不能在某方面给他人帮助。",
-"规划的根本目的是为了更快、更有效地达成目标。",
-"不要惧怕学习，知识是没有重量的，你永远可以轻易的带着它与你同行。",
-"在你有一肚子火要发之前，先给自己10分钟沉思一会儿。",
-"收敛自己的脾气，偶尔要刻意沉默，因为冲动会做下让自己无法挽回的事情。",
-"多抱怨一天，就少幸福一天，多回头看一天，就少前进一天。",
-"人生就像一张有去无回的单程车票，没有彩排，每一场都是现场直播。",
-"高傲自大只能让你止步不前，但是正直和谦虚可以引领你走向成功。",
-"要么你去驾驭生命，要么是生命驾驭你。",
-"成大事者能把困境变为成功的有力跳板。",
-"如果你想要更上一层楼，就为别人提供超出预期更多更好的服务。",
-"没有问题就是最大的问题。没有问题的安逸如同没有引爆的地雷一样危险。",
-"失败能打垮人的头脑，胜利也能冲昏人的头脑。",
-"天时不如地利，地利不如人和。",
-"目标从梦想开始，幸福从心态把握，成功则在行动中实现。");
-var i=null;
-//用户已定义的图片，路径需标准化
-	var userBgImage=getCookie("ub");
-	userBgImage=userBgImage==null?"/html/ext/images/b0.jpg":userBgImage;
-	//用户自定义的颜色
-	var userColor=getCookie("uc");
-	userColor=userColor==null?"0,187,238":userColor;
-function login(){
-	if($(".un_input input").val()==''){
-		$(".un_input").velocity("stop",true);
-		$(".un_input").velocity("callout.shake", { duration:400});
-		return;
-	}
-	if($(".passwd input").val()==''){
-		$(".passwd").velocity("stop",true);
-		$(".passwd").velocity("callout.shake", {  duration:400});
-		return;
-	}
-	$(".passwd input,.un_input input").attr("disabled","disabled");
-			$(".blurbg").children().not(".welcome_word,#bgimg,#bgsvg").velocity("fadeOut",300);
-			$(".welcome_word").velocity("fadeIn",{duration:400,complete:function(){
-				$(".welcome_word").velocity("fadeOut",{duration:400,delay:1000,complete:function(){
-					window.location.href="/index.html";
-				}});
-			}});
-}
-$(function(){
-	$(".click_icon .p1").css("background-color","rgb("+userColor+")");
-	$(".welcome_word").html(words[parseInt(Math.random()*(words.length-1))]);
-	$(window).keydown(function(e){
-		if(e.which==13){
-			login();
-	}
-	});
-	$(".icon-right").click(function(){
-		login();
-	});
-	$("#bg").attr("src",userBgImage);
-	$("#bluri").attr("src",userBgImage.replace("/b","/sb"));
-	var mm=$("#bluri");
-	if (navigator.userAgent.indexOf("MSIE 9")<0||navigator.userAgent.indexOf("MSIE 8")<0) {
-		$("#bgimg").remove();
-		if(mm[0].complete){
-			stackBlurImageObj( mm[0], "bgsvg", 10, false );
-			adjust();
-		}else{
-			mm[0].onload = function(){
-				stackBlurImageObj( mm[0], "bgsvg", 10, false );
-				adjust();
-			};
-		}
-	} else {
-		$("#bgsvg").remove();
-		$("#bgimg").attr("src",image);
-	}
-
-
-	$(".icon-cancel").click(function(){
-
-			var sq=[
-					{e:$(this).parent().parent(),p:"transition.slideDownBigOut",o:{duration:400,easing:"easeOutCirc"}},
-					{e:$(".welcome_content .title2"),p:{top:"35%","height":"100px","margin-left":"-250px","width":"500px"},o:{duration:400,sequenceQueue:false,easing:"easeInOutExpo"}},
-					{e:$(".click_icon .p1,.welcome_content .logo,.welcome_content .title1"),p:"fadeIn",o:{delay:200,duration:200,sequenceQueue:false}}
-			]
-			$(".welcome_bg").velocity("fadeOut",300);
-			$.Velocity.RunSequence(sq);
-			$("#bg").velocity("fadeIn",300);
-
-	});
-
-	$(".click_icon").children().click(function(){
-		var item = $(".panel_password");
-		if($(this).hasClass("q")){
-			item = $(".panel_qrcode");
-		}
-		
-
-			var sq=[
-					{e:$(".click_icon .p1,.welcome_content .logo,.welcome_content .title1"),p:"transition.fadeOut",o:{duration:10}},
-					{e:item,p:"transition.slideUpBigIn",o:{duration:600,easing:"easeInOutExpo",display:"block"}},
-					{e:$(".welcome_content .title2"),p:{top:"15%","height":"50px","width":"250px","margin-left":"-125px"},o:{duration:600,sequenceQueue:false,easing:"easeOutCirc"}}
-			]
-			$(".welcome_bg").velocity({opacity:0.2},{display:"block"},300);
-			$("#bg").velocity("fadeOut",300);
-			$.Velocity.RunSequence(sq);
-
-		
-	})
-	
-	$(".icon-help").click(function(){
-		$(".forget").velocity("transition.flipXIn",300); 
-		$(".panel_password").hide();
-	});
-	
-	$(".forget_p .lend .btn").click(function(){
-	{
-		$(".forget").velocity("transition.flipXOut",300,function(){
-		}); 
-		$(".panel_password").velocity("fadeIn",{delay:100,duration:300});
-	}
-	});
-
-	$(window).resize(function(){
-		clearTimeout(i);
-		i = setTimeout(function(){	adjust();},50);
-	});
-	adjust();
-	$("#bg").load(function(){
-		$(".blurbg").velocity("fadeIn",300,function(){
-			$(".welcome_content").velocity("transition.slideUpBigIn");
-		})
-	})
-});
-function adjust(){
-		var w = $(window).width();
-		var h = $(window).height();
-		if(w/16*9>h){
-			h=parseInt(w/16*9)*1.05;
-			w=w*1.05;
-		}else{
-			w=parseInt(h/9*16)*1.05;
-			h=h*1.05;
-		}
-			$("#bgsvg,#bg,#bgimg,#bgsvg image").width(w).height(h);
-			$("#bgimg,#bg,#bgsvg").css({"left":"50%","top":"50%","margin-left":"-"+((parseInt(w/2))+"px"),"margin-top":("-"+(parseInt(h/2))+"px")});
-			if(navigator.userAgent.indexOf("MSIE 9")>0||navigator.userAgent.indexOf("MSIE 8")>0){
-				$("#bgimg").css("margin-left","-"+(parseInt(w/2)+10)+"px").css("margin-top","-"+(parseInt(h/2)+10)+"px");
-			}
-}
-</script>
-<style type="text/css">
-.welcome_word{
-	width:100%;
-	height:30px;
-	line-height:30px;
-	text-align:center;
-	font-size:16px;
-	text-shadow:0px 0px 3px #333;
-	display:none;
-	position:absolute;
-	top:50%;
-	margin-top:-15px;
-	left:0;
-}
-</style>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+	<title></title>
+	<link rel="stylesheet" href="Content/style/modules_base/login.css">
+	<script src="Content/js/common/jquery.js"></script>
+	<style id="current_style"></style>
 </head>
 <body>
-<div class="blurbg">
-<img id="bluri" src=""/>
-<img id="bgimg" src=""/>
-<canvas id="bgsvg"></canvas>
-<img id="bg" src=""/>
-<div class="welcome">
-<div class="welcome_bg"></div>
-<div class="welcome_content">
-	<img class="logo" src="./images/jjdx.png"/>
-	<div class="title1">欢迎使用北京建筑大学统一身份认证平台</div>
-	<img class="title2" src="./images/title.png"/>
-	<div class="click_icon">
-		<div class="p1 q"><div class="iconfont icon-qrcode"></div><div class="its">扫码登录</div></div>
-		<div class="p1 p"><div class="iconfont icon-input"></div><div class="its">密码登录</div></div>
+	<div class="header">
+		<div class="container">
+			<div class="header-left">
+				<div class="logo"></div>
+				<span>|</span>
+				<h1>统一身份认证平台</h1>
+			</div>
+			<div class="header-right">
+				<h1>
+				<a href="javascript:;">中文</a><span>|</span><a href="javascript:;">English</a><br>
+				08月09日 星期二 12:00
+				</h1>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
-<div class="panel_password">
-<div class="head" style="color:white;">
-<span class="iconfont icon-user"></span>
-<img src="./images/head.jpg" style="width:100px;height:100px;position:absolute;top:0%;left:0%"/>
-</div>
-<div class="un_input">
-<input type="text"  placeholder="工号/学号/身份证号"/>
-</div>
-<div class="passwd">
-<input type="password" placeholder="请输入密码" />
-<div class="iconfont icon-right"></div>
-</div>
-<div class="icons"><div class="iconfont icon-cancel"></div><div style="font-size:14px;">重新登录</div></div>
-<div class="icons1"><div class="iconfont icon-help" style="font-size:"></div><div style="font-size:14px;">忘记密码</div></div>
-</div>
-<div class="panel_qrcode">
-<div class="qrcode">
-	<img src="./images/get_matrix_img.png"/>
-	<span>使用微信扫一扫登录</span>
-</div>
-<div class="icons"><div class="iconfont icon-cancel"></div><div style="font-size:14px;">重新登录</div></div>
-</div>
-<div class="forget">
-<div class="forget_p">
-<div class="title">找回我的密码</div>
-<div class="line">在下方输入您的邮箱地址：</div>
-<div class="line">
-<div class="un_input">
-<input type="text"  placeholder="@bucea.edu.cn"/>
-</div>
-<div class="send">发送</div>
-<div style="clear: both"></div>
-</div>
-<div class="line">我们已经向您的邮箱发送了一封密码找回的邮件，请注意查收</div>
-<div class="line lend">
-<div class="btn">关闭</div>
-</div>
-</div>
-</div>
-</div>
-<div class="welcome_word"></div>
+	<div class="body">
+		<div class="swbanner" id = "swbanner">
+			<div class="aphorism aphorism-1"></div>
+			<div class="container">
+				<div class="login-panel form-barcode">
+					<h1>用户登陆<span>统一身份认证平台</span></h1>
+					<form action="/index.html">
+					<div class="row">
+						<div class="col-12 user">
+							<div class="input">
+								<input type="text">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 pass">
+							<div class="input">
+								<input type="password">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-7 auth">
+							<div class="input">
+								<input type="text">
+							</div>
+						</div>
+						<div class="col-5 validate">
+							<img src="Content/style/images/validate.jpg" alt="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<input class="login" type="submit" value="登　录">
+						</div>
+					</div>
+					</form>
+					<div class="toggle"></div>
+				</div>
+				<div class="login-panel two-dimensional-barcode">
+					<h1>用户登陆<span>统一身份认证平台</span></h1>
+					<div class="img-container" data-src="Content/style/images/twod.jpg"></div>
+					<p>使用微信扫一扫即可登录</p>
+					<div class="toggle"></div>
+				</div>
+			</div>
+			<img src="Content/style/images/banner-3.jpg" alt="">
+			<img src="Content/style/images/banner.jpg" alt="">
+			<img src="Content/style/images/banner-1.jpg" alt="">
+		</div>
+		<div class="nav">
+			<div class="container">
+				<div class="row">
+					<div class="col-4">
+						<div class="column-container">
+							<div class="column">
+								<div class="img-container" data-src="Content/style/icons/loginicon1.png"></div>
+								<h1>登录问题，迎刃而解</h1>
+								<p>
+									<a href="javascript:;">帐号激活</a>
+									<span>|</span>
+									<a href="javascript:;">密码找回</a>
+									<span>|</span>
+									<a href="javascript:;">常见问题</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="column-container">
+							<div class="column">
+								<div class="img-container" data-src="Content/style/icons/loginicon2.png"></div>
+								<h1>认证说明，轻松上手</h1>
+								<p>
+									<a href="javascript:;">使用说明</a>
+									<span>|</span>
+									<a href="javascript:;">隐私安全</a>
+									<span>|</span>
+									<a href="javascript:;">集成系统</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="column-container">
+							<div class="column">
+								<div class="img-container" data-src="Content/style/icons/loginicon3.png"></div>
+								<h1>快速通道，友情链接</h1>
+								<p>
+									<a href="javascript:;">建大首页</a>
+									<span>|</span>
+									<a href="javascript:;">周年校庆</a>
+									<span>|</span>
+									<a href="javascript:;">新闻网</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		京ICP备案：09079300   文保网安备案：1101020003    版权所有 ：北京建筑大学
+	</div>
+	<script data-main="Content/js/modules_base/login" data-business="login" src="Content/js/common/require.js"></script>
 </body>
 </html>

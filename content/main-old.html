@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>main</title>
+    <link rel="stylesheet" href="Content/style/modules_base/main.css">
+    <link rel="stylesheet" href="Content/style/common/jquery-ui/jquery-ui.min.css">
+    <script src="Content/js/common/jquery.js"></script>
+    <script src="Content/js/common/jquery-ui.js"></script>
+    <script src="Content/js/common/datepicker-zh-CN.js"></script>
+	<style id="current_style"></style>
+</head>
+<body>
+	<div class="main scroll-bar">
+		<div class="section section-1">
+			<div class="section-top"><span>北京</span><span class='weather-small'></span><span>31℃~9℃</span><span>2016-08-15,星期一</span><span>2016-2017学年</span><span>第一学期,第一周</span></div>
+			<div class="section-body">
+				<div class="section-center">
+					<div class="frame-left">
+						<div class="panel">
+							<div class="panel-default swbanner">
+								<div class="text-wraper">
+									<i class="icon-hi"></i>
+									<h1>
+										<span>欢迎使用</span>
+										<span>北京建筑大学信息门户</span>
+									</h1>
+								</div>
+								<img src="Content/style/images/banner.jpg" alt="">
+								<img src="Content/style/images/banner-1.jpg" alt="">
+								<img src="Content/style/images/background-image.jpg" alt="">
+								<img src="Content/style/images/background-image1.jpg" alt="">
+							</div>
+						</div>
+						<div class="panel">
+							<div class="panel-default nav">
+								<div class="nav-page">
+									<ul>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p1.png"></div>
+												<h1>教务系统教务系统教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p2.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p3.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p4.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p5.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p6.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p7.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p8.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/p9.png"></div>
+												<h1>教务系统</h1>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="nav-page-control">
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-bottom">
+							<div class="panel panel-left">
+								<div class="panel-default notice">
+									<div class="panel-content">
+										<h1>通知公告</h1>
+										<ul>
+											<li class="new">
+												<a href="javascript:;">
+													<span>
+														<b>08.01</b>
+														<i>12:22</i>
+													</span>
+													<span>
+														<b><i>[后勤部]</i>公告：关于2015年职称外语考试报名的通知</b>
+													</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<span>
+														<b>08.01</b>
+														<i>05:22</i>
+													</span>
+													<span>
+														<b><i>[科研部]</i>公告：关于填写2015年国家自然科学基金项目进展报告与结题报告的通知</b>
+													</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<span>
+														<b>08.01</b>
+														<i>18:21</i>
+													</span>
+													<span>
+														<b><i>[学工处]</i>公告：ADA-BIAD STUDIO——"未来城南"都市社会调查学员招募</b>
+													</span>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<span>
+														<b>08.01</b>
+														<i>23:00</i>
+													</span>
+													<span>
+														<b><i>[教务处]</i>公告：关于2015年职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知职称外语考试报名的通知</b>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-right">
+								<div class="panel-default news">
+									<div class="panel-content">
+										<div class="tab-control" id="news-tab-control">
+											<div class="tab-head">
+												<ul>
+													<li class="select"><a href="javascript:;">学校要闻</a></li>
+													<li><a href="javascript:;">通知公告</a></li>
+													<li><a href="javascript:;">院部新闻</a></li>
+												</ul>
+											</div>
+											<div class="tab-body">
+												<div class="tab-content">
+													<ul class="new-ul">
+														<li class="pic-news">
+															<a href="javascript:;">
+																<div class="img-container" data-src="Content/style/icons/newpic.jpg" data-model="min"></div>
+																<h1>学校举行城市规划建设与管理高端论坛暨国务院参事仇保兴聘任仪式</h1>
+																<p>7月11日上午，城市规划建设与管理高暨7月11日上午，城市规划建设与管理高暨7月11日上午，城市规划建设与管理高暨</p>
+															</a>
+														</li>
+														<li class="normal">
+															<a href="javascript:;">
+																<span>我校学生在全国大学生农业建筑环境与能源工程相关</span>
+																<i>2015-07-10 </i>
+															</a>
+														</li>
+														<li class="normal">
+															<a href="javascript:;">
+																<span>电信学院学术报告-针对脑卒中病人的上肢康</span>
+																<i>2015-06-28 </i>
+															</a>
+														</li>
+														<li class="normal">
+															<a href="javascript:;">
+																<span>电信学院学术报告-BENTLEY BIM 全生命周期解决方案</span>
+																<i>2015-05-15 </i>
+															</a>
+														</li>
+														<li class="normal">
+															<a href="javascript:;">
+																<span>云冈石窟”走进北京建筑大学 图书馆变艺术殿堂</span>
+																<i>2015-05-08 </i>
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="tab-content">
+													adsfadf
+												</div>
+												<div class="tab-content">
+													123123123
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="frame-right">
+						<div class="panel">
+							<div class="panel-default personal">
+								<div class="personal-top">
+									<div class="personal-left">
+										<div class="img-container personal-head" data-src="Content/style/icons/p21.png"></div>
+										<a href="javascript:;">更换头像</a>
+									</div>
+									<div class="personal-right">
+										<div class="panel-content">
+											<h1>张三三老师上午好！</h1>
+											<p><span>工号：</span>2013546</p>
+											<p><span>单位名称：</span>计算机工程学院</p>
+											<p><span>IP地址：</span>192.168.21.212</p>
+										</div>
+									</div>
+								</div>
+								<div class="personal-bottom">
+									<div class="system-logo"></div>
+									<h1>登录计费系统</h1>
+									<p><a class="start" href="javascript:;">联网</a><span>|</span><a class="stop" href="javascript:;">断网</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="panel">
+							<div class="panel-default remind">
+								<div class="panel-title">
+									重要提醒
+								</div>
+								<div class="panel-content">
+									<ul>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/s1.png"></div>
+												<h1>一卡通</h1>
+												<p>当前余额：300元</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/s2.png"></div>
+												<h1>网费</h1>
+												<p>本月剩余300兆流量</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/s3.png"></div>
+												<h1>图书</h1>
+												<p>未还图书：0本 即将到期图书：0本</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/s4.png"></div>
+												<h1>工资</h1>
+												<p>本月工资＊元</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<div class="img-container" data-src="Content/style/icons/s5.png"></div>
+												<h1>公文</h1>
+												<p>待办协同：0条 待办收文：0条</p>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-bottom">
+							<div class="panel-default time">
+								<h1>距离北京建筑大学80周年校庆</h1>
+								<h2>还有<b>48</b>天</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section section-2">
+			<div class="section-top"></div>
+			<div class="section-body">
+				<div class="section-center">
+					<div class="frame-full">
+						<div class="panel panel-left">
+							<div class="panel-default syllabus">
+								<table>
+									<colgroup>
+										<col style="width:35px">
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+									</colgroup>
+									<tr class="syllabus-header">
+										<th></th>
+										<th>星期一</th>
+										<th>星期二</th>
+										<th>星期三</th>
+										<th>星期四</th>
+										<th>星期五</th>
+										<th>星期六</th>
+										<th>星期七</th>
+									</tr>
+									<tr class="syllabus-forenoon-header">
+										<th rowspan="4">上<br>午</th>
+										<td><a href="javascript:;">语文</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-forenoon">
+										<td><a href="javascript:;">语文</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td><a href="javascript:;">数学</a></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-forenoon">
+										<td><a href="javascript:;">数学</a></td>
+										<td></td>
+										<td><a href="javascript:;">语文</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-forenoon">
+										<td><a href="javascript:;">英语</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td><a href="javascript:;">化学</a></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-afternoon-header">
+										<th rowspan="4">下<br>午</th>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-afternoon">
+										<td></td>
+										<td></td>
+										<td><a href="javascript:;">地理</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-afternoon">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td><a href="javascript:;">生物</a></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-afternoon">
+										<td><a href="javascript:;">英语</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-evening-header">
+										<th rowspan="2">晚<br>上</th>
+										<td></td>
+										<td><a href="javascript:;">物理</a></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="syllabus-evening">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td><a href="javascript:;">化学</a></td>
+										<td><a href="javascript:;">语文</a></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="panel panel-right">
+							<div class="panel-default meeting">
+								<table>
+									<colgroup>
+										<col style="width:85px">
+										<col>
+										<col style="width:115px">
+									</colgroup>
+									<tr>
+										<th colspan="3">第二十周会议安排</th>
+									</tr>
+									<tr>
+										<td>
+											<h1>星期一</h1>
+											<h2>上午:09:00</h2>
+										</td>
+										<td>
+											<p>
+												<span>
+													城市规划建设与管理高端论坛暨学校发展咨询委员会委员聘任仪式
+												</span>
+											</p>
+										</td>
+										<td>
+											<h1>西城校区</h1>
+											<h3>第三阶梯教室</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h1>星期二</h1>
+											<h2>下午:14:00</h2>
+										</td>
+										<td>
+											<p>
+												<span>
+													城市规划建设与管理高端论坛暨学校发展咨询委员会委员聘任仪式
+												</span>
+											</p>
+										</td>
+										<td>
+											<h1>西城校区</h1>
+											<h3>第三阶梯教室</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h1>星期三</h1>
+											<h2>上午:09:00</h2>
+										</td>
+										<td>
+											<p>
+												<span>
+													城市规划建设与管理高端论坛暨学校发展咨询委员会委员聘任仪式
+												</span>
+											</p>
+										</td>
+										<td>
+											<h1>西城校区</h1>
+											<h3>第三阶梯教室</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h1>星期四</h1>
+											<h2>上午:09:00</h2>
+										</td>
+										<td>
+											<p>
+												<span>
+													城市规划建设与管理高端论坛暨学校发展咨询委员会委员聘任仪式
+												</span>
+											</p>
+										</td>
+										<td>
+											<h1>西城校区</h1>
+											<h3>第三阶梯教室</h3>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h1>星期五</h1>
+											<h2>上午:09:00</h2>
+										</td>
+										<td>
+											<p>
+												<span>
+													城市规划建设与管理高端论坛暨学校发展咨询委员会委员聘任仪式
+												</span>
+											</p>
+										</td>
+										<td>
+											<h1>西城校区</h1>
+											<h3>第三阶梯教室</h3>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="frame-left">
+						<div class="panel">
+							<div class="panel-default calendar">
+								<div class="datapicker-panel" id="datapicker-panel">
+								</div>
+								<div class="plan-panel">
+									<div class="empty">暂无日程</div>
+									<ul class="plan-list">
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+										<li></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="frame-right">
+						<div class="frame-full">
+							<div class="panel panel-left">
+								<div class="panel-default common">
+									<div class="panel-title">常用链接</div>
+									<div class="panel-content">
+										<table>
+											<tr>
+												<td><a href="javascript:;"><i class="icon-1"></i>维普期刊</a></td>
+												<td><a href="javascript:;"><i class="icon-2"></i>火车车次</a></td>
+												<td><a href="javascript:;"><i class="icon-3"></i>英语词典</a></td>
+											</tr>
+											<tr>
+												<td><a href="javascript:;"><i class="icon-4"></i>数字图书</a></td>
+												<td><a href="javascript:;"><i class="icon-5"></i>机票预定</a></td>
+												<td><a href="javascript:;"><i class="icon-6"></i>汉语字典</a></td>
+											</tr>
+											<tr>
+												<td><a href="javascript:;"><i class="icon-7"></i>知网远程</a></td>
+												<td><a href="javascript:;"><i class="icon-8"></i>酒店查询</a></td>
+												<td><a href="javascript:;"><i class="icon-9"></i>英汉互译</a></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-right">
+								<div class="panel-default recommend">
+									<div class="panel-title">推荐应用</div>
+									<div class="nav-page">
+										<ul>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p10.png"></div>
+													<h1>教务系统教务系统教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p11.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p12.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p13.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p14.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p15.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p16.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p17.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+											<li>
+												<a href="javascript:;">
+													<div class="img-container" data-src="Content/style/icons/p18.png"></div>
+													<h1>教务系统</h1>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="nav-page-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="frame-full">
+							<div class="panel">
+								<div class="panel-default friends">
+									<div class="panel-content">
+										<div class="tab-control" id="friends-tab-control">
+											<div class="tab-head">
+												<ul>
+													<li class="select"><a href="javascript:;">学校要闻</a></li>
+													<li><a href="javascript:;">通知公告</a></li>
+													<li><a href="javascript:;">院部新闻</a></li>
+												</ul>
+											</div>
+											<div class="tab-body">
+												<div class="tab-content">
+													<ul class="friends-ul">
+														<li>
+																<div class="img-container"  data-src="Content/style/icons/p40.png"></div>
+																<div class="info-container">
+																	<h1>张萌</h1>
+																	<p>网络信息中心</p>
+																	<button><i class="icon-10"></i>添加</button>
+																</div>
+														</li>
+														<li>
+																<div class="img-container"  data-src="Content/style/icons/p41.png"></div>
+																<div class="info-container">
+																	<h1>欧阳</h1>
+																	<p>网络信息中心</p>
+																	<button><i class="icon-10"></i>添加</button>
+																</div>
+														</li>
+														<li>
+																<div class="img-container"  data-src="Content/style/icons/p42.png"></div>
+																<div class="info-container">
+																	<h1>陈思期</h1>
+																	<p>网络信息中心</p>
+																	<button><i class="icon-10"></i>添加</button>
+																</div>
+														</li>
+														<li>
+																<div class="img-container"  data-src="Content/style/icons/p43.png"></div>
+																<div class="info-container">
+																	<h1>周天</h1>
+																	<p>网络信息中心</p>
+																	<button><i class="icon-10"></i>添加</button>
+																</div>
+														</li>
+													</ul>
+												</div>
+												<div class="tab-content">
+													bbb
+												</div>
+												<div class="tab-content">
+													ccc
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script data-main="Content/js/modules_base/main" data-business="main" src="Content/js/common/require.js"></script>
+</html>

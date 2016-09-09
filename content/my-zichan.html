@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>我的资产</title>
     <link rel="stylesheet" href="Content/style/modules_base/my-research.css">
     <script src="Content/js/common/jquery.js"></script>
@@ -143,23 +144,22 @@
                             <td>购买</td>
                         </tr>
                     </table>
-                    <div class="pageJump">
-                        <p class="text">
-                            <span>共<span>3</span>页，<span>25</span>条数据</span>
-                        </p>
-
-                        <p class="jumps">
-                            跳转到：<input type="text">
-                            <a class="jump bestBgColor bestTextColor" href="javascript:;">跳转</a>
-                        </p>
-                        <div class="jumpBtn">
-                            <div class="sublimeBtn">
-                                <a class=" bestBgColor bestTextColor" href="javascript:;">上一页</a>
-                                <a href="javascript:;">1</a>
-                                <a href="javascript:;">2</a>
-                                <a href="javascript:;">3</a>
-                                <a href="javascript:;">下一页</a>
-                            </div>
+                    <div class="page-control">
+                        <div class="page-left">
+                            <span>第1/25页</span>
+                            <span>共999条</span>
+                        </div>
+                        <div class="page-right">
+                            <a href="javascript:;" class="last"></a>
+                            <a href="javascript:;" class="num">1</a>
+                            <a href="javascript:;" class="num">2</a>
+                            <span>. . .</span>
+                            <a href="javascript:;" class="num">99</a>
+                            <a href="javascript:;" class="num">100</a>
+                            <a href="javascript:;" class="next"></a>
+                            <span>跳转到</span>
+                            <input type="text">
+                            <a href="javascript:;" class="go">GO</a>
                         </div>
                     </div>
                 </section>

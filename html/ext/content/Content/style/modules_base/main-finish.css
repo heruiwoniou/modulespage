@@ -4,12 +4,10 @@ html,
 body {
 	height: 100%;
 	background: transparent;
-}
-
-body {
 	position: relative;
 }
 
+html .main,
 body .main {
 	display: none;
 	position: absolute;
@@ -1030,29 +1028,28 @@ body .main {
 	height: 335px;
 }
 
-.meeting table {
+.meeting>table {
 	table-layout: fixed;
-	border-collapse: collapse;
 	width: 100%;
 	height: 100%;
 }
 
-.meeting table th,
-.meeting table td {
+.meeting>table th,
+.meeting>table td {
 	text-align: center;
 }
 
-.meeting table th.left,
-.meeting table td.left {
+.meeting>table th.left,
+.meeting>table td.left {
 	text-align: left;
 }
 
-.meeting table th.right,
-.meeting table td.right {
+.meeting>table th.right,
+.meeting>table td.right {
 	text-align: right;
 }
 
-.meeting table thead th {
+.meeting>table>thead>tr>th {
 	height: 40px;
 	background: #9a6daa;
 	line-height: 40px;
@@ -1064,7 +1061,7 @@ body .main {
 	white-space: nowrap;
 }
 
-.meeting table thead th a {
+.meeting>table>thead>tr>th a {
 	display: block;
 	height: 40px;
 	width: 40px;
@@ -1075,48 +1072,75 @@ body .main {
 	color: #fff;
 }
 
-.meeting table thead th a.icon-11 {
+.meeting>table>thead>tr>th a.icon-11 {
 	left: 0;
 }
 
-.meeting table thead th a.icon-12 {
+.meeting>table>thead>tr>th a.icon-12 {
 	right: 0;
 }
 
-.meeting table thead th a:hover {
+.meeting>table>thead>tr>th a:hover {
 	text-decoration: none;
 	background: #80397b;
 }
 
-.meeting table thead th span {
+.meeting>table>thead>tr>th span {
 	font-size: 14px;
 	color: #fff;
 }
 
-.meeting table tbody th,
-.meeting table tbody td {
+.meeting>table>tbody>tr>th,
+.meeting>table>tbody>tr>td {
 	border-right: 1px solid #fff;
 	padding: 0 5px;
 	position: relative;
+	line-height: 36px;
+	height: 36px;
+	box-sizing: border-box;
 }
 
-.meeting table tbody th {
+.meeting>table>tbody>tr>th {
 	font-weight: bold;
-	background: #dcd3df;
+	background: #eee6f6;
 	color: #000;
+	padding: 0;
 }
 
-.meeting table tbody td {
+.meeting>table>tbody>tr>th a {
+	color: #333;
+	display: block;
+}
+
+.meeting>table>tbody>tr>th a:hover {
+	text-decoration: none;
+	background: #f2f2f2;
+}
+
+.meeting>table>tbody>tr>th a.select {
+	background: #fff;
+}
+
+.meeting>table>tbody>tr:first-child>th {
+	background: #dcd3df;
+	padding: 0 5px;
+}
+
+.meeting>table>tbody>tr:first-child>th:last-child {
+	border-right-width: 0px;
+}
+
+.meeting>table>tbody>tr>td {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-.meeting table tbody tr:nth-child(2n) {
+.meeting>table>tbody>tr:nth-child(2n) {
 	background: #fff;
 }
 
-.meeting table tbody .arrow {
+.meeting>table>tbody .arrow {
 	width: 7px;
 	height: 7px;
 	position: absolute;
@@ -1124,6 +1148,34 @@ body .main {
 	right: 2px;
 	background: url("../images/sprite-main-finish.png") no-repeat center center;
 	background-position: -122px -35px;
+}
+
+.meeting .meeting-content-body {
+	padding: 0 !important;
+}
+
+.meeting .meeting-content-body .scroll-bar {
+	height: 259px;
+	width: 705px;
+}
+
+.meeting .meeting-content-body .scroll-bar table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.meeting .meeting-content-body .scroll-bar table td {
+	line-height: 37px;
+	height: 37px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+}
+
+.meeting .meeting-content-body .scroll-bar table tr:last-child td {
+	border-bottom-width: 0px;
 }
 
 .calendar {
@@ -1158,7 +1210,7 @@ body .main {
 
 .calendar .datapicker-panel .ui-datepicker .ui-datepicker-header .ui-datepicker-prev span:before {
 	font-family: 'icomoon' !important;
-	content: "\e90a";
+	content: "\e90e";
 	line-height: 1;
 	font-size: 12px;
 	vertical-align: middle;
@@ -1179,7 +1231,7 @@ body .main {
 
 .calendar .datapicker-panel .ui-datepicker .ui-datepicker-header .ui-datepicker-next span:before {
 	font-family: 'icomoon' !important;
-	content: "\e90b";
+	content: "\e90d";
 	line-height: 1;
 	font-size: 12px;
 	vertical-align: middle;
@@ -1491,5 +1543,9 @@ body .main {
 
 	.section.section-2 .section-center>.frame-right .common .scroll-bar {
 		height: 100px;
+	}
+
+	.section.section-2 .meeting .meeting-content-body .scroll-bar {
+		width: 595px;
 	}
 };
