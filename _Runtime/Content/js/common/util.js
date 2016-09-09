@@ -1,6 +1,8 @@
+ScrollStart=function(){}
 define(function(){
 	//这里定义全局方法
 
+	window.globalFileReaderUrl = '/server/uploadimages'
 	/**
 	 * [LoadImage description]
 	 * 图片加载
@@ -164,6 +166,9 @@ define(function(){
         	$parent.find('input[type*=text][cs-control*=ButtonTextBox],input[type*=password][cs-control*=ButtonTextBox]').ButtonTextBoxInit();
             $parent.find('input[type*=text][cs-control*=DataPicker]').DataPickerInit();
             $parent.find('input[cs-control][type*=file]').ProtoUploadInit();
+        },
+        onScrollStart:function(){
+        	ScrollStart();
         },
 		init:function(){
 			//这里添加页面加载完成后公用的初始化功能

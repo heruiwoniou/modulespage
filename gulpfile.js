@@ -46,6 +46,8 @@ gulp.task('build-css', function() {
         doingstylus(gulp.src('_Runtime/Content/style/modules_base/' + module + '.styl'),'Runtime/Content/style/modules_base', module);
     }
 
+    doingstylus(gulp.src('_Runtime/Content/style/common/datepicker/datepicker.styl'),'Runtime/Content/style/common/datepicker');
+
     gulp.src('_Runtime/Content/style/modules_business/**/*').pipe(gulp.dest('Runtime/Content/style/modules_business/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery.scrollbar/style/**.*').pipe(gulp.dest('Runtime/Content/style/common/jquery.scrollbar'))

@@ -87,45 +87,22 @@ define(
                     me.c.append(me.w);
                     me.c.attr("id", this.classids);
                     $(document.body).append(me.c);
-                    me.c.bind("mousewheel", function() {
-                        return false;
-                    });
                     me.c.data(ClassName, this);
                 }
                 return this;
             },
-            bind: function(mousewheel) {
-                mousewheel = mousewheel || function() {
-                    return false;
-                };
-                this.onmousewheel = document.body.onmousewheel;
-                document.body.onmousewheel = mousewheel;
-            },
-            unbind: function() {
-                document.body.onmousewheel = this.onmousewheel;
-            },
-            mask: function(mousewheel,zindex) {
+            mask: function(zindex) {
                 this.status = true;
                 var me = this;
                 if(zindex !== undefined )
                     me.options.zindex.push(me.options.zindex[0] + zindex);
                 me.c.css({zIndex:me.options.zindex[me.options.zindex.length-1] - 1});
                 if (++me.layoutCount !== 1) return;
-                if (me.LowIE) {
-                    if (me.c.attr("scroll-bind") !== "true") {
-                        document.body.onscroll = function() {
-                            me.c.css({ top: document.body.scrollTop });
-                        };
-                        me.c.attr("scroll-bind", "true");
-                    };
-                    $(document.body).css({ overFlow: "hidden" });
-                }
                 me.l.hide();
                 me.m.hide();
                 me.b.hide();
                 me.w.hide();
                 me.c.show().css({zIndex:me.options.zindex[me.options.zindex.length-1] - 1});
-                this.bind(mousewheel);
             },
             setprogress: function(percent, src, delay, completeTxt, errorTxt, width, height) {
                 var timeoutID = null,
@@ -273,7 +250,6 @@ define(
                     me.b.css({ width: width + 10, height: height + 10, marginLeft: -width / 2 - 7 });
                     $(me.c).show();
                 }
-                this.bind();
             },
             hide: function(animate,zIndex) {
                 var me = this;
@@ -312,7 +288,6 @@ define(
                 if (me.LowIE) {
                     $(document.body).css({ overFlow: "auto" });
                 }
-                this.unbind();
             },
             forcehide: function(animate) {
                 this.status = false;
@@ -324,7 +299,6 @@ define(
                     $(document.body).css({ overFlow: "auto" });
                 }
                 this.layoutCount = 0;
-                this.unbind();
             }
         }
 

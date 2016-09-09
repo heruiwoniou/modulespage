@@ -25,12 +25,11 @@
 		.comsys-ButtonTextBox-button
 			cursor default
 			font-size 0
-			//@extend .icon-calendar
 			&:before
-				systemiconfont()
+				background url('./../icons/dataIcon.png?exclude') no-repeat center center
 				position relative
 				vertical-align middle
-				top -2px
+				top -1px
 				color $border-color - 20%
 				font-size 19px
 		&.focus-outerline
@@ -38,22 +37,39 @@
 				&:before
 					color $inputoutlinecolor
 .comsys-ButtonTextBox-layout
-	&.searchbutton
-		border-color #d8f0fc
+	&.calendarbutton
 		.comsys-ButtonTextBox-button
 			cursor default
 			font-size 0
-			//@extend .icon-search
+			@extend .icon-calendar
 			&:before
-				systemiconfont()
+				setFontSystem()
 				position relative
 				vertical-align middle
 				top -2px
-				color $color1
+				color #724383
 				font-size 19px
 		&.focus-outerline
-			border-color $color2
-			outline-color $color2
 			.comsys-ButtonTextBox-button
 				&:before
-					color $color1 - 20%
+					color #724383
+.comsys-ButtonTextBox-layout
+	&.searchbutton
+		.comsys-ButtonTextBox-input
+			margin-right 60px
+		.comsys-ButtonTextBox-button
+			width 60px
+			cursor default
+			font-size 0
+			background #724383 !important
+			line-height 28px
+			&:before
+				content '查询'
+				vertical-align middle
+				color white
+				font-size 12px
+		&.focus-outerline
+			.comsys-ButtonTextBox-button
+				background #d8f0fc
+				&:before
+					color white
