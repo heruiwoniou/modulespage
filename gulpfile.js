@@ -46,6 +46,8 @@ gulp.task('build-css', function() {
         doingstylus(gulp.src('_Runtime/Content/style/modules_base/' + module + '.styl'),'Runtime/Content/style/modules_base', module);
     }
 
+    doingstylus(gulp.src('_Runtime/Content/style/common/datepicker/datepicker.styl'),'Runtime/Content/style/common/datepicker');
+
     gulp.src('_Runtime/Content/style/modules_business/**/*').pipe(gulp.dest('Runtime/Content/style/modules_business/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery.scrollbar/style/**.*').pipe(gulp.dest('Runtime/Content/style/common/jquery.scrollbar'))
@@ -61,11 +63,13 @@ gulp.task('build-script', function() {
         paths:{
             "jquery.ui": "Static/js/libs/jquery-ui",
             "css": 'Static/js/libs/require-css/css',
+            'text':'Static/js/libs/require-text/text',
 
             "Class": "Static/js/common/core/Class",
             "Core": "Static/js/common/core/Core",
             "Guid": "Static/js/common/core/Guid",
             "TPLEngine": "Static/js/common/engine/tplEngine",
+
 
             "widget": "Static/js/comsys/widget",
             "client": "Static/js/common/client",
@@ -104,6 +108,11 @@ gulp.task('build-script', function() {
 
     gulp.src('_Runtime/Static/js/libs/jquery-ui/ui/i18n/datepicker-zh-CN.js')
         .pipe(uglify())
+        .pipe(gulp.dest('Runtime/Content/js/common/'));
+
+
+    gulp.src('_Runtime/Static/js/libs/vue/dist/vue.js')
+        .pipe(rename('vue.min.js'))
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery.masonry/jquery.masonry.min.js')

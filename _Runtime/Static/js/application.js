@@ -6,6 +6,7 @@ define([
     'Content/js/common/util',
     'Static/js/common/client/Request',
     'css',
+    'text',
     'Static/js/libs/jquery.easing/jquery.easing',
     'widget/CheckBox',
     'widget/RadioBox',

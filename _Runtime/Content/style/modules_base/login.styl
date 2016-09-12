@@ -14,7 +14,6 @@ body
 			width 325px
 			height 375px
 			background rgba(0, 0, 0, .5)
-			z-index 1
 			top 50%
 			right 0
 			margin-top -187px
@@ -25,6 +24,7 @@ body
 			&.forward-in
 				transform perspective(600px)  rotateY(0deg)
 				opacity 1
+				z-index 9999
 			&.forward-out
 				transform perspective(600px)  rotateY(-90deg)
 			.toggle
@@ -72,6 +72,11 @@ body
 								width 100%
 								display inline-block
 								vertical-align top
+								padding 0
+								height auto
+								&:focus
+									box-shadow none
+									border 0
 						input:-webkit-autofill
 							box-shadow: 0 0 0 35px white inset !important;
 							color #333 !important;

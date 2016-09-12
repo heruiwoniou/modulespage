@@ -20,7 +20,12 @@ require([
 					advanced:{ autoScrollOnFocus: false },
 					autoHideScrollbar:true,
 					scrollButtons:{enable:false},
-					advanced:{ updateOnImageLoad: false }
+					advanced:{ updateOnImageLoad: false },
+					callbacks:{
+						onScrollStart:function(){
+							WebApi.onScrollStart()
+						}
+					}
 				});
 				/**
 				 * [图片加载]

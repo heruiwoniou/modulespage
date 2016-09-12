@@ -216,16 +216,24 @@ define(
                     SetPosition:function(){
                         var offset = this.Offset(this.$controller.get(0));//
                         this.placeholder = $("<div id='placeholder"+ this.classids +"'></div>");
-                        this.$drop.before(this.placeholder)
+                        this.$drop.before(this.placeholder);
+                        var controlHeight = this.$controller.outerHeight();
+                        var controlWidth = this.$controller.outerWidth();
+                        var winHeight = $(window).height();
+                        var winWidth = $(window).width()
+                        var dropHeight = controlHeight * this.setting.dropLength;
+                        var runtimedropHeight = controlHeight * ( this.element.options.length < this.setting.dropLength ? this.element.options.length : this.setting.dropLength )
+                        var isbottom = ( winHeight - ( runtimedropHeight + offset.top + controlHeight + 6 ) ) > 0 ;
                         $(this.appendTo).append(this.$drop);
                         this.$drop.css({
                             left: -99999,
-                            maxHeight: this.$controller.outerHeight() * this.setting.dropLength
+                            maxHeight: dropHeight
                         }).appendTo(document.body).show();
                         this.$drop.css({
-                            minWidth: this.$controller.outerWidth(),// - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
+                            minWidth: controlWidth,// - (THIS.LowIEOrNoIE || (THIS.$drop.get(0).scrollHeight < THIS.$drop.get(0).offsetHeight) ? 0 : 17),
+                            maxWidth: winWidth - offset.left - 10 ,
                             left: offset.left,
-                            top: offset.top + this.$controller.outerHeight() + 6
+                            top: ( isbottom ? ( offset.top + controlHeight + 6 ) : (offset.top - runtimedropHeight - 6 ) )
                         });
                     },
                     RuntimeBind:function(){

@@ -24,7 +24,8 @@ define(
                 var that = this;
                 var $this = this.$element;
                 var fileReader = new FileReader()
-                var $target = $('#'+that.setting.target)
+                var $target = that.setting.target ? $('#'+that.setting.target) : null;
+                var callback = that.setting.onuploaded ? new Function('isNew','image','if(' + that.setting.onuploaded + ') ' + that.setting.onuploaded + '(isNew, image);'):function(){ }
                 if ($this.data(ClassName) == undefined) {
                     var $wrap = this.$wrap = $("<div class=\"comsys-base comsys-ProtoUpload\"></div>");
                     var $form = $('<form enctype=\"multipart/form-data\" method=\"POST\"></form>');
@@ -37,6 +38,7 @@ define(
                         $wrap.removeClass('focus-outerline');
                     })
                     $this.off(".ProtoUploadChangeEvent").on("change.ProtoUploadChangeEvent", function () {
+                        var isNew = ( $wrap.find('img').length == 0 );
                         fileReader.read($this.get(0)).then(function(image){
                             var o = new Image();
                             o.onload=function(){
@@ -50,9 +52,11 @@ define(
                                 $wrap.append(o);
                             };
                             o.src = image;
-                            $target.val(image);
+                            if($target) $target.val(image);
+                            callback(isNew,image);
                         }).fail(function(message){
-                            $target.val('');
+                            if($target) $target.val('');
+                            callback(isNew,'')
                         });
                     });
 
@@ -64,7 +68,7 @@ define(
         $.fn.extend({
             ProtoUploadInit: function () {
                 return this.each(function () {
-                    new ProtoUpload({ element: this ,setting: { target : $(this).attr('cs-target')}}).initialize();
+                    new ProtoUpload({ element: this ,setting: { target : $(this).attr('cs-target') || '', onuploaded: $(this).attr('cs-onuploaded') || '' }}).initialize();
                 }).removeAttr('cs-control');;
             }});
 

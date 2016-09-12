@@ -26,7 +26,7 @@ define(
                     var that = this;
                     if (this.$ButtonTextBoxEl.data(ClassName) == undefined) {
                         this.$ButtonTextBoxController = $(TPLEngine.render(this.TPL.main, this));
-                        this.$ButtonTextBoxEl.parent().append(this.$ButtonTextBoxController);
+                        this.$ButtonTextBoxEl.before(this.$ButtonTextBoxController);
                         this.$ButtonTextBoxController.find(".comsys-ButtonTextBox-input").append(this.$ButtonTextBoxEl);
                         this.$ButtonTextBoxEl.on("focus",function(){
                             that.$ButtonTextBoxController.addClass('focus-outerline')
