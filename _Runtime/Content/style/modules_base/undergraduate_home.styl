@@ -162,9 +162,12 @@ body
       .student_name
         height:40px;
         line-height:40px;
-        font-size:14px;
+        font-size:16px;
         color:#74622e;
         text-align:center;
+        span
+          font-size:inherit;
+          font-weight:inherit;
       .student_information
         padding:5px 15px 12px 15px;
         p
@@ -248,6 +251,11 @@ body
               line-height 18px;
               color:#434343;
               font-size:16px;
+              a
+                opacity:0.8;
+              a:hover
+                opacity:1;
+                color:#000;
       .function_r_m_btn
         height:30px;
     .function_r_b
@@ -346,15 +354,43 @@ body
             .data_mouth
               background:#c75c5c;
               color:#fff;
+              .k0
+                background:url("../icons/number0.png") no-repeat;
+              .k1
+                background:url("../icons/number1.png") no-repeat;
+              .k2
+                background:url("../icons/number2.png") no-repeat;
+              .k3
+                background:url("../icons/number3.png") no-repeat;
+              .k4
+                background:url("../icons/number4.png") no-repeat;
+              .k5
+                background:url("../icons/number5.png") no-repeat;
+              .k6
+                background:url("../icons/number6.png") no-repeat;
+              .k7
+                background:url("../icons/number7.png") no-repeat;
+              .k8
+                background:url("../icons/number8.png") no-repeat;
+              .k9
+                background:url("../icons/number9.png") no-repeat;
               span
                 color:#fff;
+                font-family:'Microsoft YaHei'
+                //display:inline-block;
+                //width:12px;
+                //height:inherit;
+                //background-size:60% 60%!important;
+                //padding 5px 0;
             .data_year
               background:#f3f3f3;
               span
                 color:#c75c5c;
+                font-family:'Microsoft YaHei'
           .new_text
             width:305px;
             height:60px;
+            overflow:hidden;
             .new_text_t
               height:20px;
               white-space:nowrap;
@@ -451,6 +487,7 @@ body
         line-height 25px;
         font-size 14px;
         color:#434343;
+        overflow hidden;
       img
         width:282px;
         height:73px;
@@ -498,6 +535,7 @@ body
         font-size:12px;
         position:absolute;
         bottom:0;
+        left:0;
     .big_new_list
       width:250px;
       margin-left:18px;
@@ -638,6 +676,55 @@ body
       margin-right:0;
     .active
       background:yellow;
+
+ #home2
+ .active_list
+    .active
+      background:#b7314a;
+
+/*答辩公告栏目*/
+.Defence_f
+  wodth:100px;
+  height:inherit;
+  background-color:#efb274;
+  float left;
+  padding-top:60px;
+  span
+    color:#fff;
+    text-align center;
+    display block;
+    width:100px;
+  .defence-data
+    font-size :40px;
+    line-height 45px;
+  .defence-mouth
+    font-size :14px;
+    line-height 16px;
+.Defence_r
+  width:175px;
+  background #f5f5f5;
+  height:inherit;
+  float left;
+  padding:25px 15px;
+  .title
+    line-height:40px;
+    font-size:16px;
+    font-weight bold;
+  .text1
+    width:100%;
+    line-height:30px;
+    height:30px;
+    font-size:12px;
+    color:#aaaaaa;
+    overflow:hidden;
+  .text2
+    width:100%;
+    line-height 15px;
+    font-size :12px;
+    color:#aaa;
+    height:45px;
+    overflow hidden;
+    margin-top:5px;
 
 
 

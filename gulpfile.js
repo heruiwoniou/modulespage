@@ -95,19 +95,19 @@ gulp.task('build-script', function() {
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/requirejs/require.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery/dist/jquery.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
      gulp.src('_Runtime/Static/js/libs/jquery-ui/jquery-ui.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery-ui/ui/i18n/datepicker-zh-CN.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
 
@@ -116,7 +116,7 @@ gulp.task('build-script', function() {
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
     gulp.src('_Runtime/Static/js/libs/jquery.masonry/jquery.masonry.min.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('Runtime/Content/js/common/'));
 
 });
