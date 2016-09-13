@@ -32,6 +32,7 @@ require([
             }}});
             $('.information_nav ul li').removeClass('active');
             $(this).addClass('active');
+
         });
         $('.up_btn').click(function(){
             $(".main").scrollBar('scrollTo', 0)});
