@@ -1,0 +1,643 @@
+@import '../common/DF_common.styl';
+
+body
+  background:#f4f4f4;
+  .header
+    width:100%;
+    height:140px;
+    .header_t
+      width:100%;
+      height:40px;
+      background:#e8e8e8;
+      .header_sec
+        width:1200px;
+        margin:0 auto;
+        height:40px;
+        overflow hidden;
+        .header_t_l
+          line-height 40px;
+          color:#6c397f;
+        .header_t_r
+          display inline-block;
+          a
+            margin-left:20px;
+            padding-left:20px;
+            display block
+            float left
+            height:40px;
+            line-height 40px;
+            color:#666;
+            /* @meta {"spritesheet": {"include": false}} */
+            background url("../icons/home_header_icon.png") no-repeat;
+          .header_t_r_i1
+            background-position:4px 16px;
+          .header_t_r_i2
+            background-position:4px -24px;
+          .header_t_r_i3
+            background-position:4px -64px;
+    .header_m
+      padding:10px 0;
+      margin:0 auto;
+      width:1200px;
+      height:100px;
+      overflow hidden;
+      .header_m_logo
+        width:80px;
+        img
+          height:80px;
+          width:355px;
+      .header_m_r
+        .header_m_r_t
+          height:25px;
+          line-height 35px;
+          p
+            float:left;
+            margin-left:15px;
+            color:#4a4444;
+            font-size 14px;
+            span
+              font-size:inherit;
+        .header_m_r_m
+          height:60px;
+          line-height:60px;
+          p
+            float:left;
+            margin-left:20px;
+            color:#4a4444;
+            font-size 14px;
+            span
+              font-size :inherit;
+/*导航栏*/
+.nav
+  width:100%;
+  height:46px;
+  /*导航栏包裹，黑色背景*/
+  .auto
+    height:40px;
+    width:100%;
+    background:#282828;
+    margin:2px 0 4px 0;
+    /*导航栏相对定位与居中*/
+    .auto_per
+      margin:0 auto;
+      width:1200px;
+      height:inherit;
+      position:relative;
+      /*继承父级高宽*/
+      ul
+        width:inherit;
+        height:inherit;
+        display :inline-block;
+        li
+          float:left;
+          height:inherit;
+          /*相对定位*/
+          a
+            position:relative;
+            display:block;
+            height:inherit;
+            padding:0 45px;
+            color #fff;
+            font-size 16px;
+            strong
+              position:relative;
+              width:100%;
+              z-index 2;
+              color #fff;
+              text-align:center;
+              line-height 40px;
+              display block;
+            /*定位的层级高于背景*/
+            span
+              width:100%;
+              position:absolute;
+              left:0;
+              height:43px;
+              top:-2px;
+              z-index 1;
+              background:#6c397f;
+              display :none;
+          a:hover
+            background :#6c397f;
+          .active
+            span
+              display:block;
+
+      ///*背景的高亮*/
+      //.active_bg
+      //  position:absolute;
+      //  top:-2px;
+      //  left:0;
+      //  height:43px;
+      //  background #6c397f;
+      //  width:100px;
+      //  z-index 1;
+
+.school_red
+  li
+   a
+    span
+     background:#b7314a!important;
+   a:hover
+      background :#b7314a!important;
+
+
+/*学校各种系统列表*/
+.function
+  width:1200px;
+  height:350px;
+  margin:0 auto;
+  overflow:hidden;
+  .function_l
+    width:230px;
+    margin-right:15px;
+    padding-top:10px;
+    background:#fff;
+    .function_l_t
+      img
+        width:120px;
+        height:120px;
+        display:block;
+        margin:0 auto;
+      .student_name
+        height:40px;
+        line-height:40px;
+        font-size:14px;
+        color:#74622e;
+        text-align:center;
+      .student_information
+        padding:5px 15px 12px 15px;
+        p
+         height:25px;
+         line-height 25px;
+         overflow:hidden;
+         color:#2d2d2d;
+         font-size 14px;
+         span
+           font-size:inherit;
+    .function_l_b
+      width:100%;
+      /* @meta {"spritesheet": {"include": false}} */
+      background:#c65c5b url("../icons/function_icon.png") no-repeat 25px 25px;
+  .function_r
+    width:955px;
+    height:250px;
+    .function_r_t
+      height:80px;
+      width:100%;
+      padding:12px 0;
+      background:#fff;
+      margin-bottom:15px;
+      .function_r_t_list
+        width:20%;
+        height:56px;
+        border-right:1px solid #eee;
+        float:left;
+        padding-left:60px;
+        overflow:hidden;
+        .title
+          font-size:14px;
+          color:#b7314a;
+          a
+            color:#b7314a;
+        .special
+          font-size:12px;
+          color:#ae70c7;
+      .icon1
+        /* @meta {"spritesheet": {"include": false}} */
+        background: url("../icons/function_list_icon.png") no-repeat 15px 6px;
+      .icon2
+        /* @meta {"spritesheet": {"include": false}} */
+        background: url("../icons/function_list_icon.png") no-repeat 15px -74px;
+      .icon3
+        /* @meta {"spritesheet": {"include": false}} */
+        background: url("../icons/function_list_icon.png") no-repeat 15px -154px;
+      .icon4
+        /* @meta {"spritesheet": {"include": false}} */
+        background: url("../icons/function_list_icon.png") no-repeat 15px -234px;
+      .icon5
+        /* @meta {"spritesheet": {"include": false}} */
+        background: url("../icons/function_list_icon.png") no-repeat 15px -314px;
+
+    .function_r_m
+      width:100%;
+      height:152px;
+      background:#fff;
+      .function_r_m_content
+        height:122px;
+        position:relative;
+        .content_scroll
+          position:absolute;
+          left:0;
+          top:0;
+          overflow:hidden;
+          height:122px;
+          width:100%;
+          .system
+            width:136px;
+            height:122px;
+            float: left;
+            img
+              width:77px;
+              height:77px;
+              display:block;
+              margin:13px auto;
+            p
+              text-align:center;
+              height: 18px;
+              line-height 18px;
+              color:#434343;
+              font-size:16px;
+      .function_r_m_btn
+        height:30px;
+    .function_r_b
+      width:100%;
+      height:82px;
+      overflow:hidden;
+      margin-top:15px;
+      .function_list_css
+        width:310px;
+        height:82px;
+        margin-right:12.5px;
+        float:left;
+        /* @meta {"spritesheet": {"include": false}} */
+        background:#77b3d4 url('../icons/function_icon.png') no-repeat 25px -62px;
+      .bg_icon2
+        /* @meta {"spritesheet": {"include": false}} */
+        background:#f5cf87 url('../icons/function_icon.png') no-repeat 25px -145px;
+      .bg_icon3
+        /* @meta {"spritesheet": {"include": false}} */
+        background:#75c2ae url('../icons/function_icon.png') no-repeat 25px -230px;
+/*功能列表的背景样式公用*/
+.function_list_css
+  padding:16px 0 16px 85px;
+  height:82px;
+  .function_l_b_name
+    width:100%;
+    height:30px;
+    line-height 30px;
+    font-size 16px;
+    color:#fff;
+  .function_l_b_link
+    color:#fff;
+    font-size 14px;
+    height:20px;
+    line-height 20px;
+    a
+      color #fff;
+      font-size 14px;
+
+.school_news
+  width:1200px;
+  height:320px;
+  padding:0 20px 20px 20px;
+  margin:10px auto 15px;
+  background#fff;
+  .school_news_l
+    width:732px;
+    .school_news_l_content
+      width:100%;
+      overflow:hidden;
+      padding:25px 15px 10px 15px;
+      .school_news_l_content_img
+        width:318px;
+        height:208px;
+        position:relative;
+        overflow:hidden;
+        img
+          width:318px;
+          height:208px;
+        .new_img_text
+          padding:0 10px;
+          width:318px;
+          position:absolute;
+          bottom:0;
+          left:0;
+          font-style: 12px;
+          height:40px;
+          line-height:20px;
+          //white-space:nowrap;
+          //overflow:hidden;
+          text-overflow:ellipsis;
+          .important_text
+            font-size:inherit;
+            color:#ef871c;
+          .text
+            color:#fff;
+            font-size:inherit;
+
+      .school_news_l_content_text
+        width:372px;
+        height:208px;
+        .school_news_l_content_text_section
+          width:100%;
+          height:60px;
+          margin-bottom:15px;
+          .new_data
+            width:60px;
+            height:60px;
+            div
+              height:30px;
+              line-height 30px;
+              text-align center
+              span
+                font-size:12px;
+                font-family:"Georgia", "serif";
+            .data_mouth
+              background:#c75c5c;
+              color:#fff;
+              span
+                color:#fff;
+            .data_year
+              background:#f3f3f3;
+              span
+                color:#c75c5c;
+          .new_text
+            width:305px;
+            height:60px;
+            .new_text_t
+              height:20px;
+              white-space:nowrap;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              line-height:14px;
+              margin-bottom:2px;
+              span
+                font-size 14px;
+              strong
+                color:#ef871c;
+                font-size 14px;
+            .new_content
+              line-height 20px;
+              color:#959595;
+  .school_news_r
+    width:410px;
+    .school_news_r_new
+      width:410px;
+      height:240px;
+      overflow:hidden;
+      padding:25px 0 0 0;
+      .school_news_r_new_list
+        overflow:hidden;
+        margin-bottom:15px;
+        .data
+          width:46px;
+          margin-right:10px;
+          .year
+            text-align:right;
+          .year:before
+            content:'';
+            width:5px;
+            height:5px;
+            background:#f9c99e;
+            border-radius:50%;
+            display:inline-block;
+            margin:0 5px 0 0;
+          p
+            height:20px;
+            linne-height:20px;
+            color:#b5b5b5;
+            font-size:12px;
+            span
+              line-height 10px;
+              display:inline-block;
+              color:#b5b5b5;
+              font-size:16px;
+        .text
+          width:354px;
+          height:60px;
+          padding-right:24px;
+          .title
+            height:18px;
+            line-height:18px;
+            margin-bottom:4px;
+            font-size:16px;
+            color:#626262;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+          .content
+            display:inline-block;
+            height:38px;
+            line-height 19px;
+            overflow:hidden;
+            color:#959595;
+          .content:hover
+            color:#959595;
+            opacity:0.8;
+/*学术与学生活动*/
+.student_news
+  width:1200px;
+  height:302px;
+  background:#fff;
+  padding: 0 20px;
+  margin:0 auto 15px;
+  .student_news_content
+    width:100%;
+    overflow:hidden;
+    height:242px;
+    padding-top:10px;
+    .student_news_content_list
+      width:283px;
+      margin-right:9px;
+      float:left;
+      .time
+        height:25px;
+        line-height 25px;
+        font-size 14px;
+        color:#c3c3c3;
+      .title
+        height:25px;
+        line-height 25px;
+        font-size 14px;
+        color:#434343;
+      img
+        width:282px;
+        height:73px;
+        display:block;
+        margin:10px 0;
+      .text
+        width:230px;
+        height:36px;
+        line-height 18px;
+        overflow:hidden;
+        font-size:12px;
+        color:#959595;
+      .more_btn
+        display:inline-block;
+        height:25px;
+        line-height:25px;
+        padding:0 13px;
+        background:#e57e18;
+        color:#fff;
+        font-size:14px;
+        margin-top:15px;
+/*建大新闻*/
+.student_big_news
+  width:1200px;
+  height:320px;
+  background:#fff;
+  margin:0 auto 15px;
+  padding :0 20px;
+  .student_news_content
+    height:264px;
+    width:100%;
+    padding:26px 14px;
+    .big_new_img
+      width:298px;
+      height:208px;
+      position:relative;
+      img
+        width:298px;
+        height:208px;
+      .text
+        height:40px;
+        padding:0 10px;
+        line-height 18px;
+        color:#fff;
+        font-size:12px;
+        position:absolute;
+        bottom:0;
+    .big_new_list
+      width:250px;
+      margin-left:18px;
+      height:210px;
+      img
+        width:250px;
+        height:112px;
+        display:inline-block;
+      .text
+        width:250px;
+        height:36px;
+        line-height 18px;
+        margin-top:10px;
+        color:#626262;
+        font-size:14px;
+      .next_text
+        width:200px;
+        height:36px;
+        line-height 18px;
+        color:#959595;
+        font-size:14px;
+        overflow :hidden;
+        margin-top:12px;
+
+/*新闻的头部导航公用*/
+.school_news_l_t
+  overflow:hidden;
+  width:100%;
+  height:56px;
+  border-bottom:1px solid #dcdcdc;
+  .school_news_l_t_nav
+    float:left;
+    height:56px;
+    span
+      height:56px;
+      line-height 56px;
+      font-size 18px;
+      color:#313131;
+      padding 0 10px;
+      display:inline-block;
+      cursor:pointer;
+    .active
+      border-bottom:3px solid #f3943e;
+  .new_nav_more
+    height:56px;
+    line-height 56px;
+    font-size 18px;
+    color:#a3a3a3;
+    float:right;
+  .new_nav_more:hover
+    text-decoration :none;
+
+.footer
+  width:100%;
+  height:auto;
+  background:#4f4f4f;
+  overflow hidden;
+  .auto
+    width:1200px;
+    margin:0 auto;
+    display:inline-block;
+    padding-bottom:30px;
+    .list
+      float:left;
+      width:285px;
+      margin-right:20px;
+      .title
+        height:66px;
+        line-height:66px;
+        font-size:18px;
+        color:#d4d4d4;
+        border-bottom:1px solid #595959;
+        margin_bottom:10px;
+        text-align:left;
+      a
+        display:block;
+        height:34px;
+        line-height 34px;
+        width:100%;
+        overflow:hidden;
+        font-size :14px;
+        color:#b9b9b9;
+        text-align:left;
+      a:hover
+        color:#fff;
+
+ .footer_bottom
+   padding:5px 0 15px 0;
+   p
+     text-align center;
+     line-height 30px;
+     font-size:14px;
+
+.banner
+  width:100%;
+  height:330px;
+  position relative;
+  img
+    width:100%
+    height:330px;
+
+
+
+.silder
+  width:100%;
+  height:inherit;
+  position:relative;
+  overflow:hidden;
+  .silder_list
+    width:1920px;
+    height:inheritx;
+    position:absolute;
+    top:0;
+    li
+      width:100%;
+      height:inherit;
+      position:absolute;
+      top:0;
+      left:0;
+      img
+        width:100%;
+        height:inherit;
+        display:block;
+
+
+  .active_list
+    position:absolute;
+    bottom:20px;
+    height:15px;
+    display:inline-block;
+    span
+      width:15px;
+      height:15px;
+      background:#fff;
+      float: left;
+      margin-right:20px;
+    span:last-child
+      margin-right:0;
+    .active
+      background:yellow;
+
+
+
