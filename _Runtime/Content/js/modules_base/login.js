@@ -6,25 +6,25 @@ require([
     var $main = $('body');
     var $window = $(window);
     var $swbanners = $('#swbanner');
-    var $aphorism = $('.aphorism')
+    //var $aphorism = $('.aphorism')
     var resizeTimer = null;
-    var aphorismToggleTimer = null;
-    var aphorismStop = function(){
-    	window.clearInterval(aphorismToggleTimer);
-    }
-   	var aphorismPlay = function(speed){
-   		//警句切换
-   		window.clearInterval(aphorismToggleTimer);
-   		aphorismToggleTimer = window.setInterval(function(){
-   			$aphorism.fadeOut(function(){
-   				if($aphorism.hasClass('aphorism-1'))
-   					$aphorism.removeClass('aphorism-1').addClass('aphorism-2').fadeIn();
-   				else
-   					$aphorism.removeClass('aphorism-2').addClass('aphorism-1').fadeIn();
-
-   			})
-   		}, speed);
-   	}
+    // var aphorismToggleTimer = null;
+    // var aphorismStop = function(){
+    // 	window.clearInterval(aphorismToggleTimer);
+    // }
+   	// var aphorismPlay = function(speed){
+   	// 	//警句切换
+   	// 	window.clearInterval(aphorismToggleTimer);
+   	// 	aphorismToggleTimer = window.setInterval(function(){
+   	// 		$aphorism.fadeOut(function(){
+   	// 			if($aphorism.hasClass('aphorism-1'))
+   	// 				$aphorism.removeClass('aphorism-1').addClass('aphorism-2').fadeIn();
+   	// 			else
+   	// 				$aphorism.removeClass('aphorism-2').addClass('aphorism-1').fadeIn();
+    
+   	// 		})
+   	// 	}, speed);
+   	// }
 	/**
 	 * [initialize 页面初始化函数 及 页面重绘后重新计算]
 	 * @param  {[type]} resize [是否是计算高度]
@@ -46,10 +46,10 @@ require([
 					control2: true,
 					defaultWidth: $window.width(),
 					played:function(speed){
-						aphorismPlay(speed);
+						//aphorismPlay(speed);
 					},
 					stoped:function(){
-						aphorismStop()
+						//aphorismStop()
 					}
 				});
 				$.loadImage();
