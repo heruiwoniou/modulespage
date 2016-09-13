@@ -68,6 +68,18 @@ require([
             fade(_index);
         },5000);
         /*==================================轮播 end*/
+        $(function(){
+            $('.function_r_m_btn span').stop().eq(0).hover(function(){
+                $('.content_scroll').animate({'top': 0 + 'px'},500 );
+                $('.function_r_m_btn span').css('background','#333');
+                $(this).css('background','#f5cf87');
+            })
+            $('.function_r_m_btn span').stop().eq(1).hover(function(){
+                $('.content_scroll').animate({'top': -122 + 'px'},500 );
+                $('.function_r_m_btn span').css('background','#333');
+                $(this).css('background','#f5cf87');
+            })
+        })
     })
 
 });
