@@ -1,0 +1,617 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--本科生-->
+    <title>智慧建大</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="Content/style/modules_base/undergraduate_home.css">
+    <script src="Content/js/common/jquery.js"></script>
+    <style id="current_style"></style>
+</head>
+
+<body>
+    <!--页面顶头部分-->
+    <div class="header">
+        <!--header的顶部，欢迎与各种帮助-->
+        <div class="header_t">
+            <div class="header_sec">
+                <p class="header_t_l fl">北京建筑大学信息门户欢迎你！</p>
+                <!--各种帮助按钮-->
+                <div class="header_t_r fr">
+                    <a class="header_t_r_i1" href="javascript:;">个性化</a>
+                    <a class="header_t_r_i2" href="javascript:;">帮助中心</a>
+                    <a class="header_t_r_i3" href="javascript:;">安全退出</a>
+                </div>
+            </div>
+        </div>
+        <!--头部中间部分门户logo与天气-->
+        <div class="header_m">
+            <!--北京建筑大学logo-->
+            <div class="header_m_logo fl">
+                <img src="Content/style/icons/undergraduate_home_logo.png" alt="">
+            </div>
+            <!--天气与日期-->
+            <div class="header_m_r fr">
+                <div class="header_m_r_t fr">
+                    <p><span>2016</span>-<span>2017</span>学年</p>
+                    <p>第一学期</p>
+                    <p>第<span style="font-size: 18px;color:#c12c20;margin:0 3px;">21</span>周</p>
+                </div>
+                <div class="header_m_r_m">
+                    <p>
+                        <span>北京</span>
+                        <img style="margin: 0 3px;" src="Content/style/icons/weather_icon.png" alt="">
+                        <span>晴</span>
+                    </p>
+                    <p>
+                        <span>21</span>℃~<span>33</span>℃
+                    </p>
+                    <p>
+                        <span>2016</span>-<span>08</span>-<span>16</span>&nbsp;&nbsp;<span>星期一</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--导航-->
+    <div class="nav">
+        <div class="auto">
+            <div class="auto_per">
+                <ul>
+                    <li>
+                        <a class="active" href="javascript:;"><strong>首页</strong><span></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><strong>爱生社区</strong><span></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><strong>服务大厅</strong><span></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><strong>我的数据</strong><span></span></a>
+                    </li>
+                </ul>
+                <!--<div class="active_bg"></div>-->
+            </div>
+        </div>
+    </div>
+    <!--轮播-->
+    <div style="width:100%;height:330px;margin-bottom:15px;overflow: hidden;">
+        <div class="silder" id="silder">
+            <ul class="silder_list" id="silder_list">
+                <li> <img src="Content/style/icons/banner5.png" border="0" alt="banner5.png"> </li>
+                <li> <img src="Content/style/icons/banner6.png" border="0" alt="banner6.png"> </li>
+                <li> <img src="Content/style/icons/banner7.png" border="0" alt="banner7.png"> </li>
+            </ul>
+            <div class="active_list"></div>
+        </div>
+        <!--<img src="Content/style/icons/banner.png" alt="">-->
+    </div>
+    <!--学校各种系统的列表-->
+    <div class="function">
+        <div class="function_t">
+            <div class="function_l fl">
+                <!--同学简介，学号，IP-->
+                <div class="function_l_t">
+                    <img src="Content/style/icons/self_icon.png" alt="">
+                    <p class="student_name">李湘同学，<span>上午</span>好!</p>
+                    <div class="student_information">
+                        <p>学号：<span>2015321</span></p>
+                        <p>单位名称：<span>北京建筑学院</span></p>
+                        <p>IP地址：<span>192.168.3.3</span></p>
+                    </div>
+                </div>
+                <div class="function_l_b function_list_css">
+                    <p class="function_l_b_name">登录计费系统</p>
+                    <p class="function_l_b_link"><a href="javascript:;">联网</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">断网</a></p>
+                </div>
+            </div>
+            <div class="function_r fl">
+                <div class="function_r_t">
+                    <div class="function_r_t_list icon1">
+                        <p class="title">邮件</p>
+                        <p>未读邮件：<span class="special">12</span>封</p>
+                    </div>
+                    <div class="function_r_t_list icon2">
+                        <p class="title">一卡通</p>
+                        <p>当前余额：<span class="special">300</span>元</p>
+                        <p class="title"><a href="javascript:;">充值</a></p>
+                    </div>
+                    <div class="function_r_t_list icon3">
+                        <p class="title">网费</p>
+                        <p>本月剩余：<span class="special">120</span>兆流量</p>
+                    </div>
+                    <div class="function_r_t_list icon4">
+                        <p class="title">图书</p>
+                        <p>未还图书：<span class="special">12</span>本</p>
+                        <p>即将到期图书：<span class="special">12</span>本</p>
+                    </div>
+                    <div class="function_r_t_list icon5 borderNone">
+                        <p class="title">补助</p>
+                        <p>补助金额：<span class="special">12</span>元</p>
+                    </div>
+                </div>
+                <div class="function_r_m">
+                    <!--各种系统列表-->
+                    <div class="function_r_m_content">
+                        <div class="content_scroll">
+                            <!--一个系统的样式-->
+                            <div class="system">
+                                <img src="Content/style/icons/p16.png" alt="">
+                                <p><a href="javascript:;">教务系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/newicon-6.png" alt="">
+                                <p><a href="javascript:;">学工系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/newicon-2.png" alt="">
+                                <p><a href="javascript:;">财务系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/newicon-3.png" alt="">
+                                <p><a href="javascript:;">图书系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/newicon-4.png" alt="">
+                                <p><a href="javascript:;">iStudent社区</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/p93.png" alt="">
+                                <p><a href="javascript:;">邮件系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/newicon-5.png" alt="">
+                                <p><a href="javascript:;">一卡通系统</a></p>
+                            </div>
+                            <div class="system">
+                                <img src="Content/style/icons/p74.png" alt="">
+                                <p><a href="javascript:;">网络计费系统</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--控制滚动的小点-->
+                    <div class="function_r_m_btn">
+                        <span style="background:#f5cf87;"></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="function_r_b">
+                    <div class="function_list_css">
+                        <p class="function_l_b_name">课程表</p>
+                        <p class="function_l_b_link">Curriculum Schedule</p>
+                    </div>
+                    <div class="function_list_css bg_icon2">
+                        <p class="function_l_b_name">空闲教室</p>
+                        <p class="function_l_b_link">Free Classroom</p>
+                    </div>
+                    <div class="function_list_css bg_icon3 marginNone">
+                        <p class="function_l_b_name">宿舍评比</p>
+                        <p class="function_l_b_link">Dormitory Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--学校活动与新闻-->
+    <div class="school_news">
+        <!--学校院校通知公告-->
+        <div class="school_news_l fl">
+            <!--新闻的标题与更多-->
+            <div class="school_news_l_t">
+                <div class="school_news_l_t_nav">
+                    <span class="active">学校通知公告</span>
+                    <span>学院通知公告</span>
+                </div>
+                <a class="new_nav_more" href="javascript:;">更多>></a>
+            </div>
+            <div class="school_news_l_content">
+                <div class="section">
+                    <!--新闻显示的图片-->
+                    <div class="swbanner sw-small school_news_l_content_img fl">
+                        <img src="Content/style/icons/notice-1.png" alt="">
+                        <img src="Content/style/icons/notice-2.png" alt="">
+                        <img src="Content/style/icons/notice-3.png" alt="">
+                    </div>
+                    <!--新闻的文字列表-->
+                    <div class="school_news_l_content_text fr">
+                        <!--一条新闻-->
+                        <div class="school_news_l_content_text_section">
+                            <div class="new_data fl">
+                                <div class="data_mouth">
+                                    <span>09</span>-<span>10</span>
+                                </div>
+                                <div class="data_year">
+                                    <span>2016</span>
+                                </div>
+                            </div>
+                            <div class="new_text fr">
+                                <div class="new_text_t">
+                                    <strong>[学校公告]</strong>
+                                    <span>我校在2016年北京高校新生引航工程启动仪式上做典型发言.</span>
+                                </div>
+                                <p class="new_content">在第32个教师节到来之际，9月9日上午，党委书记王建中、副校长张大玉到清华大学看望和拜访建筑学界泰斗、清华大学教授吴良镛院士，代表全校师生对吴良镛院士致以崇高的敬意和节日问候，对吴院士长期以来对我校教学科研工作、特别是在高精尖申报和建设过程中给予的关心和指导表示衷心感谢。</p>
+                            </div>
+                        </div>
+                        <!--一条新闻-->
+                        <div class="school_news_l_content_text_section">
+                            <div class="new_data fl">
+                                <div class="data_mouth">
+                                    <span>07</span>-<span>18</span>
+                                </div>
+                                <div class="data_year">
+                                    <span>2016</span>
+                                </div>
+                            </div>
+                            <div class="new_text fr">
+                                <div class="new_text_t">
+                                    <strong>[学校公告]</strong>
+                                    <span>校友李瑞环编剧的经典剧目《韩玉娘》在我校隆重上演</span>
+                                </div>
+                                <p class="new_content">9月8日晚，为喜迎我校八十周年华诞，由我校杰出校友李瑞环同志编剧，天津市评剧白派剧团经典剧目《韩玉娘》在我校大学生活动中心隆重上演。北京市委组织部原常务副部长、北京市徒步运动协会会长史绍洁、我校党委书记王建中、校长张爱林、党委副书记张启鸿、党委副书记吕晨飞、学校部分职能部门负责人、二级学院领导和七百余名师生共同观看了本次演出。</p>
+                            </div>
+                        </div>
+                        <!--一条新闻-->
+                        <div class="school_news_l_content_text_section">
+                            <div class="new_data fl">
+                                <div class="data_mouth">
+                                    <span>08</span>-<span>05</span>
+                                </div>
+                                <div class="data_year">
+                                    <span>2016</span>
+                                </div>
+                            </div>
+                            <div class="new_text fr">
+                                <div class="new_text_t">
+                                    <strong>[学校公告]</strong>
+                                    <span>我校多项作品入围2016“创业青年”全省全市大赛！</span>
+                                </div>
+                                <p class="new_content">近日，2016年“创青春”全国大学生创业大赛复赛结果传生创业大赛复赛结果传来捷报。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--新闻的文字列表-->
+                    <div class="school_news_l_content_text fr" style="display:none">
+                        <div class="section">
+                            <!--一条新闻-->
+                            <div class="school_news_l_content_text_section">
+                                <div class="new_data fl">
+                                    <div class="data_mouth">
+                                        <span>08</span>-<span>25</span>
+                                    </div>
+                                    <div class="data_year">
+                                        <span>2016</span>
+                                    </div>
+                                </div>
+                                <div class="new_text fr">
+                                    <div class="new_text_t">
+                                        <strong>[建大新闻]</strong>
+                                        <span>北京城市副中心交通规划国际研讨最终成果汇报会举行</span>
+                                    </div>
+                                    <p class="new_content">　　备受关注的北京城市副中心综合交通系统规划，由诸多著名的海内外专家共同出谋划策。9月7日上午，北京城市副中心交通规划国际研讨最终成果汇报会在通州召开。通州区委书记杨斌、副区长刘贵明、北京市城市规划设计研究院院长施卫良，</p>
+                                </div>
+                            </div>
+                            <!--一条新闻-->
+                            <div class="school_news_l_content_text_section">
+                                <div class="new_data fl">
+                                    <div class="data_mouth">
+                                        <span>08</span>-<span>11</span>
+                                    </div>
+                                    <div class="data_year">
+                                        <span>2016</span>
+                                    </div>
+                                </div>
+                                <div class="new_text fr">
+                                    <div class="new_text_t">
+                                        <strong>[学校公告]</strong>
+                                        <span>我校多项作品入围2016“创业青年”全省全市大赛！</span>
+                                    </div>
+                                    <p class="new_content">近日，2016年“创青春”全国大学生创业大赛复赛结果传生创业大赛复赛结果传来捷报。</p>
+                                </div>
+                            </div>
+                            <!--一条新闻-->
+                            <div class="school_news_l_content_text_section">
+                                <div class="new_data fl">
+                                    <div class="data_mouth">
+                                        <span>09</span>-<span>12</span>
+                                    </div>
+                                    <div class="data_year">
+                                        <span>2016</span>
+                                    </div>
+                                </div>
+                                <div class="new_text fr">
+                                    <div class="new_text_t">
+                                        <strong>[基层动态]</strong>
+                                        <span>国际专家“把脉”北京城市副中心交通规划</span>
+                                    </div>
+                                    <p class="new_content">2016年8月30日，国际设计专家团队踏勘通州全区域及北三县部分地区实地了解现状交通。 由北京市规划和国土资源管理委员会与通州区政府主办、北京建筑大学北京未来城市设计高精尖创新中心承办，召开北京城市副中心交通规划国际专家研讨会。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="school_news_r fr">
+            <!--新闻的标题与更多-->
+            <div class="school_news_l_t">
+                <div class="school_news_l_t_nav">
+                    <span class="active">教学通知公告</span>
+                    <span>学生工作通知公告</span>
+                </div>
+                <a class="new_nav_more" href="javascript:;">更多>></a>
+            </div>
+            <!--右边的新闻列表-->
+            <div class="school_news_r_new">
+                <div class="section">
+                    <!--一条新闻-->
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>05</span><span>-</span><span>08</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">我校在2016年北京高校新生引航工程启动仪式上做典型发言</p>
+                            <a href="javascript:;" class="content">　9月9日下午，由北京市委教育工委、市教委组织实施的2016年北京高校新生引航工程在北京化工大学正式启动，教育部思政司副司长张文斌、市委教工委常务副书记张雪、市委教工委副书记郑登文、市教委委员黄侃出席，北京各高校主管学生工作校领导，学工部长、研工部长，北京高校德育工作先进集体代表，十佳辅导员称号获得者，2016级新生代表，在京媒体代表等参加大会。会议由市委教工委副书记郑登文主持。</a>
+                        </div>
+                    </div>
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>06</span><span>-</span><span>22</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">我校召开庆祝第32个教师节座谈会暨优秀教师表彰会</p>
+                            <a href="javascript:;" class="content">9月8日下午，学校在大兴校区图书馆报告厅召开庆祝第32个教师节座谈会暨优秀教师表彰会，共同庆祝教师节。校领导王建中、张爱林、何志洪、李维平、张启鸿、张大玉、李爱群、吕晨飞，师德先锋获得者，在教育战线辛勤工作满30年的教职工，部分职能部门负责人，各院（部、馆）负责人，青年教师代表，学生代表参加了座谈会。副校长李爱群主持会议。</a>
+                        </div>
+                    </div>
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>01</span><span>-</span><span>01</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">我校师生参加中国钢结构协会结构稳定结构协会结……</p>
+                            <a href="javascript:;" class="content">近日，2016年“创青春”全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传。</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="section" style="display: none;">
+                    <!--一条新闻-->
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>08</span><span>-</span><span>21</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">国际专家“把脉”北京城市副中心交通规划</p>
+                            <a href="javascript:;" class="content">  2016年8月30日，国际设计专家团队踏勘通州全区域及北三县部分地区实地了解现状交通。
+                            由北京市规划和国土资源管理委员会与通州区政府主办、北京建筑大学北京未来城市设计高精尖创新中心承办，召开北京城市副中心交通规划国际专家研讨会。</a>
+                        </div>
+                    </div>
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>07</span><span>-</span><span>15</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">我们要稳定和谐发展……</p>
+                            <a href="javascript:;" class="content">近日，2016年“创青春”全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传。</a>
+                        </div>
+                    </div>
+                    <div class="school_news_r_new_list">
+                        <div class="data fl">
+                            <p>
+                                <span>01</span><span>-</span><span>01</span>
+                            </p>
+                            <p class="year">2016</p>
+                        </div>
+                        <div class="text fl">
+                            <p class="title">我校师生参加中国钢结构协会结构稳定结构协会结……</p>
+                            <a href="javascript:;" class="content">近日，2016年“创青春”全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传全国大学生创业大赛复赛结果传来捷大学生创业大赛复赛结果传。</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--学术与学生活动-->
+    <div class="student_news">
+        <!--新闻的标题与更多-->
+        <div class="school_news_l_t">
+            <div class="school_news_l_t_nav">
+                <span class="active">学术活动预告</span>
+                <span>学生活动预告</span>
+            </div>
+            <a class="new_nav_more" href="javascript:;">更多>></a>
+        </div>
+        <div class="student_news_content">
+            <div class="section">
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2015-05-15</div>
+                    <p class="title">土厚木华，继往开来——土木与交通工程学院</p>
+                    <img src="Content/style/icons/student_new_img1.png" alt="">
+                    <p class="text">为激发同学们的学习热情，备战即将到来的英语四级考试，于8月4日下午，举行英…… </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2015-12-08</div>
+                    <p class="title">我校硕士毕业生李书文同学荣获2016年“绿色风...</p>
+                    <img src="Content/style/icons/student_new_img2.png" alt="">
+                    <p class="text"> 近日，土木与交通工程学院2015届硕士毕业生李书文同学的毕业论文《水平轴风力发电机组钢筋混凝土塔筒研究》在2016年“绿色风能-研究生优秀学位论文”评选中，荣获“优秀硕士论文奖”。 该活动由中国可再生能源学会风能专业委员会主办，舍弗勒贸易（上海）有限公司支持，面向全国高等院校及科研机构的博士生和硕士生，评选出优秀博士论文3篇，优秀硕士论文5篇，硕、博鼓励奖论文6篇。
+                    </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2014-5-5</div>
+                    <p class="title">学院举行英语交流会</p>
+                    <img src="Content/style/icons/student_new_img3.png" alt="">
+                    <p class="text">为激发同学们的学习热情，备战即将到来的英语四级考试，于8月4日下午，举行英…… </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list marginNone">
+                    <div class="time">2015-12-08</div>
+                    <p class="title">我校召开庆祝第32个教师节座谈会暨优秀教师表彰会 </p>
+                    <img src="Content/style/icons/student_new_img4.png" alt="">
+                    <p class="text">为激发同学们的学习热情，备战即将到来的英语四级考试，于8月4日下午，举行英…… </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+            </div>
+            <div class="section" style="display: none;">
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2014-5-5</div>
+                    <p class="title">学院举行英语交流会</p>
+                    <img src="Content/style/icons/student_new_img1.png" alt="">
+                    <p class="text">为激发同学们的学习热情，备战即将到来的英语四级考试，于8月4日下午，举行英…… </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2015-08-15</div>
+                    <p class="title">我校戚承志教授入选2014年国家百千万人才工程</p>
+                    <img src="Content/style/icons/student_new_img1.png" alt="">
+                    <p class="text"> 根据人力资源社会保障部《关于确定2014年国家百千万人才工程入选人员名单的通知》（人社部发【2014】105号），经人力资源社会保障部组织专家评审，我校戚承志教授入选2014年国家百千万人才工程，并被授予“有突出贡献中青年专家”荣誉称号。</p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list">
+                    <div class="time">2014-11-17</div>
+                    <p class="title">第二届“生态环境与混凝土技术”国际学术...</p>
+                    <img src="Content/style/icons/student_new_img1.png" alt="">
+                    <p class="text">第二届“生态环境与混凝土技术”国际学术研讨会 http://www.eetc-2011.com/，于8月4日下午，举行英…… </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="student_news_content_list marginNone">
+                    <div class="time">2016-05-19</div>
+                    <p class="title">美国加州大学组织“混凝土柱”实验结果预测竞赛</p>
+                    <img src="Content/style/icons/student_new_img1.png" alt="">
+                    <p class="text">设在美国加州大学伯克利校区太平洋地震研究中心，最近在世界范围内组织“混凝土柱”振动台试验结果预测国际竞赛。欢迎土木学院师生踊跃参加！ 试验桥柱将于2010年9月9日-13日在加州大学圣迭戈校区的巨型室外振动台进行试验。 2010年9月6日前提交试验前预测结果，9月20日前提交试验后分析结果。详情请看以下链接：
+                    </p>
+                    <a class="more_btn" href="javascript:;">MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--学校重大新闻与院部新闻-->
+    <div class="student_big_news">
+        <!--新闻的标题与更多-->
+        <div class="school_news_l_t">
+            <div class="school_news_l_t_nav">
+                <span class="active">建大新闻</span>
+                <span>院部新闻</span>
+            </div>
+            <a class="new_nav_more" href="javascript:;">更多>></a>
+        </div>
+        <div class="student_news_content">
+            <div class="section">
+                <!--一个时间点的新闻-->
+                <div class="big_new_img fl">
+                    <img src="Content/style/icons/big_new_img.png" alt="">
+                    <a href="javascript:;" class="text">我校师生参加中国钢结构协会结构稳定与疲劳分会第15届（ISSF-2016）学术交流会暨教学研讨会</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img2.png" alt="">
+                    <p class="text">美国加州大学组织“混凝土柱”实验结果预测竞赛</p>
+                    <p class="next_text">美国加州大学组织“混凝土柱”实验结果预测竞赛</p>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img3.png" alt="">
+                    <p class="text">我校多项作品入围2016“创青春”全国大学生创业大赛终审决赛 </p>
+                    <p class="next_text">近日，2016年“创青春”全国大学生创业大赛复赛结果传来捷报...</p>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img1.png" alt="">
+                    <p class="text">我校硕士毕业生李书文同学荣获2016年“绿色风能-研究生优秀学位论文”奖</p>
+                    <p class="next_text">我校硕士毕业生李书文同学荣获2016年“绿色风能-研究生优秀学位论文”奖</p>
+                </div>
+            </div>
+            <div class="section" style="display: none;">
+                <!--一个时间点的新闻-->
+                <div class="big_new_img fl">
+                    <img src="Content/style/icons/big_new_img12.png" alt="">
+                    <a href="javascript:;" class="text">我校师生参加中国钢结构协会结构稳定与疲劳分会第15届（ISSF-2016）学术交流会暨教学研讨会</a>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img1.png" alt="">
+                    <p class="text">我校多项作品入围2016“创青春”全国大学生创业大赛终审决赛 </p>
+                    <p class="next_text">近日，2016年“创青春”全国大学生创业大赛复赛结果传来捷报...</p>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img2.png" alt="">
+                    <p class="text">美国加州大学组织“混凝土柱”实验结果预测竞赛</p>
+                    <p class="next_text">美国加州大学组织“混凝土柱”实验结果预测竞赛</p>
+                </div>
+                <!--一个时间点的新闻-->
+                <div class="big_new_list fl">
+                    <img src="Content/style/icons/big_new_img3.png" alt="">
+                    <p class="text">我校硕士毕业生李书文同学荣获2016年“绿色风能-研究生优秀学位论文”奖</p>
+                    <p class="next_text">我校硕士毕业生李书文同学荣获2016年“绿色风能-研究生优秀学位论文”奖</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <div class="footer">
+        <div class="auto">
+            <div class="list">
+                <p class="title">学习学术类</p>
+                <a href="javascript:;">选课系统</a>
+                <a href="javascript:;">研究指南</a>
+                <a href="javascript:;">就业信息</a>
+            </div>
+            <div class="list">
+                <p class="title">推荐应用类</p>
+                <a href="javascript:;">导师风采</a>
+                <a href="javascript:;">学生风采</a>
+                <a href="javascript:;">模板下载</a>
+            </div>
+            <div class="list">
+                <p class="title">生活服务类</p>
+                <a href="javascript:;">公交卡办理/补办通知</a>
+                <a href="javascript:;">校园一卡通充值时间</a>
+                <a href="javascript:;">食堂营业时间</a>
+                <a href="javascript:;">网络缴费方式</a>
+                <a href="javascript:;">常用电话</a>
+            </div>
+            <div class="list marginNone">
+                <p class="title">链接通道</p>
+                <a href="javascript:;">学校官网</a>
+                <a href="javascript:;">教育网</a>
+                <a href="javascript:;">北京教委网</a>
+                <a href="javascript:;">研究招生信息网</a>
+                <a href="javascript:;">支付宝网</a>
+            </div>
+        </div>
+    </div>
+    <!--最下面的邮箱与备案-->
+    <!--<div class="footer_bottom">
+    </div>-->
+    <script data-main="Content/js/modules_base/undergraduate_home" data-business="undergraduate_home" src="Content/js/common/require.js"></script>
+</body>
+
+</html>

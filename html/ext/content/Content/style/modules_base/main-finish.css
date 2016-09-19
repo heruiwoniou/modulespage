@@ -18,7 +18,7 @@ body .main {
 
 .section {
 	font-size: 0;
-	padding-bottom: 85px;
+	padding-bottom: 10px;
 }
 
 .section .section-body {
@@ -641,6 +641,21 @@ body .main {
 	line-height: 29px;
 }
 
+.articles .tab-control .tab-body .tab-content ul.new-ul li.normal.new a span:after,
+.news .tab-control .tab-body .tab-content ul.new-ul li.normal.new a span:after {
+	font-size: 8px;
+	content: 'NEW';
+	line-height: 1;
+	background: #e57e17;
+	border-radius: 3px;
+	color: #fff;
+	padding: 0 1px;
+	vertical-align: middle;
+	position: relative;
+	top: -5px;
+	margin-left: 5px;
+}
+
 .articles .tab-control .tab-body .tab-content ul.new-ul li.normal a,
 .news .tab-control .tab-body .tab-content ul.new-ul li.normal a {
 	position: relative;
@@ -706,6 +721,21 @@ body .main {
 	width: 2px;
 	height: 6px;
 	background: #a58dae;
+}
+
+.articles .tab-control .tab-body .tab-content ul.article-ul li.new a span:after,
+.news .tab-control .tab-body .tab-content ul.article-ul li.new a span:after {
+	font-size: 8px;
+	content: 'NEW';
+	line-height: 1;
+	background: #e57e17;
+	border-radius: 3px;
+	color: #fff;
+	padding: 0 1px;
+	vertical-align: middle;
+	position: relative;
+	top: -5px;
+	margin-left: 5px;
 }
 
 .articles .tab-control .tab-body .tab-content ul.article-ul li a,

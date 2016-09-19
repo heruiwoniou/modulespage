@@ -5588,8 +5588,6 @@ require([
     var initialize = function (first) {
         $main.hide();
         var timeout = function () {
-            var h = $window.height();
-            $sections.css({ minHeight: h > 890 ? h < 940 ? h : 940 : 890 });
             $main.show();
             $pageControls.each(function () {
                 var $pageControl = $(this);
@@ -5616,7 +5614,6 @@ require([
             if (initialized === false && first === true) {
                 $('.scroll-bar').scrollBar({
                     scrollInertia: 400,
-                    advanced: { autoScrollOnFocus: false },
                     autoHideScrollbar: true,
                     scrollButtons: { enable: false },
                     advanced: { updateOnImageLoad: false }
