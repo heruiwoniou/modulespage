@@ -11,10 +11,28 @@
 	line-height 100px
 	font-size 0px
 	text-align center
+	a
+		position: absolute;
+		right: 1px;
+		top:0;
+		color:white;
+		height: 7px
+		width:7px;
+		line-height: 7px;
+		z-index: 2;
+		display: none;
 	img
 		vertical-align middle
 		margin 0 auto
-	&:after
+	&:hover
+		a
+			display: block;
+			&:hover
+				color: red;
+	&.empty:hover
+		a
+			display: none;
+	&.empty:after
 		iconfont()
 		content ''
 		vertical-align middle
