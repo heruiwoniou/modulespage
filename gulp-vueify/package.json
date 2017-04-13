@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      "gulp-vueify",
+      "D:\\Program\\Git\\QE"
+    ]
+  ],
+  "_from": "gulp-vueify@*",
+  "_id": "gulp-vueify@0.0.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/gulp-vueify",
+  "_nodeVersion": "5.10.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/gulp-vueify-0.0.3.tgz_1461338952109_0.21571406838484108"
+  },
+  "_npmUser": {
+    "email": "zahajki0@gmail.com",
+    "name": "zahajki"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {
+    "core-util-is": "1.0.2",
+    "inherits": "2.0.1",
+    "process-nextick-args": "1.0.7",
+    "string_decoder": "0.10.31",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "name": "gulp-vueify",
+    "raw": "gulp-vueify",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/gulp-vueify/-/gulp-vueify-0.0.3.tgz",
+  "_shasum": "7c4b87112aa453ec1e68366ab243e802c010104c",
+  "_shrinkwrap": null,
+  "_spec": "gulp-vueify",
+  "_where": "D:\\Program\\Git\\QE",
+  "author": {
+    "name": "Zahajki"
+  },
+  "bugs": {
+    "url": "https://github.com/zahajki/gulp-vueify/issues"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1",
+    "vueify": "^8.3.5"
+  },
+  "description": "Compile .vue files using vueify",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "7c4b87112aa453ec1e68366ab243e802c010104c",
+    "tarball": "https://registry.npmjs.org/gulp-vueify/-/gulp-vueify-0.0.3.tgz"
+  },
+  "gitHead": "954e497d36cfa21bcbf1bc2865a435254fbcf5f6",
+  "homepage": "https://github.com/zahajki/gulp-vueify#readme",
+  "keywords": [
+    "gulpplugin",
+    "vue",
+    "vueify",
+    "vuejs"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "zahajki",
+      "email": "zahajki0@gmail.com"
+    }
+  ],
+  "name": "gulp-vueify",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahajki/gulp-vueify.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.3"
+}
